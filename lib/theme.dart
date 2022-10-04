@@ -31,6 +31,8 @@ FontWeight bold = FontWeight.w700;
 FontWeight extraBold = FontWeight.w800;
 FontWeight black = FontWeight.w900;
 
+TextStyle h2ExtraBold =
+    GoogleFonts.lato(fontWeight: extraBold, fontSize: 32, color: neutral100);
 TextStyle textLRegular = GoogleFonts.lato(fontWeight: regular, fontSize: 16);
 TextStyle textLSemibold = GoogleFonts.lato(fontWeight: semiBold, fontSize: 16);
 TextStyle textLBold = GoogleFonts.lato(fontWeight: bold, fontSize: 16);
