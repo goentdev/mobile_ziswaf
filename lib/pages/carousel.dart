@@ -90,7 +90,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             const SizedBox(height: 24.0),
                             Text(
                               'Data setiap muzakki yang ingin membayar zakat\nhanya melalui handphone',
-                              style: textLSemibold,
+                              style: textLSemibold.copyWith(color: neutral80),
                             ),
                           ],
                         ),
@@ -117,7 +117,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             const SizedBox(height: 24.0),
                             Text(
                               'Rencanakan program untuk mengelola hasil\ndonasi',
-                              style: textLSemibold,
+                              style: textLSemibold.copyWith(color: neutral80),
                             ),
                           ],
                         ),
@@ -144,7 +144,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             const SizedBox(height: 24.0),
                             Text(
                               'Pastikan dana terkumpul sesuai dengan target\npencapaian program yang telah dibuat',
-                              style: textLSemibold,
+                              style: textLSemibold.copyWith(color: neutral80),
                             ),
                           ],
                         ),
