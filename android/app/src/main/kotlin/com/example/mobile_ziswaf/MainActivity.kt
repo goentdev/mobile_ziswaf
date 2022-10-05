@@ -1,4 +1,4 @@
-package com.example.mobile_ziswaf
+package com.mobile.ziswaf
 
 import io.flutter.embedding.android.FlutterActivity
 

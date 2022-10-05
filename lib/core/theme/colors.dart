@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+
+Color primaryMain = const Color(0xff01AC67);
+Color primarySurface = const Color(0xffEBF3FF);
+Color primaryBorder = const Color(0xffC3E5D8);
+Color primaryHover = const Color(0xff008751);
+Color primaryPressed = const Color(0xff0A4182);
+Color primaryFocus = const Color.fromRGBO(38, 128, 235, .2);
+Color neutral10 = const Color(0xffFFFFFF);
+Color neutral20 = const Color(0xffF7F8F9);
+Color neutral30 = const Color(0xffEEEEEF);
+Color neutral40 = const Color(0xffE7E8EC);
+Color neutral50 = const Color(0xffC3C6CA);
+Color neutral60 = const Color(0xffA0A5AB);
+Color neutral70 = const Color(0xff797E87);
+Color neutral80 = const Color(0xff8589A0);
+Color neutral90 = const Color(0xff444D59);
+Color neutral100 = const Color(0xff061121);
+Color background = const Color(0xffE5E5E5);
+Color secondaryMain = const Color(0xffFBA611);
+Color secondarysurface = const Color(0xffFEF6E2);
+Color dangerMain = const Color(0xffFC544B);
+Color dangerSurface = const Color(0xffFEF1EF);
+
+FontWeight light = FontWeight.w300;
+FontWeight regular = FontWeight.w400;
+FontWeight medium = FontWeight.w500;
+FontWeight semiBold = FontWeight.w600;
+FontWeight bold = FontWeight.w700;
+FontWeight extraBold = FontWeight.w800;
+FontWeight black = FontWeight.w900;

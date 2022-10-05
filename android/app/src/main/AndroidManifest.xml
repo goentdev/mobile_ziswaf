@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mobile_ziswaf">
+    package="com.mobile.ziswaf">
    <application
         android:label="mobile_ziswaf"
         android:name="${applicationName}"

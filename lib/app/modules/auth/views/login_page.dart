@@ -1,25 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_ziswaf/pages/register_page.dart';
+import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/modules/auth/controllers/auth_controller.dart';
+import 'package:mobile_ziswaf/app/routes/app_pages.dart';
+import 'package:mobile_ziswaf/core/theme/colors.dart';
+import 'package:mobile_ziswaf/core/theme/fonts.dart';
 
-import '../theme.dart';
-
-class LoginPage extends StatefulWidget {
+class LoginPage extends GetView<AuthController> {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-final whatsappController = TextEditingController();
-final passwordController = TextEditingController();
-
-class _LoginPageState extends State<LoginPage> {
-  final _key = GlobalKey<FormState>();
-  bool isLoading = false;
-  bool showPassword = false;
-
-  @override
   Widget build(BuildContext context) {
+    final authC = Get.find<AuthController>();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -28,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
         title: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Image.asset(
-            'assets/Logo Ziswaf.png',
+            'assets/images/Logo Ziswaf.png',
             width: 94,
             height: 40,
           ),
@@ -45,9 +36,12 @@ class _LoginPageState extends State<LoginPage> {
             width: 355,
             child: FloatingActionButton.extended(
               shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(4.0))),
-              onPressed: () async {},
-              label: isLoading
+                borderRadius: BorderRadius.all(
+                  Radius.circular(4.0),
+                ),
+              ),
+              onPressed: () {},
+              label: authC.isLoading.value
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -89,11 +83,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const RegisterPage()),
-                  );
+                  Get.toNamed(Routes.REGISTER);
                 },
                 child: Text(
                   'Daftar disini',
@@ -109,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
         width: double.infinity,
         padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
         child: Form(
-          key: _key,
+          key: authC.loginFormKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 8,
               ),
               TextFormField(
-                controller: whatsappController,
+                controller: authC.whatsappC,
                 keyboardType: TextInputType.number,
                 validator: (v) {
                   if (v?.isEmpty ?? true) {
@@ -168,36 +158,40 @@ class _LoginPageState extends State<LoginPage> {
                   style: captionTextSemiBold.copyWith(color: neutral90),
                 ),
               ),
-              TextFormField(
-                controller: passwordController,
-                validator: (v) {
-                  if (v?.isEmpty ?? true) return 'Password wajib diisi';
-                  if (v!.length < 8) return 'Minimum 8 Karakter';
-                  return null;
-                },
-                decoration: InputDecoration(
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: neutral40,
-                      width: 1,
+              Obx(
+                () => TextFormField(
+                  controller: authC.passwordC,
+                  validator: (v) {
+                    if (v?.isEmpty ?? true) return 'Password wajib diisi';
+                    if (v!.length < 8) return 'Minimum 8 Karakter';
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: neutral40,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(4),
                     ),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  isDense: true,
-                  hintText: 'Masukan Kata Sandi',
-                  hintStyle: textMBold.copyWith(color: neutral60),
-                  suffixIcon: GestureDetector(
-                    onTap: () => setState(() => showPassword = !showPassword),
-                    child: Icon(
-                      showPassword
-                          ? Icons.visibility
-                          : Icons.visibility_off_outlined,
-                      color: neutral60,
-                      size: 18,
+                    isDense: true,
+                    hintText: 'Masukan Kata Sandi',
+                    hintStyle: textMBold.copyWith(color: neutral60),
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        authC.changeShowPassword();
+                      },
+                      child: Icon(
+                        authC.showPassword.value
+                            ? Icons.visibility
+                            : Icons.visibility_off_outlined,
+                        color: neutral60,
+                        size: 18,
+                      ),
                     ),
                   ),
+                  obscureText: authC.showPassword.value,
                 ),
-                obscureText: !showPassword,
               ),
               const SizedBox(
                 height: 8,

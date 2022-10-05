@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mobile_ziswaf/pages/login_page.dart';
-
-import 'package:mobile_ziswaf/theme.dart';
+import 'package:get/route_manager.dart';
+import 'package:mobile_ziswaf/app/routes/app_pages.dart';
+import 'package:mobile_ziswaf/core/theme/colors.dart';
+import 'package:mobile_ziswaf/core/theme/fonts.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -77,7 +78,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             const Center(
                               child: Image(
                                 image: AssetImage(
-                                  'assets/Ilustrasi1.png',
+                                  'assets/images/Ilustrasi1.png',
                                 ),
                                 height: 343.0,
                                 width: 343.0,
@@ -104,7 +105,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             const Center(
                               child: Image(
                                 image: AssetImage(
-                                  'assets/Ilustrasi2.png',
+                                  'assets/images/Ilustrasi2.png',
                                 ),
                                 height: 343.0,
                                 width: 343.0,
@@ -131,7 +132,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             const Center(
                               child: Image(
                                 image: AssetImage(
-                                  'assets/Ilustrasi3.png',
+                                  'assets/images/Ilustrasi3.png',
                                 ),
                                 height: 343.0,
                                 width: 343.0,
@@ -168,10 +169,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(4.0))),
                         onPressed: () async {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginPage()));
+                          Get.toNamed(Routes.LOGIN);
                         },
                         label: Text(
                           'Selanjutnya',

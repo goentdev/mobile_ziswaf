@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_ziswaf/theme.dart';
-import 'package:mobile_ziswaf/widget/otp_field.dart';
+import 'package:mobile_ziswaf/app/modules/otp/widgets/otp_field.dart';
+import 'package:mobile_ziswaf/core/theme/colors.dart';
+import 'package:mobile_ziswaf/core/theme/fonts.dart';
 
 class OtpSmsPage extends StatelessWidget {
   final Widget? title;

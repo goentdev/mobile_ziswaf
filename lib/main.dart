@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_ziswaf/pages/splash_page.dart';
+import 'package:get/get.dart';
+
+import 'app/routes/app_pages.dart';
 
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: SplashScreen(),
-    );
-  }
+  runApp(
+    GetMaterialApp(
+      title: "Ziswaf",
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
+    ),
+  );
 }
