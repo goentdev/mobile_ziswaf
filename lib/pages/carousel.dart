@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mobile_ziswaf/pages/login_page.dart';
 
 import 'package:mobile_ziswaf/theme.dart';
 
@@ -167,10 +168,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(4.0))),
                         onPressed: () async {
-                          _pageController.nextPage(
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.ease,
-                          );
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginPage()));
                         },
                         label: Text(
                           'Selanjutnya',
