@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_ziswaf/theme.dart';
-import 'package:mobile_ziswaf/widget/otp_field.dart';
+import 'package:mobile_ziswaf/widget/field_otp.dart';
 
 class OtpSmsPage extends StatelessWidget {
   final Widget? title;
@@ -66,7 +66,7 @@ class OtpSmsPage extends StatelessWidget {
             const SizedBox(
               height: 48,
             ),
-            OtpField(
+            FieldOtp(
               onChanged: (value) {},
               onCompleted: onCompleted,
               validator: validator,

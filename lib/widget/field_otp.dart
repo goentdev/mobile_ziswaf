@@ -3,11 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:mobile_ziswaf/theme.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class OtpField extends StatefulWidget {
+class FieldOtp extends StatefulWidget {
   final ValueChanged<String>? onCompleted;
   final ValueChanged<String> onChanged;
   final String? Function(String?)? validator;
-  const OtpField({
+  const FieldOtp({
     Key? key,
     this.onCompleted,
     required this.onChanged,
@@ -15,15 +15,15 @@ class OtpField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<OtpField> createState() => _PinCodeFieldState();
+  State<FieldOtp> createState() => _PinCodeFieldState();
 }
 
-class _PinCodeFieldState extends State<OtpField> {
+class _PinCodeFieldState extends State<FieldOtp> {
   final TextEditingController _controller = TextEditingController();
   final GlobalKey _formKey = GlobalKey();
 
   @override
-  void didUpdateWidget(covariant OtpField oldWidget) {
+  void didUpdateWidget(covariant FieldOtp oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget != widget) {
