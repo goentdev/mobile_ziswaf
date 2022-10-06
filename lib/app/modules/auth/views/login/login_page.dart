@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_ziswaf/app/modules/auth/controllers/auth_controller.dart';
+import 'package:mobile_ziswaf/app/modules/auth/controllers/login_controller.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
-import 'package:mobile_ziswaf/core/theme/colors.dart';
-import 'package:mobile_ziswaf/core/theme/fonts.dart';
+import 'package:mobile_ziswaf/app/theme/colors.dart';
+import 'package:mobile_ziswaf/app/theme/fonts.dart';
 
-class LoginPage extends GetView<AuthController> {
+class LoginPage extends GetView<LoginController> {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final authC = Get.find<AuthController>();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -41,7 +40,7 @@ class LoginPage extends GetView<AuthController> {
                 ),
               ),
               onPressed: () {},
-              label: authC.isLoading.value
+              label: controller.isLoading.value
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -99,7 +98,7 @@ class LoginPage extends GetView<AuthController> {
         width: double.infinity,
         padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
         child: Form(
-          key: authC.loginFormKey,
+          key: controller.loginFormKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,7 +128,7 @@ class LoginPage extends GetView<AuthController> {
                 height: 8,
               ),
               TextFormField(
-                controller: authC.whatsappC,
+                controller: controller.whatsappC,
                 keyboardType: TextInputType.number,
                 validator: (v) {
                   if (v?.isEmpty ?? true) {
@@ -160,7 +159,7 @@ class LoginPage extends GetView<AuthController> {
               ),
               Obx(
                 () => TextFormField(
-                  controller: authC.passwordC,
+                  controller: controller.passwordC,
                   validator: (v) {
                     if (v?.isEmpty ?? true) return 'Password wajib diisi';
                     if (v!.length < 8) return 'Minimum 8 Karakter';
@@ -179,10 +178,10 @@ class LoginPage extends GetView<AuthController> {
                     hintStyle: textMBold.copyWith(color: neutral60),
                     suffixIcon: GestureDetector(
                       onTap: () {
-                        authC.changeShowPassword();
+                        controller.changeShowPassword();
                       },
                       child: Icon(
-                        authC.showPassword.value
+                        controller.showPassword.value
                             ? Icons.visibility
                             : Icons.visibility_off_outlined,
                         color: neutral60,
@@ -190,7 +189,7 @@ class LoginPage extends GetView<AuthController> {
                       ),
                     ),
                   ),
-                  obscureText: authC.showPassword.value,
+                  obscureText: controller.showPassword.value,
                 ),
               ),
               const SizedBox(

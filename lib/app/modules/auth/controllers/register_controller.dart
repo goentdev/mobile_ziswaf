@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class AuthController extends GetxController {
+class RegisterController extends GetxController {
   late TextEditingController whatsappC;
   late TextEditingController passwordC;
   late TextEditingController confirmC;
 
   final registerFormKey = GlobalKey<FormState>();
-  final loginFormKey = GlobalKey<FormState>();
 
   RxBool isLoading = false.obs;
   RxBool showPassword = true.obs;
@@ -31,9 +30,4 @@ class AuthController extends GetxController {
   void changeShowPassword() {
     showPassword.value = !showPassword.value;
   }
-
-  // void printControllerText() {
-  //   print(whatsappC.text);
-  //   print(passwordC.text);
-  // }
 }

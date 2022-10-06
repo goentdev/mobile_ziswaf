@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_ziswaf/app/modules/auth/controllers/auth_controller.dart';
+import 'package:mobile_ziswaf/app/modules/auth/controllers/register_controller.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
-import 'package:mobile_ziswaf/core/theme/colors.dart';
-import 'package:mobile_ziswaf/core/theme/fonts.dart';
+import 'package:mobile_ziswaf/app/theme/colors.dart';
+import 'package:mobile_ziswaf/app/theme/fonts.dart';
 
-class RegisterPage extends GetView<AuthController> {
+class RegisterPage extends GetView<RegisterController> {
   const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final authC = Get.find<AuthController>();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -38,8 +37,8 @@ class RegisterPage extends GetView<AuthController> {
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(4.0))),
               onPressed: () {
-                // if (authC.registerFormKey.currentState!.validate()) {
-                Get.toNamed(Routes.HOME);
+                // if (controller.registerFormKey.currentState!.validate()) {
+                Get.toNamed(Routes.OTP);
                 // }
               },
               label: Text(
@@ -78,7 +77,7 @@ class RegisterPage extends GetView<AuthController> {
         padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
         child: Obx(
           () => Form(
-            key: authC.registerFormKey,
+            key: controller.registerFormKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,7 +105,7 @@ class RegisterPage extends GetView<AuthController> {
                   height: 8,
                 ),
                 TextFormField(
-                  controller: authC.whatsappC,
+                  controller: controller.whatsappC,
                   keyboardType: TextInputType.number,
                   validator: (v) {
                     if (v?.isEmpty ?? true) {
@@ -136,7 +135,7 @@ class RegisterPage extends GetView<AuthController> {
                   ),
                 ),
                 TextFormField(
-                  controller: authC.passwordC,
+                  controller: controller.passwordC,
                   validator: (v) {
                     if (v?.isEmpty ?? true) return 'Password wajib diisi';
                     if (v!.length < 8) return 'Minimum 8 Karakter';
@@ -154,9 +153,9 @@ class RegisterPage extends GetView<AuthController> {
                     hintText: 'Masukan Kata Sandi',
                     hintStyle: textMBold.copyWith(color: neutral60),
                     suffixIcon: GestureDetector(
-                      onTap: () => authC.changeShowPassword(),
+                      onTap: () => controller.changeShowPassword(),
                       child: Icon(
-                        authC.showPassword.value
+                        controller.showPassword.value
                             ? Icons.visibility
                             : Icons.visibility_off_outlined,
                         color: neutral60,
@@ -164,7 +163,7 @@ class RegisterPage extends GetView<AuthController> {
                       ),
                     ),
                   ),
-                  obscureText: authC.showPassword.value,
+                  obscureText: controller.showPassword.value,
                 ),
                 const SizedBox(
                   height: 4,
@@ -184,11 +183,11 @@ class RegisterPage extends GetView<AuthController> {
                   ),
                 ),
                 TextFormField(
-                  controller: authC.confirmC,
+                  controller: controller.confirmC,
                   validator: (v) {
                     if (v?.isEmpty ?? true) return 'Password wajib diisi';
                     if (v!.length < 8) return 'Minimum 8 Karakter';
-                    if (v != authC.passwordC.text) {
+                    if (v != controller.passwordC.text) {
                       return 'Kata sandi harus sama dengan yang diatas';
                     }
                     return null;
@@ -205,9 +204,9 @@ class RegisterPage extends GetView<AuthController> {
                     hintText: 'Ketik ulang Kata sandi',
                     hintStyle: textMBold.copyWith(color: neutral60),
                     suffixIcon: GestureDetector(
-                      onTap: () => authC.changeShowPassword(),
+                      onTap: () => controller.changeShowPassword(),
                       child: Icon(
-                        authC.showPassword.value
+                        controller.showPassword.value
                             ? Icons.visibility
                             : Icons.visibility_off_outlined,
                         color: neutral60,
@@ -215,7 +214,7 @@ class RegisterPage extends GetView<AuthController> {
                       ),
                     ),
                   ),
-                  obscureText: authC.showPassword.value,
+                  obscureText: controller.showPassword.value,
                 ),
               ],
             ),

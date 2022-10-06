@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mobile_ziswaf/core/theme/colors.dart';
+import 'package:mobile_ziswaf/app/theme/colors.dart';
 
 TextStyle h2ExtraBold =
     GoogleFonts.lato(fontWeight: black, fontSize: 32, color: neutral100);

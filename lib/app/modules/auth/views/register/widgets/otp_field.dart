@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mobile_ziswaf/core/theme/colors.dart';
+import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpField extends StatefulWidget {

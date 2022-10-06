@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_ziswaf/app/modules/otp/widgets/otp_field.dart';
-import 'package:mobile_ziswaf/core/theme/colors.dart';
-import 'package:mobile_ziswaf/core/theme/fonts.dart';
+import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/modules/auth/controllers/otp_controller.dart';
+import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/otp_field.dart';
+import 'package:mobile_ziswaf/app/routes/app_pages.dart';
+import 'package:mobile_ziswaf/app/theme/colors.dart';
+import 'package:mobile_ziswaf/app/theme/fonts.dart';
+import 'package:mobile_ziswaf/app/widgets/button.dart';
 
-class OtpSmsPage extends StatelessWidget {
+class OtpSmsPage extends GetView<OtpController> {
   final Widget? title;
   final Widget? subtitle;
   final ValueChanged<String>? onCompleted;
@@ -27,9 +31,7 @@ class OtpSmsPage extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => Get.back(),
           icon: Icon(
             Icons.arrow_back_ios,
             color: neutral90,
@@ -85,6 +87,14 @@ class OtpSmsPage extends StatelessWidget {
               ),
             )
           ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Button(
+          onTap: () => Get.toNamed(Routes.FORM),
+          textbutton: 'Selanjutnya',
         ),
       ),
     );

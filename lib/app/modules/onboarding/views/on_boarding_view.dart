@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
-import 'package:mobile_ziswaf/core/theme/colors.dart';
-import 'package:mobile_ziswaf/core/theme/fonts.dart';
+import 'package:mobile_ziswaf/app/theme/colors.dart';
+import 'package:mobile_ziswaf/app/theme/fonts.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
