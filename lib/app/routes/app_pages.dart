@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/modules/home/views/user_detail_view.dart';
 
 import '../modules/OnBoarding/views/on_boarding_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
@@ -49,6 +50,11 @@ class AppPages {
       name: _Paths.OTP,
       page: () => const OtpSmsPage(),
       binding: OtpBinding(),
+    ),
+    GetPage(
+      name: _Paths.USER_DETAIL,
+      page: () => const UserDetail(),
+      binding: HomeBinding(),
     ),
   ];
 }
