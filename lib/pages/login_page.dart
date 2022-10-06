@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_ziswaf/pages/datadiri_page.dart';
 import 'package:mobile_ziswaf/pages/register_page.dart';
 
 import '../theme.dart';
@@ -46,7 +47,13 @@ class _LoginPageState extends State<LoginPage> {
             child: FloatingActionButton.extended(
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(4.0))),
-              onPressed: () async {},
+              onPressed: () async {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DataDiriPage(),
+                    ));
+              },
               label: isLoading
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,

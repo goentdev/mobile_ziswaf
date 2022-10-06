@@ -18,6 +18,16 @@ class DataDiriPage extends StatelessWidget {
           'Lengkapi Data Diri',
           style: listTitleBold.copyWith(color: neutral90),
         ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: neutral90,
+            size: 10,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Container(

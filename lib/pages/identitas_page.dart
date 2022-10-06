@@ -35,6 +35,16 @@ class _IdentitasPageState extends State<IdentitasPage> {
           'Masukan Kartu Identitas Diri',
           style: listTitleBold.copyWith(color: neutral90),
         ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: neutral90,
+            size: 10,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Container(
@@ -44,7 +54,7 @@ class _IdentitasPageState extends State<IdentitasPage> {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Jenis Kartu Identitas  ',
+                'Jenis Kartu Identitas',
                 style: captionTextSemiBold.copyWith(color: neutral90),
               ),
             ),
