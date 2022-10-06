@@ -37,10 +37,9 @@ class ChooseBankController extends GetxController {
   }
 
   void searchBank(String value) {
-    banksOnSearch.value = banks
-        .where(
-          (element) => element.bank!.contains('mandiri'),
-        )
-        .toList();
+    banksOnSearch.value = banks.where((element) {
+      final loweredBank = element.bank!.toLowerCase();
+      return loweredBank.contains(value.toLowerCase());
+    }).toList();
   }
 }
