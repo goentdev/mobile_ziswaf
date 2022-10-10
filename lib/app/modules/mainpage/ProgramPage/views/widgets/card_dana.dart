@@ -5,10 +5,23 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../../../../../theme/colors.dart';
 
 class CardDana extends StatelessWidget {
-  const CardDana({super.key});
+  final String judul, tanggalakhir;
+  final int terkumpul, target, muzakki;
+  const CardDana(
+      {super.key,
+      required this.judul,
+      required this.terkumpul,
+      required this.target,
+      required this.tanggalakhir,
+      required this.muzakki});
 
   @override
   Widget build(BuildContext context) {
+    double persen = target / 100;
+    double target100v = target / persen;
+    int target100 = target100v.toInt();
+    double target1v = terkumpul / persen;
+    int target1 = target1v.toInt();
     return GestureDetector(
       onTap: () {},
       child: Column(
@@ -48,11 +61,11 @@ class CardDana extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Sedekah Bangunan Infrastruktur',
+                          judul,
                           style: listTitleSemiBold.copyWith(color: neutral100),
                         ),
                         Text(
-                          '${10} Muzakki',
+                          '$muzakki Muzakki',
                           style: captionTextSemiBold.copyWith(color: neutral70),
                         )
                       ],
@@ -83,11 +96,11 @@ class CardDana extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Rp 500.000',
+                        '$terkumpul',
                         style: captionTextSemiBold.copyWith(color: neutral100),
                       ),
                       Text(
-                        '1 bulan lagi',
+                        tanggalakhir,
                         style: captionTextBold.copyWith(color: secondaryMain),
                       )
                     ],
@@ -103,9 +116,9 @@ class CardDana extends StatelessWidget {
                     barRadius: const Radius.circular(20),
                     lineHeight: 6,
                     animation: true,
-                    percent: 67 / 100,
+                    percent: target1 / target100,
                     trailing: Text(
-                      '69%',
+                      '$target1%',
                       style: titleExtraTextBold.copyWith(color: neutral100),
                     ),
                     progressColor: primaryMain,

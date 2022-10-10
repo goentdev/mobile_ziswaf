@@ -70,11 +70,31 @@ class ProgramPageView extends GetView<ProgramPageController> {
                           height: 16,
                         ),
                         Column(
-                          children: [
-                            const CardDana(),
-                            const CardDana(),
-                            const CardDana(),
-                            const CardDana(),
+                          children: const [
+                            CardDana(
+                                judul: 'Sedekah Bangunan Infrastruktur',
+                                terkumpul: 500000,
+                                target: 1100000,
+                                tanggalakhir: '2022-10-10 10:22:00',
+                                muzakki: 10),
+                            CardDana(
+                                judul: 'Infaq Beras untuk Pantiasuhan',
+                                terkumpul: 500000,
+                                target: 2000000,
+                                tanggalakhir: '2022-10-10 10:22:00',
+                                muzakki: 10),
+                            CardDana(
+                                judul: 'Gerakan Bantu Kesehatan Mental',
+                                terkumpul: 500000,
+                                target: 1500000,
+                                tanggalakhir: '2022-10-10 10:22:00',
+                                muzakki: 10),
+                            CardDana(
+                                judul: 'Foodtruck Gratis untuk Dhuafa',
+                                terkumpul: 500000,
+                                target: 1100000,
+                                tanggalakhir: '2022-10-10 10:22:00',
+                                muzakki: 10),
                           ],
                         )
                       ],
