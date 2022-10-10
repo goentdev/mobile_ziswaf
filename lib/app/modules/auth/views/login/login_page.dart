@@ -39,7 +39,9 @@ class LoginPage extends GetView<LoginController> {
                   Radius.circular(4.0),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(Routes.MAINPAGE);
+              },
               label: controller.isLoading.value
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,
