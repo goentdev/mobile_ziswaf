@@ -9,11 +9,12 @@ import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 import 'package:mobile_ziswaf/app/widgets/button.dart';
 
-class IdentityView extends GetView<IdentityController> {
-  const IdentityView({Key? key}) : super(key: key);
+class ChangeIdentityPage extends StatelessWidget {
+  const ChangeIdentityPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(IdentityController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,

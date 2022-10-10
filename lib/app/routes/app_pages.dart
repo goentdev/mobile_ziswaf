@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:get/get.dart';
 
 import '../modules/OnBoarding/views/on_boarding_view.dart';
@@ -14,6 +16,12 @@ import '../modules/mainpage/ProgramPage/bindings/program_page_binding.dart';
 import '../modules/mainpage/ProgramPage/views/program_page_view.dart';
 import '../modules/mainpage/bindings/mainpage_binding.dart';
 import '../modules/mainpage/profile/bindings/profile_binding.dart';
+import '../modules/mainpage/profile/views/change_bank_page.dart';
+import '../modules/mainpage/profile/views/change_email_page.dart';
+import '../modules/mainpage/profile/views/change_identity_page.dart';
+import '../modules/mainpage/profile/views/change_name_page.dart';
+import '../modules/mainpage/profile/views/change_number_page.dart';
+import '../modules/mainpage/profile/views/change_password_page.dart';
 import '../modules/mainpage/profile/views/profile_view.dart';
 import '../modules/mainpage/views/mainpage_view.dart';
 import '../modules/onboarding/bindings/on_boarding_binding.dart';
@@ -90,6 +98,36 @@ class AppPages {
           binding: ProfileBinding(),
         ),
       ],
+    ),
+    GetPage(
+      name: _Paths.CHANGENAME,
+      page: () => const ChangeNamePage(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGENUMBER,
+      page: () => const ChangeNumberPage(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGEEMAIL,
+      page: () => const ChangeEmailPage(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGEIDENTITY,
+      page: () => const ChangeIdentityPage(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGEBANK,
+      page: () => const ChangeBankPage(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGEPASSWORD,
+      page: () => const ChangePasswordPage(),
+      binding: ProfileBinding(),
     ),
   ];
 }

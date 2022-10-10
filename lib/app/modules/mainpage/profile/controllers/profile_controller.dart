@@ -1,23 +1,33 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class ProfileController extends GetxController {
-  //TODO: Implement ProfileController
+  late TextEditingController nameController;
+  late TextEditingController numberController;
+  late TextEditingController emailController;
+  late TextEditingController oldPasswordController;
+  late TextEditingController newPasswordController;
+  late TextEditingController confirmPasswordController;
 
-  final count = 0.obs;
   @override
   void onInit() {
+    nameController = TextEditingController();
+    numberController = TextEditingController();
+    emailController = TextEditingController();
+    oldPasswordController = TextEditingController();
+    newPasswordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
     super.onInit();
   }
 
   @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
   void onClose() {
+    nameController.dispose();
+    numberController.dispose();
+    emailController.dispose();
+    oldPasswordController.dispose();
+    newPasswordController.dispose();
+    confirmPasswordController.dispose();
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

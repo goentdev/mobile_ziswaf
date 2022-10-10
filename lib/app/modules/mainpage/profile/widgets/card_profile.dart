@@ -18,50 +18,50 @@ class CardProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      height: 36,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundColor: Colors.transparent,
-                radius: 15,
-                child: Image.asset(
-                  gambar,
-                  width: 30,
-                  height: 30,
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        height: 36,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  backgroundColor: Colors.transparent,
+                  radius: 15,
+                  child: Image.asset(
+                    gambar,
+                    width: 30,
+                    height: 30,
+                  ),
                 ),
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    title,
-                    style: captionTextBold.copyWith(color: neutral90),
-                  ),
-                  Text(
-                    subtittle,
-                    style: captionTextSemiBold.copyWith(color: neutral70),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          InkWell(
-            onTap: onTap,
-            child: const Icon(
+                const SizedBox(
+                  width: 8,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      title,
+                      style: captionTextBold.copyWith(color: neutral90),
+                    ),
+                    Text(
+                      subtittle,
+                      style: captionTextSemiBold.copyWith(color: neutral70),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            const Icon(
               Icons.arrow_forward_ios,
               size: 12,
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
