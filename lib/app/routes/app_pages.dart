@@ -1,4 +1,12 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/modules/profile/views/change_bank_page.dart';
+import 'package:mobile_ziswaf/app/modules/profile/views/change_email_page.dart';
+import 'package:mobile_ziswaf/app/modules/profile/views/change_identity_page.dart';
+import 'package:mobile_ziswaf/app/modules/profile/views/change_name_page.dart';
+import 'package:mobile_ziswaf/app/modules/profile/views/change_number_page.dart';
+import 'package:mobile_ziswaf/app/modules/profile/views/change_password_page.dart';
 
 import '../modules/OnBoarding/views/on_boarding_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
@@ -72,6 +80,36 @@ class AppPages {
     GetPage(
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGENAME,
+      page: () => const ChangeNamePage(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGENUMBER,
+      page: () => const ChangeNumberPage(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGEEMAIL,
+      page: () => const ChangeEmailPage(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGEIDENTITY,
+      page: () => const ChangeIdentityPage(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGEBANK,
+      page: () => const ChangeBankPage(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGEPASSWORD,
+      page: () => const ChangePasswordPage(),
       binding: ProfileBinding(),
     ),
   ];

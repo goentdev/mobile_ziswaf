@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/profile/widgets/card_profile.dart';
+import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 
@@ -104,7 +105,7 @@ class ProfileView extends GetView<ProfileController> {
                     title: 'Nama',
                     gambar: 'assets/icons/kontak.png',
                     subtittle: 'Alif Pramana Putra',
-                    onTap: () {},
+                    onTap: () => Get.toNamed(Routes.CHANGENAME),
                   ),
                   Divider(
                     color: neutral30,
@@ -114,7 +115,7 @@ class ProfileView extends GetView<ProfileController> {
                     title: 'Nomor Whatsapp',
                     subtittle: "0892121",
                     gambar: 'assets/icons/phone.png',
-                    onTap: () {},
+                    onTap: () => Get.toNamed(Routes.CHANGENUMBER),
                   ),
                   Divider(
                     color: neutral30,
@@ -124,7 +125,7 @@ class ProfileView extends GetView<ProfileController> {
                     title: 'Email',
                     subtittle: "alifpramanaputra@gmail.com",
                     gambar: "assets/icons/mail.png",
-                    onTap: () {},
+                    onTap: () => Get.toNamed(Routes.CHANGEEMAIL),
                   ),
                   Divider(
                     color: neutral30,
@@ -134,7 +135,7 @@ class ProfileView extends GetView<ProfileController> {
                     title: 'Kartu Identitas',
                     subtittle: "KTP",
                     gambar: "assets/icons/identity.png",
-                    onTap: () {},
+                    onTap: () => Get.toNamed(Routes.CHANGEIDENTITY),
                   ),
                 ],
               ),
@@ -142,7 +143,7 @@ class ProfileView extends GetView<ProfileController> {
             Container(
               margin: const EdgeInsets.only(bottom: 8),
               padding: const EdgeInsets.all(16),
-              height: 97,
+              height: 112,
               width: double.infinity,
               color: neutral10,
               child: Column(
@@ -155,13 +156,7 @@ class ProfileView extends GetView<ProfileController> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => const UbahPassword(),
-                      //     ));
-                    },
+                    onTap: () => Get.toNamed(Routes.CHANGEBANK),
                     child: Container(
                       padding: const EdgeInsets.only(top: 16),
                       child: Row(
@@ -179,10 +174,28 @@ class ProfileView extends GetView<ProfileController> {
                                 ),
                               ),
                               const SizedBox(width: 8),
-                              Text(
-                                'Ubah kata sandi',
-                                style: captionTextSemiBold.copyWith(
-                                    color: neutral90),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Bank Mandiri',
+                                    style: captionTextSemiBold.copyWith(
+                                      color: neutral90,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    '1640001233211',
+                                    style: captionTextSemiBold.copyWith(
+                                        color: neutral80),
+                                  ),
+                                  Text(
+                                    'a.n Alif Pramana Putra',
+                                    style: captionTextSemiBold.copyWith(
+                                      color: neutral80,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -214,13 +227,7 @@ class ProfileView extends GetView<ProfileController> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => const UbahPassword(),
-                      //     ));
-                    },
+                    onTap: () => Get.toNamed(Routes.CHANGEPASSWORD),
                     child: Container(
                       padding: const EdgeInsets.only(top: 16),
                       child: Row(
