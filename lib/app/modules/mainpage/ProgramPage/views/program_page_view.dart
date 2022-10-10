@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_dana.dart';
+import 'package:mobile_ziswaf/app/theme/colors.dart';
+import 'package:mobile_ziswaf/app/theme/fonts.dart';
 
 import '../controllers/program_page_controller.dart';
 
@@ -9,16 +12,78 @@ class ProgramPageView extends GetView<ProgramPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ProgramPageView'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'ProgramPageView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
-    );
+        backgroundColor: const Color(0xffECF7F4),
+        body: SingleChildScrollView(
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 44),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Image.asset(
+                    'assets/images/bagmoney.png',
+                    width: 163.26,
+                    height: 163.26,
+                  ),
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16, top: 68),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Dana Terkumpul',
+                            style:
+                                listTitleSemiBold.copyWith(color: neutral90)),
+                        const SizedBox(
+                          height: 2,
+                        ),
+                        Text('Rp15.000.000',
+                            style: pageTitleBold.copyWith(color: primaryHover)),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Daftar Program (${3})',
+                          style: listItemTitleBold.copyWith(color: neutral100),
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        Column(
+                          children: [
+                            const CardDana(),
+                            const CardDana(),
+                            const CardDana(),
+                            const CardDana(),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ));
   }
 }

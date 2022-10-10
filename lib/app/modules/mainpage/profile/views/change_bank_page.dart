@@ -248,7 +248,7 @@ class ChangeBankPage extends StatelessWidget {
                   Radius.circular(8.0),
                 ),
               ),
-              onPressed: () => Get.toNamed(Routes.HOME),
+              onPressed: () => Get.toNamed(Routes.MAINPAGE),
               label: Text(
                 'Selanjutnya',
                 style: buttonTabsTextBold.copyWith(color: Colors.white),
