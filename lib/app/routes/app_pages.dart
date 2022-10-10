@@ -1,16 +1,18 @@
 import 'package:get/get.dart';
-import 'package:mobile_ziswaf/app/modules/auth/views/register/choose_bank_view.dart';
-import 'package:mobile_ziswaf/app/modules/auth/views/register/form_view.dart';
-import 'package:mobile_ziswaf/app/modules/auth/views/register/identity_view.dart';
 
 import '../modules/OnBoarding/views/on_boarding_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/login/login_page.dart';
+import '../modules/auth/views/register/choose_bank_view.dart';
+import '../modules/auth/views/register/form_view.dart';
+import '../modules/auth/views/register/identity_view.dart';
+import '../modules/auth/views/register/otp_view.dart';
 import '../modules/auth/views/register/register_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/onboarding/bindings/on_boarding_binding.dart';
-import '../modules/auth/views/register/otp_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 
@@ -66,6 +68,11 @@ class AppPages {
       name: _Paths.BANK,
       page: () => const ChooseBankView(),
       binding: AuthBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
     ),
   ];
 }

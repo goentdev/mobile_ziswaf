@@ -1,0 +1,298 @@
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/modules/profile/widgets/card_profile.dart';
+import 'package:mobile_ziswaf/app/theme/colors.dart';
+import 'package:mobile_ziswaf/app/theme/fonts.dart';
+
+import '../controllers/profile_controller.dart';
+
+class ProfileView extends GetView<ProfileController> {
+  const ProfileView({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: neutral20,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 32,
+            ),
+            Container(
+              margin: const EdgeInsets.only(bottom: 8),
+              padding: const EdgeInsets.all(16),
+              width: double.infinity,
+              height: 82,
+              color: neutral10,
+              child: Row(
+                children: [
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(1000),
+                      image: const DecorationImage(
+                        image: AssetImage('assets/icons/iconprofile.png'),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "User",
+                        style: titleTextBold.copyWith(color: neutral100),
+                      ),
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      Container(
+                        width: 121,
+                        height: 20,
+                        decoration: BoxDecoration(
+                          color: secondarysurface,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.star_rate_rounded,
+                                  color: secondaryMain,
+                                  size: 16,
+                                ),
+                                Text(
+                                  'Relawan Tingkat Atas',
+                                  style: overlineBold.copyWith(
+                                      color: secondaryMain),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+              margin: const EdgeInsets.only(bottom: 16.11),
+              height: 307,
+              width: double.infinity,
+              color: neutral10,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Data Akun',
+                    style: titleTextBold.copyWith(color: neutral100),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  CardProfile(
+                    title: 'Nama',
+                    gambar: 'assets/icons/kontak.png',
+                    subtittle: 'Alif Pramana Putra',
+                    onTap: () {},
+                  ),
+                  Divider(
+                    color: neutral30,
+                    thickness: 1,
+                  ),
+                  CardProfile(
+                    title: 'Nomor Whatsapp',
+                    subtittle: "0892121",
+                    gambar: 'assets/icons/phone.png',
+                    onTap: () {},
+                  ),
+                  Divider(
+                    color: neutral30,
+                    thickness: 1,
+                  ),
+                  CardProfile(
+                    title: 'Email',
+                    subtittle: "alifpramanaputra@gmail.com",
+                    gambar: "assets/icons/mail.png",
+                    onTap: () {},
+                  ),
+                  Divider(
+                    color: neutral30,
+                    thickness: 1,
+                  ),
+                  CardProfile(
+                    title: 'Kartu Identitas',
+                    subtittle: "KTP",
+                    gambar: "assets/icons/identity.png",
+                    onTap: () {},
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(bottom: 8),
+              padding: const EdgeInsets.all(16),
+              height: 97,
+              width: double.infinity,
+              color: neutral10,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Rekening Bank',
+                    style: titleTextBold.copyWith(
+                      color: neutral100,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => const UbahPassword(),
+                      //     ));
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.transparent,
+                                radius: 15,
+                                child: Image.asset(
+                                  'assets/icons/credit.png',
+                                  width: 30,
+                                  height: 30,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                'Ubah kata sandi',
+                                style: captionTextSemiBold.copyWith(
+                                    color: neutral90),
+                              ),
+                            ],
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 12,
+                            color: neutral70,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(bottom: 8),
+              padding: const EdgeInsets.all(16),
+              height: 97,
+              width: double.infinity,
+              color: neutral10,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Keamanan',
+                    style: titleTextBold.copyWith(
+                      color: neutral100,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => const UbahPassword(),
+                      //     ));
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.transparent,
+                                radius: 15,
+                                child: Image.asset(
+                                  'assets/icons/kunci.png',
+                                  width: 30,
+                                  height: 30,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                'Ubah kata sandi',
+                                style: captionTextSemiBold.copyWith(
+                                    color: neutral90),
+                              ),
+                            ],
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 12,
+                            color: neutral70,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            InkWell(
+              onTap: () async {
+                // AuthService().logout();
+                // // ignore: use_build_context_synchronously
+                // Navigator.pushAndRemoveUntil(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (BuildContext context) => const LoginPage(),
+                //   ),
+                //   (route) => false,
+                // );
+              },
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                width: double.infinity,
+                height: 62,
+                color: neutral10,
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/icons/exit.png',
+                      width: 30,
+                      height: 30,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Keluar',
+                      style: captionTextSemiBold.copyWith(color: dangerMain),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

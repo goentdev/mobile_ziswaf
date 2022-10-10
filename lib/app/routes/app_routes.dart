@@ -14,6 +14,8 @@ abstract class Routes {
   static const FORM = _Paths.FORM;
   static const IDENTITY = _Paths.IDENTITY;
   static const BANK = _Paths.BANK;
+  static const MAIN_PAGE = _Paths.MAIN_PAGE;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
@@ -29,4 +31,6 @@ abstract class _Paths {
   static const FORM = '/form';
   static const IDENTITY = '/identity';
   static const BANK = '/bank';
+  static const MAIN_PAGE = '/main-page';
+  static const PROFILE = '/profile';
 }
