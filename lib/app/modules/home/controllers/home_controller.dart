@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/data/models/user_model.dart';
 import 'package:mobile_ziswaf/app/data/providers/user_provider.dart';
 
-class HomeController extends GetxController {
+class HomeController extends GetxController with StateMixin<RxList<User?>> {
   UserProvider userProvider = GetInstance().find<UserProvider>();
   RxList<User?> users = <User>[].obs;
   var user = User().obs;
@@ -11,9 +11,20 @@ class HomeController extends GetxController {
   getUsers() async {
     isLoading.value = true;
 
-    users.assignAll(await userProvider.getUsers());
+    try {
+      users.assignAll(await userProvider.getUsers());
 
-    isLoading.value = false;
+      isLoading.value = false;
+      if (users.isEmpty) {
+        change(users, status: RxStatus.empty());
+      } else if (users.isNotEmpty) {
+        change(users, status: RxStatus.success());
+      } else {
+        change(null, status: RxStatus.loading());
+      }
+    } on Exception catch (e) {
+      change(null, status: RxStatus.error(e.toString()));
+    }
   }
 
   deleteUser(int id) async {
@@ -28,7 +39,7 @@ class HomeController extends GetxController {
   updateUser(int id) {
     isLoading.value = true;
 
-    user.value = users.where((p0) => p0!.id == id).first!;
+    user.value = users.where((user) => user!.id == id).first!;
     user.update((val) {
       val!.firstName = 'jamal';
     });
