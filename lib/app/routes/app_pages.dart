@@ -10,12 +10,13 @@ import '../modules/auth/views/register/otp_view.dart';
 import '../modules/auth/views/register/register_view.dart';
 import '../modules/mainpage/MuzakkiPage/bindings/muzakki_page_binding.dart';
 import '../modules/mainpage/MuzakkiPage/views/muzakki_page_view.dart';
-import '../modules/mainpage/ProfilePage/bindings/profile_page_binding.dart';
-import '../modules/mainpage/ProfilePage/views/profile_page_view.dart';
 import '../modules/mainpage/ProgramPage/bindings/program_page_binding.dart';
 import '../modules/mainpage/ProgramPage/views/program_page_view.dart';
 import '../modules/mainpage/bindings/mainpage_binding.dart';
+import '../modules/mainpage/profile/bindings/profile_binding.dart';
+import '../modules/mainpage/profile/views/profile_view.dart';
 import '../modules/mainpage/views/mainpage_view.dart';
+import '../modules/onboarding/bindings/on_boarding_binding.dart';
 import '../modules/onboarding/bindings/on_boarding_binding.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
@@ -84,9 +85,9 @@ class AppPages {
           binding: MuzakkiPageBinding(),
         ),
         GetPage(
-          name: _Paths.PROFILE_PAGE,
-          page: () => const ProfilePageView(),
-          binding: ProfilePageBinding(),
+          name: _Paths.PROFILE,
+          page: () => const ProfileView(),
+          binding: ProfileBinding(),
         ),
       ],
     ),

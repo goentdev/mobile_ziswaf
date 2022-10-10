@@ -18,6 +18,8 @@ abstract class Routes {
   static const PROGRAM_PAGE = _Paths.MAINPAGE + _Paths.PROGRAM_PAGE;
   static const MUZAKKI_PAGE = _Paths.MAINPAGE + _Paths.MUZAKKI_PAGE;
   static const PROFILE_PAGE = _Paths.MAINPAGE + _Paths.PROFILE_PAGE;
+  static const MAIN_PAGE = _Paths.MAIN_PAGE;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
@@ -37,4 +39,6 @@ abstract class _Paths {
   static const PROGRAM_PAGE = '/program-page';
   static const MUZAKKI_PAGE = '/muzakki-page';
   static const PROFILE_PAGE = '/profile-page';
+  static const MAIN_PAGE = '/main-page';
+  static const PROFILE = '/profile';
 }

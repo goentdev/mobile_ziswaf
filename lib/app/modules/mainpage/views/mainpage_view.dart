@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:mobile_ziswaf/app/modules/mainpage/ProfilePage/views/profile_page_view.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/profile/views/profile_view.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/fonts.dart';
@@ -21,7 +21,7 @@ class MainpageView extends GetView<MainpageController> {
         case 1:
           return const MuzakkiPageView();
         case 2:
-          return const ProfilePageView();
+          return const ProfileView();
 
         default:
           return const ProgramPageView();
@@ -44,7 +44,8 @@ class MainpageView extends GetView<MainpageController> {
             BottomNavigationBarItem(
               icon: Image.asset(
                 'assets/images/program.png',
-                width: 24,
+                width: 18,
+                height: 24,
                 color: controller.currentIndex == 0 ? primaryMain : neutral50,
               ),
               label: 'Program',
@@ -53,6 +54,7 @@ class MainpageView extends GetView<MainpageController> {
               icon: Image.asset(
                 'assets/images/muzakki.png',
                 width: 24,
+                height: 24,
                 color: controller.currentIndex == 1 ? primaryMain : neutral50,
               ),
               label: 'Muzakki',
@@ -60,7 +62,8 @@ class MainpageView extends GetView<MainpageController> {
             BottomNavigationBarItem(
               icon: Image.asset(
                 'assets/images/iconprofile.png',
-                width: 24,
+                width: 18,
+                height: 24,
                 color: controller.currentIndex == 2 ? primaryMain : neutral50,
               ),
               label: 'Profil',
