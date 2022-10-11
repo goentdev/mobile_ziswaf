@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/detail_transaksi_page.dart';
 
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/fonts.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get.dart';
 
 class DetailCard extends StatelessWidget {
   final String icon;
@@ -138,7 +140,9 @@ class DetailCard extends StatelessWidget {
         ),
         SlidableAction(
           label: 'Edit',
-          onPressed: (context) {},
+          onPressed: (context) {
+            Get.to(const DetailTransaksi());
+          },
           icon: Icons.edit_note_rounded,
           flex: 5,
           backgroundColor: primaryMain,
@@ -148,7 +152,9 @@ class DetailCard extends StatelessWidget {
       endActionPane: ActionPane(motion: const DrawerMotion(), children: [
         SlidableAction(
           label: 'Edit',
-          onPressed: (context) {},
+          onPressed: (context) {
+            Get.to(const DetailTransaksi());
+          },
           icon: Icons.edit_note_rounded,
           flex: 5,
           backgroundColor: primaryMain,
