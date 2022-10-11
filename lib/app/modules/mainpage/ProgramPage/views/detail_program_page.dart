@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/detail_card.dart';
+import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -24,7 +25,7 @@ class DetailProgram extends StatelessWidget {
         ),
         leading: IconButton(
           onPressed: () {
-            Get.back();
+            Get.offNamed(Routes.MAINPAGE);
           },
           icon: Icon(
             Icons.arrow_back_ios,

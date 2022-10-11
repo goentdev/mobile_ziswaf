@@ -29,7 +29,7 @@ class DetailCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
           width: 1,
-          color: primarySurface,
+          color: neutral30,
         ),
       ),
       child: Row(
