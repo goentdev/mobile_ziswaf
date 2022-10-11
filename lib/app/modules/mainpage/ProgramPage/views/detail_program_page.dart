@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/ubah_transaksi.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/detail_card.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
@@ -29,7 +30,7 @@ class DetailProgram extends StatelessWidget {
               backgroundColor: colorAnimated.background,
               centerTitle: true,
               title: Text(
-                '${Get.arguments['judul']}',
+                Get.arguments['judul'],
                 style: listTitleBold.copyWith(color: colorAnimated.color),
               ),
               leading: IconButton(
@@ -304,7 +305,11 @@ class DetailProgram extends StatelessWidget {
           style: TextButton.styleFrom(
             backgroundColor: primaryMain,
           ),
-          onPressed: () async {},
+          onPressed: () {
+            Get.to(UbahTransaksiPage(
+              judul: Get.arguments['judul'],
+            ));
+          },
           child: Text(
             'Tambah Transaksi',
             style: textMBold.copyWith(color: Colors.white),
