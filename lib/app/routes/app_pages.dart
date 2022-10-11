@@ -131,9 +131,5 @@ class AppPages {
       page: () => const ChangePasswordPage(),
       binding: ProfileBinding(),
     ),
-    GetPage(
-        name: _Paths.DETAILPROGRAM,
-        page: () => const DetailProgram(),
-        binding: ProgramPageBinding()),
   ];
 }

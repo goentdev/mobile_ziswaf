@@ -5,12 +5,6 @@ import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/user_model.dart';
 class UbahTransakiController extends GetxController {
   late TextEditingController searchMuzakkiController;
 
-  @override
-  void onInit() {
-    searchMuzakkiController = TextEditingController();
-    super.onInit();
-  }
-
   RxList<User> users = [
     User(nama: "Alif Pramana Putra", nomor: "082112344321"),
     User(nama: "Rochim Ramadhani", nomor: "0813161194111"),
@@ -20,6 +14,18 @@ class UbahTransakiController extends GetxController {
   ].obs;
 
   RxList<User> muzakkisOnSearch = <User>[].obs;
+
+  @override
+  void onInit() {
+    searchMuzakkiController = TextEditingController();
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    searchMuzakkiController.dispose();
+    super.onClose();
+  }
 
   void searchMuzakki(String value) {
     muzakkisOnSearch.value = users.where((element) {

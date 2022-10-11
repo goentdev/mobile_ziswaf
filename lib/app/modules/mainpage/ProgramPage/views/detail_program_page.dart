@@ -11,7 +11,17 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:appbar_animated/appbar_animated.dart';
 
 class DetailProgram extends StatelessWidget {
-  const DetailProgram({super.key});
+  final String judul, tanggalakhir;
+  final int terkumpul, target, target1, target100;
+
+  const DetailProgram(
+      {super.key,
+      required this.judul,
+      required this.tanggalakhir,
+      required this.terkumpul,
+      required this.target,
+      required this.target1,
+      required this.target100});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +40,7 @@ class DetailProgram extends StatelessWidget {
               backgroundColor: colorAnimated.background,
               centerTitle: true,
               title: Text(
-                Get.arguments['judul'],
+                judul,
                 style: listTitleBold.copyWith(color: colorAnimated.color),
               ),
               leading: IconButton(
@@ -83,12 +93,12 @@ class DetailProgram extends StatelessWidget {
                                   locale: 'id',
                                   name: 'Rp',
                                   decimalDigits: 0,
-                                ).format(Get.arguments['terkumpul']),
+                                ).format(terkumpul),
                                 style: listItemTitleBold.copyWith(
                                     color: neutral100),
                               ),
                               Text(
-                                Jiffy('${Get.arguments['tanggal']}').fromNow(),
+                                Jiffy(tanggalakhir).fromNow(),
                                 style: captionTextBold.copyWith(
                                     color: primaryMain),
                               )
@@ -265,7 +275,7 @@ class DetailProgram extends StatelessWidget {
                                   locale: 'id',
                                   name: 'Rp',
                                   decimalDigits: 0,
-                                ).format(Get.arguments['target']),
+                                ).format(target),
                                 style:
                                     listTitleBold.copyWith(color: neutral100),
                               ),
@@ -279,10 +289,10 @@ class DetailProgram extends StatelessWidget {
                       lineHeight: 6,
                       animation: true,
                       trailing: Text(
-                        '${Get.arguments['1']}%',
+                        '$target1%',
                         style: titleExtraTextBold.copyWith(color: neutral100),
                       ),
-                      percent: Get.arguments['1'] / Get.arguments['100'],
+                      percent: target1 / target100,
                       progressColor: primaryMain,
                     ),
                   ],
@@ -307,7 +317,7 @@ class DetailProgram extends StatelessWidget {
           ),
           onPressed: () {
             Get.to(UbahTransaksiPage(
-              judul: Get.arguments['judul'],
+              judul: judul,
             ));
           },
           child: Text(

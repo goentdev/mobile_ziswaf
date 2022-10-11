@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/detail_program_page.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -29,14 +30,13 @@ class CardDana extends StatelessWidget {
     int target1 = target1v.toInt();
     return InkWell(
       onTap: () {
-        Get.toNamed(Routes.DETAILPROGRAM, arguments: {
-          "judul": judul,
-          "tanggal": tanggalakhir,
-          "target": target,
-          "terkumpul": terkumpul,
-          "1": target1,
-          "100": target100
-        });
+        Get.to(DetailProgram(
+            judul: judul,
+            tanggalakhir: tanggalakhir,
+            terkumpul: terkumpul,
+            target: target,
+            target1: target1,
+            target100: target100));
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
