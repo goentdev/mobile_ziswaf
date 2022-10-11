@@ -108,7 +108,7 @@ class CardDana extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '$terkumpul',
+                        'Rp $terkumpul',
                         style: captionTextSemiBold.copyWith(color: neutral100),
                       ),
                       Text(
