@@ -75,3 +75,5 @@ TextStyle listNumber =
     GoogleFonts.lato(fontWeight: bold, fontSize: 8, color: primaryMain);
 TextStyle overlineSemiBold2 =
     GoogleFonts.lato(fontWeight: semiBold, fontSize: 12);
+
+TextStyle percentTittle = GoogleFonts.lato(fontWeight: extraBold, fontSize: 12);

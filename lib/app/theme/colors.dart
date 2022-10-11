@@ -20,6 +20,7 @@ Color background = const Color(0xffE5E5E5);
 Color secondaryMain = const Color(0xffFBA611);
 Color secondarysurface = const Color(0xffFEF6E2);
 Color dangerMain = const Color(0xffFC544B);
+Color successurface = const Color(0xffEDFFF2);
 Color dangerSurface = const Color(0xffFEF1EF);
 
 FontWeight light = FontWeight.w300;
