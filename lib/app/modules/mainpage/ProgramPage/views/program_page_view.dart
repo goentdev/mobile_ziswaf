@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_dana.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
@@ -42,7 +43,12 @@ class ProgramPageView extends GetView<ProgramPageController> {
                         const SizedBox(
                           height: 2,
                         ),
-                        Text('Rp15.000.000',
+                        Text(
+                            NumberFormat.currency(
+                              locale: 'id',
+                              name: 'Rp',
+                              decimalDigits: 0,
+                            ).format(15000000),
                             style: pageTitleBold.copyWith(color: primaryHover)),
                       ],
                     ),

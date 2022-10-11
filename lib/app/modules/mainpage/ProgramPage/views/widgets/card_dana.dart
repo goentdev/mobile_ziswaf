@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
@@ -109,7 +110,11 @@ class CardDana extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Rp $terkumpul',
+                        NumberFormat.currency(
+                          locale: 'id',
+                          name: 'Rp',
+                          decimalDigits: 0,
+                        ).format(terkumpul),
                         style: captionTextSemiBold.copyWith(color: neutral100),
                       ),
                       Text(

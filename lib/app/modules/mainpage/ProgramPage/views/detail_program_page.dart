@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/detail_card.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
@@ -77,7 +78,11 @@ class DetailProgram extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Rp ${Get.arguments['terkumpul']}',
+                                NumberFormat.currency(
+                                  locale: 'id',
+                                  name: 'Rp',
+                                  decimalDigits: 0,
+                                ).format(Get.arguments['terkumpul']),
                                 style: listItemTitleBold.copyWith(
                                     color: neutral100),
                               ),
@@ -126,14 +131,14 @@ class DetailProgram extends StatelessWidget {
                                 icon: 'assets/icons/ap.png',
                                 nama: 'Alif Pramana Putra',
                                 bank: 'Bank Mandiri',
-                                nominal: 'Rp200.000',
+                                nominal: 200000,
                                 waktu: '2022-10-10 10:22:00',
                               ),
                               const DetailCard(
                                 icon: 'assets/icons/ap.png',
                                 nama: 'Alif Pramana Putra',
                                 bank: 'Bank Mandiri',
-                                nominal: 'Rp200.000',
+                                nominal: 200000,
                                 waktu: '2022-10-10 10:22:00',
                               ),
                             ],
@@ -156,7 +161,7 @@ class DetailProgram extends StatelessWidget {
                                 icon: 'assets/icons/ap.png',
                                 nama: 'Alif Pramana Putra',
                                 bank: 'Bank Mandiri',
-                                nominal: 'Rp200.000',
+                                nominal: 200000,
                                 waktu: '2022-10-10 10:22:00',
                               ),
                             ],
@@ -179,35 +184,35 @@ class DetailProgram extends StatelessWidget {
                                 icon: 'assets/icons/ap.png',
                                 nama: 'Alif Pramana Putra',
                                 bank: 'Bank Mandiri',
-                                nominal: 'Rp200.000',
+                                nominal: 200000,
                                 waktu: '2022-10-10 10:22:00',
                               ),
                               const DetailCard(
                                 icon: 'assets/icons/ap.png',
                                 nama: 'Alif Pramana Putra',
                                 bank: 'Bank Mandiri',
-                                nominal: 'Rp200.000',
+                                nominal: 200000,
                                 waktu: '2022-10-10 10:22:00',
                               ),
                               const DetailCard(
                                 icon: 'assets/icons/ap.png',
                                 nama: 'Alif Pramana Putra',
                                 bank: 'Bank Mandiri',
-                                nominal: 'Rp200.000',
+                                nominal: 200000,
                                 waktu: '2022-10-10 10:22:00',
                               ),
                               const DetailCard(
                                 icon: 'assets/icons/ap.png',
                                 nama: 'Alif Pramana Putra',
                                 bank: 'Bank Mandiri',
-                                nominal: 'Rp200.000',
+                                nominal: 200000,
                                 waktu: '2022-10-10 10:22:00',
                               ),
                               const DetailCard(
                                 icon: 'assets/icons/ap.png',
                                 nama: 'Alif Pramana Putra',
                                 bank: 'Bank Mandiri',
-                                nominal: 'Rp200.000',
+                                nominal: 200000,
                                 waktu: '2022-10-10 10:22:00',
                               ),
                               const SizedBox(
@@ -255,7 +260,11 @@ class DetailProgram extends StatelessWidget {
                                     color: neutral70),
                               ),
                               Text(
-                                'Rp ${Get.arguments['target']}',
+                                NumberFormat.currency(
+                                  locale: 'id',
+                                  name: 'Rp',
+                                  decimalDigits: 0,
+                                ).format(Get.arguments['target']),
                                 style:
                                     listTitleBold.copyWith(color: neutral100),
                               ),
