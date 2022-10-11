@@ -20,7 +20,7 @@ class DetailProgram extends StatelessWidget {
         backgroundColor: Colors.transparent,
         centerTitle: true,
         title: Text(
-          'Sedekah Bangunan Infrastruktur',
+          '${Get.arguments['judul']}',
           style: listTitleBold.copyWith(color: neutral90),
         ),
         leading: IconButton(
@@ -69,12 +69,12 @@ class DetailProgram extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Rp 500.000',
+                              'Rp ${Get.arguments['terkumpul']}',
                               style:
                                   listItemTitleBold.copyWith(color: neutral100),
                             ),
                             Text(
-                              '1 bulan lagi',
+                              '${Get.arguments['tanggal']}',
                               style:
                                   captionTextBold.copyWith(color: primaryMain),
                             )
@@ -236,7 +236,7 @@ class DetailProgram extends StatelessWidget {
                                   color: neutral70),
                             ),
                             Text(
-                              'Rp1.100.000',
+                              'Rp ${Get.arguments['target']}',
                               style: listTitleBold.copyWith(color: neutral100),
                             ),
                           ],
@@ -249,10 +249,10 @@ class DetailProgram extends StatelessWidget {
                     lineHeight: 6,
                     animation: true,
                     trailing: Text(
-                      '69%',
+                      '${Get.arguments['1']}%',
                       style: titleExtraTextBold.copyWith(color: neutral100),
                     ),
-                    percent: 67 / 100,
+                    percent: Get.arguments['1'] / Get.arguments['100'],
                     progressColor: primaryMain,
                   ),
                 ],
