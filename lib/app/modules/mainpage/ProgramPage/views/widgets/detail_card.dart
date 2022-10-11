@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/fonts.dart';
@@ -315,7 +316,7 @@ class DetailCard extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    waktu,
+                    Jiffy('2022-10-10 10:22:00').fromNow(),
                     style: overlineSemiBold.copyWith(color: neutral60),
                   )
                 ],

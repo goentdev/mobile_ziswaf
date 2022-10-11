@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -112,7 +113,7 @@ class CardDana extends StatelessWidget {
                         style: captionTextSemiBold.copyWith(color: neutral100),
                       ),
                       Text(
-                        tanggalakhir,
+                        Jiffy(tanggalakhir).fromNow(),
                         style: captionTextBold.copyWith(color: secondaryMain),
                       )
                     ],
