@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
@@ -7,6 +9,7 @@ import '../../../../../theme/colors.dart';
 class CardDana extends StatelessWidget {
   final String judul, tanggalakhir;
   final int terkumpul, target, muzakki;
+
   const CardDana(
       {super.key,
       required this.judul,
@@ -22,8 +25,10 @@ class CardDana extends StatelessWidget {
     int target100 = target100v.toInt();
     double target1v = terkumpul / persen;
     int target1 = target1v.toInt();
-    return GestureDetector(
-      onTap: () {},
+    return InkWell(
+      onTap: () {
+        Get.toNamed(Routes.DETAILPROGRAM);
+      },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

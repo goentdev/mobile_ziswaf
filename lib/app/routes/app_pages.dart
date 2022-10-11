@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/detail_program_page.dart';
 
 import '../modules/OnBoarding/views/on_boarding_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
@@ -129,5 +130,9 @@ class AppPages {
       page: () => const ChangePasswordPage(),
       binding: ProfileBinding(),
     ),
+    GetPage(
+      name: _Paths.DETAILPROGRAM,
+      page: () => const DetailProgram(),
+    )
   ];
 }

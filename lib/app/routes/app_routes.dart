@@ -28,6 +28,7 @@ abstract class Routes {
   static const CHANGEIDENTITY = _Paths.CHANGEIDENTITY;
   static const CHANGEBANK = _Paths.CHANGEBANK;
   static const CHANGEPASSWORD = _Paths.CHANGEPASSWORD;
+  static const DETAILPROGRAM = _Paths.DETAILPROGRAM;
 }
 
 abstract class _Paths {
@@ -55,4 +56,5 @@ abstract class _Paths {
   static const CHANGEIDENTITY = '/change-identity';
   static const CHANGEBANK = '/change-bank';
   static const CHANGEPASSWORD = '/change-password';
+  static const DETAILPROGRAM = '/detail-program';
 }
