@@ -31,10 +31,10 @@ class DetailTransaksi extends StatelessWidget {
           ),
         ),
         actions: [
-          InkWell(
+          GestureDetector(
             onTap: () {
               showModalBottomSheet(
-                constraints: const BoxConstraints(maxHeight: 110),
+                constraints: const BoxConstraints(maxHeight: 126),
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(8),
@@ -46,9 +46,18 @@ class DetailTransaksi extends StatelessWidget {
                   return Container(
                     margin: const EdgeInsets.symmetric(
                         horizontal: 16, vertical: 16),
-                    height: 70,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Container(
+                          height: 5,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            color: neutral30,
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                        ),
+                        const SizedBox(height: 14),
                         GestureDetector(
                           onTap: () {},
                           child: Row(
@@ -69,7 +78,115 @@ class DetailTransaksi extends StatelessWidget {
                         ),
                         const SizedBox(height: 24),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return Dialog(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  insetPadding: const EdgeInsets.all(10),
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 308,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 24, vertical: 48),
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 75,
+                                          width: 75,
+                                          child: CircleAvatar(
+                                            backgroundColor:
+                                                const Color(0XffFEF7EC),
+                                            child: Image.asset(
+                                              'assets/icons/iconseru.png',
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 24),
+                                        Text(
+                                          'Yakin Ingin Menghapus Data?',
+                                          style: listItemTitleBlack.copyWith(
+                                            color: neutral100,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 48),
+                                        Row(
+                                          children: [
+                                            const SizedBox(
+                                              width: 24,
+                                            ),
+                                            Flexible(
+                                              flex: 1,
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Container(
+                                                  margin: const EdgeInsets.only(
+                                                      right: 24),
+                                                  height: 41,
+                                                  width: double.infinity,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.red,
+                                                    border: Border.all(
+                                                      width: 1,
+                                                      color: neutral40,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                  ),
+                                                  child: Center(
+                                                      child: Text(
+                                                    'Batal',
+                                                    style: textMBold.copyWith(
+                                                        color: Colors.white),
+                                                  )),
+                                                ),
+                                              ),
+                                            ),
+                                            Flexible(
+                                              flex: 1,
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Container(
+                                                  margin: const EdgeInsets.only(
+                                                      right: 24),
+                                                  height: 41,
+                                                  width: double.infinity,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    border: Border.all(
+                                                      width: 1,
+                                                      color: dangerMain,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                  ),
+                                                  child: Center(
+                                                      child: Text(
+                                                    'Hapus',
+                                                    style: textMBold.copyWith(
+                                                        color: dangerMain),
+                                                  )),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
                           child: Row(
                             children: [
                               Image.asset(
@@ -82,10 +199,11 @@ class DetailTransaksi extends StatelessWidget {
                                 'Hapus',
                                 style: buttonTabsTextBold.copyWith(
                                     color: dangerMain),
-                              )
+                              ),
                             ],
                           ),
                         ),
+                        const SizedBox(height: 16),
                       ],
                     ),
                   );
@@ -483,7 +601,7 @@ class DetailTransaksi extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () => Get.toNamed(Routes.CHANGEPASSWORD),
+              onTap: () {},
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),

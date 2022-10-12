@@ -160,7 +160,7 @@ class ChangeIdentityPage extends StatelessWidget {
                                     children: [
                                       InkWell(
                                         onTap: () {
-                                          controller.pickFromCamera();
+                                          controller.pickFromCamera(context);
                                         },
                                         child: SizedBox(
                                           height: 86,
@@ -190,7 +190,7 @@ class ChangeIdentityPage extends StatelessWidget {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          controller.pickFromGallery();
+                                          controller.pickFromGallery(context);
                                         },
                                         child: SizedBox(
                                           height: 86,

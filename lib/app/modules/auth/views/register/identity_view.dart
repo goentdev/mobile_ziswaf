@@ -159,7 +159,7 @@ class IdentityView extends GetView<IdentityController> {
                                     children: [
                                       InkWell(
                                         onTap: () {
-                                          controller.pickFromCamera();
+                                          controller.pickFromCamera(context);
                                         },
                                         child: SizedBox(
                                           height: 86,
@@ -189,7 +189,7 @@ class IdentityView extends GetView<IdentityController> {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          controller.pickFromGallery();
+                                          controller.pickFromGallery(context);
                                         },
                                         child: SizedBox(
                                           height: 86,
