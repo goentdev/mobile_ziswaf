@@ -316,9 +316,11 @@ class DetailProgram extends StatelessWidget {
             backgroundColor: primaryMain,
           ),
           onPressed: () {
-            Get.to(UbahTransaksiPage(
-              judul: judul,
-            ));
+            Get.to(
+              () => UbahTransaksiPage(
+                judul: judul,
+              ),
+            );
           },
           child: Text(
             'Tambah Transaksi',

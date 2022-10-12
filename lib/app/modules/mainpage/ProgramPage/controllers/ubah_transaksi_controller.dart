@@ -32,5 +32,6 @@ class UbahTransakiController extends GetxController {
       final loweredNama = element.nama!.toLowerCase();
       return loweredNama.contains(value.toLowerCase());
     }).toList();
+    update();
   }
 }

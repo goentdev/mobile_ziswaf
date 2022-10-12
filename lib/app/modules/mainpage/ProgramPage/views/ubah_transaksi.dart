@@ -34,54 +34,59 @@ class UbahTransaksiPage extends StatelessWidget {
               size: 10,
             ),
           )),
-      body: Obx(
-        () => Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: neutral40,
-                  ),
-                  child: TextField(
-                    controller: controller.searchMuzakkiController,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      disabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      prefixIcon: Icon(Icons.search),
-                      hintText: 'Cari',
-                    ),
-                    onChanged: (value) {
-                      controller.searchMuzakki(value);
-                    },
-                  ),
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: neutral40,
                 ),
-                const SizedBox(height: 8),
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: controller.searchMuzakkiController.text.isNotEmpty
-                      ? controller.muzakkisOnSearch.length
-                      : controller.users.length,
-                  itemBuilder: (context, index) {
-                    if (controller.searchMuzakkiController.text.isNotEmpty) {
-                      return CardMuzakki(
-                        nama: controller.muzakkisOnSearch[index].nama!,
-                        nomor: controller.muzakkisOnSearch[index].nomor!,
-                      );
-                    } else {
-                      return CardMuzakki(
-                        nama: controller.users[index].nama!,
-                        nomor: controller.users[index].nomor!,
-                      );
-                    }
+                child: TextField(
+                  controller: controller.searchMuzakkiController,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    disabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    prefixIcon: Icon(Icons.search),
+                    hintText: 'Cari',
+                  ),
+                  onChanged: (value) {
+                    controller.searchMuzakki(value);
                   },
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 8),
+              GetBuilder<UbahTransakiController>(
+                init: UbahTransakiController(),
+                initState: (_) {},
+                builder: (_) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount:
+                        controller.searchMuzakkiController.text.isNotEmpty
+                            ? controller.muzakkisOnSearch.length
+                            : controller.users.length,
+                    itemBuilder: (context, index) {
+                      if (controller.searchMuzakkiController.text.isNotEmpty) {
+                        return CardMuzakki(
+                          nama: controller.muzakkisOnSearch[index].nama!,
+                          nomor: controller.muzakkisOnSearch[index].nomor!,
+                        );
+                      } else {
+                        return CardMuzakki(
+                          nama: controller.users[index].nama!,
+                          nomor: controller.users[index].nomor!,
+                        );
+                      }
+                    },
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),
