@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/bukti_transaksi_page.dart';
 
 import '../../../../routes/app_pages.dart';
 import '../../../../theme/colors.dart';
@@ -59,7 +60,9 @@ class DetailTransaksi extends StatelessWidget {
                         ),
                         const SizedBox(height: 14),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Get.to(() => const BuktiTransaksi());
+                          },
                           child: Row(
                             children: [
                               Image.asset(
@@ -601,7 +604,9 @@ class DetailTransaksi extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Get.to(const BuktiTransaksi());
+              },
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),

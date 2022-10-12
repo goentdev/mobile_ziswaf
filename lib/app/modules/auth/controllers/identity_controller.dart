@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -57,17 +59,13 @@ class IdentityController extends GetxController {
                   height: 12,
                 ),
                 Container(
+                  height: 245,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(width: 1, color: neutral50)),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.asset(
-                      identityImage!.path,
-                      height: 245,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
+                      border: Border.all(width: 1, color: neutral50),
+                      image: DecorationImage(
+                          image: FileImage(File(identityImage!.path)),
+                          fit: BoxFit.contain)),
                 ),
                 const SizedBox(
                   height: 16,
@@ -249,6 +247,7 @@ class IdentityController extends GetxController {
 
   pickFromGallery(context) async {
     identityImage = await picker.pickImage(source: ImageSource.gallery);
+    Get.back();
     showModalBottomSheet(
       isScrollControlled: true,
       constraints: const BoxConstraints(maxHeight: 1000),
@@ -279,17 +278,13 @@ class IdentityController extends GetxController {
                   height: 12,
                 ),
                 Container(
+                  height: 245,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(width: 1, color: neutral50)),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.asset(
-                      identityImage!.path,
-                      height: 245,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
+                      border: Border.all(width: 1, color: neutral50),
+                      image: DecorationImage(
+                          image: FileImage(File(identityImage!.path)),
+                          fit: BoxFit.contain)),
                 ),
                 const SizedBox(
                   height: 16,
@@ -441,6 +436,7 @@ class IdentityController extends GetxController {
                       child: GestureDetector(
                         onTap: () {
                           update();
+                          Get.back();
                         },
                         child: Container(
                           margin: const EdgeInsets.only(right: 8),
