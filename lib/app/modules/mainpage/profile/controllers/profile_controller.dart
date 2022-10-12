@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/data/models/user_model.dart';
+import 'package:mobile_ziswaf/app/data/providers/user_provider.dart';
+import 'package:mobile_ziswaf/app/utils/shared_preferences.dart';
 
 class ProfileController extends GetxController {
   late TextEditingController nameController;
@@ -9,6 +12,10 @@ class ProfileController extends GetxController {
   late TextEditingController newPasswordController;
   late TextEditingController confirmPasswordController;
 
+  UserProvider userProvider = UserProvider();
+
+  Rx<User?> user = User().obs;
+
   @override
   void onInit() {
     nameController = TextEditingController();
@@ -17,6 +24,7 @@ class ProfileController extends GetxController {
     oldPasswordController = TextEditingController();
     newPasswordController = TextEditingController();
     confirmPasswordController = TextEditingController();
+    getProfile();
     super.onInit();
   }
 
@@ -29,5 +37,13 @@ class ProfileController extends GetxController {
     newPasswordController.dispose();
     confirmPasswordController.dispose();
     super.onClose();
+  }
+
+  void logout() {
+    sharedPrefs.logout();
+  }
+
+  void getProfile() async {
+    user.value = await userProvider.profile();
   }
 }

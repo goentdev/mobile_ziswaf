@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_ziswaf/app/modules/auth/views/login/login_page.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/views/mainpage_view.dart';
 import 'package:mobile_ziswaf/app/modules/onboarding/views/on_boarding_view.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:mobile_ziswaf/app/utils/shared_preferences.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -26,7 +29,11 @@ class SplashScreen extends StatelessWidget {
             ),
           ),
         ),
-        nextScreen: const OnboardingScreen(),
+        nextScreen: sharedPrefs.token == null
+            ? sharedPrefs.skipIntro == false
+                ? const OnboardingScreen()
+                : const LoginPage()
+            : const MainpageView(),
         splashIconSize: double.infinity,
       ),
     );

@@ -12,6 +12,9 @@ class ProfileView extends GetView<ProfileController> {
   const ProfileView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProfileController());
+    final user = controller.user.value;
+
     return Scaffold(
       backgroundColor: neutral20,
       body: SingleChildScrollView(
@@ -45,7 +48,7 @@ class ProfileView extends GetView<ProfileController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "User",
+                        user!.nama!,
                         style: titleTextBold.copyWith(color: neutral100),
                       ),
                       const SizedBox(
@@ -104,7 +107,7 @@ class ProfileView extends GetView<ProfileController> {
                   CardProfile(
                     title: 'Nama',
                     gambar: 'assets/icons/kontakk.png',
-                    subtittle: 'Alif Pramana Putra',
+                    subtittle: user.nama!,
                     onTap: () => Get.toNamed(Routes.CHANGENAME),
                   ),
                   Divider(
@@ -113,7 +116,7 @@ class ProfileView extends GetView<ProfileController> {
                   ),
                   CardProfile(
                     title: 'Nomor Whatsapp',
-                    subtittle: "0892121",
+                    subtittle: user.whatsapp!,
                     gambar: 'assets/icons/phone.png',
                     onTap: () => Get.toNamed(Routes.CHANGENUMBER),
                   ),
@@ -123,7 +126,7 @@ class ProfileView extends GetView<ProfileController> {
                   ),
                   CardProfile(
                     title: 'Email',
-                    subtittle: "alifpramanaputra@gmail.com",
+                    subtittle: user.email!,
                     gambar: "assets/icons/mail.png",
                     onTap: () => Get.toNamed(Routes.CHANGEEMAIL),
                   ),
@@ -133,7 +136,7 @@ class ProfileView extends GetView<ProfileController> {
                   ),
                   CardProfile(
                     title: 'Kartu Identitas',
-                    subtittle: "KTP",
+                    subtittle: user.jenisKartuIdentitas!.toUpperCase(),
                     gambar: "assets/icons/identity.png",
                     onTap: () => Get.toNamed(Routes.CHANGEIDENTITY),
                   ),
@@ -265,16 +268,9 @@ class ProfileView extends GetView<ProfileController> {
               ),
             ),
             InkWell(
-              onTap: () async {
-                // AuthService().logout();
-                // // ignore: use_build_context_synchronously
-                // Navigator.pushAndRemoveUntil(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (BuildContext context) => const LoginPage(),
-                //   ),
-                //   (route) => false,
-                // );
+              onTap: () {
+                controller.logout();
+                Get.offAllNamed(Routes.LOGIN);
               },
               child: Container(
                 padding: const EdgeInsets.all(16),

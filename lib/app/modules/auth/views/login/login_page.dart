@@ -10,6 +10,7 @@ class LoginPage extends GetView<LoginController> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -30,46 +31,59 @@ class LoginPage extends GetView<LoginController> {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
-            height: 41,
-            width: 355,
-            child: FloatingActionButton.extended(
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(4.0),
+          Obx(
+            () => SizedBox(
+              height: 41,
+              width: 355,
+              child: FloatingActionButton.extended(
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(4.0),
+                  ),
                 ),
-              ),
-              onPressed: () {
-                Get.toNamed(Routes.MAINPAGE);
-              },
-              label: controller.isLoading.value
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 16,
-                          height: 16,
-                          margin: const EdgeInsets.only(right: 8),
-                          child: const CircularProgressIndicator(
-                            strokeWidth: 2,
-                            valueColor: AlwaysStoppedAnimation(
-                              Colors.white,
+                onPressed: () async {
+                  if (controller.loginFormKey.currentState!.validate()) {
+                    bool success = await controller.login(
+                      whatsapp: controller.whatsappC.text,
+                      password: controller.passwordC.text,
+                    );
+                    if (success) {
+                      Get.offNamed(Routes.MAINPAGE);
+                      controller.isLoading.value = false;
+                    } else {
+                      controller.isLoading.value = false;
+                    }
+                  }
+                },
+                label: controller.isLoading.value
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 16,
+                            height: 16,
+                            margin: const EdgeInsets.only(right: 8),
+                            child: const CircularProgressIndicator(
+                              strokeWidth: 2,
+                              valueColor: AlwaysStoppedAnimation(
+                                Colors.white,
+                              ),
                             ),
                           ),
-                        ),
-                        Text(
-                          'Loading',
-                          style: paragraphTextBold.copyWith(
-                            color: Colors.white,
+                          Text(
+                            'Loading',
+                            style: paragraphTextBold.copyWith(
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                      ],
-                    )
-                  : Text(
-                      'Masuk',
-                      style: textMBold.copyWith(color: Colors.white),
-                    ),
-              backgroundColor: primaryMain,
+                        ],
+                      )
+                    : Text(
+                        'Masuk',
+                        style: textMBold.copyWith(color: Colors.white),
+                      ),
+                backgroundColor: primaryMain,
+              ),
             ),
           ),
           const SizedBox(
