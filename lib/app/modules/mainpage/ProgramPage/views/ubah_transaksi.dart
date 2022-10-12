@@ -21,7 +21,7 @@ class UbahTransaksiPage extends StatelessWidget {
           backgroundColor: Colors.white,
           centerTitle: true,
           title: Text(
-            judul,
+            'Pilih Muzakki',
             style: listTitleBold.copyWith(color: neutral90),
           ),
           leading: IconButton(
@@ -59,7 +59,14 @@ class UbahTransaksiPage extends StatelessWidget {
                   },
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 16),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Daftar Transaksi (${controller.users.length})',
+                  style: listItemTitleBold.copyWith(color: neutral100),
+                ),
+              ),
               GetBuilder<UbahTransakiController>(
                 init: UbahTransakiController(),
                 initState: (_) {},
@@ -75,11 +82,13 @@ class UbahTransaksiPage extends StatelessWidget {
                         return CardMuzakki(
                           nama: controller.muzakkisOnSearch[index].nama!,
                           nomor: controller.muzakkisOnSearch[index].nomor!,
+                          judul: judul,
                         );
                       } else {
                         return CardMuzakki(
                           nama: controller.users[index].nama!,
                           nomor: controller.users[index].nomor!,
+                          judul: judul,
                         );
                       }
                     },

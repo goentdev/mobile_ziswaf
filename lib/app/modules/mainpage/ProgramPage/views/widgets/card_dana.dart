@@ -30,15 +30,13 @@ class CardDana extends StatelessWidget {
     int target1 = target1v.toInt();
     return InkWell(
       onTap: () {
-        Get.to(
-          () => DetailProgram(
-              judul: judul,
-              tanggalakhir: tanggalakhir,
-              terkumpul: terkumpul,
-              target: target,
-              target1: target1,
-              target100: target100),
-        );
+        Get.to(() => DetailProgram(
+            judul: judul,
+            tanggalakhir: tanggalakhir,
+            terkumpul: terkumpul,
+            target: target,
+            target1: target1,
+            target100: target100));
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

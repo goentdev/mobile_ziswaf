@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 
 import 'app/routes/app_pages.dart';
