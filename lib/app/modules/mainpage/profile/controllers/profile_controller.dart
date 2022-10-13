@@ -15,6 +15,7 @@ class ProfileController extends GetxController {
   UserProvider userProvider = UserProvider();
 
   Rx<User?> user = User().obs;
+  RxBool isLoading = false.obs;
 
   @override
   void onInit() {
@@ -44,6 +45,8 @@ class ProfileController extends GetxController {
   }
 
   void getProfile() async {
+    isLoading.value = true;
     user.value = await userProvider.profile();
+    isLoading.value = false;
   }
 }

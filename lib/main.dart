@@ -17,5 +17,6 @@ void main() async {
       builder: EasyLoading.init(),
     ),
   );
+  print(sharedPrefs.token);
   await Jiffy.locale("id");
 }

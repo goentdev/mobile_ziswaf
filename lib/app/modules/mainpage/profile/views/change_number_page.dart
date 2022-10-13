@@ -14,6 +14,7 @@ class ChangeNumberPage extends GetView<UserController> {
   @override
   Widget build(BuildContext context) {
     final profileC = Get.put(ProfileController());
+    profileC.numberController.text = profileC.user.value!.whatsapp!;
     return Scaffold(
       backgroundColor: neutral10,
       appBar: AppBar(

@@ -1,3 +1,5 @@
+import 'package:mobile_ziswaf/app/data/models/bank_model.dart';
+
 class User {
   String? nama;
   String? email;
@@ -5,22 +7,25 @@ class User {
   String? role;
   String? kategori;
   String? jenisKartuIdentitas;
-  String? nomorKartuIdentitas;
-  int? bankId;
-  String? nomorRekening;
+  int? nomorKartuIdentitas;
+  Bank? bank;
+  int? nomorRekening;
   String? namaRekening;
+  String? fotoKartuIdentitas;
 
-  User(
-      {this.nama,
-      this.email,
-      this.whatsapp,
-      this.role,
-      this.kategori,
-      this.jenisKartuIdentitas,
-      this.nomorKartuIdentitas,
-      this.bankId,
-      this.nomorRekening,
-      this.namaRekening});
+  User({
+    this.nama,
+    this.email,
+    this.whatsapp,
+    this.role,
+    this.kategori,
+    this.jenisKartuIdentitas,
+    this.nomorKartuIdentitas,
+    this.bank,
+    this.nomorRekening,
+    this.namaRekening,
+    this.fotoKartuIdentitas,
+  });
 
   User.fromJson(Map<String, dynamic> json) {
     nama = json['nama'];
@@ -30,9 +35,10 @@ class User {
     kategori = json['relawan']['kategori'];
     jenisKartuIdentitas = json['relawan']['jenis_kartu_identitas'];
     nomorKartuIdentitas = json['relawan']['nomor_kartu_identitas'];
-    bankId = json['relawan']['bank_id'];
+    bank = Bank.fromJson(json['relawan']['bank']);
     nomorRekening = json['relawan']['nomor_rekening'];
     namaRekening = json['relawan']['nama_rekening'];
+    fotoKartuIdentitas = json['relawan']['foto_kartu_identitas'];
   }
 
   Map<String, dynamic> toJson() {
@@ -44,9 +50,10 @@ class User {
     data['kategori'] = kategori;
     data['jenis_kartu_identitas'] = jenisKartuIdentitas;
     data['nomor_kartu_identitas'] = nomorKartuIdentitas;
-    data['bank_id'] = bankId;
+    data['bank'] = bank;
     data['nomor_rekening'] = nomorRekening;
     data['nama_rekening'] = namaRekening;
+    data['foto_kartu_identitas'] = fotoKartuIdentitas;
     return data;
   }
 }

@@ -188,12 +188,12 @@ class ProfileView extends GetView<ProfileController> {
                                   ),
                                   const SizedBox(height: 4),
                                   Text(
-                                    '1640001233211',
+                                    user.nomorRekening.toString(),
                                     style: captionTextSemiBold.copyWith(
                                         color: neutral80),
                                   ),
                                   Text(
-                                    'a.n Alif Pramana Putra',
+                                    'a.n ${user.namaRekening}',
                                     style: captionTextSemiBold.copyWith(
                                       color: neutral80,
                                     ),

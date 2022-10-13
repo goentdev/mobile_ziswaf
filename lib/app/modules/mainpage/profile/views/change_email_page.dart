@@ -15,6 +15,7 @@ class ChangeEmailPage extends GetView<UserController> {
   @override
   Widget build(BuildContext context) {
     final profileC = Get.put(ProfileController());
+    profileC.emailController.text = profileC.user.value!.email!;
     return Scaffold(
       backgroundColor: neutral10,
       appBar: AppBar(
