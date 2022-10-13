@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/ubah_transaksi.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/ubah_transaksi_page.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/detail_card.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';

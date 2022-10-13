@@ -2,7 +2,7 @@
 
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/detail_program_page.dart';
-import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/ubah_transaksi.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/ubah_transaksi_page.dart';
 
 import '../modules/OnBoarding/views/on_boarding_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
