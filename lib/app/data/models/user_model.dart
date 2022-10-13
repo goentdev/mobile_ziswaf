@@ -1,6 +1,7 @@
 import 'package:mobile_ziswaf/app/data/models/bank_model.dart';
 
 class User {
+  int? id;
   String? nama;
   String? email;
   String? whatsapp;
@@ -14,6 +15,7 @@ class User {
   String? fotoKartuIdentitas;
 
   User({
+    this.id,
     this.nama,
     this.email,
     this.whatsapp,
@@ -28,6 +30,7 @@ class User {
   });
 
   User.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     nama = json['nama'];
     email = json['email'];
     whatsapp = json['whatsapp'];
@@ -43,6 +46,7 @@ class User {
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
+    data['id'] = id;
     data['nama'] = nama;
     data['email'] = email;
     data['whatsapp'] = whatsapp;

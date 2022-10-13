@@ -69,9 +69,23 @@ class ChangeEmailPage extends GetView<UserController> {
               ),
             ),
             const SizedBox(height: 24),
-            Button(
-              textbutton: 'Simpan',
-              onTap: () {},
+            Obx(
+              () => profileC.isLoading.value
+                  ? const LoadingButton()
+                  : Button(
+                      textbutton: 'Simpan',
+                      onTap: () async {
+                        bool success = await profileC.changeEmail(
+                            email: profileC.emailController.text);
+                        if (success) {
+                          profileC.isLoading.value = false;
+                          profileC.update();
+                          Get.back();
+                        } else {
+                          profileC.isLoading.value = false;
+                        }
+                      },
+                    ),
             )
           ],
         ),

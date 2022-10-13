@@ -7,6 +7,7 @@ import 'package:mobile_ziswaf/app/modules/mainpage/profile/controllers/profile_c
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
+import 'package:mobile_ziswaf/app/widgets/button.dart';
 
 class ChangeBankPage extends StatelessWidget {
   const ChangeBankPage({super.key});
@@ -54,7 +55,7 @@ class ChangeBankPage extends StatelessWidget {
             Obx(
               () => GestureDetector(
                 child: DropdownButtonFormField<String>(
-                  value: 'soaosjaasjisao',
+                  value: profileC.user.value!.bank!.nama!,
                   items: const [],
                   onChanged: (value) {},
                   icon: const Icon(
@@ -250,22 +251,39 @@ class ChangeBankPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
-            height: 41,
-            width: 343,
-            child: FloatingActionButton.extended(
-              backgroundColor: primaryMain,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8.0),
-                ),
-              ),
-              onPressed: () => Get.toNamed(Routes.MAINPAGE),
-              label: Text(
-                'Selanjutnya',
-                style: buttonTabsTextBold.copyWith(color: Colors.white),
-              ),
-            ),
+          Obx(
+            () => profileC.isLoading.value
+                ? const LoadingButton()
+                : SizedBox(
+                    height: 41,
+                    width: 343,
+                    child: FloatingActionButton.extended(
+                      backgroundColor: primaryMain,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8.0),
+                        ),
+                      ),
+                      onPressed: () async {
+                        bool success = await profileC.changeBank(
+                            nomorRekening:
+                                controller.bankAccountController.text,
+                            namaRekening:
+                                controller.accountNameController.text);
+                        if (success) {
+                          profileC.isLoading.value = false;
+                          profileC.update();
+                          Get.back();
+                        } else {
+                          profileC.isLoading.value = false;
+                        }
+                      },
+                      label: Text(
+                        'Simpan',
+                        style: buttonTabsTextBold.copyWith(color: Colors.white),
+                      ),
+                    ),
+                  ),
           ),
         ],
       ),

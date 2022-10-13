@@ -14,6 +14,7 @@ class ChangeNamePage extends GetView<UserController> {
   @override
   Widget build(BuildContext context) {
     final profileC = Get.put(ProfileController());
+    profileC.nameController.text = profileC.user.value!.nama!;
     return Scaffold(
       backgroundColor: neutral10,
       appBar: AppBar(
@@ -67,9 +68,21 @@ class ChangeNamePage extends GetView<UserController> {
               ),
             ),
             const SizedBox(height: 24),
-            Button(
-              textbutton: 'Simpan',
-              onTap: () {},
+            Obx(
+              () => profileC.isLoading.value
+                  ? const LoadingButton()
+                  : Button(
+                      textbutton: 'Simpan',
+                      onTap: () async {
+                        bool success = await profileC.changeName(
+                            nama: profileC.nameController.text);
+                        if (success) {
+                          profileC.isLoading.value = false;
+                          profileC.update();
+                          Get.back();
+                        }
+                      },
+                    ),
             )
           ],
         ),

@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/identity_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/add_foto_widget.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/profile/controllers/profile_controller.dart';
-import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 import 'package:mobile_ziswaf/app/widgets/button.dart';
@@ -19,6 +18,8 @@ class ChangeIdentityPage extends StatelessWidget {
     final profileC = Get.put(ProfileController());
     controller.identityNumberController.text =
         profileC.user.value!.nomorKartuIdentitas.toString();
+    controller.selectedType.value =
+        profileC.user.value!.jenisKartuIdentitas!.toUpperCase();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -46,7 +47,7 @@ class ChangeIdentityPage extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Jenis Kartu Identitas  ',
+                'Jenis Kartu Identitas',
                 style: captionTextSemiBold.copyWith(color: neutral90),
               ),
             ),
@@ -68,10 +69,10 @@ class ChangeIdentityPage extends StatelessWidget {
                         () => Radio<String>(
                           activeColor: primaryMain,
                           value: controller.identityType[index],
-                          groupValue: profileC.user.value!.jenisKartuIdentitas!
-                              .toUpperCase(),
+                          groupValue: controller.selectedType.toUpperCase(),
                           onChanged: (value) {
                             controller.selectedType.value = value!;
+                            controller.update();
                           },
                         ),
                       ),
@@ -324,9 +325,27 @@ class ChangeIdentityPage extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            Button(
-              textbutton: 'Selanjutnya',
-              onTap: () => Get.toNamed(Routes.BANK),
+            Obx(
+              () => profileC.isLoading.value
+                  ? const LoadingButton()
+                  : Button(
+                      textbutton: 'Simpan',
+                      onTap: () async {
+                        bool success = await profileC.changeIdentity(
+                            jenisKartuIdentitas:
+                                controller.selectedType.toLowerCase(),
+                            nomorKartuIdentitas:
+                                controller.identityNumberController.text);
+
+                        if (success) {
+                          profileC.isLoading.value = false;
+                          profileC.update();
+                          Get.back();
+                        } else {
+                          profileC.isLoading.value = false;
+                        }
+                      },
+                    ),
             ),
           ],
         ),
