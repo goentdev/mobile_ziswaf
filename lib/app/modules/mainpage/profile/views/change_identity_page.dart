@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/identity_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/add_foto_widget.dart';
-import 'package:mobile_ziswaf/app/routes/app_pages.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/profile/controllers/profile_controller.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 import 'package:mobile_ziswaf/app/widgets/button.dart';
@@ -15,6 +15,11 @@ class ChangeIdentityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(IdentityController());
+    final profileC = Get.put(ProfileController());
+    controller.identityNumberController.text =
+        profileC.user.value!.nomorKartuIdentitas.toString();
+    controller.selectedType.value =
+        profileC.user.value!.jenisKartuIdentitas!.toUpperCase();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -42,7 +47,7 @@ class ChangeIdentityPage extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Jenis Kartu Identitas  ',
+                'Jenis Kartu Identitas',
                 style: captionTextSemiBold.copyWith(color: neutral90),
               ),
             ),
@@ -64,9 +69,10 @@ class ChangeIdentityPage extends StatelessWidget {
                         () => Radio<String>(
                           activeColor: primaryMain,
                           value: controller.identityType[index],
-                          groupValue: controller.selectedType.value,
+                          groupValue: controller.selectedType.toUpperCase(),
                           onChanged: (value) {
                             controller.selectedType.value = value!;
+                            controller.update();
                           },
                         ),
                       ),
@@ -120,7 +126,9 @@ class ChangeIdentityPage extends StatelessWidget {
             ),
             GetBuilder(
               init: IdentityController(),
-              builder: (controller) => controller.identityImage == null
+              builder: (controller) => profileC
+                          .user.value!.fotoKartuIdentitas ==
+                      null
                   ? AddPhotoButton(
                       ontap: () {
                         showModalBottomSheet(
@@ -149,7 +157,7 @@ class ChangeIdentityPage extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 18),
                                   Text(
-                                    'Unggah Bukti Transfer',
+                                    'Unggah foto kartu identitas',
                                     style: titleTextBold.copyWith(
                                         color: neutral100),
                                   ),
@@ -227,54 +235,117 @@ class ChangeIdentityPage extends StatelessWidget {
                         );
                       },
                     )
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Stack(
+                  : controller.identityImage != null
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Container(
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                image: DecorationImage(
-                                  image: FileImage(
-                                    File(controller.identityImage!.path),
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              top: -1.0,
-                              right: -1.0,
-                              child: InkWell(
-                                onTap: () {
-                                  controller.identityImage = null;
-                                  controller.update();
-                                },
-                                child: const CircleAvatar(
-                                  radius: 10,
-                                  backgroundColor: Colors.red,
-                                  child: Icon(
-                                    Icons.close,
-                                    size: 15,
-                                    color: Colors.white,
+                            Stack(
+                              children: [
+                                Container(
+                                  height: 100,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                    image: DecorationImage(
+                                      image: FileImage(
+                                        File(controller.identityImage!.path),
+                                      ),
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
-                              ),
+                                Positioned(
+                                  top: -1.0,
+                                  right: -1.0,
+                                  child: InkWell(
+                                    onTap: () {
+                                      controller.identityImage = null;
+                                      controller.update();
+                                    },
+                                    child: const CircleAvatar(
+                                      radius: 10,
+                                      backgroundColor: Colors.red,
+                                      child: Icon(
+                                        Icons.close,
+                                        size: 15,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
+                        )
+                      : Obx(
+                          () => Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Stack(
+                                children: [
+                                  Container(
+                                    height: 100,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(4),
+                                      image: DecorationImage(
+                                        image: NetworkImage(profileC
+                                            .user.value!.fotoKartuIdentitas!),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: -1.0,
+                                    right: -1.0,
+                                    child: InkWell(
+                                      onTap: () {
+                                        profileC.user.update((val) {
+                                          val!.fotoKartuIdentitas = null;
+                                        });
+                                        profileC.update();
+                                      },
+                                      child: const CircleAvatar(
+                                        radius: 10,
+                                        backgroundColor: Colors.red,
+                                        child: Icon(
+                                          Icons.close,
+                                          size: 15,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
             ),
             const SizedBox(
               height: 16,
             ),
-            Button(
-              textbutton: 'Selanjutnya',
-              onTap: () => Get.toNamed(Routes.BANK),
+            Obx(
+              () => profileC.isLoading.value
+                  ? const LoadingButton()
+                  : Button(
+                      textbutton: 'Simpan',
+                      onTap: () async {
+                        bool success = await profileC.changeIdentity(
+                            jenisKartuIdentitas:
+                                controller.selectedType.toLowerCase(),
+                            nomorKartuIdentitas:
+                                controller.identityNumberController.text);
+
+                        if (success) {
+                          profileC.isLoading.value = false;
+                          profileC.update();
+                          Get.back();
+                        } else {
+                          profileC.isLoading.value = false;
+                        }
+                      },
+                    ),
             ),
           ],
         ),

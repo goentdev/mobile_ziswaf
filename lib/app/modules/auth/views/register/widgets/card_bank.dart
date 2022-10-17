@@ -26,8 +26,8 @@ class CardBank extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16.0),
                 color: neutral30,
               ),
-              child: Image.asset(
-                gambar,
+              child: Image.network(
+                'https://ziswaf-server.smarteschool.net$gambar',
                 height: 40,
               ),
             ),

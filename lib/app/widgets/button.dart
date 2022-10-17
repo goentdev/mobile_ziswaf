@@ -29,3 +29,45 @@ class Button extends StatelessWidget {
     );
   }
 }
+
+class LoadingButton extends StatelessWidget {
+  const LoadingButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(primaryMain),
+      ),
+      onPressed: () {},
+      child: Container(
+        width: double.infinity,
+        height: 36,
+        decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(8))),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 16,
+              height: 16,
+              margin: const EdgeInsets.only(right: 8),
+              child: const CircularProgressIndicator(
+                strokeWidth: 2,
+                valueColor: AlwaysStoppedAnimation(
+                  Colors.white,
+                ),
+              ),
+            ),
+            Text(
+              'Loading',
+              style: paragraphTextBold.copyWith(
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -7,4 +7,9 @@ class MainpageController extends GetxController {
     currentIndex = index;
     update();
   }
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/data/providers/user_provider.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/profile/controllers/profile_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/profile/views/profile_view.dart';
+import 'package:mobile_ziswaf/app/utils/shared_preferences.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/fonts.dart';
@@ -14,6 +17,8 @@ class MainpageView extends GetView<MainpageController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(UserProvider());
+    Get.put(ProfileController());
     Widget body() {
       switch (controller.currentIndex) {
         case 0:
@@ -28,50 +33,55 @@ class MainpageView extends GetView<MainpageController> {
       }
     }
 
-    return GetBuilder<MainpageController>(builder: (controller) {
-      return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          unselectedItemColor: neutral50,
-          selectedItemColor: primaryMain,
-          selectedFontSize: 12,
-          selectedLabelStyle: overlineSemiBold2,
-          backgroundColor: Colors.white,
-          currentIndex: controller.currentIndex,
-          // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
-          onTap: controller.changePage,
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/images/program.png',
-                width: 18,
-                height: 24,
-                color: controller.currentIndex == 0 ? primaryMain : neutral50,
-              ),
-              label: 'Program',
+    return GetBuilder<MainpageController>(
+        init: MainpageController(),
+        builder: (controller) {
+          return Scaffold(
+            bottomNavigationBar: BottomNavigationBar(
+              unselectedItemColor: neutral50,
+              selectedItemColor: primaryMain,
+              selectedFontSize: 12,
+              selectedLabelStyle: overlineSemiBold2,
+              backgroundColor: Colors.white,
+              currentIndex: controller.currentIndex,
+              // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
+              onTap: controller.changePage,
+              type: BottomNavigationBarType.fixed,
+              items: [
+                BottomNavigationBarItem(
+                  icon: Image.asset(
+                    'assets/images/program.png',
+                    width: 18,
+                    height: 24,
+                    color:
+                        controller.currentIndex == 0 ? primaryMain : neutral50,
+                  ),
+                  label: 'Program',
+                ),
+                BottomNavigationBarItem(
+                  icon: Image.asset(
+                    'assets/images/muzakki.png',
+                    width: 24,
+                    height: 24,
+                    color:
+                        controller.currentIndex == 1 ? primaryMain : neutral50,
+                  ),
+                  label: 'Muzakki',
+                ),
+                BottomNavigationBarItem(
+                  icon: Image.asset(
+                    'assets/images/iconprofile.png',
+                    width: 18,
+                    height: 24,
+                    color:
+                        controller.currentIndex == 2 ? primaryMain : neutral50,
+                  ),
+                  label: 'Profil',
+                ),
+              ],
             ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/images/muzakki.png',
-                width: 24,
-                height: 24,
-                color: controller.currentIndex == 1 ? primaryMain : neutral50,
-              ),
-              label: 'Muzakki',
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/images/iconprofile.png',
-                width: 18,
-                height: 24,
-                color: controller.currentIndex == 2 ? primaryMain : neutral50,
-              ),
-              label: 'Profil',
-            ),
-          ],
-        ),
-        body: body(),
-      );
-    });
+            body: body(),
+          );
+        });
   }
 }

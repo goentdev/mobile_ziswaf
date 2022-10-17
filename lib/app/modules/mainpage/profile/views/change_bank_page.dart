@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/card_bank.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/profile/controllers/profile_controller.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
+import 'package:mobile_ziswaf/app/widgets/button.dart';
 
 class ChangeBankPage extends StatelessWidget {
   const ChangeBankPage({super.key});
@@ -13,6 +15,10 @@ class ChangeBankPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ChooseBankController());
+    final profileC = Get.put(ProfileController());
+    controller.accountNameController.text = profileC.user.value!.namaRekening!;
+    controller.bankAccountController.text =
+        profileC.user.value!.nomorRekening!.toString();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -48,8 +54,8 @@ class ChangeBankPage extends StatelessWidget {
             ),
             Obx(
               () => GestureDetector(
-                child: DropdownButtonFormField(
-                  value: controller.selectedBank.value,
+                child: DropdownButtonFormField<String>(
+                  value: profileC.user.value!.bank!.nama!,
                   items: const [],
                   onChanged: (value) {},
                   icon: const Icon(
@@ -102,70 +108,77 @@ class ChangeBankPage extends StatelessWidget {
                           centerTitle: true,
                         ),
                         body: Obx(
-                          () => Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 16),
-                            child: SingleChildScrollView(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      color: neutral40,
-                                    ),
-                                    child: TextField(
-                                      controller:
-                                          controller.searchBankController,
-                                      decoration: const InputDecoration(
-                                        border: InputBorder.none,
-                                        disabledBorder: InputBorder.none,
-                                        focusedBorder: InputBorder.none,
-                                        prefixIcon: Icon(Icons.search),
-                                        hintText: 'Cari',
+                          () => SingleChildScrollView(
+                            child: Container(
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: neutral40,
                                       ),
-                                      onChanged: (value) {
-                                        controller.searchBank(value);
+                                      child: TextField(
+                                        controller:
+                                            controller.searchBankController,
+                                        decoration: const InputDecoration(
+                                          border: InputBorder.none,
+                                          disabledBorder: InputBorder.none,
+                                          focusedBorder: InputBorder.none,
+                                          prefixIcon: Icon(Icons.search),
+                                          hintText: 'Cari',
+                                        ),
+                                        onChanged: (value) {
+                                          controller.searchBank(value);
+                                        },
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: controller.searchBankController
+                                              .text.isNotEmpty
+                                          ? controller.banksOnSearch.length
+                                          : controller.banks.length,
+                                      itemBuilder: (context, index) {
+                                        if (controller.searchBankController.text
+                                            .isNotEmpty) {
+                                          return CardBank(
+                                            bank: controller
+                                                .banksOnSearch[index].nama!,
+                                            gambar: controller
+                                                .banksOnSearch[index].image!,
+                                            onTap: () {
+                                              controller.selectedBank.value =
+                                                  controller
+                                                      .banksOnSearch[index]
+                                                      .nama!;
+                                              controller.isSelected.value =
+                                                  true;
+                                              Get.back();
+                                            },
+                                          );
+                                        } else {
+                                          return CardBank(
+                                            bank: controller.banks[index].nama!,
+                                            gambar:
+                                                controller.banks[index].image!,
+                                            onTap: () {
+                                              controller.selectedBank.value =
+                                                  controller.banks[index].nama!;
+                                              controller.isSelected.value =
+                                                  true;
+                                              Get.back();
+                                            },
+                                          );
+                                        }
                                       },
                                     ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: controller.searchBankController
-                                            .text.isNotEmpty
-                                        ? controller.banksOnSearch.length
-                                        : controller.banks.length,
-                                    itemBuilder: (context, index) {
-                                      if (controller.searchBankController.text
-                                          .isNotEmpty) {
-                                        return CardBank(
-                                          bank: controller
-                                              .banksOnSearch[index].bank!,
-                                          gambar: controller
-                                              .banksOnSearch[index].logo!,
-                                          onTap: () {
-                                            controller.selectedBank.value =
-                                                controller
-                                                    .banksOnSearch[index].bank!;
-                                            controller.isSelected.value = true;
-                                            Get.back();
-                                          },
-                                        );
-                                      } else {
-                                        return CardBank(
-                                          bank: controller.banks[index].bank!,
-                                          gambar: controller.banks[index].logo!,
-                                          onTap: () {
-                                            controller.selectedBank.value =
-                                                controller.banks[index].bank!;
-                                            controller.isSelected.value = true;
-                                            Get.back();
-                                          },
-                                        );
-                                      }
-                                    },
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -238,22 +251,39 @@ class ChangeBankPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
-            height: 41,
-            width: 343,
-            child: FloatingActionButton.extended(
-              backgroundColor: primaryMain,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8.0),
-                ),
-              ),
-              onPressed: () => Get.toNamed(Routes.MAINPAGE),
-              label: Text(
-                'Selanjutnya',
-                style: buttonTabsTextBold.copyWith(color: Colors.white),
-              ),
-            ),
+          Obx(
+            () => profileC.isLoading.value
+                ? const LoadingButton()
+                : SizedBox(
+                    height: 41,
+                    width: 343,
+                    child: FloatingActionButton.extended(
+                      backgroundColor: primaryMain,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8.0),
+                        ),
+                      ),
+                      onPressed: () async {
+                        bool success = await profileC.changeBank(
+                            nomorRekening:
+                                controller.bankAccountController.text,
+                            namaRekening:
+                                controller.accountNameController.text);
+                        if (success) {
+                          profileC.isLoading.value = false;
+                          profileC.update();
+                          Get.back();
+                        } else {
+                          profileC.isLoading.value = false;
+                        }
+                      },
+                      label: Text(
+                        'Simpan',
+                        style: buttonTabsTextBold.copyWith(color: Colors.white),
+                      ),
+                    ),
+                  ),
           ),
         ],
       ),

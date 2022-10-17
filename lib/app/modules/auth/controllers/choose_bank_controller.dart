@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_ziswaf/app/modules/auth/bank_model.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/zakat_model.dart';
+import 'package:mobile_ziswaf/app/data/models/bank_model.dart';
+import 'package:mobile_ziswaf/app/data/providers/bank_provider.dart';
 
 class ChooseBankController extends GetxController {
   late TextEditingController bankAccountController;
@@ -18,12 +19,9 @@ class ChooseBankController extends GetxController {
     Zakat(jenisDonasi: 'Infaq'),
   ].obs;
 
-  RxList<Bank> banks = [
-    Bank(bank: "Bank BCA", logo: "assets/logos/BCA.png"),
-    Bank(bank: "Bank Mandiri", logo: "assets/logos/mandiri.png"),
-    Bank(bank: "Bank BCA", logo: "assets/logos/BCA.png"),
-    Bank(bank: "Bank Mandiri", logo: "assets/logos/mandiri.png"),
-  ].obs;
+  BankProvider bankProvider = BankProvider();
+
+  RxList<Bank> banks = <Bank>[].obs;
 
   RxList<Bank> banksOnSearch = <Bank>[].obs;
   RxList<Zakat> donasisOnSearch = <Zakat>[].obs;
@@ -31,6 +29,7 @@ class ChooseBankController extends GetxController {
   RxString selectedBank = ''.obs;
   RxString selectedDonasi = ''.obs;
   RxBool isSelected = false.obs;
+  RxBool isLoading = false.obs;
 
   @override
   void onInit() {
@@ -39,6 +38,7 @@ class ChooseBankController extends GetxController {
     searchBankController = TextEditingController();
     searchDonasiController = TextEditingController();
     nominalController = TextEditingController();
+    getBanks();
     super.onInit();
   }
 
@@ -54,7 +54,7 @@ class ChooseBankController extends GetxController {
 
   void searchBank(String value) {
     banksOnSearch.value = banks.where((element) {
-      final loweredBank = element.bank!.toLowerCase();
+      final loweredBank = element.nama!.toLowerCase();
       return loweredBank.contains(value.toLowerCase());
     }).toList();
   }
@@ -64,5 +64,13 @@ class ChooseBankController extends GetxController {
       final loweredDonasi = element.jenisDonasi!.toLowerCase();
       return loweredDonasi.contains(value.toLowerCase());
     }).toList();
+  }
+
+  getBanks() async {
+    isLoading.value = true;
+
+    banks.assignAll(await bankProvider.getBanks());
+
+    isLoading.value = false;
   }
 }

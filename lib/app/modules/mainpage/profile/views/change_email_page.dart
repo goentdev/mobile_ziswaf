@@ -15,6 +15,7 @@ class ChangeEmailPage extends GetView<UserController> {
   @override
   Widget build(BuildContext context) {
     final profileC = Get.put(ProfileController());
+    profileC.emailController.text = profileC.user.value!.email!;
     return Scaffold(
       backgroundColor: neutral10,
       appBar: AppBar(
@@ -68,9 +69,23 @@ class ChangeEmailPage extends GetView<UserController> {
               ),
             ),
             const SizedBox(height: 24),
-            Button(
-              textbutton: 'Simpan',
-              onTap: () {},
+            Obx(
+              () => profileC.isLoading.value
+                  ? const LoadingButton()
+                  : Button(
+                      textbutton: 'Simpan',
+                      onTap: () async {
+                        bool success = await profileC.changeEmail(
+                            email: profileC.emailController.text);
+                        if (success) {
+                          profileC.isLoading.value = false;
+                          profileC.update();
+                          Get.back();
+                        } else {
+                          profileC.isLoading.value = false;
+                        }
+                      },
+                    ),
             )
           ],
         ),
