@@ -170,24 +170,25 @@ class BuktiTransaksi extends StatelessWidget {
                                           .isNotEmpty) {
                                         return CardBank(
                                           bank: controller
-                                              .banksOnSearch[index].bank!,
+                                              .banksOnSearch[index].nama!,
                                           gambar: controller
-                                              .banksOnSearch[index].logo!,
+                                              .banksOnSearch[index].image!,
                                           onTap: () {
                                             controller.selectedBank.value =
                                                 controller
-                                                    .banksOnSearch[index].bank!;
+                                                    .banksOnSearch[index].nama!;
                                             controller.isSelected.value = true;
                                             Get.back();
                                           },
                                         );
                                       } else {
                                         return CardBank(
-                                          bank: controller.banks[index].bank!,
-                                          gambar: controller.banks[index].logo!,
+                                          bank: controller.banks[index].nama!,
+                                          gambar:
+                                              controller.banks[index].image!,
                                           onTap: () {
                                             controller.selectedBank.value =
-                                                controller.banks[index].bank!;
+                                                controller.banks[index].nama!;
                                             controller.isSelected.value = true;
                                             Get.back();
                                           },
