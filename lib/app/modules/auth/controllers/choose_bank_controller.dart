@@ -11,6 +11,9 @@ class ChooseBankController extends GetxController {
   late TextEditingController searchBankController;
   late TextEditingController searchDonasiController;
   late TextEditingController nominalController;
+  // late TextEditingController nominal2Controller;
+  // late TextEditingController nominal3Controller;
+  // late TextEditingController nominal4Controller;
 
   RxList<Zakat> donasis = [
     Zakat(jenisDonasi: 'Zakat Maal'),
@@ -22,6 +25,9 @@ class ChooseBankController extends GetxController {
   BankProvider bankProvider = BankProvider();
 
   RxList<Bank> banks = <Bank>[].obs;
+  RxBool alokasi2 = false.obs;
+  RxBool alokasi3 = false.obs;
+  RxBool alokasi4 = false.obs;
 
   RxList<Bank> banksOnSearch = <Bank>[].obs;
   RxList<Zakat> donasisOnSearch = <Zakat>[].obs;
@@ -39,6 +45,11 @@ class ChooseBankController extends GetxController {
     searchDonasiController = TextEditingController();
     nominalController = TextEditingController();
     getBanks();
+    nominalController = TextEditingController(text: '0');
+    // nominal2Controller = TextEditingController(text: '0');
+    // nominal3Controller = TextEditingController(text: '0');
+    // nominal4Controller = TextEditingController(text: '0');
+    clearText();
     super.onInit();
   }
 
@@ -72,5 +83,21 @@ class ChooseBankController extends GetxController {
     banks.assignAll(await bankProvider.getBanks());
 
     isLoading.value = false;
+  }
+
+  void clearText() {
+    update();
+  }
+
+  void addAlokasi2() {
+    alokasi2.value = !alokasi2.value;
+  }
+
+  void addAlokasi3() {
+    alokasi3.value = !alokasi3.value;
+  }
+
+  void addAlokasi4() {
+    alokasi4.value = !alokasi4.value;
   }
 }
