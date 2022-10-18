@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/bukti_transaksi_page.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_Muzakki.dart';
 
 import '../../../../theme/colors.dart';
@@ -423,6 +424,33 @@ class TambahTransaksi extends StatelessWidget {
                           //     : const Text('anjay')
                         ],
                       ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            bottomNavigationBar: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border(
+                  top: BorderSide(color: neutral30, width: 1),
+                ),
+              ),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: primaryMain,
+                ),
+                onPressed: () async {
+                  Get.to(() => const BuktiTransaksi());
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Lanjut Transfer',
+                      style: textMBold.copyWith(color: Colors.white),
                     ),
                   ],
                 ),

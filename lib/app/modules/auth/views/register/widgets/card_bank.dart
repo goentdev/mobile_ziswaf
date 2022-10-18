@@ -17,26 +17,29 @@ class CardBank extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 16),
         child: Row(
           children: [
             Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16.0),
-                color: neutral30,
-              ),
-              child: Image.network(
-                'https://ziswaf-server.smarteschool.net$gambar',
-                height: 40,
-              ),
-            ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0),
+                  color: neutral30,
+                ),
+                child: Image.asset(
+                  'assets/icons/target.png',
+                  height: 30,
+                  width: 30,
+                )),
             const SizedBox(
               width: 16,
             ),
-            Text(
-              bank,
-              style: textMBold.copyWith(color: neutral100),
+            Flexible(
+              child: Text(
+                bank,
+                overflow: TextOverflow.visible,
+                style: textMBold.copyWith(color: neutral100),
+              ),
             ),
           ],
         ),

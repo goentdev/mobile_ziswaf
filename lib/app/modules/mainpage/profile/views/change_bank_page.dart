@@ -86,98 +86,140 @@ class ChangeBankPage extends StatelessWidget {
                 onTap: () {
                   showModalBottomSheet(
                     context: context,
+                    isScrollControlled: true,
                     enableDrag: true,
                     backgroundColor: Colors.transparent,
                     builder: (context) {
-                      return Scaffold(
-                        appBar: AppBar(
-                          backgroundColor: Colors.white,
-                          elevation: 0,
-                          title: Text(
-                            'Pilih Bank',
-                            style: textMBlack.copyWith(color: neutral90),
-                          ),
-                          leading: IconButton(
-                            onPressed: () => Get.back(),
-                            icon: Icon(
-                              Icons.arrow_back_ios,
-                              color: neutral90,
-                              size: 16,
+                      return FractionallySizedBox(
+                        heightFactor: 1.0,
+                        child: Scaffold(
+                          appBar: AppBar(
+                            backgroundColor: Colors.white,
+                            elevation: 0,
+                            title: Text(
+                              'Pilih Bank',
+                              style: textMBlack.copyWith(color: neutral90),
                             ),
+                            leading: IconButton(
+                              onPressed: () => Get.back(),
+                              icon: Icon(
+                                Icons.arrow_back_ios,
+                                color: neutral90,
+                                size: 16,
+                              ),
+                            ),
+                            centerTitle: true,
                           ),
-                          centerTitle: true,
-                        ),
-                        body: Obx(
-                          () => SingleChildScrollView(
-                            child: Container(
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
-                                        color: neutral40,
-                                      ),
-                                      child: TextField(
-                                        controller:
-                                            controller.searchBankController,
-                                        decoration: const InputDecoration(
-                                          border: InputBorder.none,
-                                          disabledBorder: InputBorder.none,
-                                          focusedBorder: InputBorder.none,
-                                          prefixIcon: Icon(Icons.search),
-                                          hintText: 'Cari',
+                          body: Obx(
+                            () => SingleChildScrollView(
+                              child: Container(
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 16),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          color: neutral40,
                                         ),
-                                        onChanged: (value) {
-                                          controller.searchBank(value);
-                                        },
+                                        child: TextField(
+                                          controller:
+                                              controller.searchBankController,
+                                          decoration: const InputDecoration(
+                                            border: InputBorder.none,
+                                            disabledBorder: InputBorder.none,
+                                            focusedBorder: InputBorder.none,
+                                            prefixIcon: Icon(Icons.search),
+                                            hintText: 'Cari',
+                                          ),
+                                          onChanged: (value) {
+                                            controller.searchBank(value);
+                                          },
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: controller.searchBankController
-                                              .text.isNotEmpty
-                                          ? controller.banksOnSearch.length
-                                          : controller.banks.length,
-                                      itemBuilder: (context, index) {
-                                        if (controller.searchBankController.text
-                                            .isNotEmpty) {
-                                          return CardBank(
-                                            bank: controller
-                                                .banksOnSearch[index].nama!,
-                                            gambar: controller
-                                                .banksOnSearch[index].image!,
-                                            onTap: () {
-                                              controller.selectedBank.value =
-                                                  controller
-                                                      .banksOnSearch[index]
-                                                      .nama!;
-                                              controller.isSelected.value =
-                                                  true;
-                                              Get.back();
-                                            },
-                                          );
-                                        } else {
-                                          return CardBank(
-                                            bank: controller.banks[index].nama!,
-                                            gambar:
-                                                controller.banks[index].image!,
-                                            onTap: () {
-                                              controller.selectedBank.value =
-                                                  controller.banks[index].nama!;
-                                              controller.isSelected.value =
-                                                  true;
-                                              Get.back();
-                                            },
-                                          );
-                                        }
-                                      },
-                                    ),
-                                  ],
+                                      const SizedBox(height: 8),
+                                      controller.isLoading.value
+                                          ? const Center(
+                                              child:
+                                                  CircularProgressIndicator())
+                                          : controller.banks.isNotEmpty
+                                              ? ListView.builder(
+                                                  shrinkWrap: true,
+                                                  itemCount: controller
+                                                          .searchBankController
+                                                          .text
+                                                          .isNotEmpty
+                                                      ? controller.banksOnSearch
+                                                                  .length <
+                                                              10
+                                                          ? controller
+                                                              .banksOnSearch
+                                                              .length
+                                                          : 10
+                                                      : controller.banks
+                                                                  .length <
+                                                              10
+                                                          ? controller
+                                                              .banks.length
+                                                          : 10,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    if (controller
+                                                        .searchBankController
+                                                        .text
+                                                        .isNotEmpty) {
+                                                      return CardBank(
+                                                        bank: controller
+                                                            .banksOnSearch[
+                                                                index]
+                                                            .nama!,
+                                                        gambar: controller
+                                                            .banksOnSearch[
+                                                                index]
+                                                            .image!,
+                                                        onTap: () {
+                                                          controller
+                                                                  .selectedBank
+                                                                  .value =
+                                                              controller
+                                                                  .banksOnSearch[
+                                                                      index]
+                                                                  .nama!;
+                                                          controller.isSelected
+                                                              .value = true;
+                                                          Get.back();
+                                                        },
+                                                      );
+                                                    } else {
+                                                      return CardBank(
+                                                        bank: controller
+                                                            .banks[index].nama!,
+                                                        gambar: controller
+                                                            .banks[index]
+                                                            .image!,
+                                                        onTap: () {
+                                                          controller
+                                                                  .selectedBank
+                                                                  .value =
+                                                              controller
+                                                                  .banks[index]
+                                                                  .nama!;
+                                                          controller.isSelected
+                                                              .value = true;
+                                                          Get.back();
+                                                        },
+                                                      );
+                                                    }
+                                                  },
+                                                )
+                                              : const Center(
+                                                  child:
+                                                      Text('Belum ada bank')),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

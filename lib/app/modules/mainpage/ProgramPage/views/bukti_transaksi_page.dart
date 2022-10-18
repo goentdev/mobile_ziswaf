@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/konfirmasi_page..dart';
 import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
 import '../../../auth/controllers/identity_controller.dart';
@@ -25,7 +26,7 @@ class BuktiTransaksi extends StatelessWidget {
         ),
         leading: IconButton(
           onPressed: () {
-            Get.back();
+            Navigator.pop(context);
           },
           icon: Icon(
             Icons.arrow_back_ios,
@@ -111,92 +112,116 @@ class BuktiTransaksi extends StatelessWidget {
                   showModalBottomSheet(
                     context: context,
                     enableDrag: true,
+                    isScrollControlled: true,
                     backgroundColor: Colors.transparent,
                     builder: (context) {
-                      return Scaffold(
-                        appBar: AppBar(
-                          backgroundColor: Colors.white,
-                          elevation: 0,
-                          title: Text(
-                            'Pilih Bank',
-                            style: textMBlack.copyWith(color: neutral90),
-                          ),
-                          leading: IconButton(
-                            onPressed: () => Get.back(),
-                            icon: Icon(
-                              Icons.arrow_back_ios,
-                              color: neutral90,
-                              size: 16,
+                      return FractionallySizedBox(
+                        heightFactor: 0.9,
+                        child: Scaffold(
+                          appBar: AppBar(
+                            backgroundColor: Colors.white,
+                            elevation: 0,
+                            title: Text(
+                              'Pilih Bank',
+                              style: textMBlack.copyWith(color: neutral90),
                             ),
+                            leading: IconButton(
+                              onPressed: () => Get.back(),
+                              icon: Icon(
+                                Icons.arrow_back_ios,
+                                color: neutral90,
+                                size: 16,
+                              ),
+                            ),
+                            centerTitle: true,
                           ),
-                          centerTitle: true,
-                        ),
-                        body: Obx(
-                          () => Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 16),
-                            child: SingleChildScrollView(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      color: neutral40,
-                                    ),
-                                    child: TextField(
-                                      controller:
-                                          controller.searchBankController,
-                                      decoration: const InputDecoration(
-                                        border: InputBorder.none,
-                                        disabledBorder: InputBorder.none,
-                                        focusedBorder: InputBorder.none,
-                                        prefixIcon: Icon(Icons.search),
-                                        hintText: 'Cari',
+                          body: Obx(
+                            () => SingleChildScrollView(
+                              child: Container(
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 16),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          color: neutral40,
+                                        ),
+                                        child: TextField(
+                                          controller:
+                                              controller.searchBankController,
+                                          decoration: const InputDecoration(
+                                            border: InputBorder.none,
+                                            disabledBorder: InputBorder.none,
+                                            focusedBorder: InputBorder.none,
+                                            prefixIcon: Icon(Icons.search),
+                                            hintText: 'Cari',
+                                          ),
+                                          onChanged: (value) {
+                                            controller.searchBank(value);
+                                          },
+                                        ),
                                       ),
-                                      onChanged: (value) {
-                                        controller.searchBank(value);
-                                      },
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: controller.searchBankController
-                                            .text.isNotEmpty
-                                        ? controller.banksOnSearch.length
-                                        : controller.banks.length,
-                                    itemBuilder: (context, index) {
-                                      if (controller.searchBankController.text
-                                          .isNotEmpty) {
-                                        return CardBank(
-                                          bank: controller
-                                              .banksOnSearch[index].nama!,
-                                          gambar: controller
-                                              .banksOnSearch[index].image!,
-                                          onTap: () {
-                                            controller.selectedBank.value =
-                                                controller
-                                                    .banksOnSearch[index].nama!;
-                                            controller.isSelected.value = true;
-                                            Get.back();
+                                      const SizedBox(height: 8),
+                                      Scrollbar(
+                                        thumbVisibility: true,
+                                        controller: controller.firstController,
+                                        child: ListView.builder(
+                                          controller:
+                                              controller.firstController,
+                                          shrinkWrap: true,
+                                          itemCount: controller
+                                                  .searchBankController
+                                                  .text
+                                                  .isNotEmpty
+                                              ? controller.banksOnSearch.length
+                                              : controller.banks.length,
+                                          itemBuilder: (context, index) {
+                                            if (controller.searchBankController
+                                                .text.isNotEmpty) {
+                                              return CardBank(
+                                                bank: controller
+                                                    .banksOnSearch[index].nama!,
+                                                gambar: controller
+                                                    .banksOnSearch[index]
+                                                    .image!,
+                                                onTap: () {
+                                                  controller
+                                                          .selectedBank.value =
+                                                      controller
+                                                          .banksOnSearch[index]
+                                                          .nama!;
+                                                  controller.isSelected.value =
+                                                      true;
+                                                  Get.back();
+                                                },
+                                              );
+                                            } else {
+                                              return CardBank(
+                                                bank: controller
+                                                    .banks[index].nama!,
+                                                gambar: controller
+                                                    .banks[index].image!,
+                                                onTap: () {
+                                                  controller
+                                                          .selectedBank.value =
+                                                      controller
+                                                          .banks[index].nama!;
+                                                  controller.isSelected.value =
+                                                      true;
+                                                  Get.back();
+                                                },
+                                              );
+                                            }
                                           },
-                                        );
-                                      } else {
-                                        return CardBank(
-                                          bank: controller.banks[index].nama!,
-                                          gambar:
-                                              controller.banks[index].image!,
-                                          onTap: () {
-                                            controller.selectedBank.value =
-                                                controller.banks[index].nama!;
-                                            controller.isSelected.value = true;
-                                            Get.back();
-                                          },
-                                        );
-                                      }
-                                    },
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
                             ),
                           ),
@@ -606,10 +631,10 @@ class BuktiTransaksi extends StatelessWidget {
             backgroundColor: primaryMain,
           ),
           onPressed: () async {
-            Get.back();
+            Get.to(const KonfirmasiPage());
           },
           child: Text(
-            'Simpan',
+            'Selanjutnya',
             style: textMBold.copyWith(color: Colors.white),
           ),
         ),
