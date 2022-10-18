@@ -25,7 +25,7 @@ class DaftarPemerintah extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Daftar Transaksi (${controller.users.length})',
+                'Daftar Muzakki (${controller.users.length})',
                 style: listItemTitleBold.copyWith(color: neutral100),
               ),
             ),
