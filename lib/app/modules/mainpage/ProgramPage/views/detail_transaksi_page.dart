@@ -240,7 +240,7 @@ class DetailTransaksi extends StatelessWidget {
                 border: Border.all(color: primaryBorder, width: 1),
                 image: const DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage('assets/images/detail_transaksi.png'),
+                  image: AssetImage('assets/images/detail_transaksi22.png'),
                 ),
               ),
               child: Column(

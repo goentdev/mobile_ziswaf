@@ -12,6 +12,7 @@ class ChooseBankController extends GetxController {
   late TextEditingController searchDonasiController;
   late TextEditingController nominalController;
   late ScrollController firstController;
+  late ScrollController firstController2;
   // late TextEditingController nominal2Controller;
   // late TextEditingController nominal3Controller;
   // late TextEditingController nominal4Controller;
@@ -46,6 +47,7 @@ class ChooseBankController extends GetxController {
     searchDonasiController = TextEditingController();
     nominalController = TextEditingController();
     firstController = ScrollController();
+    firstController2 = ScrollController();
     getBanks();
     nominalController = TextEditingController(text: '0');
     // nominal2Controller = TextEditingController(text: '0');

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/otp_controller.dart';
+import 'package:mobile_ziswaf/app/modules/auth/views/register/form_view.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/otp_field.dart';
-import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 import 'package:mobile_ziswaf/app/widgets/button.dart';
 
 class OtpSmsPage extends GetView<OtpController> {
-  final Widget? title;
-  final Widget? subtitle;
+  final String? nomer;
+  final String? password;
   final ValueChanged<String>? onCompleted;
   // final ValueChanged<String> onChanged;
   final String? Function(String?)? validator;
@@ -17,8 +17,8 @@ class OtpSmsPage extends GetView<OtpController> {
 
   const OtpSmsPage(
       {super.key,
-      this.title,
-      this.subtitle,
+      this.password,
+      this.nomer,
       this.onCompleted,
       this.validator,
       this.showHelperText});
@@ -63,7 +63,7 @@ class OtpSmsPage extends GetView<OtpController> {
               style: secondaryTextSemiBold.copyWith(color: neutral70),
             ),
             Text(
-              '08211234321',
+              nomer!,
               style: secondaryTextSemiBold.copyWith(color: neutral70),
             ),
             const SizedBox(
@@ -93,7 +93,10 @@ class OtpSmsPage extends GetView<OtpController> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Button(
-          onTap: () => Get.toNamed(Routes.FORM),
+          onTap: () => Get.to(() => FormView(
+                nomer: nomer,
+                password: password,
+              )),
           textbutton: 'Selanjutnya',
         ),
       ),

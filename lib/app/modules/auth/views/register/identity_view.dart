@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/identity_controller.dart';
+import 'package:mobile_ziswaf/app/modules/auth/views/register/choose_bank_view.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/add_foto_widget.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
@@ -10,7 +11,18 @@ import 'package:mobile_ziswaf/app/theme/fonts.dart';
 import 'package:mobile_ziswaf/app/widgets/button.dart';
 
 class IdentityView extends GetView<IdentityController> {
-  const IdentityView({Key? key}) : super(key: key);
+  final String? nomer;
+  final String? password;
+  final String? nama;
+  final String? email;
+
+  const IdentityView({
+    super.key,
+    this.nama,
+    this.email,
+    this.nomer,
+    this.password,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -273,7 +285,15 @@ class IdentityView extends GetView<IdentityController> {
             ),
             Button(
               textbutton: 'Selanjutnya',
-              onTap: () => Get.toNamed(Routes.BANK),
+              onTap: () => Get.to(ChooseBankView(
+                email: email,
+                nama: nama,
+                noident: controller.identityNumberController.text,
+                nomer: nomer,
+                foto: controller.identityImage!.path,
+                jenisident: controller.selectedType.value,
+                password: password,
+              )),
             ),
           ],
         ),

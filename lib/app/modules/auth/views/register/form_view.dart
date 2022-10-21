@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/form_controller.dart';
-import 'package:mobile_ziswaf/app/routes/app_pages.dart';
+import 'package:mobile_ziswaf/app/modules/auth/views/register/identity_view.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 
 class FormView extends GetView<FormController> {
-  const FormView({Key? key}) : super(key: key);
+  final String? password;
+  final String? nomer;
+
+  const FormView({
+    super.key,
+    this.password,
+    this.nomer,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +108,12 @@ class FormView extends GetView<FormController> {
                     Radius.circular(8.0),
                   ),
                 ),
-                onPressed: () => Get.toNamed(Routes.IDENTITY),
+                onPressed: () => Get.to(() => IdentityView(
+                      email: controller.emailController.text,
+                      nama: controller.nameController.text,
+                      nomer: nomer,
+                      password: password,
+                    )),
                 label: Text(
                   'Selanjutnya',
                   style: buttonTabsTextBold.copyWith(color: Colors.white),

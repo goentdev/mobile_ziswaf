@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/views/tambah_muzakki.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/views/widget/daftar_badanUsaha.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/views/widget/daftar_pemerintah.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/views/widget/daftar_personal.dart';
@@ -106,10 +107,10 @@ class MuzakkiPageView extends GetView<MuzakkiPageController> {
                 ),
                 SizedBox(
                   width: double.maxFinite,
-                  height: 500,
+                  height: 600,
                   child: TabBarView(
                       controller: controller.tabController,
-                      children: [
+                      children: const [
                         DaftarBadanUsaha(),
                         DaftarPemerintah(),
                         DaftarPersonal(),
@@ -122,7 +123,9 @@ class MuzakkiPageView extends GetView<MuzakkiPageController> {
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: FloatingActionButton(
           backgroundColor: secondaryMain,
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => const TambahMuzakki());
+          },
           child: Image.asset(
             'assets/images/pluss.png',
             width: 30,

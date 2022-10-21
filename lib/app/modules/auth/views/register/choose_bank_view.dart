@@ -1,18 +1,38 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_ziswaf/app/data/providers/bank_provider.dart';
+
 import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller.dart';
+import 'package:mobile_ziswaf/app/modules/auth/controllers/register_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/card_bank.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/views/mainpage_view.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 
 class ChooseBankView extends GetView<ChooseBankController> {
-  const ChooseBankView({super.key});
+  final String? nomer;
+  final String? password;
+  final String? nama;
+  final String? email;
+  final String? noident;
+  final String? foto;
+  final String? jenisident;
+
+  const ChooseBankView({
+    super.key,
+    this.jenisident,
+    this.nomer,
+    this.password,
+    this.nama,
+    this.email,
+    this.noident,
+    this.foto,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final registC = Get.put(RegisterController());
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -132,45 +152,54 @@ class ChooseBankView extends GetView<ChooseBankController> {
                                       ),
                                     ),
                                     const SizedBox(height: 8),
-                                    ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: controller.searchBankController
-                                              .text.isNotEmpty
-                                          ? controller.banksOnSearch.length
-                                          : controller.banks.length,
-                                      itemBuilder: (context, index) {
-                                        if (controller.searchBankController.text
-                                            .isNotEmpty) {
-                                          return CardBank(
-                                            bank: controller
-                                                .banksOnSearch[index].nama!,
-                                            gambar: controller
-                                                .banksOnSearch[index].image!,
-                                            onTap: () {
-                                              controller.selectedBank.value =
-                                                  controller
-                                                      .banksOnSearch[index]
-                                                      .nama!;
-                                              controller.isSelected.value =
-                                                  true;
-                                              Get.back();
-                                            },
-                                          );
-                                        } else {
-                                          return CardBank(
-                                            bank: controller.banks[index].nama!,
-                                            gambar:
-                                                controller.banks[index].image!,
-                                            onTap: () {
-                                              controller.selectedBank.value =
-                                                  controller.banks[index].nama!;
-                                              controller.isSelected.value =
-                                                  true;
-                                              Get.back();
-                                            },
-                                          );
-                                        }
-                                      },
+                                    Scrollbar(
+                                      thumbVisibility: true,
+                                      controller: controller.firstController2,
+                                      child: ListView.builder(
+                                        controller: controller.firstController2,
+                                        shrinkWrap: true,
+                                        itemCount: controller
+                                                .searchBankController
+                                                .text
+                                                .isNotEmpty
+                                            ? controller.banksOnSearch.length
+                                            : controller.banks.length,
+                                        itemBuilder: (context, index) {
+                                          if (controller.searchBankController
+                                              .text.isNotEmpty) {
+                                            return CardBank(
+                                              bank: controller
+                                                  .banksOnSearch[index].nama!,
+                                              gambar: controller
+                                                  .banksOnSearch[index].image!,
+                                              onTap: () {
+                                                controller.selectedBank.value =
+                                                    controller
+                                                        .banksOnSearch[index]
+                                                        .nama!;
+                                                controller.isSelected.value =
+                                                    true;
+                                                Get.back();
+                                              },
+                                            );
+                                          } else {
+                                            return CardBank(
+                                              bank:
+                                                  controller.banks[index].nama!,
+                                              gambar: controller
+                                                  .banks[index].image!,
+                                              onTap: () {
+                                                controller.selectedBank.value =
+                                                    controller
+                                                        .banks[index].nama!;
+                                                controller.isSelected.value =
+                                                    true;
+                                                Get.back();
+                                              },
+                                            );
+                                          }
+                                        },
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -256,7 +285,23 @@ class ChooseBankView extends GetView<ChooseBankController> {
                   Radius.circular(8.0),
                 ),
               ),
-              onPressed: () => Get.toNamed(Routes.HOME),
+              onPressed: () async {
+                bool sukses = await registC.register(
+                    nama: nama!,
+                    email: email!,
+                    whatsapp: nomer!,
+                    role: 'relawan',
+                    kategori: 'lembaga',
+                    jenisKartuIdentitas: jenisident!,
+                    nomorKartuIdentitas: noident!,
+                    bankId: 2,
+                    nomorRekening: controller.bankAccountController.text,
+                    namaRekening: controller.accountNameController.text,
+                    password: password!);
+                if (sukses) {
+                  Get.offNamed(Routes.MAINPAGE);
+                }
+              },
               label: Text(
                 'Selanjutnya',
                 style: buttonTabsTextBold.copyWith(color: Colors.white),

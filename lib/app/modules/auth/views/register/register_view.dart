@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/register_controller.dart';
+import 'package:mobile_ziswaf/app/modules/auth/views/register/otp_view.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
@@ -38,7 +39,10 @@ class RegisterPage extends GetView<RegisterController> {
                   borderRadius: BorderRadius.all(Radius.circular(4.0))),
               onPressed: () {
                 // if (controller.registerFormKey.currentState!.validate()) {
-                Get.toNamed(Routes.OTP);
+                Get.to(() => OtpSmsPage(
+                      password: controller.passwordC.text,
+                      nomer: controller.whatsappC.text,
+                    ));
                 // }
               },
               label: Text(
@@ -68,7 +72,7 @@ class RegisterPage extends GetView<RegisterController> {
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
       body: Container(

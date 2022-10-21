@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/views/ubah_muzakki_page.dart';
 
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/fonts.dart';
@@ -429,7 +430,9 @@ class CardListUser extends StatelessWidget {
                           ),
                           const SizedBox(width: 10),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Get.to(() => const UbahMuzakki());
+                            },
                             child: Container(
                               width: 310,
                               height: 41,
