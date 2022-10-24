@@ -19,6 +19,11 @@ dependencies:
   jiffy: 5.0.0
   intl: 0.17.0
   shared_preferences: 2.0.15
+  firebase_auth: ^3.7.0
+  firebase_core: ^1.21.1
+  firebase_storage: ^10.3.7
+  flutter_html: ^2.2.1
+  flutter_launcher_icons: ^0.10.0
   flutter_easyloading: 3.0.5
   flutter:
     sdk: flutter
