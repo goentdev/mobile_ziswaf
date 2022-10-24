@@ -111,7 +111,7 @@ class ProfileController extends GetxController {
     if (success) {
       user.update((val) {
         val!.jenisKartuIdentitas = jenisKartuIdentitas;
-        val.nomorKartuIdentitas = int.parse(nomorKartuIdentitas);
+        val.nomorKartuIdentitas = nomorKartuIdentitas;
       });
       return true;
     } else {
@@ -131,7 +131,7 @@ class ProfileController extends GetxController {
     });
     if (success) {
       user.update((val) {
-        val!.nomorRekening = int.parse(nomorRekening);
+        val!.nomorRekening = nomorRekening;
         val.namaRekening = namaRekening;
       });
       return true;

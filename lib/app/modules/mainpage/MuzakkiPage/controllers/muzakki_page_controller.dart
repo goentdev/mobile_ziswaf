@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/data/models/muzaki_model.dart';
+import 'package:mobile_ziswaf/app/data/models/user_model.dart';
+import 'package:mobile_ziswaf/app/data/providers/muzaki_provider.dart';
 
-import '../../ProgramPage/user_model.dart';
+import '../../../../data/providers/user_provider.dart';
 
 class MuzakkiPageController extends GetxController
     with GetTickerProviderStateMixin {
   late TextEditingController searchMuzakkiController;
   late TabController tabController;
 
-  RxList<User> users = [
-    User(nama: "Alif Pramana Putra", nomor: "082112344321"),
-    User(nama: "Rochim Ramadhani", nomor: "0813161194111"),
-    User(nama: "Iqbal Baskoro", nomor: "0827161319902"),
-    User(nama: "Maher Zain", nomor: "0827161319900"),
-    User(nama: "Aldava Ramanda", nomor: "0857698812321"),
-  ].obs;
+  MuzakiProvider muzakiProvider = MuzakiProvider();
 
-  RxList<User> muzakkisOnSearch = <User>[].obs;
+  Rx<User?> user = User().obs;
+
+  UserProvider userProvider = UserProvider();
+
+  RxList<Muzaki> muzaki = <Muzaki>[].obs;
+
+  RxList<Muzaki> muzakkisOnSearch = <Muzaki>[].obs;
+  RxBool isLoading = false.obs;
 
   @override
   void onInit() {
@@ -25,6 +29,7 @@ class MuzakkiPageController extends GetxController
       length: 3,
       vsync: this,
     );
+    getMuzakis();
 
     super.onInit();
   }
@@ -36,8 +41,14 @@ class MuzakkiPageController extends GetxController
     super.onClose();
   }
 
+  getMuzakis() async {
+    isLoading.value = true;
+    muzaki.assignAll(await muzakiProvider.getMuzakis(1));
+    isLoading.value = false;
+  }
+
   void searchMuzakki(String value) {
-    muzakkisOnSearch.value = users.where((element) {
+    muzakkisOnSearch.value = muzaki.where((element) {
       final loweredNama = element.nama!.toLowerCase();
       return loweredNama.contains(value.toLowerCase());
     }).toList();

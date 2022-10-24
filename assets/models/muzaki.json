@@ -1,0 +1,17 @@
+[
+    {
+    "id": 1,
+    "user_id": 1,
+    "muzaki_id": 5,
+    "tipe": "bulanan",
+    "nama": "Ihsan vvv",
+    "kategori": "badan-usaha",
+    "muzaki": {
+        "id": 5,
+        "nama": "Ihsan vvv",
+        "email": "muzaki@gmail.com",
+        "whatsapp": "112233445566",
+        "role": "muzaki"
+     }
+}
+]

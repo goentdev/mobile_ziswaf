@@ -8,9 +8,9 @@ class User {
   String? role;
   String? kategori;
   String? jenisKartuIdentitas;
-  int? nomorKartuIdentitas;
+  String? nomorKartuIdentitas;
   Bank? bank;
-  int? nomorRekening;
+  String? nomorRekening;
   String? namaRekening;
   String? fotoKartuIdentitas;
 
