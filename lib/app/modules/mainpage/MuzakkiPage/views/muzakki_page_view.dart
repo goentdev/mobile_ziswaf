@@ -18,6 +18,7 @@ class MuzakkiPageView extends GetView<MuzakkiPageController> {
     return Scaffold(
         backgroundColor: const Color(0xffECF7F4),
         body: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           child: Stack(children: [
             Padding(
               padding: const EdgeInsets.only(top: 44),
@@ -44,7 +45,7 @@ class MuzakkiPageView extends GetView<MuzakkiPageController> {
                       const SizedBox(
                         height: 2,
                       ),
-                      Text('150 Orang',
+                      Text('${controller.muzaki!.length}',
                           style: pageTitleBold.copyWith(color: primaryHover)),
                     ],
                   ),
@@ -85,7 +86,7 @@ class MuzakkiPageView extends GetView<MuzakkiPageController> {
                                 hintStyle:
                                     textSRegular.copyWith(color: neutral60)),
                             onChanged: (value) {
-                              // controller.searchBank(value);
+                              controller.searchMuzakki(value);
                             },
                           ),
                         ),

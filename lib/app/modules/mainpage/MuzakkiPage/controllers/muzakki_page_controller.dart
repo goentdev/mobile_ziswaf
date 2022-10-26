@@ -10,6 +10,7 @@ class MuzakkiPageController extends GetxController
     with GetTickerProviderStateMixin {
   late TextEditingController searchMuzakkiController;
   late TabController tabController;
+  late ScrollController scrollController;
 
   MuzakiProvider muzakiProvider = MuzakiProvider();
 
@@ -17,9 +18,9 @@ class MuzakkiPageController extends GetxController
 
   UserProvider userProvider = UserProvider();
 
-  RxList<Muzaki> muzaki = <Muzaki>[].obs;
+  RxList<Muzaki>? muzaki = <Muzaki>[].obs;
 
-  RxList<Muzaki> muzakkisOnSearch = <Muzaki>[].obs;
+  RxList<Muzaki>? muzakkisOnSearch = <Muzaki>[].obs;
   RxBool isLoading = false.obs;
 
   @override
@@ -30,6 +31,8 @@ class MuzakkiPageController extends GetxController
       vsync: this,
     );
     getMuzakis();
+    refreshMuzaki();
+    scrollController = ScrollController();
 
     super.onInit();
   }
@@ -43,12 +46,21 @@ class MuzakkiPageController extends GetxController
 
   getMuzakis() async {
     isLoading.value = true;
-    muzaki.assignAll(await muzakiProvider.getMuzakis(1));
+    muzaki!.assignAll(await muzakiProvider.getMuzakis(1));
+    update();
+    isLoading.value = false;
+  }
+
+  refreshMuzaki() async {
+    isLoading.value = true;
+
+    muzaki!.assignAll(await muzakiProvider.getMuzakis(1));
+
     isLoading.value = false;
   }
 
   void searchMuzakki(String value) {
-    muzakkisOnSearch.value = muzaki.where((element) {
+    muzakkisOnSearch!.value = muzaki!.where((element) {
       final loweredNama = element.nama!.toLowerCase();
       return loweredNama.contains(value.toLowerCase());
     }).toList();
