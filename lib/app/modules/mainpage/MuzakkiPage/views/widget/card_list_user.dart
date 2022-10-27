@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/data/providers/muzaki_provider.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/views/ubah_muzakki_page.dart';
 
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/fonts.dart';
 import '../../../ProgramPage/views/detail_transaksi_page.dart';
+import '../../controllers/muzakki_page_controller.dart';
 
 class CardListUser extends StatelessWidget {
   final String nama;
   final String nomor;
+  final int id;
 
   const CardListUser({
     super.key,
     required this.nama,
     required this.nomor,
+    required this.id,
   });
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(MuzakkiPageController());
     return Slidable(
       enabled: true,
       startActionPane: ActionPane(motion: const DrawerMotion(), children: [
@@ -93,8 +98,10 @@ class CardListUser extends StatelessWidget {
                             Flexible(
                               flex: 1,
                               child: GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
+                                onTap: () async {
+                                  await controller.deleteMuzaki(id);
+                                  Get.back();
+                                  await controller.refreshMuzaki();
                                 },
                                 child: Container(
                                   margin: const EdgeInsets.only(right: 24),

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/views/tambah_muzakki.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 
 import '../../modules/mainpage/MuzakkiPage/controllers/tambah_ubah_muzakki_controller.dart';
@@ -13,7 +13,6 @@ class MuzakiProvider extends GetConnect {
   Future<List<Muzaki>> getMuzakis(int? id) async {
     final response = await get('$url/muzaki?user_id=$id',
         headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
-    print(response.body);
     if (response.statusCode == 200) {
       var data = response.body['muzaki']['muzaki']['data'];
       List<Muzaki> muzaki = [];
@@ -51,5 +50,6 @@ class MuzakiProvider extends GetConnect {
     }
   }
 
-  Future<Response> deleteMuzaki(int id) async => await delete('muzaki/$id');
+  Future<Response> deleteMuzaki(int id) async =>
+      await delete('$url/muzaki/$id');
 }

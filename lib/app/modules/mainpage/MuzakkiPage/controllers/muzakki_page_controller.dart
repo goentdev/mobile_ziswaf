@@ -51,6 +51,15 @@ class MuzakkiPageController extends GetxController
     isLoading.value = false;
   }
 
+  deleteMuzaki(int id) async {
+    isLoading.value = true;
+
+    muzaki!.removeWhere((element) => element.id == id);
+    await muzakiProvider.deleteMuzaki(id);
+
+    isLoading.value = false;
+  }
+
   refreshMuzaki() async {
     isLoading.value = true;
 
