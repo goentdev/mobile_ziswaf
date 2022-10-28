@@ -12,13 +12,21 @@ import '../../controllers/muzakki_page_controller.dart';
 class CardListUser extends StatelessWidget {
   final String nama;
   final String nomor;
+  final String email;
+  final String kategori;
+  final String tipe;
   final int id;
+  final MuzakkiPageController muzaki;
 
   const CardListUser({
     super.key,
     required this.nama,
     required this.nomor,
     required this.id,
+    required this.email,
+    required this.kategori,
+    required this.tipe,
+    required this.muzaki,
   });
 
   @override
@@ -185,7 +193,7 @@ class CardListUser extends StatelessWidget {
                             ),
                             const SizedBox(width: 16),
                             Text(
-                              'Alif Pramana Putra',
+                              nama,
                               style: listTitleBold.copyWith(color: neutral100),
                             ),
                           ],
@@ -202,7 +210,7 @@ class CardListUser extends StatelessWidget {
                         height: 8,
                       ),
                       TextFormField(
-                        initialValue: '081316165123',
+                        initialValue: nomor,
                         style: captionTextSemiBold.copyWith(color: neutral100),
                         enabled: false,
                         decoration: InputDecoration(
@@ -230,7 +238,7 @@ class CardListUser extends StatelessWidget {
                         height: 8,
                       ),
                       TextFormField(
-                        initialValue: 'raihanadisatya@gmail.com',
+                        initialValue: email,
                         style: captionTextSemiBold.copyWith(color: neutral100),
                         enabled: false,
                         decoration: InputDecoration(
@@ -258,7 +266,7 @@ class CardListUser extends StatelessWidget {
                         height: 8,
                       ),
                       TextFormField(
-                        initialValue: 'Personal',
+                        initialValue: kategori,
                         style: captionTextSemiBold.copyWith(color: neutral100),
                         enabled: false,
                         decoration: InputDecoration(
@@ -286,7 +294,7 @@ class CardListUser extends StatelessWidget {
                         height: 8,
                       ),
                       TextFormField(
-                        initialValue: 'Harian',
+                        initialValue: tipe,
                         style: captionTextSemiBold.copyWith(color: neutral100),
                         enabled: false,
                         decoration: InputDecoration(
@@ -304,116 +312,10 @@ class CardListUser extends StatelessWidget {
                       Row(
                         children: [
                           InkWell(
-                            onTap: () {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return Dialog(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    insetPadding: const EdgeInsets.all(10),
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 308,
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 24, vertical: 48),
-                                      child: Column(
-                                        children: [
-                                          SizedBox(
-                                            height: 75,
-                                            width: 75,
-                                            child: CircleAvatar(
-                                              backgroundColor:
-                                                  const Color(0XffFEF7EC),
-                                              child: Image.asset(
-                                                'assets/icons/iconseru.png',
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(height: 24),
-                                          Text(
-                                            'Yakin Ingin Menghapus Data?',
-                                            style: listItemTitleBlack.copyWith(
-                                              color: neutral100,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 48),
-                                          Row(
-                                            children: [
-                                              const SizedBox(
-                                                width: 24,
-                                              ),
-                                              Flexible(
-                                                flex: 1,
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Container(
-                                                    margin:
-                                                        const EdgeInsets.only(
-                                                            right: 24),
-                                                    height: 41,
-                                                    width: double.infinity,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.red,
-                                                      border: Border.all(
-                                                        width: 1,
-                                                        color: neutral40,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8),
-                                                    ),
-                                                    child: Center(
-                                                        child: Text(
-                                                      'Batal',
-                                                      style: textMBold.copyWith(
-                                                          color: Colors.white),
-                                                    )),
-                                                  ),
-                                                ),
-                                              ),
-                                              Flexible(
-                                                flex: 1,
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Container(
-                                                    margin:
-                                                        const EdgeInsets.only(
-                                                            right: 24),
-                                                    height: 41,
-                                                    width: double.infinity,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      border: Border.all(
-                                                        width: 1,
-                                                        color: dangerMain,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8),
-                                                    ),
-                                                    child: Center(
-                                                        child: Text(
-                                                      'Hapus',
-                                                      style: textMBold.copyWith(
-                                                          color: dangerMain),
-                                                    )),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              );
+                            onTap: () async {
+                              await controller.deleteMuzaki(id);
+                              Get.back();
+                              await controller.refreshMuzaki();
                             },
                             child: Container(
                               width: 40,
@@ -438,7 +340,15 @@ class CardListUser extends StatelessWidget {
                           const SizedBox(width: 10),
                           InkWell(
                             onTap: () {
-                              Get.to(() => const UbahMuzakki());
+                              Get.to(() => UbahMuzakki(
+                                    nama: nama,
+                                    nomor: nomor,
+                                    email: email,
+                                    kategori: kategori,
+                                    tipe: tipe,
+                                    id: id,
+                                    muzaki: muzaki,
+                                  ));
                             },
                             child: Container(
                               width: 310,

@@ -20,8 +20,11 @@ class MuzakkiPageController extends GetxController
 
   RxList<Muzaki>? muzaki = <Muzaki>[].obs;
 
+  Rx<Muzaki>? muzakis = Muzaki().obs;
+
   RxList<Muzaki>? muzakkisOnSearch = <Muzaki>[].obs;
   RxBool isLoading = false.obs;
+  RxBool isLoading2 = false.obs;
 
   @override
   void onInit() {
@@ -49,6 +52,33 @@ class MuzakkiPageController extends GetxController
     muzaki!.assignAll(await muzakiProvider.getMuzakis(1));
     update();
     isLoading.value = false;
+  }
+
+  Future<bool> changeMuzaki({
+    required int id,
+    required String nama,
+    required String whatsapp,
+    required String email,
+    required String kategori,
+    required String tipe,
+  }) async {
+    bool success = await muzakiProvider.changeMuzaki(id, {
+      "nama": nama,
+      "email": email,
+      "whatsapp": whatsapp,
+      "kategori": kategori,
+      "tipe": tipe,
+    });
+    if (success) {
+      muzakis!.update((val) {
+        val!.nama = nama;
+        val.kategori = kategori;
+        val.tipe = tipe;
+      });
+      return true;
+    } else {
+      return false;
+    }
   }
 
   deleteMuzaki(int id) async {

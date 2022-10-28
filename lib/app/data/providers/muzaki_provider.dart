@@ -1,3 +1,4 @@
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
@@ -47,6 +48,18 @@ class MuzakiProvider extends GetConnect {
       return 'Berhasil';
     } else {
       return 'Gagal';
+    }
+  }
+
+  Future<bool> changeMuzaki(int id, Map body) async {
+    final response = await put('$url/muzaki/$id', body,
+        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
+
+    if (response.status.isOk) {
+      return true;
+    } else {
+      EasyLoading.showError('Gagal update muzaki');
+      return false;
     }
   }
 

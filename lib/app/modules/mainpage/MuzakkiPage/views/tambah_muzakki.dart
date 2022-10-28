@@ -6,6 +6,7 @@ import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 
 import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
+import '../controllers/muzakki_page_controller.dart';
 
 class TambahMuzakki extends StatelessWidget {
   const TambahMuzakki({super.key});
@@ -13,6 +14,7 @@ class TambahMuzakki extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controllerC = Get.put(TambahUbahMuzakkiController());
+    final controller = Get.put(MuzakkiPageController());
     final formKey = GlobalKey<FormState>();
     return Scaffold(
       backgroundColor: Colors.white,
@@ -245,6 +247,7 @@ class TambahMuzakki extends StatelessWidget {
                     email: controllerC.emailmuzakkiController.text,
                     kategori: controllerC.selected.value,
                     tipe: controllerC.selectedType.value);
+                await controller.refreshMuzaki();
                 if (success == 'Berhasil') {
                   // ignore: use_build_context_synchronously
                   Get.back();

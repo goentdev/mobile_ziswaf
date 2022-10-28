@@ -3,15 +3,37 @@ import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/controllers/tambah_ubah_muzakki_controller.dart';
 import 'package:mobile_ziswaf/app/widgets/button.dart';
 
+import '../../../../routes/app_pages.dart';
 import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
+import '../controllers/muzakki_page_controller.dart';
 
 class UbahMuzakki extends StatelessWidget {
-  const UbahMuzakki({super.key});
+  final String nama;
+  final String nomor;
+  final String email;
+  final String kategori;
+  final String tipe;
+  final int id;
+  final MuzakkiPageController muzaki;
+  const UbahMuzakki(
+      {super.key,
+      required this.nama,
+      required this.nomor,
+      required this.email,
+      required this.kategori,
+      required this.tipe,
+      required this.id,
+      required this.muzaki});
 
   @override
   Widget build(BuildContext context) {
     final controllerC = Get.put(TambahUbahMuzakkiController());
+    controllerC.namemuzakkiController.text = nama;
+    controllerC.whatsappmuzakkiController.text = nomor;
+    controllerC.emailmuzakkiController.text = email;
+    controllerC.selected.value = kategori;
+    controllerC.selectedType.value = tipe;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -47,13 +69,13 @@ class UbahMuzakki extends StatelessWidget {
                 height: 4,
               ),
               TextFormField(
-                // controller: controller.nameController,
+                controller: controllerC.namemuzakkiController,
                 decoration: InputDecoration(
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: neutral30, width: 1),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  hintText: 'Masukkan Nama',
+                  hintText: nama,
                   hintStyle: textMBold.copyWith(color: neutral60),
                   isDense: true,
                 ),
@@ -70,7 +92,7 @@ class UbahMuzakki extends StatelessWidget {
                 height: 8,
               ),
               TextFormField(
-                // controller: controller.whatsappC,
+                controller: controllerC.whatsappmuzakkiController,
                 keyboardType: TextInputType.number,
                 validator: (v) {
                   if (v?.isEmpty ?? true) {
@@ -86,7 +108,7 @@ class UbahMuzakki extends StatelessWidget {
                     ),
                     borderRadius: BorderRadius.circular(4),
                   ),
-                  hintText: 'Masukan nomor WhatsApp',
+                  hintText: nomor,
                   hintStyle: textMBold.copyWith(color: neutral60),
                   isDense: true,
                 ),
@@ -95,7 +117,7 @@ class UbahMuzakki extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Nama',
+                  'Email',
                   style: captionTextSemiBold.copyWith(color: neutral90),
                 ),
               ),
@@ -103,13 +125,13 @@ class UbahMuzakki extends StatelessWidget {
                 height: 4,
               ),
               TextFormField(
-                // controller: controller.nameController,
+                controller: controllerC.emailmuzakkiController,
                 decoration: InputDecoration(
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: neutral30, width: 1),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  hintText: 'Masukkan Nama',
+                  hintText: email,
                   hintStyle: textMBold.copyWith(color: neutral60),
                   isDense: true,
                 ),
@@ -219,7 +241,41 @@ class UbahMuzakki extends StatelessWidget {
             backgroundColor: primaryMain,
           ),
           onPressed: () async {
-            Get.back();
+            bool success = await muzaki.changeMuzaki(
+                id: id,
+                nama: controllerC.namemuzakkiController.text,
+                whatsapp: controllerC.whatsappmuzakkiController.text,
+                email: controllerC.emailmuzakkiController.text,
+                kategori: controllerC.selected.value,
+                tipe: controllerC.selectedType.value);
+            muzaki.refreshMuzaki();
+            if (success) {
+              Get.offAllNamed(Routes.MAINPAGE);
+              // ignore: use_build_context_synchronously
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  backgroundColor: Colors.green,
+                  content: Text(
+                    'Data Muzaki berhasil diubah',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              );
+            } else {
+              // ignore: use_build_context_synchronously
+              Get.offAllNamed(Routes.MAINPAGE);
+              // ignore: use_build_context_synchronously
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text(
+                    'gagal mengubah data muzaki',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              );
+              controllerC.isLoading.value = false;
+            }
           },
           child: Text(
             'Simpan',

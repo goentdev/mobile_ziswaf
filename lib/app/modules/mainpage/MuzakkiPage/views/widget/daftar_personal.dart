@@ -76,6 +76,12 @@ class DaftarPersonal extends StatelessWidget {
                                       nomor: controller.muzakkisOnSearch![index]
                                           .muzaki!.whatsapp!,
                                       id: controller.muzaki![index].muzaki!.id!,
+                                      email: controller
+                                          .muzaki![index].muzaki!.email!,
+                                      kategori:
+                                          controller.muzaki![index].kategori!,
+                                      tipe: controller.muzaki![index].tipe!,
+                                      muzaki: controller,
                                     )
                                   : const SizedBox();
                             } else {
@@ -86,6 +92,12 @@ class DaftarPersonal extends StatelessWidget {
                                       nomor: controller
                                           .muzaki![index].muzaki!.whatsapp!,
                                       id: controller.muzaki![index].muzaki!.id!,
+                                      email: controller
+                                          .muzaki![index].muzaki!.email!,
+                                      kategori:
+                                          controller.muzaki![index].kategori!,
+                                      tipe: controller.muzaki![index].tipe!,
+                                      muzaki: controller,
                                     )
                                   : const SizedBox();
                             }

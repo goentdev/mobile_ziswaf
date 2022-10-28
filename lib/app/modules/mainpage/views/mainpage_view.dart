@@ -8,6 +8,7 @@ import 'package:mobile_ziswaf/app/utils/shared_preferences.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/fonts.dart';
+import '../MuzakkiPage/controllers/muzakki_page_controller.dart';
 import '../MuzakkiPage/views/muzakki_page_view.dart';
 import '../ProgramPage/views/program_page_view.dart';
 import '../controllers/mainpage_controller.dart';
@@ -19,6 +20,8 @@ class MainpageView extends GetView<MainpageController> {
   Widget build(BuildContext context) {
     Get.put(UserProvider());
     Get.put(ProfileController());
+    Get.put(MainpageController());
+    Get.put(MuzakkiPageController());
     Widget body() {
       switch (controller.currentIndex) {
         case 0:
