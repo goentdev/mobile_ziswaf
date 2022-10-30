@@ -1,8 +1,16 @@
+import 'dart:io';
+import 'dart:math';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mobile_ziswaf/app/data/models/user_model.dart';
 import 'package:mobile_ziswaf/app/data/providers/user_provider.dart';
 import 'package:mobile_ziswaf/app/utils/shared_preferences.dart';
+import 'package:path/path.dart';
 
 class ProfileController extends GetxController {
   late TextEditingController nameController;
@@ -16,6 +24,8 @@ class ProfileController extends GetxController {
 
   Rx<User?> user = User().obs;
   RxBool isLoading = false.obs;
+
+  final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
 
   @override
   void onInit() {
@@ -98,21 +108,35 @@ class ProfileController extends GetxController {
     }
   }
 
-  Future<bool> changeIdentity({
-    required String jenisKartuIdentitas,
-    required String nomorKartuIdentitas,
-  }) async {
+  Future<bool> changeIdentity(
+      {String? jenisKartuIdentitas,
+      String? nomorKartuIdentitas,
+      XFile? foto,
+      String? linkfoto}) async {
     isLoading.value = true;
-
+    if (foto != null) {
+      final fotoRef = firebaseStorage.ref('identitas-foto');
+      final convertedFoto = File(foto.path);
+      final fotoExt = extension(convertedFoto.path);
+      final fireFoto = fotoRef.child('${_getRandomFileName()}.$fotoExt');
+      await fireFoto.putFile(File(foto.path));
+      linkfoto = await fireFoto.getDownloadURL();
+    }
     bool success = await userProvider.changeProfile(user.value!.id!, {
       'jenis_kartu_identitas': jenisKartuIdentitas,
       'nomor_kartu_identitas': nomorKartuIdentitas,
+      'foto_kartu_identitas': linkfoto
     });
+
     if (success) {
-      user.update((val) {
+      user.update((val) async {
         val!.jenisKartuIdentitas = jenisKartuIdentitas;
         val.nomorKartuIdentitas = nomorKartuIdentitas;
+        val.fotoKartuIdentitas = linkfoto;
+
+        // user.update((val) {});
       });
+
       return true;
     } else {
       return false;
@@ -139,4 +163,7 @@ class ProfileController extends GetxController {
       return false;
     }
   }
+
+  String _getRandomFileName() =>
+      '${DateTime.now().toUtc().toString()}-${Random().nextInt(8999) + 1000}';
 }

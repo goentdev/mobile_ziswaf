@@ -4,6 +4,7 @@ class User {
   int? id;
   String? nama;
   String? email;
+  String? otp;
   String? whatsapp;
   String? role;
   String? kategori;
@@ -18,6 +19,7 @@ class User {
     this.id,
     this.nama,
     this.email,
+    this.otp,
     this.whatsapp,
     this.role,
     this.kategori,
@@ -33,6 +35,7 @@ class User {
     id = json['id'];
     nama = json['nama'];
     email = json['email'];
+    otp = json['otp'];
     whatsapp = json['whatsapp'];
     role = json['role'];
     kategori = json['relawan']['kategori'];
@@ -49,6 +52,7 @@ class User {
     data['id'] = id;
     data['nama'] = nama;
     data['email'] = email;
+    data['otp'] = otp;
     data['whatsapp'] = whatsapp;
     data['role'] = role;
     data['kategori'] = kategori;

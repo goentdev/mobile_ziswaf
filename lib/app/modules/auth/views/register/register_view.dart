@@ -11,6 +11,7 @@ class RegisterPage extends GetView<RegisterController> {
 
   @override
   Widget build(BuildContext context) {
+    final registC = Get.put(RegisterController());
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -37,12 +38,18 @@ class RegisterPage extends GetView<RegisterController> {
             child: FloatingActionButton.extended(
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(4.0))),
-              onPressed: () {
+              onPressed: () async {
+                bool sukses = await registC.register(
+                    whatsapp: controller.whatsappC.text,
+                    role: 'relawan',
+                    password: controller.whatsappC.text);
+                if (sukses) {
+                  Get.to(() => OtpSmsPage(
+                        nomer: controller.whatsappC.text,
+                      ));
+                }
                 // if (controller.registerFormKey.currentState!.validate()) {
-                Get.to(() => OtpSmsPage(
-                      password: controller.passwordC.text,
-                      nomer: controller.whatsappC.text,
-                    ));
+
                 // }
               },
               label: Text(

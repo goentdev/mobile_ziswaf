@@ -285,23 +285,7 @@ class ChooseBankView extends GetView<ChooseBankController> {
                   Radius.circular(8.0),
                 ),
               ),
-              onPressed: () async {
-                bool sukses = await registC.register(
-                    nama: nama!,
-                    email: email!,
-                    whatsapp: nomer!,
-                    role: 'relawan',
-                    kategori: 'lembaga',
-                    jenisKartuIdentitas: jenisident!,
-                    nomorKartuIdentitas: noident!,
-                    bankId: 2,
-                    nomorRekening: controller.bankAccountController.text,
-                    namaRekening: controller.accountNameController.text,
-                    password: password!);
-                if (sukses) {
-                  Get.offNamed(Routes.MAINPAGE);
-                }
-              },
+              onPressed: () async {},
               label: Text(
                 'Selanjutnya',
                 style: buttonTabsTextBold.copyWith(color: Colors.white),

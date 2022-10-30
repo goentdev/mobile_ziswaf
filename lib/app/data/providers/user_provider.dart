@@ -15,7 +15,10 @@ class UserProvider extends GetConnect {
     return User.fromJson(response.body);
   }
 
-  Future<bool> changeProfile(int id, Map body) async {
+  Future<bool> changeProfile(
+    int id,
+    Map body,
+  ) async {
     final response = await put('$url/user/$id', body,
         headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
 

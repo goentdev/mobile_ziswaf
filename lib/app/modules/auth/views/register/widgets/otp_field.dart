@@ -1,46 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mobile_ziswaf/app/modules/auth/controllers/otp_controller.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:get/get.dart';
 
-class OtpField extends StatefulWidget {
+class OtpFieldd extends StatelessWidget {
   final ValueChanged<String>? onCompleted;
-  final ValueChanged<String> onChanged;
+  ValueChanged<String> onChanged;
   final String? Function(String?)? validator;
-  const OtpField({
-    Key? key,
-    this.onCompleted,
-    required this.onChanged,
-    this.validator,
-  }) : super(key: key);
-
-  @override
-  State<OtpField> createState() => _PinCodeFieldState();
-}
-
-class _PinCodeFieldState extends State<OtpField> {
-  final TextEditingController _controller = TextEditingController();
   final GlobalKey _formKey = GlobalKey();
 
-  @override
-  void didUpdateWidget(covariant OtpField oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    if (oldWidget != widget) {
-      _controller.clear();
-    }
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    try {
-      _controller.dispose();
-    } catch (_) {}
-  }
+  OtpFieldd(
+      {super.key, this.onCompleted, required this.onChanged, this.validator});
 
   @override
   Widget build(BuildContext context) {
+    final otpC = Get.put(OtpController());
     return Form(
       key: _formKey,
       child: Padding(
@@ -58,7 +34,7 @@ class _PinCodeFieldState extends State<OtpField> {
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             blinkWhenObscuring: true,
             animationType: AnimationType.fade,
-            validator: widget.validator,
+            validator: validator,
             pinTheme: PinTheme(
               shape: PinCodeFieldShape.underline,
               fieldHeight: 50,
@@ -72,10 +48,10 @@ class _PinCodeFieldState extends State<OtpField> {
             animationDuration: const Duration(milliseconds: 300),
             enableActiveFill: false,
             autoDismissKeyboard: false,
-            controller: _controller,
+            controller: otpC.otpController,
             keyboardType: TextInputType.number,
-            onCompleted: widget.onCompleted,
-            onChanged: widget.onChanged,
+            onCompleted: onCompleted,
+            onChanged: onChanged,
             beforeTextPaste: (text) {
               debugPrint('Allowing to paste $text');
               //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.

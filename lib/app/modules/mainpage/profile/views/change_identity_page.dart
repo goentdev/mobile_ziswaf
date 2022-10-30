@@ -335,7 +335,8 @@ class ChangeIdentityPage extends StatelessWidget {
                             jenisKartuIdentitas:
                                 controller.selectedType.toLowerCase(),
                             nomorKartuIdentitas:
-                                controller.identityNumberController.text);
+                                controller.identityNumberController.text,
+                            foto: controller.identityImage);
 
                         if (success) {
                           profileC.isLoading.value = false;

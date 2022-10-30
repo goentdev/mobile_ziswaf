@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/data/providers/auth_provider.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/otp_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/form_view.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/otp_field.dart';
@@ -25,6 +26,7 @@ class OtpSmsPage extends GetView<OtpController> {
 
   @override
   Widget build(BuildContext context) {
+    final otpC = Get.put(OtpController());
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -69,23 +71,47 @@ class OtpSmsPage extends GetView<OtpController> {
             const SizedBox(
               height: 48,
             ),
-            OtpField(
-              onChanged: (value) {},
-              onCompleted: onCompleted,
-              validator: validator,
+            OtpFieldd(
+              onCompleted: (String value) async {
+                bool sukses = await AuthProvider().konfirmasiOtp(
+                  otp: otpC.otpController.text,
+                );
+                if (sukses) {
+                  Get.to(() => FormView());
+                  otpC.update();
+                } else {
+                  // ignore: use_build_context_synchronously
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      backgroundColor: Colors.red,
+                      content: Text(
+                        'OTP SALAH',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  );
+                }
+              },
+              onChanged: (String value) {},
             ),
             const SizedBox(
               height: 16,
             ),
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                '00:59',
-                style: secondaryTextBold.copyWith(
-                  color: neutral90,
-                ),
-              ),
-            )
+            Obx(() => Align(
+                alignment: Alignment.center,
+                child: otpC.resend.value
+                    ? InkWell(
+                        onTap: () {
+                          otpC.startTimer(10);
+                          otpC.resend.value = false;
+                        },
+                        child: const Text('ANJAY'))
+                    : Text(
+                        otpC.time.value,
+                        style: secondaryTextBold.copyWith(
+                          color: neutral90,
+                        ),
+                      )))
           ],
         ),
       ),
