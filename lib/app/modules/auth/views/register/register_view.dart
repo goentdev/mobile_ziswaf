@@ -42,6 +42,7 @@ class RegisterPage extends GetView<RegisterController> {
                 bool sukses = await registC.register(
                     whatsapp: controller.whatsappC.text,
                     role: 'relawan',
+                    bankId: 3,
                     password: controller.whatsappC.text);
                 if (sukses) {
                   Get.to(() => OtpSmsPage(

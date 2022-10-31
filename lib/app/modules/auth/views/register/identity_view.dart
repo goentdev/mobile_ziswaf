@@ -5,27 +5,20 @@ import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/identity_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/choose_bank_view.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/add_foto_widget.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/profile/controllers/profile_controller.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 import 'package:mobile_ziswaf/app/widgets/button.dart';
 
 class IdentityView extends GetView<IdentityController> {
-  final String? nomer;
-  final String? password;
-  final String? nama;
-  final String? email;
-
   const IdentityView({
     super.key,
-    this.nama,
-    this.email,
-    this.nomer,
-    this.password,
   });
 
   @override
   Widget build(BuildContext context) {
+    final identC = Get.put(ProfileController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -285,15 +278,20 @@ class IdentityView extends GetView<IdentityController> {
             ),
             Button(
               textbutton: 'Selanjutnya',
-              onTap: () => Get.to(ChooseBankView(
-                email: email,
-                nama: nama,
-                noident: controller.identityNumberController.text,
-                nomer: nomer,
-                foto: controller.identityImage!.path,
-                jenisident: controller.selectedType.value,
-                password: password,
-              )),
+              onTap: () async {
+                bool suskes = await identC.changeIdentity(
+                    foto: controller.identityImage,
+                    jenisKartuIdentitas: controller.selectedType.value,
+                    nomorKartuIdentitas:
+                        controller.identityNumberController.text);
+
+                if (suskes) {
+                  identC.update();
+                  Get.to(() => ChooseBankView());
+                } else {
+                  print('gagal');
+                }
+              },
             ),
           ],
         ),

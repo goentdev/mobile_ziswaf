@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/form_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/identity_view.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/profile/controllers/profile_controller.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 
@@ -17,6 +19,7 @@ class FormView extends GetView<FormController> {
 
   @override
   Widget build(BuildContext context) {
+    final formC = Get.put(ProfileController());
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -108,12 +111,19 @@ class FormView extends GetView<FormController> {
                     Radius.circular(8.0),
                   ),
                 ),
-                onPressed: () => Get.to(() => IdentityView(
-                      email: controller.emailController.text,
-                      nama: controller.nameController.text,
-                      nomer: nomer,
-                      password: password,
-                    )),
+                onPressed: () async {
+                  bool sukses = await formC.changeName(
+                      nama: controller.nameController.text);
+                  await formC.changeEmail(
+                      email: controller.emailController.text);
+                  await formC.changeKategori(kategori: 'lembaga');
+                  if (sukses) {
+                    formC.update();
+                    Get.to(IdentityView());
+                  } else {
+                    EasyLoading.showError('Terjadi Server Error');
+                  }
+                },
                 label: Text(
                   'Selanjutnya',
                   style: buttonTabsTextBold.copyWith(color: Colors.white),

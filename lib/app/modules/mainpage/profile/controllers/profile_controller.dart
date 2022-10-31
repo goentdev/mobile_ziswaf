@@ -108,6 +108,22 @@ class ProfileController extends GetxController {
     }
   }
 
+  Future<bool> changeKategori({required String kategori}) async {
+    isLoading.value = true;
+
+    bool success = await userProvider.changeProfile(user.value!.id!, {
+      'kategori': kategori,
+    });
+    if (success) {
+      user.update((val) {
+        val!.kategori = kategori;
+      });
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   Future<bool> changeIdentity(
       {String? jenisKartuIdentitas,
       String? nomorKartuIdentitas,
@@ -146,12 +162,14 @@ class ProfileController extends GetxController {
   Future<bool> changeBank({
     required String nomorRekening,
     required String namaRekening,
+    required int bankId,
   }) async {
     isLoading.value = true;
 
     bool success = await userProvider.changeProfile(user.value!.id!, {
       'nomor_rekening': nomorRekening,
       'nama_rekening': namaRekening,
+      'bank_id': bankId,
     });
     if (success) {
       user.update((val) {

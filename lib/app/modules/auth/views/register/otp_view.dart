@@ -6,7 +6,6 @@ import 'package:mobile_ziswaf/app/modules/auth/views/register/form_view.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/otp_field.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
-import 'package:mobile_ziswaf/app/widgets/button.dart';
 
 class OtpSmsPage extends GetView<OtpController> {
   final String? nomer;
@@ -80,16 +79,7 @@ class OtpSmsPage extends GetView<OtpController> {
                   Get.to(() => FormView());
                   otpC.update();
                 } else {
-                  // ignore: use_build_context_synchronously
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      backgroundColor: Colors.red,
-                      content: Text(
-                        'OTP SALAH',
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  );
+                  print('kode salah');
                 }
               },
               onChanged: (String value) {},
@@ -100,12 +90,32 @@ class OtpSmsPage extends GetView<OtpController> {
             Obx(() => Align(
                 alignment: Alignment.center,
                 child: otpC.resend.value
-                    ? InkWell(
-                        onTap: () {
-                          otpC.startTimer(10);
-                          otpC.resend.value = false;
-                        },
-                        child: const Text('ANJAY'))
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Tidak Mendapatkan Kode? ',
+                              style:
+                                  captionTextBold.copyWith(color: neutral100)),
+                          InkWell(
+                            onTap: () async {
+                              otpC.startTimer(10);
+                              otpC.resend.value = false;
+                              bool success = await otpC.resendotpp(
+                                  otp: otpC.otpController.text);
+                              if (success) {
+                                print('berhasil');
+                              } else {
+                                print('gagal');
+                              }
+                            },
+                            child: Text(
+                              'Kirim Ulang Code',
+                              style:
+                                  captionTextBold.copyWith(color: Colors.blue),
+                            ),
+                          )
+                        ],
+                      )
                     : Text(
                         otpC.time.value,
                         style: secondaryTextBold.copyWith(
@@ -115,17 +125,17 @@ class OtpSmsPage extends GetView<OtpController> {
           ],
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Button(
-          onTap: () => Get.to(() => FormView(
-                nomer: nomer,
-                password: password,
-              )),
-          textbutton: 'Selanjutnya',
-        ),
-      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // floatingActionButton: Padding(
+      //   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      //   child: Button(
+      //     onTap: () => Get.to(() => FormView(
+      //           nomer: nomer,
+      //           password: password,
+      //         )),
+      //     textbutton: 'Selanjutnya',
+      //   ),
+      // ),
     );
   }
 }

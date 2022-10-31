@@ -308,6 +308,7 @@ class ChangeBankPage extends StatelessWidget {
                       ),
                       onPressed: () async {
                         bool success = await profileC.changeBank(
+                            bankId: 2,
                             nomorRekening:
                                 controller.bankAccountController.text,
                             namaRekening:

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/register_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/card_bank.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/profile/controllers/profile_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/views/mainpage_view.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
@@ -32,7 +33,7 @@ class ChooseBankView extends GetView<ChooseBankController> {
 
   @override
   Widget build(BuildContext context) {
-    final registC = Get.put(RegisterController());
+    final chooseC = Get.put(ProfileController());
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -285,7 +286,18 @@ class ChooseBankView extends GetView<ChooseBankController> {
                   Radius.circular(8.0),
                 ),
               ),
-              onPressed: () async {},
+              onPressed: () async {
+                bool sukses = await chooseC.changeBank(
+                    nomorRekening: controller.bankAccountController.text,
+                    namaRekening: controller.accountNameController.text,
+                    bankId: 2);
+
+                if (sukses) {
+                  Get.toNamed(Routes.MAINPAGE);
+                } else {
+                  print('object');
+                }
+              },
               label: Text(
                 'Selanjutnya',
                 style: buttonTabsTextBold.copyWith(color: Colors.white),

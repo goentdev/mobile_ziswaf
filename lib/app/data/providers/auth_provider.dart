@@ -1,5 +1,6 @@
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/data/models/user_model.dart';
 import 'package:mobile_ziswaf/app/utils/shared_preferences.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
@@ -17,7 +18,7 @@ class AuthProvider extends GetConnect {
     // required String jenisKartuIdentitas,
     // required String nomorKartuIdentitas,
     // required String fotoKartuIdentitas,
-    // required int bankId,
+    required int bankId,
     // required String nomorRekening,
     // required String namaRekening,
     required String password,
@@ -32,7 +33,7 @@ class AuthProvider extends GetConnect {
       // "jenis_kartu_identitas": jenisKartuIdentitas,
       // "nomor_kartu_identitas": nomorKartuIdentitas,
       // "foto_kartu_identitas": fotoKartuIdentitas,
-      // "bank_id": bankId,
+      "bank_id": bankId,
       // "nomor_rekening": nomorRekening,
       // "nama_rekening": namaRekening,
       "password": password,
@@ -65,9 +66,7 @@ class AuthProvider extends GetConnect {
     }
   }
 
-  Future<bool> konfirmasiOtp({
-    required String otp,
-  }) async {
+  Future<bool> konfirmasiOtp({required String otp}) async {
     var urlpost = Uri.parse('$url/user/konfirmasi');
     final response = await http.post(urlpost, headers: {
       'Authorization': 'bearer ${sharedPrefs.token}'
@@ -82,6 +81,22 @@ class AuthProvider extends GetConnect {
       EasyLoading.showError('Kode Salah');
       return false;
     } else {
+      return false;
+    }
+  }
+
+  //
+
+  Future<bool> resendotpp(
+    Map body,
+  ) async {
+    final response = await put('$url/user/kode-otp', body,
+        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
+
+    if (response.status.isOk) {
+      return true;
+    } else {
+      EasyLoading.showError('Gagal update profile');
       return false;
     }
   }

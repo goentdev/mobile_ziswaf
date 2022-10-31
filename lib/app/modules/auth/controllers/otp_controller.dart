@@ -2,9 +2,16 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/data/providers/auth_provider.dart';
+
+import '../../../data/models/user_model.dart';
+import '../../../data/providers/user_provider.dart';
 
 class OtpController extends GetxController {
-  //TODO: Implement OtpController
+  AuthProvider userProvider = AuthProvider();
+
+  Rx<User?> user = User().obs;
+
   late TextEditingController otpController;
   Timer? timer;
   int remainingSeconds = 60;
@@ -44,9 +51,22 @@ class OtpController extends GetxController {
       }
     });
   }
-  // Future<bool> konfirmasiOtp (){
 
-  // }
+  Future<bool> resendotpp({
+    String? otp,
+  }) async {
+    bool success = await userProvider.resendotpp({
+      'otp': otp,
+    });
+    if (success) {
+      user.update((val) {
+        val!.otp = otp;
+      });
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   void increment() => count.value++;
 }
