@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
 import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller.dart';
@@ -178,8 +179,14 @@ class ChooseBankView extends GetView<ChooseBankController> {
                                                     controller
                                                         .banksOnSearch[index]
                                                         .nama!;
+                                                controller
+                                                        .selectedBankId.value =
+                                                    controller
+                                                        .banksOnSearch[index]
+                                                        .id!;
                                                 controller.isSelected.value =
                                                     true;
+                                                controller.update();
                                                 Get.back();
                                               },
                                               id: controller
@@ -192,9 +199,13 @@ class ChooseBankView extends GetView<ChooseBankController> {
                                               gambar: controller
                                                   .banks[index].image!,
                                               onTap: () {
+                                                controller.update();
                                                 controller.selectedBank.value =
                                                     controller
                                                         .banks[index].nama!;
+                                                controller
+                                                        .selectedBankId.value =
+                                                    controller.banks[index].id!;
                                                 controller.isSelected.value =
                                                     true;
                                                 Get.back();
@@ -293,12 +304,15 @@ class ChooseBankView extends GetView<ChooseBankController> {
                 bool sukses = await chooseC.changeBank(
                     nomorRekening: controller.bankAccountController.text,
                     namaRekening: controller.accountNameController.text,
-                    bankId: 2);
+                    bankId: controller.selectedBankId.value);
 
                 if (sukses) {
+                  controller.isLoading.value = false;
+                  EasyLoading.showSuccess('Daftar Berhasil');
                   Get.toNamed(Routes.MAINPAGE);
+                  controller.update();
                 } else {
-                  print('object');
+                  controller.isLoading.value = false;
                 }
               },
               label: Text(

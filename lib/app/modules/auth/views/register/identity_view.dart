@@ -286,10 +286,11 @@ class IdentityView extends GetView<IdentityController> {
                         controller.identityNumberController.text);
                 identC.getProfile();
                 if (suskes) {
+                  identC.isLoading.value = false;
                   identC.update();
                   Get.to(() => ChooseBankView());
                 } else {
-                  print('gagal');
+                  identC.isLoading.value = false;
                 }
               },
             ),

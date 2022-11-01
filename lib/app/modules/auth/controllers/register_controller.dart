@@ -11,7 +11,7 @@ class RegisterController extends GetxController {
   late TextEditingController passwordC;
   late TextEditingController confirmC;
   late TextEditingController otp;
-  final loginFormKey = GlobalKey<FormState>();
+  // final loginFormKey = GlobalKey<FormState>();
   final AuthProvider authProvider = AuthProvider();
 
   final registerFormKey = GlobalKey<FormState>();
