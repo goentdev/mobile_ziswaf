@@ -7,9 +7,11 @@ class CardBank extends StatelessWidget {
       {super.key,
       required this.bank,
       required this.gambar,
-      required this.onTap});
+      required this.onTap,
+      required this.id});
 
   final String bank;
+  final int id;
   final String gambar;
   final VoidCallback onTap;
 

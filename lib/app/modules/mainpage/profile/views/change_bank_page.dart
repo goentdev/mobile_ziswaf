@@ -75,10 +75,10 @@ class ChangeBankPage extends StatelessWidget {
                     ),
                     hintText: controller.isSelected.value
                         ? controller.selectedBank.value
-                        : 'Pilih Bank',
+                        : profileC.user.value!.bank!.nama!,
                     hintStyle: textMBold.copyWith(
                       color:
-                          controller.isSelected.value ? neutral100 : neutral60,
+                          controller.isSelected.value ? neutral100 : neutral100,
                     ),
                     isDense: true,
                   ),
@@ -146,74 +146,97 @@ class ChangeBankPage extends StatelessWidget {
                                               child:
                                                   CircularProgressIndicator())
                                           : controller.banks.isNotEmpty
-                                              ? ListView.builder(
-                                                  shrinkWrap: true,
-                                                  itemCount: controller
+                                              ? Scrollbar(
+                                                  thumbVisibility: true,
+                                                  controller: controller
+                                                      .firstController3,
+                                                  child: ListView.builder(
+                                                    controller: controller
+                                                        .firstController3,
+                                                    shrinkWrap: true,
+                                                    itemCount: controller
+                                                            .searchBankController
+                                                            .text
+                                                            .isNotEmpty
+                                                        ? controller
+                                                            .banksOnSearch
+                                                            .length
+                                                        : controller
+                                                            .banks.length,
+                                                    itemBuilder:
+                                                        (context, index) {
+                                                      if (controller
                                                           .searchBankController
                                                           .text
-                                                          .isNotEmpty
-                                                      ? controller.banksOnSearch
-                                                                  .length <
-                                                              10
-                                                          ? controller
-                                                              .banksOnSearch
-                                                              .length
-                                                          : 10
-                                                      : controller.banks
-                                                                  .length <
-                                                              10
-                                                          ? controller
-                                                              .banks.length
-                                                          : 10,
-                                                  itemBuilder:
-                                                      (context, index) {
-                                                    if (controller
-                                                        .searchBankController
-                                                        .text
-                                                        .isNotEmpty) {
-                                                      return CardBank(
-                                                        bank: controller
-                                                            .banksOnSearch[
-                                                                index]
-                                                            .nama!,
-                                                        gambar: controller
-                                                            .banksOnSearch[
-                                                                index]
-                                                            .image!,
-                                                        onTap: () {
-                                                          controller
-                                                                  .selectedBank
-                                                                  .value =
-                                                              controller
-                                                                  .banksOnSearch[
-                                                                      index]
-                                                                  .nama!;
-                                                          controller.isSelected
-                                                              .value = true;
-                                                          Get.back();
-                                                        },
-                                                      );
-                                                    } else {
-                                                      return CardBank(
-                                                        bank: controller
-                                                            .banks[index].nama!,
-                                                        gambar: controller
-                                                            .banks[index]
-                                                            .image!,
-                                                        onTap: () {
-                                                          controller
-                                                                  .selectedBank
-                                                                  .value =
-                                                              controller
-                                                                  .banks[index]
-                                                                  .nama!;
-                                                          controller.isSelected
-                                                              .value = true;
-                                                          Get.back();
-                                                        },
-                                                      );
-                                                    }
-                                                  },
+                                                          .isNotEmpty) {
+                                                        return CardBank(
+                                                          bank: controller
+                                                              .banksOnSearch[
+                                                                  index]
+                                                              .nama!,
+                                                          gambar: controller
+                                                              .banksOnSearch[
+                                                                  index]
+                                                              .image!,
+                                                          onTap: () {
+                                                            controller
+                                                                    .selectedBank
+                                                                    .value =
+                                                                controller
+                                                                    .banksOnSearch[
+                                                                        index]
+                                                                    .nama!;
+                                                            controller
+                                                                    .selectedBankId
+                                                                    .value =
+                                                                controller
+                                                                    .banksOnSearch[
+                                                                        index]
+                                                                    .id!;
+                                                            controller
+                                                                .isSelected
+                                                                .value = true;
+                                                            Get.back();
+                                                          },
+                                                          id: controller
+                                                              .banksOnSearch[
+                                                                  index]
+                                                              .id!,
+                                                        );
+                                                      } else {
+                                                        return CardBank(
+                                                          bank: controller
+                                                              .banks[index]
+                                                              .nama!,
+                                                          gambar: controller
+                                                              .banks[index]
+                                                              .image!,
+                                                          onTap: () {
+                                                            controller
+                                                                    .selectedBank
+                                                                    .value =
+                                                                controller
+                                                                    .banks[
+                                                                        index]
+                                                                    .nama!;
+                                                            controller
+                                                                    .selectedBankId
+                                                                    .value =
+                                                                controller
+                                                                    .banks[
+                                                                        index]
+                                                                    .id!;
+                                                            controller
+                                                                .isSelected
+                                                                .value = true;
+                                                            Get.back();
+                                                          },
+                                                          id: controller
+                                                              .banks[index].id!,
+                                                        );
+                                                      }
+                                                    },
+                                                  ),
                                                 )
                                               : const Center(
                                                   child:
@@ -308,14 +331,16 @@ class ChangeBankPage extends StatelessWidget {
                       ),
                       onPressed: () async {
                         bool success = await profileC.changeBank(
-                            bankId: 2,
+                            bankId: controller.selectedBankId.value,
                             nomorRekening:
                                 controller.bankAccountController.text,
                             namaRekening:
                                 controller.accountNameController.text);
+                        profileC.getProfile();
                         if (success) {
                           profileC.isLoading.value = false;
                           profileC.update();
+                          profileC.getProfile();
                           Get.back();
                         } else {
                           profileC.isLoading.value = false;

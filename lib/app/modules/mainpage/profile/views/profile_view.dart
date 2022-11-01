@@ -14,6 +14,7 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     final controller = Get.put(ProfileController());
     final user = controller.user.value;
+    controller.getProfile();
 
     return Scaffold(
       backgroundColor: neutral20,
@@ -186,7 +187,7 @@ class ProfileView extends GetView<ProfileController> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Bank Mandiri',
+                                        controller.user.value!.bank!.nama!,
                                         style: captionTextSemiBold.copyWith(
                                           color: neutral90,
                                         ),

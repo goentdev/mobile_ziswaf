@@ -198,6 +198,8 @@ class BuktiTransaksi extends StatelessWidget {
                                                       true;
                                                   Get.back();
                                                 },
+                                                id: controller
+                                                    .banksOnSearch[index].id!,
                                               );
                                             } else {
                                               return CardBank(
@@ -214,6 +216,7 @@ class BuktiTransaksi extends StatelessWidget {
                                                       true;
                                                   Get.back();
                                                 },
+                                                id: controller.banks[index].id!,
                                               );
                                             }
                                           },

@@ -182,6 +182,8 @@ class ChooseBankView extends GetView<ChooseBankController> {
                                                     true;
                                                 Get.back();
                                               },
+                                              id: controller
+                                                  .banksOnSearch[index].id!,
                                             );
                                           } else {
                                             return CardBank(
@@ -197,6 +199,7 @@ class ChooseBankView extends GetView<ChooseBankController> {
                                                     true;
                                                 Get.back();
                                               },
+                                              id: controller.banks[index].id!,
                                             );
                                           }
                                         },
