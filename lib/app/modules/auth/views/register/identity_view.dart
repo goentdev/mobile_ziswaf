@@ -284,7 +284,7 @@ class IdentityView extends GetView<IdentityController> {
                     jenisKartuIdentitas: controller.selectedType.value,
                     nomorKartuIdentitas:
                         controller.identityNumberController.text);
-
+                identC.getProfile();
                 if (suskes) {
                   identC.update();
                   Get.to(() => ChooseBankView());

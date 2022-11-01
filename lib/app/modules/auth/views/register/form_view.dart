@@ -117,6 +117,7 @@ class FormView extends GetView<FormController> {
                   await formC.changeEmail(
                       email: controller.emailController.text);
                   await formC.changeKategori(kategori: 'lembaga');
+                  formC.getProfile();
                   if (sukses) {
                     formC.update();
                     Get.to(IdentityView());

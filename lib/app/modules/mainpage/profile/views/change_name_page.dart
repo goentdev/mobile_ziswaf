@@ -76,6 +76,7 @@ class ChangeNamePage extends GetView<UserController> {
                       onTap: () async {
                         bool success = await profileC.changeName(
                             nama: profileC.nameController.text);
+                        profileC.getProfile();
                         if (success) {
                           profileC.isLoading.value = false;
                           profileC.update();

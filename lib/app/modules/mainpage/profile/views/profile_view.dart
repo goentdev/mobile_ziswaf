@@ -112,7 +112,7 @@ class ProfileView extends GetView<ProfileController> {
                       CardProfile(
                         title: 'Nama',
                         gambar: 'assets/icons/kontakk.png',
-                        subtittle: user.nama!,
+                        subtittle: controller.user.value!.nama!,
                         onTap: () => Get.toNamed(Routes.CHANGENAME),
                       ),
                       Divider(
@@ -121,7 +121,7 @@ class ProfileView extends GetView<ProfileController> {
                       ),
                       CardProfile(
                         title: 'Nomor Whatsapp',
-                        subtittle: user.whatsapp!,
+                        subtittle: controller.user.value!.whatsapp!,
                         gambar: 'assets/icons/phone.png',
                         onTap: () => Get.toNamed(Routes.CHANGENUMBER),
                       ),
@@ -131,7 +131,7 @@ class ProfileView extends GetView<ProfileController> {
                       ),
                       CardProfile(
                         title: 'Email',
-                        subtittle: user.email!,
+                        subtittle: controller.user.value!.email!,
                         gambar: "assets/icons/mail.png",
                         onTap: () => Get.toNamed(Routes.CHANGEEMAIL),
                       ),
@@ -141,7 +141,8 @@ class ProfileView extends GetView<ProfileController> {
                       ),
                       CardProfile(
                         title: 'Kartu Identitas',
-                        subtittle: user.jenisKartuIdentitas!.toUpperCase(),
+                        subtittle: controller.user.value!.jenisKartuIdentitas!
+                            .toUpperCase(),
                         gambar: "assets/icons/identity.png",
                         onTap: () => Get.toNamed(Routes.CHANGEIDENTITY),
                       ),

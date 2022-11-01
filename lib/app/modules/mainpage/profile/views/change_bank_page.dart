@@ -340,7 +340,6 @@ class ChangeBankPage extends StatelessWidget {
                         if (success) {
                           profileC.isLoading.value = false;
                           profileC.update();
-                          profileC.getProfile();
                           Get.back();
                         } else {
                           profileC.isLoading.value = false;

@@ -77,6 +77,7 @@ class ChangeEmailPage extends GetView<UserController> {
                       onTap: () async {
                         bool success = await profileC.changeEmail(
                             email: profileC.emailController.text);
+                        profileC.getProfile();
                         if (success) {
                           profileC.isLoading.value = false;
                           profileC.update();

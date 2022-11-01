@@ -76,6 +76,7 @@ class ChangeNumberPage extends GetView<UserController> {
                       onTap: () async {
                         bool success = await profileC.changeNumber(
                             whatsapp: profileC.numberController.text);
+                        profileC.getProfile();
                         if (success) {
                           profileC.isLoading.value = false;
                           profileC.update();

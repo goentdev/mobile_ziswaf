@@ -57,6 +57,7 @@ class ProfileController extends GetxController {
   void getProfile() async {
     isLoading.value = true;
     user.value = await userProvider.profile();
+    update();
     isLoading.value = false;
   }
 
