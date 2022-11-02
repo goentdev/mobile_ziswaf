@@ -19,10 +19,15 @@ class MuzakkiPageController extends GetxController
   UserProvider userProvider = UserProvider();
 
   RxList<Muzaki>? muzaki = <Muzaki>[].obs;
+  RxList<Muzaki>? muzakipersonal = <Muzaki>[].obs;
+  RxList<Muzaki>? muzakibadanusaha = <Muzaki>[].obs;
+  RxList<Muzaki>? muzakipemerintah = <Muzaki>[].obs;
 
   Rx<Muzaki>? muzakis = Muzaki().obs;
 
-  RxList<Muzaki>? muzakkisOnSearch = <Muzaki>[].obs;
+  RxList<Muzaki>? muzakkisOnSearchPersonal = <Muzaki>[].obs;
+  RxList<Muzaki>? muzakkisOnSearchBadanUsaha = <Muzaki>[].obs;
+  RxList<Muzaki>? muzakkisOnSearchPemerintah = <Muzaki>[].obs;
   RxBool isLoading = false.obs;
   RxBool isLoading2 = false.obs;
 
@@ -34,6 +39,7 @@ class MuzakkiPageController extends GetxController
       vsync: this,
     );
     getMuzakis();
+    getMuzakisall();
     refreshMuzaki();
     scrollController = ScrollController();
 
@@ -47,9 +53,18 @@ class MuzakkiPageController extends GetxController
     super.onClose();
   }
 
+  getMuzakisall() async {
+    isLoading.value = true;
+    muzaki!.assignAll(await muzakiProvider.getMuzakisall(1));
+    update();
+    isLoading.value = false;
+  }
+
   getMuzakis() async {
     isLoading.value = true;
-    muzaki!.assignAll(await muzakiProvider.getMuzakis(1));
+    muzakipersonal!.assignAll(await muzakiProvider.getMuzakis('personal'));
+    muzakipemerintah!.assignAll(await muzakiProvider.getMuzakis('pemerintah'));
+    muzakibadanusaha!.assignAll(await muzakiProvider.getMuzakis('badan usaha'));
     update();
     isLoading.value = false;
   }
@@ -93,13 +108,23 @@ class MuzakkiPageController extends GetxController
   refreshMuzaki() async {
     isLoading.value = true;
 
-    muzaki!.assignAll(await muzakiProvider.getMuzakis(1));
+    muzakipersonal!.assignAll(await muzakiProvider.getMuzakis('personal'));
+    muzakipemerintah!.assignAll(await muzakiProvider.getMuzakis('pemerintah'));
+    muzakibadanusaha!.assignAll(await muzakiProvider.getMuzakis('badan usaha'));
 
     isLoading.value = false;
   }
 
   void searchMuzakki(String value) {
-    muzakkisOnSearch!.value = muzaki!.where((element) {
+    muzakkisOnSearchPemerintah!.value = muzakipemerintah!.where((element) {
+      final loweredNama = element.nama!.toLowerCase();
+      return loweredNama.contains(value.toLowerCase());
+    }).toList();
+    muzakkisOnSearchPersonal!.value = muzakipersonal!.where((element) {
+      final loweredNama = element.nama!.toLowerCase();
+      return loweredNama.contains(value.toLowerCase());
+    }).toList();
+    muzakkisOnSearchBadanUsaha!.value = muzakibadanusaha!.where((element) {
       final loweredNama = element.nama!.toLowerCase();
       return loweredNama.contains(value.toLowerCase());
     }).toList();

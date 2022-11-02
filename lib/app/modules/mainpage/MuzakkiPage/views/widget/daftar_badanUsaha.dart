@@ -37,7 +37,7 @@ class DaftarBadanUsaha extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Daftar Muzakki (${controller.muzaki!.length})',
+                  'Daftar Muzakki (${controller.muzakibadanusaha!.length})',
                   style: listItemTitleBold.copyWith(color: neutral100),
                 ),
               ),
@@ -60,42 +60,52 @@ class DaftarBadanUsaha extends StatelessWidget {
                           physics: const AlwaysScrollableScrollPhysics(),
                           controller: controller.scrollController,
                           shrinkWrap: true,
-                          itemCount:
-                              controller.searchMuzakkiController.text.isNotEmpty
-                                  ? controller.muzakkisOnSearch!.length
-                                  : controller.muzaki!.length,
+                          itemCount: controller
+                                  .searchMuzakkiController.text.isNotEmpty
+                              ? controller.muzakkisOnSearchBadanUsaha!.length
+                              : controller.muzakibadanusaha!.length,
                           itemBuilder: (context, index) {
                             if (controller
                                 .searchMuzakkiController.text.isNotEmpty) {
-                              return controller.muzaki![index].kategori ==
+                              return controller
+                                          .muzakibadanusaha![index].kategori ==
                                       'Badan Usaha'
                                   ? CardListUser(
                                       nama: controller
-                                          .muzakkisOnSearch![index].nama!,
-                                      nomor: controller.muzakkisOnSearch![index]
-                                          .muzaki!.whatsapp!,
-                                      id: controller.muzaki![index].muzaki!.id!,
-                                      email: controller
-                                          .muzaki![index].muzaki!.email!,
-                                      kategori:
-                                          controller.muzaki![index].kategori!,
-                                      tipe: controller.muzaki![index].tipe!,
+                                          .muzakkisOnSearchBadanUsaha![index]
+                                          .nama!,
+                                      nomor: controller
+                                          .muzakkisOnSearchBadanUsaha![index]
+                                          .muzaki!
+                                          .whatsapp!,
+                                      id: controller
+                                          .muzakibadanusaha![index].muzaki!.id!,
+                                      email: controller.muzakibadanusaha![index]
+                                          .muzaki!.email!,
+                                      kategori: controller
+                                          .muzakibadanusaha![index].kategori!,
+                                      tipe: controller
+                                          .muzakibadanusaha![index].tipe!,
                                       muzaki: controller,
                                     )
                                   : const SizedBox();
                             } else {
-                              return controller.muzaki![index].kategori ==
+                              return controller
+                                          .muzakibadanusaha![index].kategori ==
                                       'Badan Usaha'
                                   ? CardListUser(
-                                      nama: controller.muzaki![index].nama!,
-                                      nomor: controller
-                                          .muzaki![index].muzaki!.whatsapp!,
-                                      id: controller.muzaki![index].muzaki!.id!,
-                                      email: controller
-                                          .muzaki![index].muzaki!.email!,
-                                      kategori:
-                                          controller.muzaki![index].kategori!,
-                                      tipe: controller.muzaki![index].tipe!,
+                                      nama: controller
+                                          .muzakibadanusaha![index].nama!,
+                                      nomor: controller.muzakibadanusaha![index]
+                                          .muzaki!.whatsapp!,
+                                      id: controller
+                                          .muzakibadanusaha![index].muzaki!.id!,
+                                      email: controller.muzakibadanusaha![index]
+                                          .muzaki!.email!,
+                                      kategori: controller
+                                          .muzakibadanusaha![index].kategori!,
+                                      tipe: controller
+                                          .muzakibadanusaha![index].tipe!,
                                       muzaki: controller,
                                     )
                                   : const SizedBox();
