@@ -128,15 +128,15 @@ class ProfileController extends GetxController {
   Future<bool> changeIdentity(
       {String? jenisKartuIdentitas,
       String? nomorKartuIdentitas,
-      XFile? foto,
+      String? foto,
       String? linkfoto}) async {
     isLoading.value = true;
     if (foto != null) {
       final fotoRef = firebaseStorage.ref('identitas-foto');
-      final convertedFoto = File(foto.path);
+      final convertedFoto = File(foto);
       final fotoExt = extension(convertedFoto.path);
       final fireFoto = fotoRef.child('${_getRandomFileName()}.$fotoExt');
-      await fireFoto.putFile(File(foto.path));
+      await fireFoto.putFile(File(foto));
       linkfoto = await fireFoto.getDownloadURL();
     }
     bool success = await userProvider.changeProfile(user.value!.id!, {
