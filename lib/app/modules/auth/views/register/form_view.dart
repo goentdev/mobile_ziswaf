@@ -93,6 +93,50 @@ class FormView extends GetView<FormController> {
                 isDense: true,
               ),
             ),
+            const SizedBox(
+              height: 16,
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Kategori Relawan',
+                style: captionTextSemiBold.copyWith(color: neutral90),
+              ),
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: controller.kategoriTipe.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Column(
+                  children: [
+                    ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Obx(
+                        () => Text(
+                          controller.kategoriTipe[index],
+                          style: captionTextSemiBold.copyWith(color: neutral80),
+                        ),
+                      ),
+                      trailing: Obx(
+                        () => Radio<String>(
+                          activeColor: primaryMain,
+                          value: controller.kategoriTipe[index],
+                          groupValue: controller.selectedType.value,
+                          onChanged: (value) {
+                            controller.selectedType.value = value!;
+                          },
+                        ),
+                      ),
+                    ),
+                    Divider(
+                      color: neutral30,
+                      thickness: 1,
+                      height: 8,
+                    ),
+                  ],
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -116,12 +160,15 @@ class FormView extends GetView<FormController> {
                       nama: controller.nameController.text);
                   await formC.changeEmail(
                       email: controller.emailController.text);
-                  await formC.changeKategori(kategori: 'lembaga');
+                  await formC.changeKategori(
+                      kategori: controller.selectedType.value);
                   formC.getProfile();
                   if (sukses) {
+                    formC.isLoading.value = false;
                     formC.update();
                     Get.to(IdentityView());
                   } else {
+                    formC.isLoading.value = false;
                     EasyLoading.showError('Terjadi Server Error');
                   }
                 },

@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:image_picker/image_picker.dart';
@@ -52,6 +53,7 @@ class ProfileController extends GetxController {
 
   void logout() {
     sharedPrefs.logout();
+    EasyLoading.showSuccess('Berhasil keluar');
   }
 
   void getProfile() async {

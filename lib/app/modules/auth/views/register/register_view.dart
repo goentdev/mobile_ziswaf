@@ -45,9 +45,12 @@ class RegisterPage extends GetView<RegisterController> {
                     bankId: 3,
                     password: controller.whatsappC.text);
                 if (sukses) {
+                  controller.isLoading.value = false;
                   Get.to(() => OtpSmsPage(
                         nomer: controller.whatsappC.text,
                       ));
+                } else {
+                  controller.isLoading.value = false;
                 }
                 // if (controller.registerFormKey.currentState!.validate()) {
 

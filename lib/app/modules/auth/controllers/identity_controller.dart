@@ -10,6 +10,7 @@ class IdentityController extends GetxController {
   final ImagePicker picker = ImagePicker();
   XFile? identityImage;
   late TextEditingController identityNumberController;
+
   List<String> identityType = ['KTP', 'SIM', 'PASSPORT'].obs;
   RxString selectedType = ''.obs;
 
