@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/views/widget/tab_bar.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/program_belum.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/program_sudah.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_dana.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
@@ -12,6 +15,7 @@ class ProgramPageView extends GetView<ProgramPageController> {
   const ProgramPageView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final ProgC = Get.put(ProgramPageController());
     return Scaffold(
         backgroundColor: const Color(0xffECF7F4),
         body: SingleChildScrollView(
@@ -58,7 +62,7 @@ class ProgramPageView extends GetView<ProgramPageController> {
                   ),
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
+                    padding: const EdgeInsets.only(bottom: 24),
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -66,25 +70,28 @@ class ProgramPageView extends GetView<ProgramPageController> {
                           topRight: Radius.circular(20)),
                     ),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Daftar Program (${3})',
-                          style: listItemTitleBold.copyWith(color: neutral100),
+                        Container(
+                          color: Colors.white,
+                          child: MyTabBar(
+                            controller: ProgC.tabController,
+                            tabs: const [
+                              Tab(text: 'Berlangsung'),
+                              Tab(text: 'Selesai'),
+                            ],
+                          ),
                         ),
-                        const SizedBox(
-                          height: 16,
+                        const SizedBox(height: 16),
+                        SizedBox(
+                          width: double.maxFinite,
+                          height: 600,
+                          child: TabBarView(
+                              controller: ProgC.tabController,
+                              children: const [
+                                ProgramBelumSelesai(),
+                                ProgramSudahSelesai(),
+                              ]),
                         ),
-                        Column(
-                          children: const [
-                            CardDana(
-                                judul: 'Sedekah Bangunan Infrastruktur',
-                                terkumpul: 500000,
-                                target: 1100000,
-                                tanggalakhir: '2022-12-12 10:22:00',
-                                muzakki: 10),
-                          ],
-                        )
                       ],
                     ),
                   ),
