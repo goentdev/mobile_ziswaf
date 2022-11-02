@@ -16,6 +16,7 @@ class ChangeBankPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(ChooseBankController());
     final profileC = Get.put(ProfileController());
+    controller.selectedBankId.value = profileC.user.value!.bank!.id!;
     controller.accountNameController.text = profileC.user.value!.namaRekening!;
     controller.bankAccountController.text =
         profileC.user.value!.nomorRekening!.toString();
@@ -330,19 +331,38 @@ class ChangeBankPage extends StatelessWidget {
                         ),
                       ),
                       onPressed: () async {
-                        bool success = await profileC.changeBank(
-                            bankId: controller.selectedBankId.value,
-                            nomorRekening:
-                                controller.bankAccountController.text,
-                            namaRekening:
-                                controller.accountNameController.text);
-                        profileC.getProfile();
-                        if (success) {
-                          profileC.isLoading.value = false;
-                          profileC.update();
-                          Get.back();
+                        // ignore: unnecessary_null_comparison
+                        if (controller.selectedBankId.value !=
+                            profileC.user.value!.bank!.id!) {
+                          bool success = await profileC.changeBank(
+                              bankId: controller.selectedBankId.value,
+                              nomorRekening:
+                                  controller.bankAccountController.text,
+                              namaRekening:
+                                  controller.accountNameController.text);
+                          profileC.getProfile();
+                          if (success) {
+                            profileC.isLoading.value = false;
+                            profileC.update();
+                            Get.back();
+                          } else {
+                            profileC.isLoading.value = false;
+                          }
                         } else {
-                          profileC.isLoading.value = false;
+                          bool success = await profileC.changeBank(
+                              bankId: profileC.user.value!.bank!.id!,
+                              nomorRekening:
+                                  controller.bankAccountController.text,
+                              namaRekening:
+                                  controller.accountNameController.text);
+                          profileC.getProfile();
+                          if (success) {
+                            profileC.isLoading.value = false;
+                            profileC.update();
+                            Get.back();
+                          } else {
+                            profileC.isLoading.value = false;
+                          }
                         }
                       },
                       label: Text(

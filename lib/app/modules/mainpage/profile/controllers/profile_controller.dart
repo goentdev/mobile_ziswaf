@@ -140,6 +140,8 @@ class ProfileController extends GetxController {
       final fireFoto = fotoRef.child('${_getRandomFileName()}.$fotoExt');
       await fireFoto.putFile(File(foto));
       linkfoto = await fireFoto.getDownloadURL();
+    } else {
+      linkfoto;
     }
     bool success = await userProvider.changeProfile(user.value!.id!, {
       'jenis_kartu_identitas': jenisKartuIdentitas,
