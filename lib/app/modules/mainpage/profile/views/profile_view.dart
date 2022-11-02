@@ -53,7 +53,7 @@ class ProfileView extends GetView<ProfileController> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            user!.nama!,
+                            controller.user.value!.nama!,
                             style: titleTextBold.copyWith(color: neutral100),
                           ),
                           const SizedBox(
@@ -195,12 +195,12 @@ class ProfileView extends GetView<ProfileController> {
                                       ),
                                       const SizedBox(height: 4),
                                       Text(
-                                        user.nomorRekening.toString(),
+                                        controller.user.value!.nomorRekening!,
                                         style: captionTextSemiBold.copyWith(
                                             color: neutral80),
                                       ),
                                       Text(
-                                        'a.n ${user.namaRekening}',
+                                        'a.n ${user!.namaRekening}',
                                         style: captionTextSemiBold.copyWith(
                                           color: neutral80,
                                         ),

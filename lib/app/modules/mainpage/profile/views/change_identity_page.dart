@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/identity_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/add_foto_widget.dart';
@@ -545,6 +546,7 @@ class ChangeIdentityPage extends StatelessWidget {
                             profileC.isLoading.value = false;
                             profileC.update();
                             Get.back();
+                            EasyLoading.showSuccess('Data Berhasil Diubah');
                           } else {
                             profileC.isLoading.value = false;
                           }
@@ -560,6 +562,7 @@ class ChangeIdentityPage extends StatelessWidget {
                             profileC.isLoading.value = false;
                             profileC.update();
                             Get.back();
+                            EasyLoading.showSuccess('Data Berhasil Diubah');
                           } else {
                             profileC.isLoading.value = false;
                           }
