@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/controllers/user_controller.dart';
 
@@ -82,6 +83,7 @@ class ChangeEmailPage extends GetView<UserController> {
                           profileC.isLoading.value = false;
                           profileC.update();
                           Get.back();
+                          EasyLoading.showSuccess('Data Berhasil Diubah');
                         } else {
                           profileC.isLoading.value = false;
                         }
