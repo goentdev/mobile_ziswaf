@@ -280,7 +280,7 @@ class IdentityView extends GetView<IdentityController> {
               textbutton: 'Selanjutnya',
               onTap: () async {
                 bool suskes = await identC.changeIdentity(
-                    foto: controller.identityImage,
+                    foto: controller.identityImage!.path,
                     jenisKartuIdentitas: controller.selectedType.value,
                     nomorKartuIdentitas:
                         controller.identityNumberController.text);
