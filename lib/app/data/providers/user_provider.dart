@@ -21,12 +21,10 @@ class UserProvider extends GetConnect {
   ) async {
     final response = await put('$url/user/$id', body,
         headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
-    print(response.body);
     if (response.status.isOk) {
       return true;
     } else {
       EasyLoading.showError('Gagal update profile');
-      print(response.body);
       return false;
     }
   }
