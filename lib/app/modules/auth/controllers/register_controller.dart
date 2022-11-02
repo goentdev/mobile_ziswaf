@@ -41,18 +41,18 @@ class RegisterController extends GetxController {
   }
 
   Future<bool> register({
-    // required String nama,
-    // required String email,
+    required String nama,
+    required String email,
     // required String otp,
     required String whatsapp,
     required String role,
-    // required String kategori,
-    // required String jenisKartuIdentitas,
-    // required String nomorKartuIdentitas,
-    // required String fotoKartuIdentitas,
+    required String kategori,
+    required String jenisKartuIdentitas,
+    required String nomorKartuIdentitas,
+    required String fotoKartuIdentitas,
     required int bankId,
-    // required String nomorRekening,
-    // required String namaRekening,
+    required String nomorRekening,
+    required String namaRekening,
     required String password,
   }) async {
     isLoading.value = true;
@@ -71,7 +71,15 @@ class RegisterController extends GetxController {
         // bankId: bankId,
         // nomorRekening: nomorRekening,
         // namaRekening: namaRekening,
-        password: password);
+        password: password,
+        email: email,
+        fotoKartuIdentitas: fotoKartuIdentitas,
+        jenisKartuIdentitas: jenisKartuIdentitas,
+        kategori: kategori,
+        nama: nama,
+        namaRekening: namaRekening,
+        nomorKartuIdentitas: nomorKartuIdentitas,
+        nomorRekening: nomorRekening);
   }
 
   Future<bool> registupdate({

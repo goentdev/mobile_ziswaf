@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/data/models/program_model.dart';
+import 'package:mobile_ziswaf/app/data/providers/program_provider.dart';
+
+import '../../../../data/models/user_model.dart';
 
 class ProgramPageController extends GetxController
     with GetTickerProviderStateMixin {
   late TabController tabController;
+  late ScrollController scrollController;
   final count = 0.obs;
+  ProgramProvider programProvider = ProgramProvider();
+  Rx<User?> user = User().obs;
+
+  RxList<Program>? program = <Program>[].obs;
+  Rx<Program>? muzakis = Program().obs;
+  RxBool isLoading = false.obs;
+  RxBool isLoading2 = false.obs;
+
   @override
   void onInit() {
     tabController = TabController(
       length: 2,
       vsync: this,
     );
+    getPrograms();
+    scrollController = ScrollController();
     super.onInit();
   }
 
@@ -20,5 +35,18 @@ class ProgramPageController extends GetxController
     super.onClose();
   }
 
-  void increment() => count.value++;
+  getPrograms() async {
+    isLoading.value = true;
+    program!.assignAll(await programProvider.getProgram());
+    update();
+    isLoading.value = false;
+  }
+
+  refreshProgram() async {
+    isLoading.value = true;
+
+    program!.assignAll(await programProvider.getProgram());
+
+    isLoading.value = false;
+  }
 }

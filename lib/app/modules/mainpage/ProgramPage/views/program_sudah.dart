@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/controllers/program_page_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_dana.dart';
 
 import '../../../../theme/colors.dart';
@@ -12,6 +14,7 @@ class ProgramSudahSelesai extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProgramPageController());
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
@@ -23,23 +26,40 @@ class ProgramSudahSelesai extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Daftar Program (3)',
-            style: listItemTitleBold.copyWith(color: neutral100),
+          Obx(
+            () => Text(
+              'Daftar Program (${controller.program!.length})',
+              style: listItemTitleBold.copyWith(color: neutral100),
+            ),
           ),
-          const SizedBox(
-            height: 16,
+          const SizedBox(height: 16),
+          Expanded(
+            child: GetBuilder<ProgramPageController>(
+              init: ProgramPageController(),
+              initState: (_) {},
+              builder: (_) {
+                return RefreshIndicator(
+                    onRefresh: () async {
+                      controller.refreshProgram();
+                    },
+                    child: ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      controller: controller.scrollController,
+                      shrinkWrap: true,
+                      itemCount: controller.program!.length,
+                      itemBuilder: (context, index) {
+                        return CardDana(
+                            judul: controller.program![index].nama!,
+                            terkumpul:
+                                controller.program?[index].totalDana ?? 0,
+                            target: controller.program![index].targetDana!,
+                            tanggalakhir: controller.program![index].tanggal!,
+                            muzakki: controller.program![index].totalMuzaki!);
+                      },
+                    ));
+              },
+            ),
           ),
-          Column(
-            children: const [
-              CardDana(
-                  judul: 'Sedekah Bangunan Infrastruktur',
-                  terkumpul: 500000,
-                  target: 1100000,
-                  tanggalakhir: '2022-12-12 10:22:00',
-                  muzakki: 10),
-            ],
-          )
         ],
       ),
     );

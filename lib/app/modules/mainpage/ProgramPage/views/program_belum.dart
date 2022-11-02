@@ -22,7 +22,7 @@ class ProgramBelumSelesai extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Daftar Program (3)',
+            'Daftar Program (2)',
             style: listItemTitleBold.copyWith(color: neutral100),
           ),
           const SizedBox(

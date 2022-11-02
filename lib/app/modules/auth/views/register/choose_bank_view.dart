@@ -309,8 +309,9 @@ class ChooseBankView extends GetView<ChooseBankController> {
                 if (sukses) {
                   controller.isLoading.value = false;
                   EasyLoading.showSuccess('Daftar Berhasil');
-                  Get.toNamed(Routes.MAINPAGE);
                   controller.update();
+                  controller.isLoading.value = false;
+                  Get.offNamed(Routes.MAINPAGE);
                 } else {
                   controller.isLoading.value = false;
                 }

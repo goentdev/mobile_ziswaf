@@ -81,15 +81,15 @@ class ProgramPageView extends GetView<ProgramPageController> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 26),
                         SizedBox(
                           width: double.maxFinite,
-                          height: 600,
+                          height: 720,
                           child: TabBarView(
                               controller: ProgC.tabController,
                               children: const [
-                                ProgramBelumSelesai(),
                                 ProgramSudahSelesai(),
+                                ProgramBelumSelesai(),
                               ]),
                         ),
                       ],
