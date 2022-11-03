@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/data/models/muzaki_model.dart';
+import 'package:mobile_ziswaf/app/data/models/totalmuzaki_model.dart';
 import 'package:mobile_ziswaf/app/data/models/user_model.dart';
 import 'package:mobile_ziswaf/app/data/providers/muzaki_provider.dart';
 
@@ -22,6 +23,7 @@ class MuzakkiPageController extends GetxController
   RxList<Muzaki>? muzakipersonal = <Muzaki>[].obs;
   RxList<Muzaki>? muzakibadanusaha = <Muzaki>[].obs;
   RxList<Muzaki>? muzakipemerintah = <Muzaki>[].obs;
+  Rx<Totalmuzaki?> totalmuzaki = Totalmuzaki().obs;
 
   Rx<Muzaki>? muzakis = Muzaki().obs;
 
@@ -38,6 +40,7 @@ class MuzakkiPageController extends GetxController
       length: 3,
       vsync: this,
     );
+    gettotalmuzaki();
     getMuzakis();
     getMuzakisall();
     refreshMuzaki();
@@ -58,6 +61,11 @@ class MuzakkiPageController extends GetxController
     muzaki!.assignAll(await muzakiProvider.getMuzakisall(1));
     update();
     isLoading.value = false;
+  }
+
+  gettotalmuzaki() async {
+    totalmuzaki.value = await muzakiProvider.getTotalMuzakis(1);
+    update();
   }
 
   getMuzakis() async {
@@ -111,6 +119,7 @@ class MuzakkiPageController extends GetxController
     muzakipersonal!.assignAll(await muzakiProvider.getMuzakis('personal'));
     muzakipemerintah!.assignAll(await muzakiProvider.getMuzakis('pemerintah'));
     muzakibadanusaha!.assignAll(await muzakiProvider.getMuzakis('badan usaha'));
+    totalmuzaki.value = await muzakiProvider.getTotalMuzakis(1);
     muzaki!.assignAll(await muzakiProvider.getMuzakisall(1));
 
     isLoading.value = false;

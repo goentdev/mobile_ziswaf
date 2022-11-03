@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import '../../modules/mainpage/MuzakkiPage/controllers/tambah_ubah_muzakki_controller.dart';
 import '../../utils/shared_preferences.dart';
 import '../models/muzaki_model.dart';
+import '../models/totalmuzaki_model.dart';
 
 class MuzakiProvider extends GetConnect {
   String url = 'https://ziswaf-server.smarteschool.net';
@@ -24,6 +25,17 @@ class MuzakiProvider extends GetConnect {
     }
   }
 
+  Future<Totalmuzaki?> getTotalMuzakis(int? id) async {
+    final response = await get('$url/muzaki?user_id=$id',
+        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
+    if (response.statusCode == 200) {
+      var data = response.body['muzaki'];
+      return Totalmuzaki.fromJson(data);
+    } else {
+      throw 'Server Error! Coba lagi nanti';
+    }
+  }
+
   Future<List<Muzaki>> getMuzakis(String? kategori) async {
     final response = await get('$url/muzaki?kategori=$kategori',
         headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
@@ -33,7 +45,7 @@ class MuzakiProvider extends GetConnect {
       data.forEach((e) => {muzaki.add(Muzaki.fromJson(e))});
       return muzaki;
     } else {
-      throw 'Server Error! Coba lagi nanti';
+      throw EasyLoading.showError('Server Error! Coba lagi nanti');
     }
   }
 

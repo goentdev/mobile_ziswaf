@@ -46,7 +46,8 @@ class MuzakkiPageView extends GetView<MuzakkiPageController> {
                         height: 2,
                       ),
                       Obx(
-                        () => Text('${controller.muzaki!.length}',
+                        () => Text(
+                            '${controller.totalmuzaki.value!.totalMuzaki}',
                             style: pageTitleBold.copyWith(color: primaryHover)),
                       ),
                     ],
