@@ -5,8 +5,8 @@ import 'package:mobile_ziswaf/app/theme/fonts.dart';
 
 import '../../../../theme/colors.dart';
 
-class ProgramBelumSelesai extends StatelessWidget {
-  const ProgramBelumSelesai({super.key});
+class ProgramSudahSelesai extends StatelessWidget {
+  const ProgramSudahSelesai({super.key});
 
   @override
   Widget build(BuildContext context) {

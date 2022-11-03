@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/views/widget/tab_bar.dart';
-import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/program_belum.dart';
-import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/program_sudah.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/program_selesai.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/program_berlangsung.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_dana.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
@@ -88,8 +88,8 @@ class ProgramPageView extends GetView<ProgramPageController> {
                           child: TabBarView(
                               controller: ProgC.tabController,
                               children: const [
+                                ProgramBerlangsung(),
                                 ProgramSudahSelesai(),
-                                ProgramBelumSelesai(),
                               ]),
                         ),
                       ],

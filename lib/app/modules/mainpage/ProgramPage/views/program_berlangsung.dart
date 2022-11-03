@@ -9,8 +9,8 @@ import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/car
 import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
 
-class ProgramSudahSelesai extends StatelessWidget {
-  const ProgramSudahSelesai({super.key});
+class ProgramBerlangsung extends StatelessWidget {
+  const ProgramBerlangsung({super.key});
 
   @override
   Widget build(BuildContext context) {
