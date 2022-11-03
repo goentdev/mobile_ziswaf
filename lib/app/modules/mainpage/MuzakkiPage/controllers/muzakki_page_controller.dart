@@ -111,6 +111,7 @@ class MuzakkiPageController extends GetxController
     muzakipersonal!.assignAll(await muzakiProvider.getMuzakis('personal'));
     muzakipemerintah!.assignAll(await muzakiProvider.getMuzakis('pemerintah'));
     muzakibadanusaha!.assignAll(await muzakiProvider.getMuzakis('badan usaha'));
+    muzaki!.assignAll(await muzakiProvider.getMuzakisall(1));
 
     isLoading.value = false;
   }
