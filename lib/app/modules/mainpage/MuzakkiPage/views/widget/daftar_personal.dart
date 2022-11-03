@@ -42,9 +42,6 @@ class DaftarPersonal extends StatelessWidget {
                   style: listItemTitleBold.copyWith(color: neutral100),
                 ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
               Expanded(
                 child: GetBuilder<MuzakkiPageController>(
                   init: MuzakkiPageController(),
