@@ -311,7 +311,7 @@ class ChooseBankView extends GetView<ChooseBankController> {
                   EasyLoading.showSuccess('Daftar Berhasil');
                   controller.update();
                   controller.isLoading.value = false;
-                  Get.offNamed(Routes.MAINPAGE);
+                  Get.offAllNamed(Routes.MAINPAGE);
                 } else {
                   controller.isLoading.value = false;
                 }

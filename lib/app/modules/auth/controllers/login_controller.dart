@@ -5,7 +5,7 @@ import 'package:mobile_ziswaf/app/data/providers/auth_provider.dart';
 class LoginController extends GetxController {
   late TextEditingController whatsappC;
   late TextEditingController passwordC;
-  final loginFormKey = GlobalKey<FormState>();
+  late GlobalKey<FormState> loginFormKey;
   final AuthProvider authProvider = AuthProvider();
 
   RxBool isLoading = false.obs;
@@ -15,6 +15,8 @@ class LoginController extends GetxController {
   void onInit() {
     whatsappC = TextEditingController();
     passwordC = TextEditingController();
+    loginFormKey = GlobalKey<FormState>();
+
     super.onInit();
   }
 

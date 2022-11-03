@@ -28,4 +28,26 @@ class UserProvider extends GetConnect {
       return false;
     }
   }
+
+  Future<bool> changepassword({
+    required String passwordbaru,
+    required String passwordlama,
+  }) async {
+    final response = await post('$url/user/reset-password', headers: {
+      'Authorization': 'bearer ${sharedPrefs.token}'
+    }, {
+      'password_lama': passwordlama,
+      'password_baru': passwordbaru,
+    });
+    if (response.status.isOk) {
+      EasyLoading.showSuccess('Berhasil ubah password');
+      return true;
+    } else if (response.statusCode == 422) {
+      EasyLoading.showError('Password lama tidak sesuai');
+      return false;
+    } else {
+      EasyLoading.showError('Password lama tidak sesuai');
+      return false;
+    }
+  }
 }

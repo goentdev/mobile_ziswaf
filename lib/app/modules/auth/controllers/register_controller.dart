@@ -11,10 +11,9 @@ class RegisterController extends GetxController {
   late TextEditingController passwordC;
   late TextEditingController confirmC;
   late TextEditingController otp;
-  // final loginFormKey = GlobalKey<FormState>();
   final AuthProvider authProvider = AuthProvider();
 
-  final registerFormKey = GlobalKey<FormState>();
+  late GlobalKey<FormState> registerFormKey;
   Rx<User?> user = User().obs;
 
   RxBool isLoading = false.obs;
@@ -25,6 +24,7 @@ class RegisterController extends GetxController {
     whatsappC = TextEditingController();
     passwordC = TextEditingController();
     confirmC = TextEditingController();
+    registerFormKey = GlobalKey<FormState>();
     super.onInit();
   }
 

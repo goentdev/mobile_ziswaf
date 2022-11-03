@@ -48,7 +48,7 @@ class LoginPage extends GetView<LoginController> {
                       password: controller.passwordC.text,
                     );
                     if (success) {
-                      Get.offNamed(Routes.MAINPAGE);
+                      Get.offAllNamed(Routes.MAINPAGE);
                       controller.isLoading.value = false;
                     } else {
                       controller.isLoading.value = false;
@@ -98,7 +98,7 @@ class LoginPage extends GetView<LoginController> {
               ),
               InkWell(
                 onTap: () {
-                  Get.toNamed(Routes.REGISTER);
+                  Get.offNamed(Routes.REGISTER);
                 },
                 child: Text(
                   'Daftar disini',

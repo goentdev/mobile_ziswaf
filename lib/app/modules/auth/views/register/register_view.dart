@@ -39,31 +39,30 @@ class RegisterPage extends GetView<RegisterController> {
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(4.0))),
               onPressed: () async {
-                bool sukses = await registC.register(
-                    whatsapp: controller.whatsappC.text,
-                    role: 'relawan',
-                    bankId: 151,
-                    password: controller.whatsappC.text,
-                    email: 'Belum Mengisi Data',
-                    fotoKartuIdentitas:
-                        'https://firebasestorage.googleapis.com/v0/b/ziswaf-111b8.appspot.com/o/identitas-foto%2Fnot_found_image.jpg?alt=media&token=81a3bf91-0274-4099-8837-2784673c523e',
-                    jenisKartuIdentitas: 'Belum Mengisi Data',
-                    kategori: 'lembaga',
-                    nama: 'Belum Mengisi Data',
-                    namaRekening: 'Belum Mengisi Data',
-                    nomorKartuIdentitas: 'Belum Mengisi Data',
-                    nomorRekening: 'Belum Mengisi Data');
-                if (sukses) {
-                  controller.isLoading.value = false;
-                  Get.to(() => OtpSmsPage(
-                        nomer: controller.whatsappC.text,
-                      ));
-                } else {
-                  controller.isLoading.value = false;
+                if (controller.registerFormKey.currentState!.validate()) {
+                  bool sukses = await registC.register(
+                      whatsapp: controller.whatsappC.text,
+                      role: 'relawan',
+                      bankId: 151,
+                      password: controller.whatsappC.text,
+                      email: 'Belum Mengisi Data',
+                      fotoKartuIdentitas:
+                          'https://firebasestorage.googleapis.com/v0/b/ziswaf-111b8.appspot.com/o/identitas-foto%2Fnot_found_image.jpg?alt=media&token=81a3bf91-0274-4099-8837-2784673c523e',
+                      jenisKartuIdentitas: 'Belum Mengisi Data',
+                      kategori: 'lembaga',
+                      nama: 'Belum Mengisi Data',
+                      namaRekening: 'Belum Mengisi Data',
+                      nomorKartuIdentitas: 'Belum Mengisi Data',
+                      nomorRekening: 'Belum Mengisi Data');
+                  if (sukses) {
+                    controller.isLoading.value = false;
+                    Get.to(() => OtpSmsPage(
+                          nomer: controller.whatsappC.text,
+                        ));
+                  } else {
+                    controller.isLoading.value = false;
+                  }
                 }
-                // if (controller.registerFormKey.currentState!.validate()) {
-
-                // }
               },
               label: Text(
                 'Daftar',
@@ -84,7 +83,7 @@ class RegisterPage extends GetView<RegisterController> {
               ),
               InkWell(
                 onTap: () {
-                  Get.toNamed(Routes.LOGIN);
+                  Get.offNamed(Routes.LOGIN);
                 },
                 child: Text(
                   'Masuk Sekarang',
