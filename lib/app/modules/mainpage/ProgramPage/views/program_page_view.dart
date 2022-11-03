@@ -47,13 +47,16 @@ class ProgramPageView extends GetView<ProgramPageController> {
                         const SizedBox(
                           height: 2,
                         ),
-                        Text(
-                            NumberFormat.currency(
-                              locale: 'id',
-                              name: 'Rp',
-                              decimalDigits: 0,
-                            ).format(15000000),
-                            style: pageTitleBold.copyWith(color: primaryHover)),
+                        Obx(
+                          () => Text(
+                              NumberFormat.currency(
+                                locale: 'id',
+                                name: 'Rp',
+                                decimalDigits: 0,
+                              ).format(ProgC.program2.value!.totalDana ?? 0),
+                              style:
+                                  pageTitleBold.copyWith(color: primaryHover)),
+                        ),
                       ],
                     ),
                   ),

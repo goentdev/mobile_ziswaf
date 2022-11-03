@@ -14,7 +14,7 @@ class ProgramPageController extends GetxController
   Rx<User?> user = User().obs;
 
   RxList<Program>? program = <Program>[].obs;
-  Rx<Program>? muzakis = Program().obs;
+  Rx<Program?> program2 = Program().obs;
   RxBool isLoading = false.obs;
   RxBool isLoading2 = false.obs;
 
