@@ -45,8 +45,10 @@ class MuzakkiPageView extends GetView<MuzakkiPageController> {
                       const SizedBox(
                         height: 2,
                       ),
-                      Text('${controller.muzaki!.length}',
-                          style: pageTitleBold.copyWith(color: primaryHover)),
+                      Obx(
+                        () => Text('${controller.muzaki!.length}',
+                            style: pageTitleBold.copyWith(color: primaryHover)),
+                      ),
                     ],
                   ),
                 ),
