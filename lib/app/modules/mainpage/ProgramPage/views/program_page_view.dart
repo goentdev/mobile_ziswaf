@@ -75,7 +75,7 @@ class ProgramPageView extends GetView<ProgramPageController> {
                     child: Column(
                       children: [
                         Container(
-                          color: Colors.white,
+                          color: Colors.transparent,
                           child: MyTabBar(
                             controller: ProgC.tabController,
                             tabs: const [

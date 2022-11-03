@@ -26,7 +26,7 @@ class ProgramSudahSelesai extends StatelessWidget {
             style: listItemTitleBold.copyWith(color: neutral100),
           ),
           const SizedBox(
-            height: 16,
+            height: 30,
           ),
           Column(
             children: const [

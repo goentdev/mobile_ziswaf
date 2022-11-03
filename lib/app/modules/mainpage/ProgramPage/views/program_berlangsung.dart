@@ -32,7 +32,6 @@ class ProgramBerlangsung extends StatelessWidget {
               style: listItemTitleBold.copyWith(color: neutral100),
             ),
           ),
-          const SizedBox(height: 16),
           Expanded(
             child: GetBuilder<ProgramPageController>(
               init: ProgramPageController(),

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/controllers/program_page_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/ubah_transaksi_page.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/detail_card.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
@@ -25,6 +26,7 @@ class DetailProgram extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final progC = Get.put(ProgramPageController());
     return Scaffold(
       extendBody: true,
       backgroundColor: Colors.white,
