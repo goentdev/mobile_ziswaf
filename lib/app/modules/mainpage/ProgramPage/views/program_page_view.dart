@@ -53,7 +53,8 @@ class ProgramPageView extends GetView<ProgramPageController> {
                                 locale: 'id',
                                 name: 'Rp',
                                 decimalDigits: 0,
-                              ).format(ProgC.program2.value!.totalDana ?? 0),
+                              ).format(
+                                  ProgC.totalDana.value!.totalDanaProgram ?? 0),
                               style:
                                   pageTitleBold.copyWith(color: primaryHover)),
                         ),

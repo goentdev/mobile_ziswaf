@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/data/models/program_model.dart';
+import 'package:mobile_ziswaf/app/data/models/totaldanaprogram_model.dart';
 import 'package:mobile_ziswaf/app/data/providers/program_provider.dart';
+import 'package:mobile_ziswaf/app/data/providers/totaldanaprogram_provider.dart';
 
 import '../../../../data/models/user_model.dart';
 
@@ -11,7 +13,9 @@ class ProgramPageController extends GetxController
   late ScrollController scrollController;
   final count = 0.obs;
   ProgramProvider programProvider = ProgramProvider();
-  Rx<User?> user = User().obs;
+  TotaldanaprogramProvider totalDanaProgramprovider =
+      TotaldanaprogramProvider();
+  Rx<Totaldanaprogram?> totalDana = Totaldanaprogram().obs;
 
   RxList<Program>? program = <Program>[].obs;
   Rx<Program?> program2 = Program().obs;
@@ -24,6 +28,7 @@ class ProgramPageController extends GetxController
       length: 2,
       vsync: this,
     );
+    gettotaldana();
     getPrograms();
     scrollController = ScrollController();
     super.onInit();
@@ -33,6 +38,11 @@ class ProgramPageController extends GetxController
   void onClose() {
     tabController.dispose();
     super.onClose();
+  }
+
+  gettotaldana() async {
+    totalDana.value = await totalDanaProgramprovider.totaldanaprogram();
+    update();
   }
 
   getPrograms() async {
