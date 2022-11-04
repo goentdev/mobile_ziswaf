@@ -37,12 +37,12 @@ class Transaksi {
     programId = json['program_id'];
     userId = json['user_id'];
     muzakiId = json['muzaki_id'];
-    totalTransaksi = json['total_transaksi'];
-    nomorRekening = json['nomor_rekening'];
-    namaRekening = json['nama_rekening'];
-    nomorResi = json['nomor_resi'];
-    buktiTransaksi = json['bukti_transaksi'];
-    bankid = json['bank_id'];
+    totalTransaksi = json['total_transaksi'] ?? 0;
+    nomorRekening = json['nomor_rekening'] ?? 'Data belum di isi';
+    namaRekening = json['nama_rekening'] ?? 'Data belum di isi';
+    nomorResi = json['nomor_resi'] ?? 'Data belum di isi';
+    buktiTransaksi = json['bukti_transaksi'] ?? 'Data belum di isi';
+    bankid = json['bank_id'] ?? 0;
     createdAt = json['created_at'];
     muzaki = json['muzaki'] != null
         ? MuzakiUserModel?.fromJson(json['muzaki'])

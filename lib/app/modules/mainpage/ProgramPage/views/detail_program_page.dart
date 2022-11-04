@@ -171,12 +171,15 @@ class DetailProgram extends StatelessWidget {
                                                   .transaksi![index].id,
                                               icon: 'assets/icons/ap.png',
                                               nama: controller.transaksi![index]
-                                                  .muzaki!.nama!,
+                                                      .muzaki?.nama ??
+                                                  '-',
                                               bank: controller.transaksi![index]
-                                                  .bank!.nama!,
+                                                      .bank?.nama ??
+                                                  '-',
                                               nominal: controller
-                                                  .transaksi![index]
-                                                  .totalTransaksi,
+                                                      .transaksi?[index]
+                                                      .totalTransaksi ??
+                                                  0,
                                               waktu: controller
                                                   .transaksi![index].createdAt);
                                         },
@@ -185,9 +188,6 @@ class DetailProgram extends StatelessWidget {
                                   );
                                 },
                               ),
-                              const SizedBox(
-                                height: 130,
-                              )
                             ],
                           ),
                         ),
