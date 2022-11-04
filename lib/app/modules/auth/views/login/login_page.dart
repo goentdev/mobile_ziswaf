@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/login_controller.dart';
+import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/forgot_password.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
@@ -211,9 +212,14 @@ class LoginPage extends GetView<LoginController> {
               const SizedBox(
                 height: 8,
               ),
-              Text(
-                'Lupa kata sandi?',
-                style: captionTextSemiBold.copyWith(color: secondaryMain),
+              InkWell(
+                onTap: () {
+                  Get.offAll(() => const ForgotPassword());
+                },
+                child: Text(
+                  'Lupa kata sandi?',
+                  style: captionTextSemiBold.copyWith(color: secondaryMain),
+                ),
               ),
             ],
           ),
