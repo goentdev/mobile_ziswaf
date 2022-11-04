@@ -10,6 +10,7 @@ class IdentityController extends GetxController {
   final ImagePicker picker = ImagePicker();
   XFile? identityImage;
   late TextEditingController identityNumberController;
+  late GlobalKey<FormState> identFormKey;
 
   List<String> identityType = ['KTP', 'SIM', 'PASSPORT'].obs;
   RxString selectedType = ''.obs;
@@ -17,6 +18,7 @@ class IdentityController extends GetxController {
   @override
   void onInit() {
     identityNumberController = TextEditingController();
+    identFormKey = GlobalKey<FormState>();
     super.onInit();
   }
 

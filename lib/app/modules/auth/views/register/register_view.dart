@@ -5,6 +5,7 @@ import 'package:mobile_ziswaf/app/modules/auth/views/register/otp_view.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
+import 'package:mobile_ziswaf/app/widgets/button.dart';
 
 class RegisterPage extends GetView<RegisterController> {
   const RegisterPage({super.key});
@@ -32,44 +33,49 @@ class RegisterPage extends GetView<RegisterController> {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
-            height: 41,
-            width: 355,
-            child: FloatingActionButton.extended(
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(4.0))),
-              onPressed: () async {
-                if (controller.registerFormKey.currentState!.validate()) {
-                  bool sukses = await registC.register(
-                      whatsapp: controller.whatsappC.text,
-                      role: 'relawan',
-                      bankId: 151,
-                      password: controller.whatsappC.text,
-                      email: 'Belum Mengisi Data',
-                      fotoKartuIdentitas:
-                          'https://firebasestorage.googleapis.com/v0/b/ziswaf-111b8.appspot.com/o/identitas-foto%2Fnot_found_image.jpg?alt=media&token=81a3bf91-0274-4099-8837-2784673c523e',
-                      jenisKartuIdentitas: 'Belum Mengisi Data',
-                      kategori: 'lembaga',
-                      nama: 'Belum Mengisi Data',
-                      namaRekening: 'Belum Mengisi Data',
-                      nomorKartuIdentitas: 'Belum Mengisi Data',
-                      nomorRekening: 'Belum Mengisi Data');
-                  if (sukses) {
-                    controller.isLoading.value = false;
-                    Get.to(() => OtpSmsPage(
-                          nomer: controller.whatsappC.text,
-                        ));
-                  } else {
-                    controller.isLoading.value = false;
-                  }
-                }
-              },
-              label: Text(
-                'Daftar',
-                style: textMBold.copyWith(color: Colors.white),
-              ),
-              backgroundColor: primaryMain,
-            ),
+          Obx(
+            () => controller.isLoading.value
+                ? const LoadingButton()
+                : SizedBox(
+                    height: 41,
+                    width: 355,
+                    child: FloatingActionButton.extended(
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4.0))),
+                      onPressed: () async {
+                        if (controller.registerFormKey.currentState!
+                            .validate()) {
+                          bool sukses = await registC.register(
+                              whatsapp: controller.whatsappC.text,
+                              role: 'relawan',
+                              bankId: 151,
+                              password: controller.whatsappC.text,
+                              email: 'Belum Mengisi Data',
+                              fotoKartuIdentitas:
+                                  'https://firebasestorage.googleapis.com/v0/b/ziswaf-111b8.appspot.com/o/identitas-foto%2Fnot_found_image.jpg?alt=media&token=81a3bf91-0274-4099-8837-2784673c523e',
+                              jenisKartuIdentitas: 'Belum Mengisi Data',
+                              kategori: 'lembaga',
+                              nama: 'Belum Mengisi Data',
+                              namaRekening: 'Belum Mengisi Data',
+                              nomorKartuIdentitas: 'Belum Mengisi Data',
+                              nomorRekening: 'Belum Mengisi Data');
+                          if (sukses) {
+                            controller.isLoading.value = false;
+                            Get.off(() => OtpSmsPage(
+                                  nomer: controller.whatsappC.text,
+                                ));
+                          } else {
+                            controller.isLoading.value = false;
+                          }
+                        }
+                      },
+                      label: Text(
+                        'Daftar',
+                        style: textMBold.copyWith(color: Colors.white),
+                      ),
+                      backgroundColor: primaryMain,
+                    ),
+                  ),
           ),
           const SizedBox(
             height: 8,

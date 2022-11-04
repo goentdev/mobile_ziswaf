@@ -5,6 +5,7 @@ import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/forgot_pas
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
+import 'package:mobile_ziswaf/app/widgets/button.dart';
 
 class LoginPage extends GetView<LoginController> {
   const LoginPage({super.key});
@@ -33,59 +34,61 @@ class LoginPage extends GetView<LoginController> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Obx(
-            () => SizedBox(
-              height: 41,
-              width: 355,
-              child: FloatingActionButton.extended(
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(4.0),
-                  ),
-                ),
-                onPressed: () async {
-                  if (controller.loginFormKey.currentState!.validate()) {
-                    bool success = await controller.login(
-                      whatsapp: controller.whatsappC.text,
-                      password: controller.passwordC.text,
-                    );
-                    if (success) {
-                      Get.offAllNamed(Routes.MAINPAGE);
-                      controller.isLoading.value = false;
-                    } else {
-                      controller.isLoading.value = false;
-                    }
-                  }
-                },
-                label: controller.isLoading.value
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 16,
-                            height: 16,
-                            margin: const EdgeInsets.only(right: 8),
-                            child: const CircularProgressIndicator(
-                              strokeWidth: 2,
-                              valueColor: AlwaysStoppedAnimation(
-                                Colors.white,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            'Loading',
-                            style: paragraphTextBold.copyWith(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      )
-                    : Text(
-                        'Masuk',
-                        style: textMBold.copyWith(color: Colors.white),
+            () => controller.isLoading.value
+                ? const LoadingButton()
+                : SizedBox(
+                    height: 41,
+                    width: 355,
+                    child: FloatingActionButton.extended(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(4.0),
+                        ),
                       ),
-                backgroundColor: primaryMain,
-              ),
-            ),
+                      onPressed: () async {
+                        if (controller.loginFormKey.currentState!.validate()) {
+                          bool success = await controller.login(
+                            whatsapp: controller.whatsappC.text,
+                            password: controller.passwordC.text,
+                          );
+                          if (success) {
+                            Get.offAllNamed(Routes.MAINPAGE);
+                            controller.isLoading.value = false;
+                          } else {
+                            controller.isLoading.value = false;
+                          }
+                        }
+                      },
+                      label: controller.isLoading.value
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 16,
+                                  height: 16,
+                                  margin: const EdgeInsets.only(right: 8),
+                                  child: const CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    valueColor: AlwaysStoppedAnimation(
+                                      Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  'Loading',
+                                  style: paragraphTextBold.copyWith(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Text(
+                              'Masuk',
+                              style: textMBold.copyWith(color: Colors.white),
+                            ),
+                      backgroundColor: primaryMain,
+                    ),
+                  ),
           ),
           const SizedBox(
             height: 8,

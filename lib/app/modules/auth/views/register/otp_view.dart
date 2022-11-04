@@ -31,14 +31,6 @@ class OtpSmsPage extends GetView<OtpController> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () => Get.back(),
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: neutral90,
-            size: 10,
-          ),
-        ),
         centerTitle: true,
         title: Text(
           'Kode Verifikasi OTP',
@@ -76,7 +68,7 @@ class OtpSmsPage extends GetView<OtpController> {
                   otp: otpC.otpController.text,
                 );
                 if (sukses) {
-                  Get.to(() => FormView());
+                  Get.off(() => FormView());
                   otpC.update();
                 } else {
                   print('kode salah');

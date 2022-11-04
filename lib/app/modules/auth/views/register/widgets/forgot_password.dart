@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_ziswaf/app/data/providers/user_provider.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/forgot_password_controller.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
+import 'package:mobile_ziswaf/app/widgets/button.dart';
 import 'package:mobile_ziswaf/main.dart';
 import 'package:get/get.dart';
 import '../../../../../theme/colors.dart';
@@ -101,37 +102,41 @@ class ForgotPassword extends StatelessWidget {
             top: BorderSide(color: neutral30, width: 1),
           ),
         ),
-        child: TextButton(
-          style: TextButton.styleFrom(
-            backgroundColor: primaryMain,
-          ),
-          onPressed: () async {
-            if (forgotC.forgotFormKey.currentState!.validate()) {
-              bool sukses =
-                  await forgotC.forgotpass(email: forgotC.emailforgot.text);
-              if (sukses) {
-                forgotC.isLoading.value = false;
-                // ignore: use_build_context_synchronously
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    backgroundColor: Colors.green,
-                    content: Text(
-                      'Silahkan Cek Email Anda Untuk Mengisi Ulang Kata Sandi Baru',
-                      textAlign: TextAlign.center,
-                    ),
+        child: Obx(
+          () => forgotC.isLoading.value
+              ? const LoadingButton()
+              : TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: primaryMain,
                   ),
-                );
-                Get.offNamed(Routes.LOGIN);
-              } else {
-                print('object');
-                forgotC.isLoading.value = false;
-              }
-            }
-          },
-          child: Text(
-            'Kirim',
-            style: textMBold.copyWith(color: Colors.white),
-          ),
+                  onPressed: () async {
+                    if (forgotC.forgotFormKey.currentState!.validate()) {
+                      bool sukses = await forgotC.forgotpass(
+                          email: forgotC.emailforgot.text);
+                      if (sukses) {
+                        forgotC.isLoading.value = false;
+                        // ignore: use_build_context_synchronously
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Colors.green,
+                            content: Text(
+                              'Silahkan Cek Email Anda Untuk Mengisi Ulang Kata Sandi Baru',
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                        Get.offNamed(Routes.LOGIN);
+                      } else {
+                        print('object');
+                        forgotC.isLoading.value = false;
+                      }
+                    }
+                  },
+                  child: Text(
+                    'Kirim',
+                    style: textMBold.copyWith(color: Colors.white),
+                  ),
+                ),
         ),
       ),
     );
