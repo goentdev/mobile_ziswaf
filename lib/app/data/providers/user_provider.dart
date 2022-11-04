@@ -50,4 +50,20 @@ class UserProvider extends GetConnect {
       return false;
     }
   }
+
+  Future<bool> forgotpassword({required String email}) async {
+    final response = await post('$url/user/kirim-email', {
+      'email': email,
+    });
+    if (response.status.isOk) {
+      EasyLoading.showSuccess('Berhasil Mengirim Ke Email');
+      return true;
+    } else if (response.statusCode == 400) {
+      EasyLoading.showError('Email Belum Terdaftar');
+      return false;
+    } else {
+      EasyLoading.showError('Terjadi Server Error');
+      return false;
+    }
+  }
 }
