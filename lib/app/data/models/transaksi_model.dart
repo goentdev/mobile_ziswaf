@@ -1,3 +1,5 @@
+import 'package:mobile_ziswaf/app/data/models/muzaki_model.dart';
+
 import 'bank_model.dart';
 
 class Transaksi {
@@ -10,8 +12,10 @@ class Transaksi {
   String? namaRekening;
   String? nomorResi;
   String? buktiTransaksi;
-  Bank? bank;
+  int? bankid;
   String? createdAt;
+  MuzakiUserModel? muzaki;
+  Bank? bank;
 
   Transaksi(
       {this.id,
@@ -23,8 +27,10 @@ class Transaksi {
       this.namaRekening,
       this.nomorResi,
       this.buktiTransaksi,
-      this.bank,
-      this.createdAt});
+      this.bankid,
+      this.createdAt,
+      this.muzaki,
+      this.bank});
 
   Transaksi.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -36,8 +42,12 @@ class Transaksi {
     namaRekening = json['nama_rekening'];
     nomorResi = json['nomor_resi'];
     buktiTransaksi = json['bukti_transaksi'];
-    bank = json['bank_id'];
+    bankid = json['bank_id'];
     createdAt = json['created_at'];
+    muzaki = json['muzaki'] != null
+        ? MuzakiUserModel?.fromJson(json['muzaki'])
+        : null;
+    bank = json['bank'] != null ? Bank?.fromJson(json['bank']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -51,8 +61,14 @@ class Transaksi {
     data['nama_rekening'] = namaRekening;
     data['nomor_resi'] = nomorResi;
     data['bukti_transaksi'] = buktiTransaksi;
-    data['bank_id'] = bank;
+    data['bank_id'] = bankid;
     data['created_at'] = createdAt;
+    if (muzaki != null) {
+      data['muzaki'] = muzaki?.toJson();
+    }
+    if (bank != null) {
+      data['bank'] = bank?.toJson();
+    }
     return data;
   }
 }

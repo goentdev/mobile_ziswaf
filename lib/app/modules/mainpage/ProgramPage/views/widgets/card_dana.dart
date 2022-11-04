@@ -8,13 +8,16 @@ import 'package:mobile_ziswaf/app/theme/fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../../../../theme/colors.dart';
+import '../../controllers/program_page_controller.dart';
 
 class CardDana extends StatelessWidget {
   final String judul, tanggalakhir;
   final int terkumpul, target, muzakki;
+  final int? id;
 
   const CardDana(
       {super.key,
+      required this.id,
       required this.judul,
       required this.terkumpul,
       required this.target,
@@ -23,6 +26,7 @@ class CardDana extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProgramPageController());
     double persen = target / 100;
     double target100v = target / persen;
     int target100 = target100v.toInt();
@@ -30,13 +34,16 @@ class CardDana extends StatelessWidget {
     int target1 = target1v.toInt();
     return InkWell(
       onTap: () {
+        controller.getTransaksis(id: id);
         Get.to(() => DetailProgram(
-            judul: judul,
-            tanggalakhir: tanggalakhir,
-            terkumpul: terkumpul,
-            target: target,
-            target1: target1,
-            target100: target100));
+              judul: judul,
+              tanggalakhir: tanggalakhir,
+              terkumpul: terkumpul,
+              target: target,
+              target1: target1,
+              target100: target100,
+              id: id,
+            ));
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

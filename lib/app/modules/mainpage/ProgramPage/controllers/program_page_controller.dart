@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/data/models/program_model.dart';
 import 'package:mobile_ziswaf/app/data/models/totaldanaprogram_model.dart';
+import 'package:mobile_ziswaf/app/data/models/transaksi_model.dart';
 import 'package:mobile_ziswaf/app/data/providers/program_provider.dart';
 import 'package:mobile_ziswaf/app/data/providers/totaldanaprogram_provider.dart';
+import 'package:mobile_ziswaf/app/data/providers/transaksi_provider.dart';
 
 import '../../../../data/models/user_model.dart';
 
@@ -11,12 +13,15 @@ class ProgramPageController extends GetxController
     with GetTickerProviderStateMixin {
   late TabController tabController;
   late ScrollController scrollController;
+  late ScrollController scrollController2;
   final count = 0.obs;
+  TransaksiProvider transaksiProvider = TransaksiProvider();
   ProgramProvider programProvider = ProgramProvider();
   TotaldanaprogramProvider totalDanaProgramprovider =
       TotaldanaprogramProvider();
-  Rx<Totaldanaprogram?> totalDana = Totaldanaprogram().obs;
 
+  RxList<Transaksi>? transaksi = <Transaksi>[].obs;
+  Rx<Totaldanaprogram?> totalDana = Totaldanaprogram().obs;
   RxList<Program>? program = <Program>[].obs;
   Rx<Program?> program2 = Program().obs;
   RxBool isLoading = false.obs;
@@ -28,9 +33,12 @@ class ProgramPageController extends GetxController
       length: 2,
       vsync: this,
     );
+    // refreshTransaksi();
+    // getTransaksis(id: 39);
     gettotaldana();
     getPrograms();
     scrollController = ScrollController();
+    scrollController2 = ScrollController();
     super.onInit();
   }
 
@@ -52,6 +60,13 @@ class ProgramPageController extends GetxController
     isLoading.value = false;
   }
 
+  getTransaksis({required int? id}) async {
+    isLoading.value = true;
+    transaksi!.assignAll(await transaksiProvider.getTransaksi(id));
+    update();
+    isLoading.value = false;
+  }
+
   refreshProgram() async {
     isLoading.value = true;
 
@@ -59,4 +74,12 @@ class ProgramPageController extends GetxController
 
     isLoading.value = false;
   }
+
+  // refreshTransaksi() async {
+  //   isLoading.value = true;
+
+  //   transaksi!.assignAll(await transaksiProvider.getTransaksi(1));
+
+  //   isLoading.value = false;
+  // }
 }

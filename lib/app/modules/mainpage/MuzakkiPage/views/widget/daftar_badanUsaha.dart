@@ -26,7 +26,7 @@ class DaftarBadanUsaha extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: const [
               SizedBox(
-                height: 200,
+                height: 100,
               ),
               Center(child: CircularProgressIndicator()),
             ],

@@ -12,8 +12,8 @@ class DetailCard extends StatelessWidget {
   final String icon;
   final String nama;
   final String bank;
-  final int nominal;
-  final String waktu;
+  final int? nominal, id;
+  final String? waktu;
 
   const DetailCard({
     super.key,
@@ -22,6 +22,7 @@ class DetailCard extends StatelessWidget {
     required this.bank,
     required this.nominal,
     required this.waktu,
+    this.id,
   });
 
   @override
@@ -282,54 +283,58 @@ class DetailCard extends StatelessWidget {
             color: neutral30,
           ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset(
-                  icon,
-                  width: 30,
-                  height: 30,
-                ),
-                const SizedBox(
-                  width: 8,
+                Row(
+                  children: [
+                    Image.asset(
+                      icon,
+                      width: 30,
+                      height: 30,
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          nama,
+                          style: captionTextBold.copyWith(color: neutral100),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          bank,
+                          style: overlineSemiBold.copyWith(color: neutral70),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      nama,
-                      style: captionTextBold.copyWith(color: neutral100),
+                      NumberFormat.currency(
+                        locale: 'id',
+                        name: 'Rp',
+                        decimalDigits: 0,
+                      ).format(nominal),
+                      style: captionTextBold.copyWith(color: secondaryMain),
                     ),
-                    const SizedBox(height: 6),
+                    const SizedBox(
+                      height: 6,
+                    ),
                     Text(
-                      bank,
-                      style: overlineSemiBold.copyWith(color: neutral70),
+                      Jiffy(waktu).fromNow(),
+                      style: overlineSemiBold.copyWith(color: neutral60),
                     ),
                   ],
-                )
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  NumberFormat.currency(
-                    locale: 'id',
-                    name: 'Rp',
-                    decimalDigits: 0,
-                  ).format(nominal),
-                  style: captionTextBold.copyWith(color: secondaryMain),
                 ),
-                const SizedBox(
-                  height: 6,
-                ),
-                Text(
-                  Jiffy(waktu).fromNow(),
-                  style: overlineSemiBold.copyWith(color: neutral60),
-                )
               ],
             ),
           ],

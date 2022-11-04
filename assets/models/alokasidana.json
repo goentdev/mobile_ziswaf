@@ -1,0 +1,15 @@
+[
+    {
+        "id": 47,
+        "transaksi_id": 14,
+        "jenis_donasi": "zakat1",
+        "nominal": 200000,
+        "dihapus": 0
+    },
+    {
+        "id": 48,
+        "transaksi_id": 14,
+        "jenis_donasi": "zakat2",
+        "nominal": 250000
+    }
+]

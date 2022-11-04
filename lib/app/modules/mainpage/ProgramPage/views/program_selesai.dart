@@ -29,20 +29,7 @@ class ProgramSudahSelesai extends StatelessWidget {
             height: 30,
           ),
           Column(
-            children: const [
-              CardDana(
-                  judul: 'Sedekah Bangunan Infrastruktur',
-                  terkumpul: 500000,
-                  target: 1100000,
-                  tanggalakhir: '2022-12-12 10:22:00',
-                  muzakki: 10),
-              CardDana(
-                  judul: 'Sedekah Bangunan Infrastruktur',
-                  terkumpul: 500000,
-                  target: 1100000,
-                  tanggalakhir: '2022-12-12 10:22:00',
-                  muzakki: 10),
-            ],
+            children: const [],
           )
         ],
       ),
