@@ -60,6 +60,15 @@ class ProgramPageController extends GetxController
     isLoading.value = false;
   }
 
+  deleteTransaksi(int? id) async {
+    isLoading.value = true;
+
+    transaksi!.removeWhere((element) => element.id == id);
+    await transaksiProvider.deleteTransaksi(id);
+
+    isLoading.value = false;
+  }
+
   getTransaksis({required int? id}) async {
     isLoading.value = true;
     transaksi!.assignAll(await transaksiProvider.getTransaksi(id));

@@ -167,6 +167,7 @@ class DetailProgram extends StatelessWidget {
                                         itemCount: controller.transaksi!.length,
                                         itemBuilder: (context, index) {
                                           return DetailCard(
+                                              programId: id,
                                               id: controller
                                                   .transaksi![index].id,
                                               icon: 'assets/icons/ap.png',

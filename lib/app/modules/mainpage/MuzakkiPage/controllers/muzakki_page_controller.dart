@@ -30,6 +30,7 @@ class MuzakkiPageController extends GetxController
   RxList<Muzaki>? muzakkisOnSearchPersonal = <Muzaki>[].obs;
   RxList<Muzaki>? muzakkisOnSearchBadanUsaha = <Muzaki>[].obs;
   RxList<Muzaki>? muzakkisOnSearchPemerintah = <Muzaki>[].obs;
+  RxList<Muzaki>? muzakkisOnSearch = <Muzaki>[].obs;
   RxBool isLoading = false.obs;
   RxBool isLoading2 = false.obs;
 
@@ -135,6 +136,11 @@ class MuzakkiPageController extends GetxController
       return loweredNama.contains(value.toLowerCase());
     }).toList();
     muzakkisOnSearchBadanUsaha!.value = muzakibadanusaha!.where((element) {
+      final loweredNama = element.nama!.toLowerCase();
+      return loweredNama.contains(value.toLowerCase());
+    }).toList();
+    update();
+    muzakkisOnSearch!.value = muzaki!.where((element) {
       final loweredNama = element.nama!.toLowerCase();
       return loweredNama.contains(value.toLowerCase());
     }).toList();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/controllers/program_page_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/detail_transaksi_page.dart';
 
 import '../../../../../theme/colors.dart';
@@ -12,7 +13,7 @@ class DetailCard extends StatelessWidget {
   final String icon;
   final String nama;
   final String bank;
-  final int? nominal, id;
+  final int? nominal, id, programId;
   final String? waktu;
 
   const DetailCard({
@@ -23,10 +24,12 @@ class DetailCard extends StatelessWidget {
     required this.nominal,
     required this.waktu,
     this.id,
+    this.programId,
   });
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProgramPageController());
     return Slidable(
       enabled: true,
       startActionPane: ActionPane(motion: const DrawerMotion(), children: [
@@ -232,8 +235,10 @@ class DetailCard extends StatelessWidget {
                             Flexible(
                               flex: 1,
                               child: GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
+                                onTap: () async {
+                                  await controller.deleteTransaksi(id);
+                                  Get.back();
+                                  await controller.getTransaksis(id: programId);
                                 },
                                 child: Container(
                                   margin: const EdgeInsets.only(right: 24),

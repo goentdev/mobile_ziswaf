@@ -23,6 +23,6 @@ class TransaksiProvider extends GetConnect {
 
   Future<Response<Transaksi>> postTransaksi(Transaksi transaksi) async =>
       await post('transaksi', transaksi);
-  Future<Response> deleteTransaksi(int id) async =>
-      await delete('transaksi/$id');
+  Future<Response> deleteTransaksi(int? id) async =>
+      await delete('$url/transaksi/$id');
 }
