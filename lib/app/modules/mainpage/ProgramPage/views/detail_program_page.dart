@@ -14,7 +14,7 @@ import 'package:appbar_animated/appbar_animated.dart';
 class DetailProgram extends StatelessWidget {
   final String judul, tanggalakhir;
   final int terkumpul, target, target1, target100;
-  final int? id;
+  final int? id, totalTransaksi;
 
   const DetailProgram(
       {super.key,
@@ -24,6 +24,7 @@ class DetailProgram extends StatelessWidget {
       required this.target,
       required this.target1,
       required this.target100,
+      required this.totalTransaksi,
       required this.id});
 
   @override
@@ -142,7 +143,7 @@ class DetailProgram extends StatelessWidget {
                               Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  'Daftar Transaksi (4)',
+                                  'Daftar Transaksi (${controller.totaltransaksiiD.value!.totalTransaksi})',
                                   style: listItemTitleBold.copyWith(
                                       color: neutral100),
                                 ),
@@ -167,6 +168,28 @@ class DetailProgram extends StatelessWidget {
                                         itemCount: controller.transaksi!.length,
                                         itemBuilder: (context, index) {
                                           return DetailCard(
+                                              buktifotoTransaksi: controller
+                                                  .transaksi![index]
+                                                  .buktiTransaksi,
+                                              nomorResi: controller
+                                                  .transaksi![index].nomorResi,
+                                              nomorRekening: controller
+                                                  .transaksi![index]
+                                                  .nomorRekening,
+                                              namaRekening: controller
+                                                  .transaksi![index]
+                                                  .namaRekening,
+                                              kategori: controller
+                                                  .transaksi![index].kategori,
+                                              email: controller
+                                                  .transaksi![index]
+                                                  .muzaki!
+                                                  .email,
+                                              nomor: controller
+                                                  .transaksi![index]
+                                                  .muzaki!
+                                                  .whatsapp,
+                                              judul: judul,
                                               programId: id,
                                               id: controller
                                                   .transaksi![index].id,

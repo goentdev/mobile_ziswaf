@@ -48,6 +48,8 @@ class ProgramBerlangsung extends StatelessWidget {
                       itemCount: controller.program!.length,
                       itemBuilder: (context, index) {
                         return CardDana(
+                          totalTransaksi:
+                              controller.totaltransaksiiD.value!.totalTransaksi,
                           judul: controller.program![index].nama!,
                           terkumpul: controller.program?[index].totalDana ?? 0,
                           target: controller.program![index].targetDana!,

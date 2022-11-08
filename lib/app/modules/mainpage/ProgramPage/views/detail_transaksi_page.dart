@@ -2,7 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/identity_controller.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/controllers/program_page_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/bukti_transaksi_page.dart';
 
 import '../../../../routes/app_pages.dart';
@@ -10,11 +13,42 @@ import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
 
 class DetailTransaksi extends StatelessWidget {
-  const DetailTransaksi({super.key});
+  final String? nama,
+      nomor,
+      email,
+      kategori,
+      bank,
+      nomorRekening,
+      namaRekening,
+      nomorResi,
+      jenisDonasi,
+      tanggaltransfer,
+      buktifotoTransaksi;
+  final String judul;
+  final int? nominalDonasi, totalNominalTransaksi;
+
+  const DetailTransaksi({
+    super.key,
+    required this.nama,
+    required this.judul,
+    required this.nomor,
+    required this.email,
+    required this.bank,
+    required this.nomorRekening,
+    required this.namaRekening,
+    required this.nomorResi,
+    required this.tanggaltransfer,
+    required this.totalNominalTransaksi,
+    required this.buktifotoTransaksi,
+    this.kategori,
+    this.jenisDonasi,
+    this.nominalDonasi,
+  });
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(IdentityController());
+    final controller2 = Get.put(ProgramPageController());
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -260,14 +294,19 @@ class DetailTransaksi extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          '01 September 2022 08:41:30 WIB',
+                          Jiffy(tanggaltransfer)
+                              .format("do MMMM yyyy, h:mm:ss a"),
                           style: overlineSemiBold.copyWith(
                             color: neutral70,
                           ),
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          'Rp250.000',
+                          NumberFormat.currency(
+                            locale: 'id',
+                            name: 'Rp',
+                            decimalDigits: 0,
+                          ).format(totalNominalTransaksi),
                           style: listItemTitleBlack.copyWith(
                             color: primaryMain,
                           ),
@@ -279,7 +318,7 @@ class DetailTransaksi extends StatelessWidget {
               ),
             ),
             Container(
-              height: 600,
+              height: 535,
               margin: const EdgeInsets.all(16),
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -301,7 +340,7 @@ class DetailTransaksi extends StatelessWidget {
                         width: 16,
                       ),
                       Text(
-                        'Sedekah Bangunan Infrastruktur',
+                        judul,
                         style: listTitleSemiBold.copyWith(color: neutral100),
                       )
                     ],
@@ -317,7 +356,7 @@ class DetailTransaksi extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    initialValue: 'Alif Pramana Putra',
+                    initialValue: nama,
                     style: captionTextSemiBold.copyWith(
                       color: neutral100,
                     ),
@@ -346,7 +385,7 @@ class DetailTransaksi extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    initialValue: '08211234321',
+                    initialValue: nomor,
                     style: captionTextSemiBold.copyWith(
                       color: neutral100,
                     ),
@@ -375,7 +414,7 @@ class DetailTransaksi extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    initialValue: 'alifpramana@gmail.com',
+                    initialValue: email,
                     style: captionTextSemiBold.copyWith(
                       color: neutral100,
                     ),
@@ -404,7 +443,7 @@ class DetailTransaksi extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    initialValue: 'Personal',
+                    initialValue: kategori,
                     style: captionTextSemiBold.copyWith(
                       color: neutral100,
                     ),
@@ -426,35 +465,6 @@ class DetailTransaksi extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Nama',
-                      style: captionTextSemiBold.copyWith(
-                        color: neutral70,
-                      ),
-                    ),
-                  ),
-                  TextFormField(
-                    initialValue: 'Alif Pramana Putra',
-                    style: captionTextSemiBold.copyWith(
-                      color: neutral100,
-                    ),
-                    enabled: false,
-                    decoration: InputDecoration(
-                      disabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: neutral40,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      hintText: 'Tuliskan Nama',
-                      hintStyle: listTitleBold.copyWith(color: neutral60),
-                      isDense: true,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
                       'Nomor Rekening',
                       style: captionTextSemiBold.copyWith(
                         color: neutral70,
@@ -462,8 +472,7 @@ class DetailTransaksi extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    initialValue:
-                        'Bank Mandiri - 1640001233211\na/n Alif Pramana Putra',
+                    initialValue: '$bank - $nomorRekening\na/n $namaRekening',
                     style: captionTextSemiBold.copyWith(
                       color: neutral100,
                     ),
@@ -491,7 +500,7 @@ class DetailTransaksi extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    initialValue: '01929331774881',
+                    initialValue: nomorResi,
                     style: captionTextSemiBold.copyWith(
                       color: neutral100,
                     ),
@@ -520,9 +529,12 @@ class DetailTransaksi extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 6),
-                  Column(
-                    children: [
-                      Row(
+                  ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: controller2.alokasi!.length,
+                    itemBuilder: (context, index) {
+                      return Row(
                         children: [
                           Image.asset(
                             'assets/icons/radio.png',
@@ -531,7 +543,7 @@ class DetailTransaksi extends StatelessWidget {
                           ),
                           const SizedBox(width: 8),
                           Text(
-                            'Zakat Maal',
+                            controller2.alokasi![index].jenisDonasi!,
                             style: captionTextRegular,
                           ),
                           Text(
@@ -541,75 +553,30 @@ class DetailTransaksi extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Rp100.000',
+                            NumberFormat.currency(
+                                    locale: 'id',
+                                    decimalDigits: 0,
+                                    symbol: 'Rp')
+                                .format(
+                              controller2.alokasi![index].nominal!,
+                            ),
                             style: percentTittle.copyWith(
                               color: neutral100,
                             ),
                           ),
+                          const SizedBox(
+                            height: 20,
+                          )
                         ],
-                      ),
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          Image.asset(
-                            'assets/icons/radio.png',
-                            width: 12,
-                            height: 12,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Zakat Fitrah',
-                            style: captionTextRegular,
-                          ),
-                          Text(
-                            ' - ',
-                            style: percentTittle.copyWith(
-                              color: neutral100,
-                            ),
-                          ),
-                          Text(
-                            'Rp75.000',
-                            style: percentTittle.copyWith(
-                              color: neutral100,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          Image.asset(
-                            'assets/icons/radio.png',
-                            width: 12,
-                            height: 12,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Infaq',
-                            style: captionTextRegular,
-                          ),
-                          Text(
-                            ' - ',
-                            style: percentTittle.copyWith(
-                              color: neutral100,
-                            ),
-                          ),
-                          Text(
-                            'Rp75.000',
-                            style: percentTittle.copyWith(
-                              color: neutral100,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                      );
+                    },
                   )
                 ],
               ),
             ),
             GetBuilder(
               init: controller,
-              builder: (controller) => controller.identityImage == null
+              builder: (controller) => buktifotoTransaksi == null
                   ? InkWell(
                       onTap: () {
                         showModalBottomSheet(
@@ -952,8 +919,8 @@ class DetailTransaksi extends StatelessWidget {
                                           border: Border.all(
                                               width: 1, color: neutral50),
                                           image: DecorationImage(
-                                              image: FileImage(File(controller
-                                                  .identityImage!.path)),
+                                              image: NetworkImage(
+                                                  buktifotoTransaksi!),
                                               fit: BoxFit.contain)),
                                     ),
                                     const SizedBox(

@@ -14,6 +14,7 @@ class User {
   String? nomorRekening;
   String? namaRekening;
   String? fotoKartuIdentitas;
+  String? tingkatRelawan;
 
   User({
     this.id,
@@ -45,6 +46,7 @@ class User {
     nomorRekening = json['relawan']['nomor_rekening'];
     namaRekening = json['relawan']['nama_rekening'];
     fotoKartuIdentitas = json['relawan']['foto_kartu_identitas'];
+    tingkatRelawan = json['relawan']['tingkat'];
   }
 
   Map<String, dynamic> toJson() {
@@ -62,6 +64,7 @@ class User {
     data['nomor_rekening'] = nomorRekening;
     data['nama_rekening'] = namaRekening;
     data['foto_kartu_identitas'] = fotoKartuIdentitas;
+    data['tingkat'] = tingkatRelawan;
     return data;
   }
 }

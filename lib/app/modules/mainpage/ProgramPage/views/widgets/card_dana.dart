@@ -13,7 +13,7 @@ import '../../controllers/program_page_controller.dart';
 class CardDana extends StatelessWidget {
   final String judul, tanggalakhir;
   final int terkumpul, target, muzakki;
-  final int? id;
+  final int? id, totalTransaksi;
 
   const CardDana(
       {super.key,
@@ -22,7 +22,8 @@ class CardDana extends StatelessWidget {
       required this.terkumpul,
       required this.target,
       required this.tanggalakhir,
-      required this.muzakki});
+      required this.muzakki,
+      this.totalTransaksi});
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +36,7 @@ class CardDana extends StatelessWidget {
     return InkWell(
       onTap: () {
         controller.getTransaksis(id: id);
+        controller.totaltransaksi(id: id);
         Get.to(() => DetailProgram(
               judul: judul,
               tanggalakhir: tanggalakhir,
@@ -43,6 +45,7 @@ class CardDana extends StatelessWidget {
               target1: target1,
               target100: target100,
               id: id,
+              totalTransaksi: totalTransaksi,
             ));
       },
       child: Column(

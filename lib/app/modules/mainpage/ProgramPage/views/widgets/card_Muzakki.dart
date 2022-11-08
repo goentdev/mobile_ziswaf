@@ -8,7 +8,7 @@ import '../../../../../theme/fonts.dart';
 
 class CardMuzakki extends StatelessWidget {
   final String nama;
-  final String nomor;
+  final String? nomor;
   final String judul;
 
   const CardMuzakki({
@@ -56,7 +56,7 @@ class CardMuzakki extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  nomor,
+                  nomor!,
                   style: overlineSemiBold.copyWith(color: neutral70),
                 ),
               ],

@@ -59,34 +59,98 @@ class ProfileView extends GetView<ProfileController> {
                           const SizedBox(
                             height: 4,
                           ),
-                          Container(
-                            width: 121,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              color: secondarysurface,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.star_rate_rounded,
-                                      color: secondaryMain,
-                                      size: 16,
-                                    ),
-                                    Text(
-                                      'Relawan Tingkat Atas',
-                                      style: overlineBold.copyWith(
-                                          color: secondaryMain),
-                                    ),
-                                  ],
+                          controller.user.value!.tingkatRelawan == 'Atas'
+                              ? Container(
+                                  width: 121,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                    color: secondarysurface,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.star_rate_rounded,
+                                            color: secondaryMain,
+                                            size: 16,
+                                          ),
+                                          Text(
+                                            'Relawan Tingkat ${controller.user.value!.tingkatRelawan}',
+                                            style: overlineBold.copyWith(
+                                                color: secondaryMain),
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 )
-                              ],
-                            ),
-                          )
+                              : controller.user.value!.tingkatRelawan ==
+                                      'Menengah'
+                                  ? Container(
+                                      width: 145,
+                                      height: 20,
+                                      decoration: BoxDecoration(
+                                        color: neutral20,
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.star_rate_rounded,
+                                                color: neutral60,
+                                                size: 16,
+                                              ),
+                                              Text(
+                                                'Relawan Tingkat ${controller.user.value!.tingkatRelawan}',
+                                                style: overlineBold.copyWith(
+                                                    color: neutral60),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  : Container(
+                                      width: 127,
+                                      height: 20,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xffFFE6CF),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.star_rate_rounded,
+                                                color: Color(0xffDF823C),
+                                                size: 16,
+                                              ),
+                                              Text(
+                                                'Relawan Tingkat ${controller.user.value!.tingkatRelawan}',
+                                                style: overlineBold.copyWith(
+                                                    color: Color(0xffDF823C)),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    )
                         ],
                       )
                     ],

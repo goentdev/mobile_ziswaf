@@ -16,6 +16,7 @@ class Transaksi {
   String? createdAt;
   MuzakiUserModel? muzaki;
   Bank? bank;
+  String? kategori;
 
   Transaksi(
       {this.id,
@@ -48,6 +49,7 @@ class Transaksi {
         ? MuzakiUserModel?.fromJson(json['muzaki'])
         : null;
     bank = json['bank'] != null ? Bank?.fromJson(json['bank']) : null;
+    kategori = json['muzaki']['muzaki']['kategori'];
   }
 
   Map<String, dynamic> toJson() {
@@ -69,6 +71,7 @@ class Transaksi {
     if (bank != null) {
       data['bank'] = bank?.toJson();
     }
+    data['kategori'] = kategori;
     return data;
   }
 }

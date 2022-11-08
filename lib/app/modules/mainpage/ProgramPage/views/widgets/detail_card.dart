@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/controllers/program_page_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/detail_transaksi_page.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/edit_transaksi_page.dart';
 
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/fonts.dart';
@@ -15,6 +16,12 @@ class DetailCard extends StatelessWidget {
   final String bank;
   final int? nominal, id, programId;
   final String? waktu;
+  final String judul;
+  final String? nomor;
+  final String? email, kategori, nomorRekening, namaRekening, nomorResi;
+  final String? jenisDonasi;
+  final String? buktifotoTransaksi;
+  final int? nominaldonasi;
 
   const DetailCard({
     super.key,
@@ -23,326 +30,370 @@ class DetailCard extends StatelessWidget {
     required this.bank,
     required this.nominal,
     required this.waktu,
+    required this.judul,
+    required this.nomor,
+    required this.email,
+    required this.nomorRekening,
+    required this.namaRekening,
+    required this.nomorResi,
+    required this.buktifotoTransaksi,
+    this.kategori,
+    this.jenisDonasi,
     this.id,
     this.programId,
+    this.nominaldonasi,
   });
-
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProgramPageController());
-    return Slidable(
-      enabled: true,
-      startActionPane: ActionPane(motion: const DrawerMotion(), children: [
-        SlidableAction(
-          label: 'Hapus',
-          onPressed: (context) {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return Dialog(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  insetPadding: const EdgeInsets.all(10),
-                  child: Container(
-                    width: double.infinity,
-                    height: 308,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 24, vertical: 48),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 75,
-                          width: 75,
-                          child: CircleAvatar(
-                            backgroundColor: const Color(0XffFEF7EC),
-                            child: Image.asset(
-                              'assets/icons/iconseru.png',
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 24),
-                        Text(
-                          'Yakin Ingin Menghapus Data?',
-                          style: listItemTitleBlack.copyWith(
-                            color: neutral100,
-                          ),
-                        ),
-                        const SizedBox(height: 48),
-                        Row(
+    return InkWell(
+      onTap: () async {
+        await controller.getAlokasiDana(id: id);
+        await controller.totaltransaksi(id: programId);
+        Get.to(DetailTransaksi(
+            buktifotoTransaksi: buktifotoTransaksi,
+            totalNominalTransaksi: nominal,
+            tanggaltransfer: waktu,
+            judul: judul,
+            nama: nama,
+            nomor: nomor,
+            email: email,
+            kategori: kategori,
+            bank: bank,
+            nomorRekening: nomorRekening,
+            namaRekening: namaRekening,
+            nomorResi: nomorResi));
+      },
+      child: Slidable(
+        enabled: true,
+        startActionPane: ActionPane(motion: const DrawerMotion(), children: [
+          SlidableAction(
+            label: 'Hapus',
+            onPressed: (context) {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return Dialog(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    insetPadding: const EdgeInsets.all(10),
+                    child: InkWell(
+                      child: Container(
+                        width: double.infinity,
+                        height: 308,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 48),
+                        child: Column(
                           children: [
-                            const SizedBox(
-                              width: 24,
-                            ),
-                            Flexible(
-                              flex: 1,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Container(
-                                  margin: const EdgeInsets.only(right: 24),
-                                  height: 41,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    border: Border.all(
-                                      width: 1,
-                                      color: neutral40,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Center(
-                                      child: Text(
-                                    'Batal',
-                                    style:
-                                        textMBold.copyWith(color: Colors.white),
-                                  )),
+                            SizedBox(
+                              height: 75,
+                              width: 75,
+                              child: CircleAvatar(
+                                backgroundColor: const Color(0XffFEF7EC),
+                                child: Image.asset(
+                                  'assets/icons/iconseru.png',
                                 ),
                               ),
                             ),
-                            Flexible(
-                              flex: 1,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Container(
-                                  margin: const EdgeInsets.only(right: 24),
-                                  height: 41,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      width: 1,
-                                      color: dangerMain,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Center(
-                                      child: Text(
-                                    'Hapus',
-                                    style:
-                                        textMBold.copyWith(color: dangerMain),
-                                  )),
-                                ),
+                            const SizedBox(height: 24),
+                            Text(
+                              'Yakin Ingin Menghapus Data?',
+                              style: listItemTitleBlack.copyWith(
+                                color: neutral100,
                               ),
+                            ),
+                            const SizedBox(height: 48),
+                            Row(
+                              children: [
+                                const SizedBox(
+                                  width: 24,
+                                ),
+                                Flexible(
+                                  flex: 1,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Container(
+                                      margin: const EdgeInsets.only(right: 24),
+                                      height: 41,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        border: Border.all(
+                                          width: 1,
+                                          color: neutral40,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Center(
+                                          child: Text(
+                                        'Batal',
+                                        style: textMBold.copyWith(
+                                            color: Colors.white),
+                                      )),
+                                    ),
+                                  ),
+                                ),
+                                Flexible(
+                                  flex: 1,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Container(
+                                      margin: const EdgeInsets.only(right: 24),
+                                      height: 41,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          width: 1,
+                                          color: dangerMain,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Center(
+                                          child: Text(
+                                        'Hapus',
+                                        style: textMBold.copyWith(
+                                            color: dangerMain),
+                                      )),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                );
-              },
-            );
-          },
-          icon: Icons.remove_circle,
-          flex: 5,
-          backgroundColor: Colors.red,
-          foregroundColor: Colors.white,
-        ),
-        SlidableAction(
-          label: 'Edit',
-          onPressed: (context) {
-            Get.to(const DetailTransaksi());
-          },
-          icon: Icons.edit_note_rounded,
-          flex: 5,
-          backgroundColor: primaryMain,
-          foregroundColor: Colors.white,
-        ),
-      ]),
-      endActionPane: ActionPane(motion: const DrawerMotion(), children: [
-        SlidableAction(
-          label: 'Edit',
-          onPressed: (context) {
-            Get.to(const DetailTransaksi());
-          },
-          icon: Icons.edit_note_rounded,
-          flex: 5,
-          backgroundColor: primaryMain,
-          foregroundColor: Colors.white,
-        ),
-        SlidableAction(
-          label: 'Hapus',
-          onPressed: (context) {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return Dialog(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  insetPadding: const EdgeInsets.all(10),
-                  child: Container(
-                    width: double.infinity,
-                    height: 308,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 24, vertical: 48),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 75,
-                          width: 75,
-                          child: CircleAvatar(
-                            backgroundColor: const Color(0XffFEF7EC),
-                            child: Image.asset(
-                              'assets/icons/iconseru.png',
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 24),
-                        Text(
-                          'Yakin Ingin Menghapus Data?',
-                          style: listItemTitleBlack.copyWith(
-                            color: neutral100,
-                          ),
-                        ),
-                        const SizedBox(height: 48),
-                        Row(
-                          children: [
-                            const SizedBox(
-                              width: 24,
-                            ),
-                            Flexible(
-                              flex: 1,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Container(
-                                  margin: const EdgeInsets.only(right: 24),
-                                  height: 41,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    border: Border.all(
-                                      width: 1,
-                                      color: neutral40,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Center(
-                                      child: Text(
-                                    'Batal',
-                                    style:
-                                        textMBold.copyWith(color: Colors.white),
-                                  )),
-                                ),
-                              ),
-                            ),
-                            Flexible(
-                              flex: 1,
-                              child: GestureDetector(
-                                onTap: () async {
-                                  await controller.deleteTransaksi(id);
-                                  Get.back();
-                                  await controller.getTransaksis(id: programId);
-                                },
-                                child: Container(
-                                  margin: const EdgeInsets.only(right: 24),
-                                  height: 41,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      width: 1,
-                                      color: dangerMain,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Center(
-                                      child: Text(
-                                    'Hapus',
-                                    style:
-                                        textMBold.copyWith(color: dangerMain),
-                                  )),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            );
-          },
-          icon: Icons.remove_circle,
-          flex: 5,
-          backgroundColor: Colors.red,
-          foregroundColor: Colors.white,
-        ),
-      ]),
-      child: Container(
-        width: double.infinity,
-        height: 67,
-        margin: const EdgeInsets.only(top: 16),
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-            width: 1,
-            color: neutral30,
+                  );
+                },
+              );
+            },
+            icon: Icons.remove_circle,
+            flex: 5,
+            backgroundColor: Colors.red,
+            foregroundColor: Colors.white,
           ),
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      icon,
-                      width: 30,
-                      height: 30,
+          SlidableAction(
+            label: 'Edit',
+            onPressed: (context) {
+              Get.to(EditTransaksiPage(judul: judul, nama: nama, nomor: nomor));
+            },
+            icon: Icons.edit_note_rounded,
+            flex: 5,
+            backgroundColor: primaryMain,
+            foregroundColor: Colors.white,
+          ),
+        ]),
+        endActionPane: ActionPane(motion: const DrawerMotion(), children: [
+          SlidableAction(
+            label: 'Edit',
+            onPressed: (context) {
+              Get.to(DetailTransaksi(
+                tanggaltransfer: waktu,
+                totalNominalTransaksi: nominal,
+                judul: judul,
+                nama: nama,
+                nomor: nomor,
+                email: email,
+                kategori: kategori,
+                bank: bank,
+                nomorRekening: nomorRekening,
+                namaRekening: namaRekening,
+                nomorResi: nomorResi,
+                buktifotoTransaksi: buktifotoTransaksi,
+              ));
+            },
+            icon: Icons.edit_note_rounded,
+            flex: 5,
+            backgroundColor: primaryMain,
+            foregroundColor: Colors.white,
+          ),
+          SlidableAction(
+            label: 'Hapus',
+            onPressed: (context) {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return Dialog(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    const SizedBox(
-                      width: 8,
+                    insetPadding: const EdgeInsets.all(10),
+                    child: Container(
+                      width: double.infinity,
+                      height: 308,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 48),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 75,
+                            width: 75,
+                            child: CircleAvatar(
+                              backgroundColor: const Color(0XffFEF7EC),
+                              child: Image.asset(
+                                'assets/icons/iconseru.png',
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          Text(
+                            'Yakin Ingin Menghapus Data?',
+                            style: listItemTitleBlack.copyWith(
+                              color: neutral100,
+                            ),
+                          ),
+                          const SizedBox(height: 48),
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 24,
+                              ),
+                              Flexible(
+                                flex: 1,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Container(
+                                    margin: const EdgeInsets.only(right: 24),
+                                    height: 41,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      border: Border.all(
+                                        width: 1,
+                                        color: neutral40,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Center(
+                                        child: Text(
+                                      'Batal',
+                                      style: textMBold.copyWith(
+                                          color: Colors.white),
+                                    )),
+                                  ),
+                                ),
+                              ),
+                              Flexible(
+                                flex: 1,
+                                child: GestureDetector(
+                                  onTap: () async {
+                                    await controller.deleteTransaksi(id);
+                                    Get.back();
+                                    await controller.getTransaksis(
+                                        id: programId);
+                                  },
+                                  child: Container(
+                                    margin: const EdgeInsets.only(right: 24),
+                                    height: 41,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      border: Border.all(
+                                        width: 1,
+                                        color: dangerMain,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Center(
+                                        child: Text(
+                                      'Hapus',
+                                      style:
+                                          textMBold.copyWith(color: dangerMain),
+                                    )),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          nama,
-                          style: captionTextBold.copyWith(color: neutral100),
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          bank,
-                          style: overlineSemiBold.copyWith(color: neutral70),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      NumberFormat.currency(
-                        locale: 'id',
-                        name: 'Rp',
-                        decimalDigits: 0,
-                      ).format(nominal),
-                      style: captionTextBold.copyWith(color: secondaryMain),
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    Text(
-                      Jiffy(waktu).fromNow(),
-                      style: overlineSemiBold.copyWith(color: neutral60),
-                    ),
-                  ],
-                ),
-              ],
+                  );
+                },
+              );
+            },
+            icon: Icons.remove_circle,
+            flex: 5,
+            backgroundColor: Colors.red,
+            foregroundColor: Colors.white,
+          ),
+        ]),
+        child: Container(
+          width: double.infinity,
+          height: 67,
+          margin: const EdgeInsets.only(top: 16),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              width: 1,
+              color: neutral30,
             ),
-          ],
+          ),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Image.asset(
+                        icon,
+                        width: 30,
+                        height: 30,
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            nama,
+                            style: captionTextBold.copyWith(color: neutral100),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            bank,
+                            style: overlineSemiBold.copyWith(color: neutral70),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        NumberFormat.currency(
+                          locale: 'id',
+                          name: 'Rp',
+                          decimalDigits: 0,
+                        ).format(nominal),
+                        style: captionTextBold.copyWith(color: secondaryMain),
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      Text(
+                        Jiffy(waktu).fromNow(),
+                        style: overlineSemiBold.copyWith(color: neutral60),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
