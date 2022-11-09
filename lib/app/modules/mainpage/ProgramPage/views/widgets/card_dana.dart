@@ -146,7 +146,7 @@ class CardDana extends StatelessWidget {
                     barRadius: const Radius.circular(20),
                     lineHeight: 6,
                     animation: true,
-                    percent: int.parse(persenn) / 100,
+                    percent: double.parse(persenn) / 100,
                     trailing: Text(
                       '$target1%',
                       style: titleExtraTextBold.copyWith(color: neutral100),

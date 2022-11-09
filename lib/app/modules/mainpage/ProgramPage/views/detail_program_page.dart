@@ -275,7 +275,7 @@ class DetailProgram extends StatelessWidget {
                           '$target1%',
                           style: titleExtraTextBold.copyWith(color: neutral100),
                         ),
-                        percent: int.parse(persenn) / 100,
+                        percent: double.parse(persenn) / 100,
                         progressColor: primaryMain,
                       ),
                     ],
