@@ -10,6 +10,9 @@ class ChooseBankController extends GetxController {
   late TextEditingController accountNameController;
   late TextEditingController searchBankController;
   late TextEditingController searchDonasiController;
+  late TextEditingController searchDonasi2Controller;
+  late TextEditingController searchDonasi3Controller;
+  late TextEditingController searchDonasi4Controller;
   late TextEditingController nominalController;
   late GlobalKey<FormState> loginFormKey;
   late ScrollController firstController;
@@ -54,6 +57,9 @@ class ChooseBankController extends GetxController {
     accountNameController = TextEditingController();
     searchBankController = TextEditingController();
     searchDonasiController = TextEditingController();
+    searchDonasi2Controller = TextEditingController();
+    searchDonasi3Controller = TextEditingController();
+    searchDonasi4Controller = TextEditingController();
     nominalController = TextEditingController();
     nominal2Controller = TextEditingController();
     nominal3Controller = TextEditingController();
@@ -65,9 +71,9 @@ class ChooseBankController extends GetxController {
     getBanks();
 
     nominalController = TextEditingController(text: '0');
-    // nominal2Controller = TextEditingController(text: '0');
-    // nominal3Controller = TextEditingController(text: '0');
-    // nominal4Controller = TextEditingController(text: '0');
+    nominal2Controller = TextEditingController(text: '0');
+    nominal3Controller = TextEditingController(text: '0');
+    nominal4Controller = TextEditingController(text: '0');
     clearText();
     super.onInit();
   }
@@ -78,6 +84,9 @@ class ChooseBankController extends GetxController {
     accountNameController.dispose();
     searchBankController.dispose();
     searchDonasiController.dispose();
+    searchDonasi2Controller.dispose();
+    searchDonasi3Controller.dispose();
+    searchDonasi4Controller.dispose();
     nominalController.dispose();
     super.onClose();
   }
