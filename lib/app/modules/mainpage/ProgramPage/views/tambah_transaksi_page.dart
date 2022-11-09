@@ -131,34 +131,45 @@ class TambahTransaksi extends StatelessWidget {
                               builder: (_) {
                                 return Align(
                                   alignment: Alignment.centerRight,
-                                  child: Text(
-                                    NumberFormat.currency(
-                                      locale: 'id',
-                                      name: 'Rp',
-                                      decimalDigits: 0,
-                                    ).format(controller.nominalController.text == ''
-                                        ? 0
-                                        : int.parse(controller.nominalController.text) +
-                                            int.parse(
-                                                controller.nominal2Controller.text == ''
-                                                    ? 0.toString()
-                                                    : controller
-                                                        .nominal2Controller
-                                                        .text) +
-                                            int.parse(
-                                                controller.nominal3Controller.text == ''
-                                                    ? 0.toString()
-                                                    : controller
-                                                        .nominal3Controller
-                                                        .text) +
-                                            int.parse(controller
-                                                        .nominal4Controller
-                                                        .text ==
-                                                    ''
-                                                ? 0.toString()
-                                                : controller.nominal4Controller.text)),
-                                    style: listItemTitleBlack.copyWith(
-                                      color: primaryMain,
+                                  child: Obx(
+                                    () => Text(
+                                      NumberFormat.currency(
+                                        locale: 'id',
+                                        name: 'Rp',
+                                        decimalDigits: 0,
+                                      ).format(controller.nominalController.text ==
+                                              ''
+                                          ? 0
+                                          : int.parse(controller
+                                                  .nominalController.text) +
+                                              int.parse(controller
+                                                      .alokasi2.value
+                                                  ? controller.nominal2Controller
+                                                              .text ==
+                                                          ''
+                                                      ? 0.toString()
+                                                      : controller
+                                                          .nominal2Controller
+                                                          .text
+                                                  : '0') +
+                                              int.parse(
+                                                  controller.alokasi3.value
+                                                      ? controller.nominal3Controller
+                                                                  .text ==
+                                                              ''
+                                                          ? 0.toString()
+                                                          : controller
+                                                              .nominal3Controller
+                                                              .text
+                                                      : '0') +
+                                              int.parse(controller.alokasi4.value
+                                                  ? controller.nominal4Controller.text == ''
+                                                      ? 0.toString()
+                                                      : controller.nominal4Controller.text
+                                                  : '0')),
+                                      style: listItemTitleBlack.copyWith(
+                                        color: primaryMain,
+                                      ),
                                     ),
                                   ),
                                 );
