@@ -12,7 +12,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:appbar_animated/appbar_animated.dart';
 
 class DetailProgram extends StatelessWidget {
-  final String judul, tanggalakhir;
+  final String judul, tanggalakhir, persenn;
   final int terkumpul, target, target1, target100;
   final int? id, totalTransaksi;
 
@@ -25,7 +25,8 @@ class DetailProgram extends StatelessWidget {
       required this.target1,
       required this.target100,
       required this.totalTransaksi,
-      required this.id});
+      required this.id,
+      required this.persenn});
 
   @override
   Widget build(BuildContext context) {
@@ -274,7 +275,7 @@ class DetailProgram extends StatelessWidget {
                           '$target1%',
                           style: titleExtraTextBold.copyWith(color: neutral100),
                         ),
-                        percent: target1 / target100,
+                        percent: int.parse(persenn) / 100,
                         progressColor: primaryMain,
                       ),
                     ],

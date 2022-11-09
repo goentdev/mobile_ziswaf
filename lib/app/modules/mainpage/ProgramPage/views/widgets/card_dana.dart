@@ -11,7 +11,7 @@ import '../../../../../theme/colors.dart';
 import '../../controllers/program_page_controller.dart';
 
 class CardDana extends StatelessWidget {
-  final String judul, tanggalakhir;
+  final String judul, tanggalakhir, persenn;
   final int terkumpul, target, muzakki;
   final int? id, totalTransaksi;
 
@@ -23,7 +23,8 @@ class CardDana extends StatelessWidget {
       required this.target,
       required this.tanggalakhir,
       required this.muzakki,
-      this.totalTransaksi});
+      this.totalTransaksi,
+      required this.persenn});
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +47,7 @@ class CardDana extends StatelessWidget {
               target100: target100,
               id: id,
               totalTransaksi: totalTransaksi,
+              persenn: persenn,
             ));
       },
       child: Column(
@@ -144,7 +146,7 @@ class CardDana extends StatelessWidget {
                     barRadius: const Radius.circular(20),
                     lineHeight: 6,
                     animation: true,
-                    percent: target1 / target100,
+                    percent: int.parse(persenn) / 100,
                     trailing: Text(
                       '$target1%',
                       style: titleExtraTextBold.copyWith(color: neutral100),
