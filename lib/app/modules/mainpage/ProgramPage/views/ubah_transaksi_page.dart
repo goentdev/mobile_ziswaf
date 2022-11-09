@@ -72,28 +72,34 @@ class UbahTransaksiPage extends StatelessWidget {
                 init: MuzakkiPageController(),
                 initState: (_) {},
                 builder: (_) {
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount:
-                        controller.searchMuzakkiController.text.isNotEmpty
-                            ? controller.muzakkisOnSearch!.length
-                            : controller.muzaki!.length,
-                    itemBuilder: (context, index) {
-                      if (controller.searchMuzakkiController.text.isNotEmpty) {
-                        return CardMuzakki(
-                          nama: controller.muzakkisOnSearch![index].nama!,
-                          nomor: controller
-                              .muzakkisOnSearch![index].muzaki!.whatsapp!,
-                          judul: judul,
-                        );
-                      } else {
-                        return CardMuzakki(
-                          nama: controller.muzaki![index].nama!,
-                          nomor: controller.muzaki![index].muzaki!.whatsapp!,
-                          judul: judul,
-                        );
-                      }
-                    },
+                  return Scrollbar(
+                    thumbVisibility: true,
+                    controller: controller.scrollController,
+                    child: ListView.builder(
+                      controller: controller.scrollController,
+                      shrinkWrap: true,
+                      itemCount:
+                          controller.searchMuzakkiController.text.isNotEmpty
+                              ? controller.muzakkisOnSearch!.length
+                              : controller.muzaki!.length,
+                      itemBuilder: (context, index) {
+                        if (controller
+                            .searchMuzakkiController.text.isNotEmpty) {
+                          return CardMuzakki(
+                            nama: controller.muzakkisOnSearch![index].nama!,
+                            nomor: controller
+                                .muzakkisOnSearch![index].muzaki!.whatsapp!,
+                            judul: judul,
+                          );
+                        } else {
+                          return CardMuzakki(
+                            nama: controller.muzaki![index].nama!,
+                            nomor: controller.muzaki![index].muzaki!.whatsapp!,
+                            judul: judul,
+                          );
+                        }
+                      },
+                    ),
                   );
                 },
               ),

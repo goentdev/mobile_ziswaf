@@ -14,6 +14,7 @@ class IdentityController extends GetxController {
 
   List<String> identityType = ['KTP', 'SIM', 'PASSPORT'].obs;
   RxString selectedType = ''.obs;
+  RxBool delete = true.obs;
 
   @override
   void onInit() {
@@ -26,6 +27,10 @@ class IdentityController extends GetxController {
   void onClose() {
     identityNumberController.dispose();
     super.onClose();
+  }
+
+  void deletee() {
+    delete.value = !delete.value;
   }
 
   pickFromCamera(context) async {
@@ -220,6 +225,7 @@ class IdentityController extends GetxController {
                         onTap: () {
                           update();
                           Get.back();
+                          deletee();
                         },
                         child: Container(
                           margin: const EdgeInsets.only(right: 8),

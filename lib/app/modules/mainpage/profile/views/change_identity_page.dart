@@ -30,7 +30,9 @@ class ChangeIdentityPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          onPressed: () => Get.back(),
+          onPressed: () {
+            Get.back();
+          },
           icon: Icon(
             Icons.arrow_back_ios,
             color: neutral90,
@@ -128,402 +130,459 @@ class ChangeIdentityPage extends StatelessWidget {
               height: 16,
             ),
             GetBuilder(
-              init: IdentityController(),
-              builder: (controller) => profileC
-                          .user.value!.fotoKartuIdentitas ==
-                      null
-                  ? AddPhotoButton(
-                      ontap: () {
-                        showModalBottomSheet(
-                          constraints: const BoxConstraints(maxHeight: 170),
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(8),
-                              topRight: Radius.circular(8),
-                            ),
-                          ),
-                          context: context,
-                          builder: (context) {
-                            return Padding(
-                              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const SizedBox(height: 10),
-                                  Container(
-                                    height: 5,
-                                    width: 50,
-                                    decoration: BoxDecoration(
-                                      color: neutral30,
-                                      borderRadius: BorderRadius.circular(100),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 18),
-                                  Text(
-                                    'Unggah foto kartu identitas',
-                                    style: titleTextBold.copyWith(
-                                        color: neutral100),
-                                  ),
-                                  const SizedBox(height: 16),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          controller.pickFromCamera(context);
-                                        },
-                                        child: SizedBox(
-                                          height: 86,
-                                          width: 163,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Image.asset(
-                                                'assets/icons/camera.png',
-                                                height: 30,
-                                                width: 30,
-                                              ),
-                                              const SizedBox(height: 8),
-                                              Text(
-                                                'Foto dari kamera',
-                                                style: captionTextSemiBold
-                                                    .copyWith(
-                                                  color: neutral80,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          controller.pickFromGallery(context);
-                                        },
-                                        child: SizedBox(
-                                          height: 86,
-                                          width: 163,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Image.asset(
-                                                'assets/icons/gallery.png',
-                                                height: 30,
-                                                width: 30,
-                                              ),
-                                              const SizedBox(height: 8),
-                                              Text(
-                                                'Pilih dari galeri',
-                                                style: captionTextSemiBold
-                                                    .copyWith(
-                                                  color: neutral80,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    )
-                  : controller.identityImage != null
-                      ? Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                image: DecorationImage(
-                                  image: FileImage(
-                                    File(controller.identityImage!.path),
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
+                init: IdentityController(),
+                builder: (controller) => profileC
+                            .user.value!.fotoKartuIdentitas ==
+                        null
+                    ? AddPhotoButton(
+                        ontap: () {
+                          showModalBottomSheet(
+                            constraints: const BoxConstraints(maxHeight: 170),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(8),
+                                topRight: Radius.circular(8),
                               ),
                             ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            ChangePhotoButton(
-                              ontap: () {
-                                showModalBottomSheet(
-                                  constraints:
-                                      const BoxConstraints(maxHeight: 170),
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(8),
-                                      topRight: Radius.circular(8),
+                            context: context,
+                            builder: (context) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const SizedBox(height: 10),
+                                    Container(
+                                      height: 5,
+                                      width: 50,
+                                      decoration: BoxDecoration(
+                                        color: neutral30,
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                      ),
                                     ),
-                                  ),
-                                  context: context,
-                                  builder: (context) {
-                                    return Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          16, 0, 16, 16),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          const SizedBox(height: 10),
-                                          Container(
-                                            height: 5,
-                                            width: 50,
-                                            decoration: BoxDecoration(
-                                              color: neutral30,
-                                              borderRadius:
-                                                  BorderRadius.circular(100),
+                                    const SizedBox(height: 18),
+                                    Text(
+                                      'Unggah foto kartu identitas',
+                                      style: titleTextBold.copyWith(
+                                          color: neutral100),
+                                    ),
+                                    const SizedBox(height: 16),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            controller.pickFromCamera(context);
+                                          },
+                                          child: SizedBox(
+                                            height: 86,
+                                            width: 163,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Image.asset(
+                                                  'assets/icons/camera.png',
+                                                  height: 30,
+                                                  width: 30,
+                                                ),
+                                                const SizedBox(height: 8),
+                                                Text(
+                                                  'Foto dari kamera',
+                                                  style: captionTextSemiBold
+                                                      .copyWith(
+                                                    color: neutral80,
+                                                  ),
+                                                )
+                                              ],
                                             ),
                                           ),
-                                          const SizedBox(height: 18),
-                                          Text(
-                                            'Unggah foto kartu identitas',
-                                            style: titleTextBold.copyWith(
-                                                color: neutral100),
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            controller.pickFromGallery(context);
+                                          },
+                                          child: SizedBox(
+                                            height: 86,
+                                            width: 163,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Image.asset(
+                                                  'assets/icons/gallery.png',
+                                                  height: 30,
+                                                  width: 30,
+                                                ),
+                                                const SizedBox(height: 8),
+                                                Text(
+                                                  'Pilih dari galeri',
+                                                  style: captionTextSemiBold
+                                                      .copyWith(
+                                                    color: neutral80,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
                                           ),
-                                          const SizedBox(height: 16),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              InkWell(
-                                                onTap: () {
-                                                  controller
-                                                      .pickFromCamera(context);
-                                                },
-                                                child: SizedBox(
-                                                  height: 86,
-                                                  width: 163,
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Image.asset(
-                                                        'assets/icons/camera.png',
-                                                        height: 30,
-                                                        width: 30,
-                                                      ),
-                                                      const SizedBox(height: 8),
-                                                      Text(
-                                                        'Foto dari kamera',
-                                                        style:
-                                                            captionTextSemiBold
-                                                                .copyWith(
-                                                          color: neutral80,
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      )
+                    : controller.identityImage != null
+                        ? Obx(
+                            () => controller.delete.value
+                                ? Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            height: 100,
+                                            width: 100,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                              image: DecorationImage(
+                                                image: FileImage(File(controller
+                                                    .identityImage!.path)),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          Positioned(
+                                            top: -1.0,
+                                            right: -1.0,
+                                            child: InkWell(
+                                              onTap: () {
+                                                controller.deletee();
+                                              },
+                                              child: const CircleAvatar(
+                                                radius: 10,
+                                                backgroundColor: Colors.red,
+                                                child: Icon(
+                                                  Icons.close,
+                                                  size: 15,
+                                                  color: Colors.white,
                                                 ),
                                               ),
-                                              InkWell(
-                                                onTap: () {
-                                                  controller
-                                                      .pickFromGallery(context);
-                                                },
-                                                child: SizedBox(
-                                                  height: 86,
-                                                  width: 163,
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Image.asset(
-                                                        'assets/icons/gallery.png',
-                                                        height: 30,
-                                                        width: 30,
-                                                      ),
-                                                      const SizedBox(height: 8),
-                                                      Text(
-                                                        'Pilih dari galeri',
-                                                        style:
-                                                            captionTextSemiBold
-                                                                .copyWith(
-                                                          color: neutral80,
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
+                                            ),
                                           ),
                                         ],
                                       ),
-                                    );
-                                  },
-                                );
-                              },
-                            )
-                          ],
-                        )
-                      : Obx(
-                          () => Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                height: 100,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  image: DecorationImage(
-                                    image: NetworkImage(profileC
-                                        .user.value!.fotoKartuIdentitas!),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              ChangePhotoButton(
-                                ontap: () {
-                                  showModalBottomSheet(
-                                    constraints:
-                                        const BoxConstraints(maxHeight: 170),
-                                    shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(8),
-                                        topRight: Radius.circular(8),
-                                      ),
-                                    ),
-                                    context: context,
-                                    builder: (context) {
-                                      return Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            16, 0, 16, 16),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            const SizedBox(height: 10),
-                                            Container(
-                                              height: 5,
-                                              width: 50,
-                                              decoration: BoxDecoration(
-                                                color: neutral30,
-                                                borderRadius:
-                                                    BorderRadius.circular(100),
-                                              ),
-                                            ),
-                                            const SizedBox(height: 18),
-                                            Text(
-                                              'Unggah foto kartu identitas',
-                                              style: titleTextBold.copyWith(
-                                                  color: neutral100),
-                                            ),
-                                            const SizedBox(height: 16),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                    ],
+                                  )
+                                : AddPhotoButton(
+                                    ontap: () {
+                                      showModalBottomSheet(
+                                        constraints: const BoxConstraints(
+                                            maxHeight: 170),
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(8),
+                                            topRight: Radius.circular(8),
+                                          ),
+                                        ),
+                                        context: context,
+                                        builder: (context) {
+                                          return Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                16, 0, 16, 16),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
                                               children: [
-                                                InkWell(
-                                                  onTap: () {
-                                                    controller.pickFromCamera(
-                                                        context);
-                                                  },
-                                                  child: SizedBox(
-                                                    height: 86,
-                                                    width: 163,
-                                                    child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Image.asset(
-                                                          'assets/icons/camera.png',
-                                                          height: 30,
-                                                          width: 30,
-                                                        ),
-                                                        const SizedBox(
-                                                            height: 8),
-                                                        Text(
-                                                          'Foto dari kamera',
-                                                          style:
-                                                              captionTextSemiBold
-                                                                  .copyWith(
-                                                            color: neutral80,
-                                                          ),
-                                                        )
-                                                      ],
-                                                    ),
+                                                const SizedBox(height: 10),
+                                                Container(
+                                                  height: 5,
+                                                  width: 50,
+                                                  decoration: BoxDecoration(
+                                                    color: neutral30,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            100),
                                                   ),
                                                 ),
-                                                InkWell(
-                                                  onTap: () {
-                                                    controller.pickFromGallery(
-                                                        context);
-                                                  },
-                                                  child: SizedBox(
-                                                    height: 86,
-                                                    width: 163,
-                                                    child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Image.asset(
-                                                          'assets/icons/gallery.png',
-                                                          height: 30,
-                                                          width: 30,
+                                                const SizedBox(height: 18),
+                                                Text(
+                                                  'Unggah Bukti Transfer',
+                                                  style: titleTextBold.copyWith(
+                                                      color: neutral100),
+                                                ),
+                                                const SizedBox(height: 16),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    InkWell(
+                                                      onTap: () {
+                                                        controller
+                                                            .pickFromCamera(
+                                                                context);
+                                                      },
+                                                      child: SizedBox(
+                                                        height: 86,
+                                                        width: 163,
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Image.asset(
+                                                              'assets/icons/camera.png',
+                                                              height: 30,
+                                                              width: 30,
+                                                            ),
+                                                            const SizedBox(
+                                                                height: 8),
+                                                            Text(
+                                                              'Foto dari kamera',
+                                                              style:
+                                                                  captionTextSemiBold
+                                                                      .copyWith(
+                                                                color:
+                                                                    neutral80,
+                                                              ),
+                                                            )
+                                                          ],
                                                         ),
-                                                        const SizedBox(
-                                                            height: 8),
-                                                        Text(
-                                                          'Pilih dari galeri',
-                                                          style:
-                                                              captionTextSemiBold
-                                                                  .copyWith(
-                                                            color: neutral80,
-                                                          ),
-                                                        )
-                                                      ],
+                                                      ),
                                                     ),
-                                                  ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        controller
+                                                            .pickFromGallery(
+                                                                context);
+                                                      },
+                                                      child: SizedBox(
+                                                        height: 86,
+                                                        width: 163,
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Image.asset(
+                                                              'assets/icons/gallery.png',
+                                                              height: 30,
+                                                              width: 30,
+                                                            ),
+                                                            const SizedBox(
+                                                                height: 8),
+                                                            Text(
+                                                              'Pilih dari galeri',
+                                                              style:
+                                                                  captionTextSemiBold
+                                                                      .copyWith(
+                                                                color:
+                                                                    neutral80,
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ],
                                             ),
-                                          ],
-                                        ),
+                                          );
+                                        },
                                       );
                                     },
-                                  );
-                                },
-                              )
-                            ],
-                          ),
-                        ),
-            ),
+                                  ),
+                          )
+                        : Obx(
+                            () => controller.delete.value
+                                ? Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            height: 100,
+                                            width: 100,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                              image: DecorationImage(
+                                                image: NetworkImage(profileC
+                                                    .user
+                                                    .value!
+                                                    .fotoKartuIdentitas!),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          Positioned(
+                                            top: -1.0,
+                                            right: -1.0,
+                                            child: InkWell(
+                                              onTap: () {
+                                                controller.deletee();
+                                              },
+                                              child: const CircleAvatar(
+                                                radius: 10,
+                                                backgroundColor: Colors.red,
+                                                child: Icon(
+                                                  Icons.close,
+                                                  size: 15,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                : AddPhotoButton(
+                                    ontap: () {
+                                      showModalBottomSheet(
+                                        constraints: const BoxConstraints(
+                                            maxHeight: 170),
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(8),
+                                            topRight: Radius.circular(8),
+                                          ),
+                                        ),
+                                        context: context,
+                                        builder: (context) {
+                                          return Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                16, 0, 16, 16),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                const SizedBox(height: 10),
+                                                Container(
+                                                  height: 5,
+                                                  width: 50,
+                                                  decoration: BoxDecoration(
+                                                    color: neutral30,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            100),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 18),
+                                                Text(
+                                                  'Unggah Bukti Transfer',
+                                                  style: titleTextBold.copyWith(
+                                                      color: neutral100),
+                                                ),
+                                                const SizedBox(height: 16),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    InkWell(
+                                                      onTap: () {
+                                                        controller
+                                                            .pickFromCamera(
+                                                                context);
+                                                      },
+                                                      child: SizedBox(
+                                                        height: 86,
+                                                        width: 163,
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Image.asset(
+                                                              'assets/icons/camera.png',
+                                                              height: 30,
+                                                              width: 30,
+                                                            ),
+                                                            const SizedBox(
+                                                                height: 8),
+                                                            Text(
+                                                              'Foto dari kamera',
+                                                              style:
+                                                                  captionTextSemiBold
+                                                                      .copyWith(
+                                                                color:
+                                                                    neutral80,
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        controller
+                                                            .pickFromGallery(
+                                                                context);
+                                                      },
+                                                      child: SizedBox(
+                                                        height: 86,
+                                                        width: 163,
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Image.asset(
+                                                              'assets/icons/gallery.png',
+                                                              height: 30,
+                                                              width: 30,
+                                                            ),
+                                                            const SizedBox(
+                                                                height: 8),
+                                                            Text(
+                                                              'Pilih dari galeri',
+                                                              style:
+                                                                  captionTextSemiBold
+                                                                      .copyWith(
+                                                                color:
+                                                                    neutral80,
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                          )),
             const SizedBox(
               height: 16,
             ),
