@@ -4,12 +4,14 @@ import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/car
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 
 import '../../../../theme/colors.dart';
+import '../controllers/program_page_controller.dart';
 
 class ProgramSudahSelesai extends StatelessWidget {
   const ProgramSudahSelesai({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProgramPageController());
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
@@ -21,16 +23,48 @@ class ProgramSudahSelesai extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Daftar Program (2)',
-            style: listItemTitleBold.copyWith(color: neutral100),
+          Obx(
+            () => Text(
+              'Daftar Program (${controller.program!.length})',
+              style: listItemTitleBold.copyWith(color: neutral100),
+            ),
           ),
-          const SizedBox(
-            height: 30,
+          Expanded(
+            child: GetBuilder<ProgramPageController>(
+              init: ProgramPageController(),
+              initState: (_) {},
+              builder: (_) {
+                return RefreshIndicator(
+                    onRefresh: () async {
+                      controller.refreshProgram();
+                    },
+                    child: ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      controller: controller.scrollController,
+                      shrinkWrap: true,
+                      itemCount: controller.program!.length,
+                      itemBuilder: (context, index) {
+                        return controller.program![index].persen! != "100"
+                            ? const SizedBox()
+                            : CardDana(
+                                totalTransaksi: controller
+                                    .totaltransaksiiD.value!.totalTransaksi,
+                                judul: controller.program![index].nama!,
+                                terkumpul:
+                                    controller.program?[index].totalDana ?? 0,
+                                target: controller.program![index].targetDana!,
+                                tanggalakhir:
+                                    controller.program![index].tanggal!,
+                                muzakki:
+                                    controller.program![index].totalMuzaki!,
+                                id: controller.program![index].id,
+                                persenn: controller.program![index].persen!,
+                              );
+                      },
+                    ));
+              },
+            ),
           ),
-          Column(
-            children: const [],
-          )
         ],
       ),
     );

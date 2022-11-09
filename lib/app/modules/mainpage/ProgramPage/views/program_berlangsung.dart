@@ -47,17 +47,22 @@ class ProgramBerlangsung extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: controller.program!.length,
                       itemBuilder: (context, index) {
-                        return CardDana(
-                          totalTransaksi:
-                              controller.totaltransaksiiD.value!.totalTransaksi,
-                          judul: controller.program![index].nama!,
-                          terkumpul: controller.program?[index].totalDana ?? 0,
-                          target: controller.program![index].targetDana!,
-                          tanggalakhir: controller.program![index].tanggal!,
-                          muzakki: controller.program![index].totalMuzaki!,
-                          id: controller.program![index].id,
-                          persenn: controller.program![index].persen!,
-                        );
+                        return controller.program![index].persen! == "100"
+                            ? const SizedBox()
+                            : CardDana(
+                                totalTransaksi: controller
+                                    .totaltransaksiiD.value!.totalTransaksi,
+                                judul: controller.program![index].nama!,
+                                terkumpul:
+                                    controller.program?[index].totalDana ?? 0,
+                                target: controller.program![index].targetDana!,
+                                tanggalakhir:
+                                    controller.program![index].tanggal!,
+                                muzakki:
+                                    controller.program![index].totalMuzaki!,
+                                id: controller.program![index].id,
+                                persenn: controller.program![index].persen!,
+                              );
                       },
                     ));
               },
