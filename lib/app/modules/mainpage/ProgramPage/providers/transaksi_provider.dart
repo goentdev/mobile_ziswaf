@@ -10,7 +10,7 @@ import 'package:path/path.dart';
 
 import '../zakat_model.dart';
 
-class TransaksiProvider extends GetConnect {
+class TransaksiProvider2 extends GetConnect {
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
   final String url = 'https://ziswaf-server.smarteschool.net';
   String? linkBuktiTransaksi;
@@ -27,13 +27,16 @@ class TransaksiProvider extends GetConnect {
     required buktiTransaksi,
     required bankId,
   }) async {
-    final fotoRef = firebaseStorage.ref('bukti-transaksi');
+    assert(bankId != null);
+    final fotoRef = firebaseStorage.ref('bukti-transfer');
     final convertedFoto = File(buktiTransaksi);
     final fotoExt = extension(convertedFoto.path);
     final fireFoto = fotoRef.child('${_getRandomFileName()}.$fotoExt');
     await fireFoto.putFile(File(buktiTransaksi));
     linkBuktiTransaksi = await fireFoto.getDownloadURL();
-    final response = await post('$url/transaksi', {
+    final response = await post('$url/transaksi', headers: {
+      'Authorization': 'bearer ${sharedPrefs.token}'
+    }, {
       "program_id": programId,
       "muzaki_id": muzakiId,
       "jenis_donasi": jenisDonasi,
@@ -43,9 +46,8 @@ class TransaksiProvider extends GetConnect {
       "nomor_resi": nomorResi,
       "bukti_transaksi": linkBuktiTransaksi,
       "bank_id": bankId
-    }, headers: {
-      'Authorization': 'bearer${sharedPrefs.token}'
     });
+    printError();
     if (response.status.isOk) {
       EasyLoading.showSuccess('Berhasil Add Transaksi');
       return true;

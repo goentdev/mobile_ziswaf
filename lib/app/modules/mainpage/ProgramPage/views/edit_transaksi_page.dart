@@ -11,7 +11,7 @@ import '../../../../theme/fonts.dart';
 import '../../../auth/controllers/choose_bank_controller.dart';
 
 class EditTransaksiPage extends StatelessWidget {
-  final String judul, nama;
+  final String judul, nama, whatsapp, email, kategori;
   final String? nomor;
   final int id, programId;
   const EditTransaksiPage(
@@ -20,7 +20,10 @@ class EditTransaksiPage extends StatelessWidget {
       required this.nama,
       required this.nomor,
       required this.id,
-      required this.programId});
+      required this.programId,
+      required this.whatsapp,
+      required this.email,
+      required this.kategori});
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +75,8 @@ class EditTransaksiPage extends StatelessWidget {
                       gambar: nama,
                       id: id,
                       programId: programId,
+                      email: email,
+                      kategori: kategori,
                     ),
                     const SizedBox(
                       height: 16,

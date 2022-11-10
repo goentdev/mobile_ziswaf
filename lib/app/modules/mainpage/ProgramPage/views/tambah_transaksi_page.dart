@@ -13,7 +13,7 @@ import '../../../../theme/fonts.dart';
 import '../../../auth/controllers/choose_bank_controller.dart';
 
 class TambahTransaksi extends StatelessWidget {
-  final String judul, nama;
+  final String judul, nama, email, kategori;
   final String? nomor;
   final int id, programId;
   const TambahTransaksi(
@@ -22,7 +22,9 @@ class TambahTransaksi extends StatelessWidget {
       required this.nama,
       required this.nomor,
       required this.id,
-      required this.programId});
+      required this.programId,
+      required this.email,
+      required this.kategori});
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +75,8 @@ class TambahTransaksi extends StatelessWidget {
                       judul: judul,
                       id: id,
                       programId: programId,
+                      email: email,
+                      kategori: kategori,
                     ),
                     const SizedBox(
                       height: 16,
@@ -1427,14 +1431,25 @@ class TambahTransaksi extends StatelessWidget {
                       controller.alokasi3 == false &&
                       controller.alokasi4 == false) {
                     Get.to(() => BuktiTransaksi(
-                        id: id,
-                        programId: programId,
-                        nominal: [controller.nominalController.text],
-                        jenisDonasi: [controller.selectedDonasi.value]));
+                          id: id,
+                          programId: programId,
+                          nominal: [controller.nominalController.text],
+                          jenisDonasi: [controller.selectedDonasi.value],
+                          judul: judul,
+                          nama: nama,
+                          nomor: nomor!,
+                          email: email,
+                          kategori: kategori,
+                        ));
                   } else if (controller.alokasi2 == true &&
                       controller.alokasi3 == false &&
                       controller.alokasi4 == false) {
                     Get.to(() => BuktiTransaksi(
+                            email: email,
+                            kategori: kategori,
+                            judul: judul,
+                            nama: nama,
+                            nomor: nomor!,
                             id: id,
                             programId: programId,
                             nominal: [
@@ -1448,31 +1463,47 @@ class TambahTransaksi extends StatelessWidget {
                   } else if (controller.alokasi2 == true &&
                       controller.alokasi3 == true &&
                       controller.alokasi4 == false) {
-                    Get.to(() =>
-                        BuktiTransaksi(id: id, programId: programId, nominal: [
-                          controller.nominalController.text,
-                          controller.nominal2Controller.text,
-                          controller.nominal3Controller.text
-                        ], jenisDonasi: [
-                          controller.selectedDonasi.value,
-                          controller.selectedDonasi2.value,
-                          controller.selectedDonasi3.value
-                        ]));
+                    Get.to(() => BuktiTransaksi(
+                            email: email,
+                            kategori: kategori,
+                            judul: judul,
+                            nama: nama,
+                            nomor: nomor!,
+                            id: id,
+                            programId: programId,
+                            nominal: [
+                              controller.nominalController.text,
+                              controller.nominal2Controller.text,
+                              controller.nominal3Controller.text
+                            ],
+                            jenisDonasi: [
+                              controller.selectedDonasi.value,
+                              controller.selectedDonasi2.value,
+                              controller.selectedDonasi3.value
+                            ]));
                   } else if (controller.alokasi2 == true &&
                       controller.alokasi3 == true &&
                       controller.alokasi4 == true) {
-                    Get.to(() =>
-                        BuktiTransaksi(id: id, programId: programId, nominal: [
-                          controller.nominalController.text,
-                          controller.nominal2Controller.text,
-                          controller.nominal3Controller.text,
-                          controller.nominal4Controller.text
-                        ], jenisDonasi: [
-                          controller.selectedDonasi.value,
-                          controller.selectedDonasi2.value,
-                          controller.selectedDonasi3.value,
-                          controller.selectedDonasi4.value
-                        ]));
+                    Get.to(() => BuktiTransaksi(
+                            email: email,
+                            kategori: kategori,
+                            judul: judul,
+                            nama: nama,
+                            nomor: nomor!,
+                            id: id,
+                            programId: programId,
+                            nominal: [
+                              controller.nominalController.text,
+                              controller.nominal2Controller.text,
+                              controller.nominal3Controller.text,
+                              controller.nominal4Controller.text
+                            ],
+                            jenisDonasi: [
+                              controller.selectedDonasi.value,
+                              controller.selectedDonasi2.value,
+                              controller.selectedDonasi3.value,
+                              controller.selectedDonasi4.value
+                            ]));
                   }
                 },
                 child: Row(

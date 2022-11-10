@@ -12,16 +12,23 @@ import 'package:path/path.dart';
 class BuktiTransaksi extends StatelessWidget {
   final int id, programId;
   final List<String> nominal, jenisDonasi;
+  final String judul, nama, nomor, email, kategori;
   const BuktiTransaksi(
       {super.key,
       required this.id,
       required this.programId,
       required this.nominal,
-      required this.jenisDonasi});
+      required this.jenisDonasi,
+      required this.judul,
+      required this.nama,
+      required this.nomor,
+      required this.email,
+      required this.kategori});
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ChooseBankController());
+    final controller2 = Get.put(IdentityController());
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -201,6 +208,12 @@ class BuktiTransaksi extends StatelessWidget {
                                                       controller
                                                           .banksOnSearch[index]
                                                           .nama!;
+                                                  controller.banks[index].nama!;
+                                                  controller.selectedBankId
+                                                          .value =
+                                                      controller
+                                                          .banksOnSearch[index]
+                                                          .id!;
                                                   controller.isSelected.value =
                                                       true;
                                                   Get.back();
@@ -219,6 +232,10 @@ class BuktiTransaksi extends StatelessWidget {
                                                           .selectedBank.value =
                                                       controller
                                                           .banks[index].nama!;
+                                                  controller.selectedBankId
+                                                          .value =
+                                                      controller
+                                                          .banks[index].id!;
                                                   controller.isSelected.value =
                                                       true;
                                                   Get.back();
@@ -310,7 +327,7 @@ class BuktiTransaksi extends StatelessWidget {
               height: 4,
             ),
             TextFormField(
-              controller: controller.bankAccountController,
+              controller: controller.nomorResiController,
               decoration: InputDecoration(
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -641,7 +658,22 @@ class BuktiTransaksi extends StatelessWidget {
             backgroundColor: primaryMain,
           ),
           onPressed: () async {
-            Get.to(const KonfirmasiPage());
+            Get.to(KonfirmasiPage(
+              id: id,
+              programId: programId,
+              nominal: nominal,
+              jenisDonasi: jenisDonasi,
+              nomorRekening: controller.bankAccountController.text,
+              namaRekening: controller.accountNameController.text,
+              nomorResi: controller.nomorResiController.text,
+              buktiTransaksi: controller2.identityImage!.path,
+              bankId: controller.selectedBankId.value,
+              judul: judul,
+              nama: nama,
+              nomor: nomor,
+              email: email,
+              kategori: kategori,
+            ));
           },
           child: Text(
             'Selanjutnya',

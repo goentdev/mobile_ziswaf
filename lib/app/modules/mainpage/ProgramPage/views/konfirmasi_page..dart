@@ -1,20 +1,44 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/data/providers/transaksi_provider.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/identity_controller.dart';
-import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/bukti_transaksi_page.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/providers/transaksi_provider.dart';
 
 import '../../../../routes/app_pages.dart';
 import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
+import '../controllers/program_page_controller.dart';
 
 class KonfirmasiPage extends StatelessWidget {
-  const KonfirmasiPage({super.key});
+  final int id, programId;
+  final String judul, nama, nomor, email, kategori;
+  final List<String> nominal, jenisDonasi;
+  final String nomorRekening, namaRekening, nomorResi, buktiTransaksi;
+  final int bankId;
+  const KonfirmasiPage(
+      {super.key,
+      required this.id,
+      required this.programId,
+      required this.nominal,
+      required this.jenisDonasi,
+      required this.nomorRekening,
+      required this.namaRekening,
+      required this.nomorResi,
+      required this.buktiTransaksi,
+      required this.bankId,
+      required this.judul,
+      required this.nama,
+      required this.nomor,
+      required this.email,
+      required this.kategori});
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(IdentityController());
+    final controller2 = Get.put(ProgramPageController());
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -22,7 +46,7 @@ class KonfirmasiPage extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          'Konfirmasi Transaksi',
+          'Konfirmasi Page',
           style: listTitleBold.copyWith(color: neutral90),
         ),
         leading: IconButton(
@@ -40,7 +64,6 @@ class KonfirmasiPage extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 600,
               margin: const EdgeInsets.all(16),
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -62,7 +85,7 @@ class KonfirmasiPage extends StatelessWidget {
                         width: 16,
                       ),
                       Text(
-                        'Sedekah Bangunan Infrastruktur',
+                        judul,
                         style: listTitleSemiBold.copyWith(color: neutral100),
                       )
                     ],
@@ -78,7 +101,7 @@ class KonfirmasiPage extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    initialValue: 'Alif Pramana Putra',
+                    initialValue: nama,
                     style: captionTextSemiBold.copyWith(
                       color: neutral100,
                     ),
@@ -107,7 +130,7 @@ class KonfirmasiPage extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    initialValue: '08211234321',
+                    initialValue: nomor,
                     style: captionTextSemiBold.copyWith(
                       color: neutral100,
                     ),
@@ -136,7 +159,7 @@ class KonfirmasiPage extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    initialValue: 'alifpramana@gmail.com',
+                    initialValue: email,
                     style: captionTextSemiBold.copyWith(
                       color: neutral100,
                     ),
@@ -187,35 +210,6 @@ class KonfirmasiPage extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Nama',
-                      style: captionTextSemiBold.copyWith(
-                        color: neutral70,
-                      ),
-                    ),
-                  ),
-                  TextFormField(
-                    initialValue: 'Alif Pramana Putra',
-                    style: captionTextSemiBold.copyWith(
-                      color: neutral100,
-                    ),
-                    enabled: false,
-                    decoration: InputDecoration(
-                      disabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: neutral40,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      hintText: 'Tuliskan Nama',
-                      hintStyle: listTitleBold.copyWith(color: neutral60),
-                      isDense: true,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
                       'Nomor Rekening',
                       style: captionTextSemiBold.copyWith(
                         color: neutral70,
@@ -223,8 +217,7 @@ class KonfirmasiPage extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    initialValue:
-                        'Bank Mandiri - 1640001233211\na/n Alif Pramana Putra',
+                    initialValue: '$nomorRekening\na/n $namaRekening',
                     style: captionTextSemiBold.copyWith(
                       color: neutral100,
                     ),
@@ -252,7 +245,7 @@ class KonfirmasiPage extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    initialValue: '01929331774881',
+                    initialValue: nomorResi,
                     style: captionTextSemiBold.copyWith(
                       color: neutral100,
                     ),
@@ -265,7 +258,7 @@ class KonfirmasiPage extends StatelessWidget {
                         ),
                         borderRadius: BorderRadius.circular(4),
                       ),
-                      hintText: 'Tuliskan Nama',
+                      hintText: '',
                       hintStyle: listTitleBold.copyWith(color: neutral60),
                       isDense: true,
                     ),
@@ -281,96 +274,44 @@ class KonfirmasiPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 6),
-                  Column(
-                    children: [
-                      Row(
-                        children: [
-                          Image.asset(
-                            'assets/icons/radio.png',
-                            width: 12,
-                            height: 12,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Zakat Maal',
-                            style: captionTextRegular,
-                          ),
-                          Text(
-                            ' - ',
-                            style: percentTittle.copyWith(
-                              color: neutral100,
+                  ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: jenisDonasi.length,
+                      itemBuilder: (context, index) {
+                        return Row(
+                          children: [
+                            Image.asset(
+                              'assets/icons/radio.png',
+                              width: 12,
+                              height: 12,
                             ),
-                          ),
-                          Text(
-                            'Rp100.000',
-                            style: percentTittle.copyWith(
-                              color: neutral100,
+                            const SizedBox(width: 8),
+                            Text(
+                              jenisDonasi[index],
+                              style: captionTextRegular,
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          Image.asset(
-                            'assets/icons/radio.png',
-                            width: 12,
-                            height: 12,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Zakat Fitrah',
-                            style: captionTextRegular,
-                          ),
-                          Text(
-                            ' - ',
-                            style: percentTittle.copyWith(
-                              color: neutral100,
+                            Text(
+                              ' - ',
+                              style: percentTittle.copyWith(
+                                color: neutral100,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Rp75.000',
-                            style: percentTittle.copyWith(
-                              color: neutral100,
+                            Text(
+                              nominal[index],
+                              style: percentTittle.copyWith(
+                                color: neutral100,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          Image.asset(
-                            'assets/icons/radio.png',
-                            width: 12,
-                            height: 12,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Infaq',
-                            style: captionTextRegular,
-                          ),
-                          Text(
-                            ' - ',
-                            style: percentTittle.copyWith(
-                              color: neutral100,
-                            ),
-                          ),
-                          Text(
-                            'Rp75.000',
-                            style: percentTittle.copyWith(
-                              color: neutral100,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
+                          ],
+                        );
+                      })
                 ],
               ),
             ),
             GetBuilder(
               init: controller,
-              builder: (controller) => controller.identityImage == null
+              builder: (controller) => buktiTransaksi == null
                   ? InkWell(
                       onTap: () {
                         showModalBottomSheet(
@@ -713,8 +654,8 @@ class KonfirmasiPage extends StatelessWidget {
                                           border: Border.all(
                                               width: 1, color: neutral50),
                                           image: DecorationImage(
-                                              image: FileImage(File(controller
-                                                  .identityImage!.path)),
+                                              image: FileImage(
+                                                  File(buktiTransaksi)),
                                               fit: BoxFit.contain)),
                                     ),
                                     const SizedBox(
@@ -819,7 +760,22 @@ class KonfirmasiPage extends StatelessWidget {
             backgroundColor: primaryMain,
           ),
           onPressed: () async {
-            Get.back();
+            bool success = await TransaksiProvider2().tambahTransaksi(
+                programId: programId,
+                muzakiId: id,
+                jenisDonasi: jenisDonasi,
+                nominal: nominal,
+                nomorRekening: nomorRekening,
+                namaRekening: namaRekening,
+                nomorResi: nomorResi,
+                buktiTransaksi: buktiTransaksi,
+                bankId: bankId);
+            await controller2.getPrograms();
+            if (success) {
+              Get.offAllNamed(Routes.MAINPAGE);
+            } else {
+              print('wkwk');
+            }
           },
           child: Text(
             'Simpan',

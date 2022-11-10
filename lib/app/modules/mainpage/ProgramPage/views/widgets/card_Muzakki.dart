@@ -9,7 +9,7 @@ import '../../../../../theme/fonts.dart';
 class CardMuzakki extends StatelessWidget {
   final String nama;
   final String? nomor;
-  final String judul;
+  final String judul, kategori, email;
   final int id, programId;
   final String? gambar;
 
@@ -21,6 +21,8 @@ class CardMuzakki extends StatelessWidget {
     required this.gambar,
     required this.id,
     required this.programId,
+    required this.kategori,
+    required this.email,
   });
 
   @override
@@ -33,6 +35,8 @@ class CardMuzakki extends StatelessWidget {
               nomor: nomor,
               id: id,
               programId: programId,
+              email: email,
+              kategori: kategori,
             ));
       },
       child: Container(

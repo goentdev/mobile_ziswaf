@@ -7,6 +7,7 @@ import 'package:mobile_ziswaf/app/data/providers/bank_provider.dart';
 
 class ChooseBankController extends GetxController {
   late TextEditingController bankAccountController;
+  late TextEditingController nomorResiController;
   late TextEditingController accountNameController;
   late TextEditingController searchBankController;
   late TextEditingController searchDonasiController;
@@ -55,6 +56,7 @@ class ChooseBankController extends GetxController {
   void onInit() {
     bankAccountController = TextEditingController();
     accountNameController = TextEditingController();
+    nomorResiController = TextEditingController();
     searchBankController = TextEditingController();
     searchDonasiController = TextEditingController();
     searchDonasi2Controller = TextEditingController();
@@ -80,6 +82,7 @@ class ChooseBankController extends GetxController {
 
   @override
   void onClose() {
+    nomorResiController.dispose();
     bankAccountController.dispose();
     accountNameController.dispose();
     searchBankController.dispose();

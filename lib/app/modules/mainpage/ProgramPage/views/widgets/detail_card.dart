@@ -183,11 +183,14 @@ class DetailCard extends StatelessWidget {
             label: 'Edit',
             onPressed: (context) {
               Get.to(EditTransaksiPage(
+                whatsapp: nomor!,
                 judul: judul,
                 nama: nama,
                 nomor: nomor,
                 id: muzakiId!,
                 programId: programId!,
+                email: email!,
+                kategori: kategori!,
               ));
             },
             icon: Icons.edit_note_rounded,

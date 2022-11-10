@@ -93,8 +93,11 @@ class UbahTransaksiPage extends StatelessWidget {
                                 .muzakkisOnSearch![index].muzaki!.whatsapp!,
                             judul: judul,
                             gambar: controller.muzaki![index].nama!,
-                            id: controller.muzaki![index].id!,
+                            id: controller.muzaki![index].muzaki!.id!,
                             programId: programId,
+                            email: controller.muzaki![index].muzaki!.email!,
+                            kategori:
+                                controller.muzaki![index].muzaki!.whatsapp!,
                           );
                         } else {
                           return CardMuzakki(
@@ -102,8 +105,11 @@ class UbahTransaksiPage extends StatelessWidget {
                             nama: controller.muzaki![index].nama!,
                             nomor: controller.muzaki![index].muzaki!.whatsapp!,
                             judul: judul,
-                            id: controller.muzaki![index].id!,
+                            id: controller.muzaki![index].muzaki!.id!,
                             programId: programId,
+                            email: controller.muzaki![index].muzaki!.email!,
+                            kategori:
+                                controller.muzaki![index].muzaki!.whatsapp!,
                           );
                         }
                       },
