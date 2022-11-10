@@ -68,6 +68,8 @@ class DaftarBadanUsaha extends StatelessWidget {
                                           .muzakibadanusaha![index].kategori ==
                                       'Badan Usaha'
                                   ? CardListUser(
+                                      gambar: controller
+                                          .muzakibadanusaha![index].nama!,
                                       nama: controller
                                           .muzakkisOnSearchBadanUsaha![index]
                                           .nama!,
@@ -91,6 +93,8 @@ class DaftarBadanUsaha extends StatelessWidget {
                                           .muzakibadanusaha![index].kategori ==
                                       'Badan Usaha'
                                   ? CardListUser(
+                                      gambar: controller
+                                          .muzakibadanusaha![index].nama!,
                                       nama: controller
                                           .muzakibadanusaha![index].nama!,
                                       nomor: controller.muzakibadanusaha![index]

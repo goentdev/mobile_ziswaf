@@ -66,6 +66,7 @@ class EditTransaksiPage extends StatelessWidget {
                       nama: nama,
                       nomor: nomor,
                       judul: judul,
+                      gambar: nama,
                     ),
                     const SizedBox(
                       height: 16,

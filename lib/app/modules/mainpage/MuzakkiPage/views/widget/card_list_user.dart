@@ -15,6 +15,7 @@ class CardListUser extends StatelessWidget {
   final String email;
   final String kategori;
   final String tipe;
+  final String? gambar;
   final int id;
   final MuzakkiPageController muzaki;
 
@@ -27,6 +28,7 @@ class CardListUser extends StatelessWidget {
     required this.kategori,
     required this.tipe,
     required this.muzaki,
+    required this.gambar,
   });
 
   @override
@@ -186,11 +188,13 @@ class CardListUser extends StatelessWidget {
                         margin: const EdgeInsets.only(bottom: 16),
                         child: Row(
                           children: [
-                            Image.asset(
-                              'assets/icons/ap.png',
-                              width: 30,
-                              height: 30,
-                            ),
+                            CircleAvatar(
+                                backgroundColor: primarySurface,
+                                child: Text(
+                                  gambar![0].trimRight().toUpperCase() +
+                                      gambar![2].trimRight().toUpperCase(),
+                                  style: textSBold.copyWith(color: primaryMain),
+                                )),
                             const SizedBox(width: 16),
                             Text(
                               nama,
@@ -899,11 +903,13 @@ class CardListUser extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.asset(
-                'assets/icons/ap.png',
-                width: 30,
-                height: 30,
-              ),
+              CircleAvatar(
+                  backgroundColor: primarySurface,
+                  child: Text(
+                    gambar![0].trimRight().toUpperCase() +
+                        gambar![2].trimRight().toUpperCase(),
+                    style: textSBold.copyWith(color: primaryMain),
+                  )),
               const SizedBox(
                 width: 8,
               ),

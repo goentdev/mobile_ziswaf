@@ -194,7 +194,8 @@ class DetailProgram extends StatelessWidget {
                                               programId: id,
                                               id: controller
                                                   .transaksi![index].id,
-                                              icon: 'assets/icons/ap.png',
+                                              icon: controller.transaksi![index]
+                                                  .muzaki?.nama,
                                               nama: controller.transaksi![index]
                                                       .muzaki?.nama ??
                                                   '-',

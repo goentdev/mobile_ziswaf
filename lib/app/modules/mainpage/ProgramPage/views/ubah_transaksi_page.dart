@@ -90,9 +90,11 @@ class UbahTransaksiPage extends StatelessWidget {
                             nomor: controller
                                 .muzakkisOnSearch![index].muzaki!.whatsapp!,
                             judul: judul,
+                            gambar: controller.muzaki![index].nama!,
                           );
                         } else {
                           return CardMuzakki(
+                            gambar: controller.muzaki![index].nama,
                             nama: controller.muzaki![index].nama!,
                             nomor: controller.muzaki![index].muzaki!.whatsapp!,
                             judul: judul,

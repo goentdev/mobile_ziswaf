@@ -11,7 +11,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
 class DetailCard extends StatelessWidget {
-  final String icon;
+  final String? icon;
   final String nama;
   final String bank;
   final int? nominal, id, programId;
@@ -328,7 +328,7 @@ class DetailCard extends StatelessWidget {
         ]),
         child: Container(
           width: double.infinity,
-          height: 67,
+          height: 74,
           margin: const EdgeInsets.only(top: 16),
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
@@ -345,11 +345,13 @@ class DetailCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Image.asset(
-                        icon,
-                        width: 30,
-                        height: 30,
-                      ),
+                      CircleAvatar(
+                          backgroundColor: primarySurface,
+                          child: Text(
+                            icon![0].trimRight().toUpperCase() +
+                                icon![2].trimRight().toUpperCase(),
+                            style: textSBold.copyWith(color: primaryMain),
+                          )),
                       const SizedBox(
                         width: 8,
                       ),

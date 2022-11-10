@@ -69,6 +69,8 @@ class DaftarPemerintah extends StatelessWidget {
                                           .muzakipemerintah![index].kategori ==
                                       'Pemerintah'
                                   ? CardListUser(
+                                      gambar: controller
+                                          .muzakipemerintah![index].nama,
                                       nama: controller
                                           .muzakkisOnSearchPemerintah![index]
                                           .nama!,
@@ -92,6 +94,8 @@ class DaftarPemerintah extends StatelessWidget {
                                           .muzakipemerintah![index].kategori ==
                                       'Pemerintah'
                                   ? CardListUser(
+                                      gambar: controller
+                                          .muzakipemerintah![index].nama,
                                       nama: controller
                                           .muzakipemerintah![index].nama!,
                                       nomor: controller.muzakipemerintah![index]

@@ -69,6 +69,8 @@ class DaftarPersonal extends StatelessWidget {
                                           .muzakipersonal![index].kategori ==
                                       'Personal'
                                   ? CardListUser(
+                                      gambar: controller
+                                          .muzakipersonal![index].nama!,
                                       nama: controller
                                           .muzakkisOnSearchPersonal![index]
                                           .nama!,
@@ -92,6 +94,8 @@ class DaftarPersonal extends StatelessWidget {
                                           .muzakipersonal![index].kategori ==
                                       'Personal'
                                   ? CardListUser(
+                                      gambar: controller
+                                          .muzakipersonal![index].nama!,
                                       nama: controller
                                           .muzakipersonal![index].nama!,
                                       nomor: controller.muzakipersonal![index]

@@ -37,13 +37,19 @@ class ProfileView extends GetView<ProfileController> {
                   color: neutral10,
                   child: Row(
                     children: [
-                      Container(
-                        height: 50,
+                      SizedBox(
                         width: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(1000),
-                          image: const DecorationImage(
-                            image: AssetImage('assets/icons/iconprofile.png'),
+                        height: 50,
+                        child: CircleAvatar(
+                          backgroundColor: primarySurface,
+                          child: Text(
+                            controller.user.value!.nama![0]
+                                    .trimRight()
+                                    .toUpperCase() +
+                                controller.user.value!.nama![2]
+                                    .trimRight()
+                                    .toUpperCase(),
+                            style: titleExtraBold.copyWith(color: primaryMain),
                           ),
                         ),
                       ),
@@ -136,7 +142,7 @@ class ProfileView extends GetView<ProfileController> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
                                             children: [
-                                              Icon(
+                                              const Icon(
                                                 Icons.star_rate_rounded,
                                                 color: Color(0xffDF823C),
                                                 size: 16,

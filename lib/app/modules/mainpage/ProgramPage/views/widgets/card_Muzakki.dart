@@ -10,12 +10,14 @@ class CardMuzakki extends StatelessWidget {
   final String nama;
   final String? nomor;
   final String judul;
+  final String? gambar;
 
   const CardMuzakki({
     super.key,
     required this.nama,
     required this.nomor,
     required this.judul,
+    required this.gambar,
   });
 
   @override
@@ -39,11 +41,13 @@ class CardMuzakki extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset(
-              'assets/icons/ap.png',
-              width: 30,
-              height: 30,
-            ),
+            CircleAvatar(
+                backgroundColor: primarySurface,
+                child: Text(
+                  gambar![0].trimRight().toUpperCase() +
+                      gambar![2].trimRight().toUpperCase(),
+                  style: textSBold.copyWith(color: primaryMain),
+                )),
             const SizedBox(
               width: 8,
             ),

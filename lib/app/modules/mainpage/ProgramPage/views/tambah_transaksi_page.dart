@@ -62,6 +62,7 @@ class TambahTransaksi extends StatelessWidget {
                       ),
                     ),
                     CardMuzakki(
+                      gambar: nama,
                       nama: nama,
                       nomor: nomor,
                       judul: judul,
