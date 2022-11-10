@@ -10,7 +10,14 @@ import '../../../auth/views/register/widgets/card_bank.dart';
 import 'package:path/path.dart';
 
 class BuktiTransaksi extends StatelessWidget {
-  const BuktiTransaksi({super.key});
+  final int id, programId;
+  final List<String> nominal, jenisDonasi;
+  const BuktiTransaksi(
+      {super.key,
+      required this.id,
+      required this.programId,
+      required this.nominal,
+      required this.jenisDonasi});
 
   @override
   Widget build(BuildContext context) {

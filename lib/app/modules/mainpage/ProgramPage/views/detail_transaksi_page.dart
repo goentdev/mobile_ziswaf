@@ -99,7 +99,7 @@ class DetailTransaksi extends StatelessWidget {
                         const SizedBox(height: 14),
                         GestureDetector(
                           onTap: () {
-                            Get.to(() => const BuktiTransaksi());
+                            // Get.to(() => const BuktiTransaksi());
                           },
                           child: Row(
                             children: [

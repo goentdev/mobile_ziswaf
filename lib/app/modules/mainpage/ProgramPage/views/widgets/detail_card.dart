@@ -14,7 +14,7 @@ class DetailCard extends StatelessWidget {
   final String? icon;
   final String nama;
   final String bank;
-  final int? nominal, id, programId;
+  final int? nominal, id, programId, muzakiId;
   final String? waktu;
   final String judul;
   final String? nomor;
@@ -42,6 +42,7 @@ class DetailCard extends StatelessWidget {
     this.id,
     this.programId,
     this.nominaldonasi,
+    this.muzakiId,
   });
   @override
   Widget build(BuildContext context) {
@@ -181,7 +182,13 @@ class DetailCard extends StatelessWidget {
           SlidableAction(
             label: 'Edit',
             onPressed: (context) {
-              Get.to(EditTransaksiPage(judul: judul, nama: nama, nomor: nomor));
+              Get.to(EditTransaksiPage(
+                judul: judul,
+                nama: nama,
+                nomor: nomor,
+                id: muzakiId!,
+                programId: programId!,
+              ));
             },
             icon: Icons.edit_note_rounded,
             flex: 5,

@@ -13,11 +13,14 @@ import '../../../auth/controllers/choose_bank_controller.dart';
 class EditTransaksiPage extends StatelessWidget {
   final String judul, nama;
   final String? nomor;
+  final int id, programId;
   const EditTransaksiPage(
       {super.key,
       required this.judul,
       required this.nama,
-      required this.nomor});
+      required this.nomor,
+      required this.id,
+      required this.programId});
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +70,8 @@ class EditTransaksiPage extends StatelessWidget {
                       nomor: nomor,
                       judul: judul,
                       gambar: nama,
+                      id: id,
+                      programId: programId,
                     ),
                     const SizedBox(
                       height: 16,
@@ -445,7 +450,7 @@ class EditTransaksiPage extends StatelessWidget {
                   backgroundColor: primaryMain,
                 ),
                 onPressed: () async {
-                  Get.to(() => const BuktiTransaksi());
+                  // Get.to(() => const BuktiTransaksi());
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

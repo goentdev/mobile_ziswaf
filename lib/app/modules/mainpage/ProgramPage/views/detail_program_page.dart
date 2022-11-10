@@ -169,6 +169,11 @@ class DetailProgram extends StatelessWidget {
                                         itemCount: controller.transaksi!.length,
                                         itemBuilder: (context, index) {
                                           return DetailCard(
+                                              muzakiId: controller
+                                                      .transaksi![index]
+                                                      .muzaki
+                                                      ?.id ??
+                                                  0,
                                               buktifotoTransaksi: controller
                                                   .transaksi![index]
                                                   .buktiTransaksi,
@@ -303,6 +308,7 @@ class DetailProgram extends StatelessWidget {
           onPressed: () {
             Get.to(() => UbahTransaksiPage(
                   judul: judul,
+                  programId: id!,
                 ));
           },
           child: Text(

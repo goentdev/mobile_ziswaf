@@ -1,3 +1,5 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,11 +15,14 @@ import '../../../auth/controllers/choose_bank_controller.dart';
 class TambahTransaksi extends StatelessWidget {
   final String judul, nama;
   final String? nomor;
+  final int id, programId;
   const TambahTransaksi(
       {super.key,
       required this.judul,
       required this.nama,
-      required this.nomor});
+      required this.nomor,
+      required this.id,
+      required this.programId});
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +71,8 @@ class TambahTransaksi extends StatelessWidget {
                       nama: nama,
                       nomor: nomor,
                       judul: judul,
+                      id: id,
+                      programId: programId,
                     ),
                     const SizedBox(
                       height: 16,
@@ -1416,7 +1423,57 @@ class TambahTransaksi extends StatelessWidget {
                   backgroundColor: primaryMain,
                 ),
                 onPressed: () async {
-                  Get.to(() => const BuktiTransaksi());
+                  if (controller.alokasi2 == false &&
+                      controller.alokasi3 == false &&
+                      controller.alokasi4 == false) {
+                    Get.to(() => BuktiTransaksi(
+                        id: id,
+                        programId: programId,
+                        nominal: [controller.nominalController.text],
+                        jenisDonasi: [controller.selectedDonasi.value]));
+                  } else if (controller.alokasi2 == true &&
+                      controller.alokasi3 == false &&
+                      controller.alokasi4 == false) {
+                    Get.to(() => BuktiTransaksi(
+                            id: id,
+                            programId: programId,
+                            nominal: [
+                              controller.nominalController.text,
+                              controller.nominal2Controller.text
+                            ],
+                            jenisDonasi: [
+                              controller.selectedDonasi.value,
+                              controller.selectedDonasi2.value
+                            ]));
+                  } else if (controller.alokasi2 == true &&
+                      controller.alokasi3 == true &&
+                      controller.alokasi4 == false) {
+                    Get.to(() =>
+                        BuktiTransaksi(id: id, programId: programId, nominal: [
+                          controller.nominalController.text,
+                          controller.nominal2Controller.text,
+                          controller.nominal3Controller.text
+                        ], jenisDonasi: [
+                          controller.selectedDonasi.value,
+                          controller.selectedDonasi2.value,
+                          controller.selectedDonasi3.value
+                        ]));
+                  } else if (controller.alokasi2 == true &&
+                      controller.alokasi3 == true &&
+                      controller.alokasi4 == true) {
+                    Get.to(() =>
+                        BuktiTransaksi(id: id, programId: programId, nominal: [
+                          controller.nominalController.text,
+                          controller.nominal2Controller.text,
+                          controller.nominal3Controller.text,
+                          controller.nominal4Controller.text
+                        ], jenisDonasi: [
+                          controller.selectedDonasi.value,
+                          controller.selectedDonasi2.value,
+                          controller.selectedDonasi3.value,
+                          controller.selectedDonasi4.value
+                        ]));
+                  }
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

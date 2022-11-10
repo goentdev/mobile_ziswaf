@@ -10,6 +10,7 @@ class CardMuzakki extends StatelessWidget {
   final String nama;
   final String? nomor;
   final String judul;
+  final int id, programId;
   final String? gambar;
 
   const CardMuzakki({
@@ -18,13 +19,21 @@ class CardMuzakki extends StatelessWidget {
     required this.nomor,
     required this.judul,
     required this.gambar,
+    required this.id,
+    required this.programId,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => TambahTransaksi(judul: judul, nama: nama, nomor: nomor));
+        Get.to(() => TambahTransaksi(
+              judul: judul,
+              nama: nama,
+              nomor: nomor,
+              id: id,
+              programId: programId,
+            ));
       },
       child: Container(
         width: double.infinity,

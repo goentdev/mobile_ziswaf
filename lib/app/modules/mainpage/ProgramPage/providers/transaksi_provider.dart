@@ -1,12 +1,22 @@
+import 'dart:io';
+import 'dart:math';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/tambah_transaksi_page.dart';
 import 'package:mobile_ziswaf/app/utils/shared_preferences.dart';
+import 'package:path/path.dart';
 
 import '../zakat_model.dart';
 
 class TransaksiProvider extends GetConnect {
+  final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
   final String url = 'https://ziswaf-server.smarteschool.net';
-  Future<bool> getZakat({
+  String? linkBuktiTransaksi;
+  String _getRandomFileName() =>
+      '${DateTime.now().toUtc().toString()}-${Random().nextInt(8999) + 1000}';
+  Future<bool> tambahTransaksi({
     required programId,
     required muzakiId,
     required jenisDonasi,
@@ -17,6 +27,12 @@ class TransaksiProvider extends GetConnect {
     required buktiTransaksi,
     required bankId,
   }) async {
+    final fotoRef = firebaseStorage.ref('bukti-transaksi');
+    final convertedFoto = File(buktiTransaksi);
+    final fotoExt = extension(convertedFoto.path);
+    final fireFoto = fotoRef.child('${_getRandomFileName()}.$fotoExt');
+    await fireFoto.putFile(File(buktiTransaksi));
+    linkBuktiTransaksi = await fireFoto.getDownloadURL();
     final response = await post('$url/transaksi', {
       "program_id": programId,
       "muzaki_id": muzakiId,
@@ -25,7 +41,7 @@ class TransaksiProvider extends GetConnect {
       "nomor_rekening": nomorRekening,
       "nama_rekening": namaRekening,
       "nomor_resi": nomorResi,
-      "bukti_transaksi": buktiTransaksi,
+      "bukti_transaksi": linkBuktiTransaksi,
       "bank_id": bankId
     }, headers: {
       'Authorization': 'bearer${sharedPrefs.token}'

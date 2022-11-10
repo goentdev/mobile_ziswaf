@@ -10,7 +10,9 @@ import '../../../../theme/fonts.dart';
 
 class UbahTransaksiPage extends StatelessWidget {
   final String judul;
-  const UbahTransaksiPage({super.key, required this.judul});
+  final int programId;
+  const UbahTransaksiPage(
+      {super.key, required this.judul, required this.programId});
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +93,8 @@ class UbahTransaksiPage extends StatelessWidget {
                                 .muzakkisOnSearch![index].muzaki!.whatsapp!,
                             judul: judul,
                             gambar: controller.muzaki![index].nama!,
+                            id: controller.muzaki![index].id!,
+                            programId: programId,
                           );
                         } else {
                           return CardMuzakki(
@@ -98,6 +102,8 @@ class UbahTransaksiPage extends StatelessWidget {
                             nama: controller.muzaki![index].nama!,
                             nomor: controller.muzaki![index].muzaki!.whatsapp!,
                             judul: judul,
+                            id: controller.muzaki![index].id!,
+                            programId: programId,
                           );
                         }
                       },
