@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/bukti_transaksi_page(edit).dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/bukti_transaksi_page.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_Muzakki.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_muzakki(EDIT).dart';
@@ -17,17 +18,20 @@ import '../controllers/program_page_controller.dart';
 class EditTransaksiPage extends StatelessWidget {
   final String judul, nama, whatsapp, email, kategori;
   final String? nomor;
-  final int id, programId;
-  const EditTransaksiPage(
-      {super.key,
-      required this.judul,
-      required this.nama,
-      required this.nomor,
-      required this.id,
-      required this.programId,
-      required this.whatsapp,
-      required this.email,
-      required this.kategori});
+
+  final int muzakiId, programId, transaksiId;
+  const EditTransaksiPage({
+    super.key,
+    required this.judul,
+    required this.nama,
+    required this.nomor,
+    required this.muzakiId,
+    required this.programId,
+    required this.whatsapp,
+    required this.email,
+    required this.kategori,
+    required this.transaksiId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +49,7 @@ class EditTransaksiPage extends StatelessWidget {
                 backgroundColor: Colors.white,
                 centerTitle: true,
                 title: Text(
-                  'Ubah Transaksi',
+                  'Edit Transaksi',
                   style: listTitleBold.copyWith(color: neutral90),
                 ),
                 leading: IconButton(
@@ -71,16 +75,17 @@ class EditTransaksiPage extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Muzakki',
+                        'Muzaki',
                         style: listItemTitleBold.copyWith(color: neutral100),
                       ),
                     ),
                     CardMuzakkiEdit(
+                        transaksiId: transaksiId,
                         nama: nama,
                         nomor: nomor,
                         judul: judul,
                         gambar: nama,
-                        id: id,
+                        id: muzakiId,
                         programId: programId),
                     const SizedBox(
                       height: 16,
@@ -88,7 +93,7 @@ class EditTransaksiPage extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '$id',
+                        'Program',
                         style: listItemTitleBold.copyWith(color: neutral100),
                       ),
                     ),
@@ -459,13 +464,23 @@ class EditTransaksiPage extends StatelessWidget {
                   backgroundColor: primaryMain,
                 ),
                 onPressed: () async {
-                  // Get.to(() => const BuktiTransaksi());
+                  Get.to(() => BuktiTransaksiEdit(
+                      id: muzakiId,
+                      transaksiId: transaksiId,
+                      programId: programId,
+                      nominal: [controller.nominalController.text],
+                      jenisDonasi: [controller.selectedDonasi.value],
+                      judul: judul,
+                      nama: nama,
+                      nomor: nomor!,
+                      email: email,
+                      kategori: kategori));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Lanjut Transfer',
+                      'Selanjutnya',
                       style: textMBold.copyWith(color: Colors.white),
                     ),
                   ],

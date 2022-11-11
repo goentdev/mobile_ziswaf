@@ -15,7 +15,7 @@ class CardMuzakkiEdit extends StatelessWidget {
   final String? nomor;
   final String judul;
   final String? gambar;
-  final int id, programId;
+  final int id, programId, transaksiId;
 
   const CardMuzakkiEdit({
     super.key,
@@ -25,11 +25,13 @@ class CardMuzakkiEdit extends StatelessWidget {
     required this.gambar,
     required this.id,
     required this.programId,
+    required this.transaksiId,
   });
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(MuzakkiPageController());
+
     return GestureDetector(
       onTap: () {
         showModalBottomSheet(
@@ -111,6 +113,7 @@ class CardMuzakkiEdit extends StatelessWidget {
                                     if (controller.searchMuzakkiController.text
                                         .isNotEmpty) {
                                       return CardShowModalMuzakki(
+                                        transaksiId: transaksiId,
                                         email: controller
                                             .muzakkisOnSearch![index]
                                             .muzaki!
@@ -121,7 +124,7 @@ class CardMuzakkiEdit extends StatelessWidget {
                                             .muzakkisOnSearch![index]
                                             .muzaki!
                                             .whatsapp!,
-                                        id: controller
+                                        muzakiId: controller
                                             .muzakkisOnSearch![index].muzakiId!,
                                         programId: programId,
                                         nama: controller
@@ -135,13 +138,15 @@ class CardMuzakkiEdit extends StatelessWidget {
                                       );
                                     } else {
                                       return CardShowModalMuzakki(
+                                        transaksiId: transaksiId,
                                         email: controller
                                             .muzaki![index].muzaki!.email!,
                                         kategori:
                                             controller.muzaki![index].kategori!,
                                         whatsapp: controller
                                             .muzaki![index].muzaki!.whatsapp!,
-                                        id: controller.muzaki![index].muzakiId!,
+                                        muzakiId:
+                                            controller.muzaki![index].muzakiId!,
                                         programId: programId,
                                         gambar: controller.muzaki![index].nama,
                                         nama: controller.muzaki![index].nama!,

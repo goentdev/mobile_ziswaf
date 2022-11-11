@@ -10,7 +10,7 @@ class CardShowModalMuzakki extends StatelessWidget {
   final String? nomor;
   final String judul, email, kategori, whatsapp;
   final String? gambar;
-  final int id, programId;
+  final int muzakiId, programId, transaksiId;
 
   const CardShowModalMuzakki({
     super.key,
@@ -18,27 +18,29 @@ class CardShowModalMuzakki extends StatelessWidget {
     required this.nomor,
     required this.judul,
     required this.gambar,
-    required this.id,
+    required this.muzakiId,
     required this.programId,
     required this.email,
     required this.kategori,
     required this.whatsapp,
+    required this.transaksiId,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.offAll(EditTransaksiPage(
-          email: email,
-          kategori: kategori,
-          whatsapp: whatsapp,
-          judul: judul,
-          nama: nama,
-          nomor: nomor,
-          id: id,
-          programId: programId,
-        ));
+        Get.offAll(() => EditTransaksiPage(
+              email: email,
+              kategori: kategori,
+              whatsapp: whatsapp,
+              judul: judul,
+              nama: nama,
+              nomor: nomor,
+              muzakiId: muzakiId,
+              transaksiId: transaksiId,
+              programId: programId,
+            ));
       },
       child: Container(
         width: double.infinity,

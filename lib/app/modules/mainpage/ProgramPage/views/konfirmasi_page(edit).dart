@@ -12,13 +12,13 @@ import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
 import '../controllers/program_page_controller.dart';
 
-class KonfirmasiPage extends StatelessWidget {
-  final int id, programId;
+class KonfirmasiPageEdit extends StatelessWidget {
+  final int id, programId, transaksiId;
   final String judul, nama, nomor, email, kategori;
   final List<String> nominal, jenisDonasi;
   final String nomorRekening, namaRekening, nomorResi, buktiTransaksi;
   final int bankId;
-  const KonfirmasiPage(
+  const KonfirmasiPageEdit(
       {super.key,
       required this.id,
       required this.programId,
@@ -33,7 +33,8 @@ class KonfirmasiPage extends StatelessWidget {
       required this.nama,
       required this.nomor,
       required this.email,
-      required this.kategori});
+      required this.kategori,
+      required this.transaksiId});
 
   @override
   Widget build(BuildContext context) {
@@ -760,7 +761,8 @@ class KonfirmasiPage extends StatelessWidget {
             backgroundColor: primaryMain,
           ),
           onPressed: () async {
-            bool success = await TransaksiProvider2().tambahTransaksi(
+            bool success = await controller2.changeTransaksi(
+                id: transaksiId,
                 programId: programId,
                 muzakiId: id,
                 jenisDonasi: jenisDonasi,
