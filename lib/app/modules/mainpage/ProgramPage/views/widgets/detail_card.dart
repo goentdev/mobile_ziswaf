@@ -49,8 +49,6 @@ class DetailCard extends StatelessWidget {
     final controller = Get.put(ProgramPageController());
     return InkWell(
       onTap: () async {
-        await controller.getAlokasiDana(id: id);
-        await controller.totaltransaksi(id: programId);
         Get.to(DetailTransaksi(
             buktifotoTransaksi: buktifotoTransaksi,
             totalNominalTransaksi: nominal,
@@ -64,6 +62,8 @@ class DetailCard extends StatelessWidget {
             nomorRekening: nomorRekening,
             namaRekening: namaRekening,
             nomorResi: nomorResi));
+        await controller.getAlokasiDana(id: id);
+        await controller.totaltransaksi(id: programId);
       },
       child: Slidable(
         enabled: true,
@@ -349,87 +349,77 @@ class DetailCard extends StatelessWidget {
               color: neutral30,
             ),
           ),
-          child: Expanded(
-            child: Column(
-              children: [
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Row(
-                          children: [
-                            CircleAvatar(
-                                backgroundColor: primarySurface,
-                                child: icon!.contains(" ")
-                                    ? Text(
-                                        icon![0].toUpperCase() +
-                                            icon!
-                                                .split(" ")
-                                                .last[0]
-                                                .toUpperCase(),
-                                        style: textSBold.copyWith(
-                                            color: primaryMain),
-                                      )
-                                    : Text(
-                                        icon![0].toUpperCase(),
-                                        style: textSBold.copyWith(
-                                            color: primaryMain),
-                                      )),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    nama,
-                                    style: captionTextBold.copyWith(
-                                        color: neutral100),
-                                  ),
-                                  const SizedBox(height: 6),
-                                  Flexible(
-                                    child: Text(
-                                      bank,
-                                      overflow: TextOverflow.visible,
-                                      style: overlineSemiBold.copyWith(
-                                          color: neutral70),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
+          child: Column(
+            children: [
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        CircleAvatar(
+                            backgroundColor: primarySurface,
+                            child: icon!.contains(" ")
+                                ? Text(
+                                    icon![0].toUpperCase() +
+                                        icon!.split(" ").last[0].toUpperCase(),
+                                    style:
+                                        textSBold.copyWith(color: primaryMain),
+                                  )
+                                : Text(
+                                    icon![0].toUpperCase(),
+                                    style:
+                                        textSBold.copyWith(color: primaryMain),
+                                  )),
+                        const SizedBox(
+                          width: 8,
                         ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            NumberFormat.currency(
-                              locale: 'id',
-                              name: 'Rp',
-                              decimalDigits: 0,
-                            ).format(nominal),
-                            style:
-                                captionTextBold.copyWith(color: secondaryMain),
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          Text(
-                            Jiffy(waktu).fromNow(),
-                            style: overlineSemiBold.copyWith(color: neutral60),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              nama,
+                              style:
+                                  captionTextBold.copyWith(color: neutral100),
+                            ),
+                            const SizedBox(height: 6),
+                            Flexible(
+                              child: Text(
+                                bank,
+                                overflow: TextOverflow.visible,
+                                style:
+                                    overlineSemiBold.copyWith(color: neutral70),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          NumberFormat.currency(
+                            locale: 'id',
+                            name: 'Rp',
+                            decimalDigits: 0,
+                          ).format(nominal),
+                          style: captionTextBold.copyWith(color: secondaryMain),
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        Text(
+                          Jiffy(waktu).fromNow(),
+                          style: overlineSemiBold.copyWith(color: neutral60),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
