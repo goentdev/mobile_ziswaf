@@ -5,10 +5,14 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/bukti_transaksi_page.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_Muzakki.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_muzakki(EDIT).dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_showmdal_muzakki.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/views/mainpage_view.dart';
 
 import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
 import '../../../auth/controllers/choose_bank_controller.dart';
+import '../controllers/program_page_controller.dart';
 
 class EditTransaksiPage extends StatelessWidget {
   final String judul, nama, whatsapp, email, kategori;
@@ -28,6 +32,7 @@ class EditTransaksiPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ChooseBankController());
+    final controller2 = Get.put(ProgramPageController());
     bool alokasi2 = false;
     return GetBuilder<ChooseBankController>(
         init: ChooseBankController(),
@@ -44,8 +49,10 @@ class EditTransaksiPage extends StatelessWidget {
                   style: listTitleBold.copyWith(color: neutral90),
                 ),
                 leading: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
+                  onPressed: () async {
+                    Get.offAll(() => const MainpageView());
+                    await controller2.gettotalberlangsungg();
+                    await controller2.gettotalselesai();
                   },
                   icon: Icon(
                     Icons.arrow_back_ios,
@@ -68,23 +75,20 @@ class EditTransaksiPage extends StatelessWidget {
                         style: listItemTitleBold.copyWith(color: neutral100),
                       ),
                     ),
-                    CardMuzakki(
-                      nama: nama,
-                      nomor: nomor,
-                      judul: judul,
-                      gambar: nama,
-                      id: id,
-                      programId: programId,
-                      email: email,
-                      kategori: kategori,
-                    ),
+                    CardMuzakkiEdit(
+                        nama: nama,
+                        nomor: nomor,
+                        judul: judul,
+                        gambar: nama,
+                        id: id,
+                        programId: programId),
                     const SizedBox(
                       height: 16,
                     ),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Program',
+                        '$id',
                         style: listItemTitleBold.copyWith(color: neutral100),
                       ),
                     ),

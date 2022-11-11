@@ -190,11 +190,21 @@ class CardListUser extends StatelessWidget {
                           children: [
                             CircleAvatar(
                                 backgroundColor: primarySurface,
-                                child: Text(
-                                  gambar![0].trimRight().toUpperCase() +
-                                      gambar![2].trimRight().toUpperCase(),
-                                  style: textSBold.copyWith(color: primaryMain),
-                                )),
+                                child: gambar!.contains(" ")
+                                    ? Text(
+                                        gambar![0].toUpperCase() +
+                                            gambar!
+                                                .split(" ")
+                                                .last[0]
+                                                .toUpperCase(),
+                                        style: textSBold.copyWith(
+                                            color: primaryMain),
+                                      )
+                                    : Text(
+                                        gambar![0].toUpperCase(),
+                                        style: textSBold.copyWith(
+                                            color: primaryMain),
+                                      )),
                             const SizedBox(width: 16),
                             Text(
                               nama,
@@ -905,11 +915,16 @@ class CardListUser extends StatelessWidget {
             children: [
               CircleAvatar(
                   backgroundColor: primarySurface,
-                  child: Text(
-                    gambar![0].trimRight().toUpperCase() +
-                        gambar![2].trimRight().toUpperCase(),
-                    style: textSBold.copyWith(color: primaryMain),
-                  )),
+                  child: gambar!.contains(" ")
+                      ? Text(
+                          gambar![0].toUpperCase() +
+                              gambar!.split(" ").last[0].toUpperCase(),
+                          style: textSBold.copyWith(color: primaryMain),
+                        )
+                      : Text(
+                          gambar![0].toUpperCase(),
+                          style: textSBold.copyWith(color: primaryMain),
+                        )),
               const SizedBox(
                 width: 8,
               ),

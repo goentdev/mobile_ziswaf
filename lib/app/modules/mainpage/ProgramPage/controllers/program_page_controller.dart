@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/data/models/alokasidana_model.dart';
 import 'package:mobile_ziswaf/app/data/models/muzaki_model.dart';
 import 'package:mobile_ziswaf/app/data/models/program_model.dart';
+import 'package:mobile_ziswaf/app/data/models/total_selesai_berlangsung_model.dart';
 import 'package:mobile_ziswaf/app/data/models/totaldanaprogram_model.dart';
 import 'package:mobile_ziswaf/app/data/models/totaltransaksi_model.dart';
 import 'package:mobile_ziswaf/app/data/models/transaksi_model.dart';
@@ -32,9 +33,12 @@ class ProgramPageController extends GetxController
   RxList<Alokasidana>? alokasi = <Alokasidana>[].obs;
   RxList<Muzaki>? muzaki = <Muzaki>[].obs;
   Rx<Muzaki> muzakis = Muzaki().obs;
+  Rx<Meta?> totalBerlangsung = Meta().obs;
+  Rx<Meta?> selesai = Meta().obs;
   Rx<Totaldanaprogram?> totalDana = Totaldanaprogram().obs;
   Rx<Totaltransaksi?> totaltransaksiiD = Totaltransaksi().obs;
   RxList<Program>? program = <Program>[].obs;
+  RxList<Program>? programBerlangsung = <Program>[].obs;
   Rx<Program?> program2 = Program().obs;
   RxBool isLoading = false.obs;
   RxBool isLoading2 = false.obs;
@@ -47,6 +51,7 @@ class ProgramPageController extends GetxController
     );
     // refreshTransaksi();
     // getTransaksis(id: 39);
+    gettotalberlangsungg();
     gettotaldana();
     getPrograms();
     scrollController = ScrollController();
@@ -75,6 +80,17 @@ class ProgramPageController extends GetxController
     program!.assignAll(await programProvider.getProgram());
     update();
     isLoading.value = false;
+  }
+
+  gettotalberlangsungg() async {
+    totalBerlangsung.value =
+        await programProvider.getTotalBerlangsung('berlangsung');
+    update();
+  }
+
+  gettotalselesai() async {
+    selesai.value = await programProvider.getTotalBerlangsung('selesai');
+    update();
   }
 
   deleteTransaksi(int? id) async {

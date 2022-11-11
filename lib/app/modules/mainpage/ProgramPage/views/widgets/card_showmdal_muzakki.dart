@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/utils.dart';
-import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/tambah_transaksi_page.dart';
 
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/fonts.dart';
+import '../edit_transaksi_page.dart';
 
-class CardMuzakki extends StatelessWidget {
+class CardShowModalMuzakki extends StatelessWidget {
   final String nama;
   final String? nomor;
-  final String judul, kategori, email;
-  final int id, programId;
+  final String judul, email, kategori, whatsapp;
   final String? gambar;
+  final int id, programId;
 
-  const CardMuzakki({
+  const CardShowModalMuzakki({
     super.key,
     required this.nama,
     required this.nomor,
@@ -21,23 +20,25 @@ class CardMuzakki extends StatelessWidget {
     required this.gambar,
     required this.id,
     required this.programId,
-    required this.kategori,
     required this.email,
+    required this.kategori,
+    required this.whatsapp,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
-        Get.to(() => TambahTransaksi(
-              judul: judul,
-              nama: nama,
-              nomor: nomor,
-              id: id,
-              programId: programId,
-              email: email,
-              kategori: kategori,
-            ));
+        Get.offAll(EditTransaksiPage(
+          email: email,
+          kategori: kategori,
+          whatsapp: whatsapp,
+          judul: judul,
+          nama: nama,
+          nomor: nomor,
+          id: id,
+          programId: programId,
+        ));
       },
       child: Container(
         width: double.infinity,

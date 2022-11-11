@@ -1,3 +1,5 @@
+// ignore_for_file: iterable_contains_unrelated_type, unrelated_type_equality_checks
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_dana.dart';
@@ -12,6 +14,7 @@ class ProgramSudahSelesai extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProgramPageController());
+    controller.gettotalselesai();
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
@@ -25,7 +28,7 @@ class ProgramSudahSelesai extends StatelessWidget {
         children: [
           Obx(
             () => Text(
-              'Daftar Program (${controller.program!.length})',
+              'Daftar Program (${controller.selesai.value!.total})',
               style: listItemTitleBold.copyWith(color: neutral100),
             ),
           ),

@@ -1,3 +1,5 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -15,6 +17,7 @@ class ProgramBerlangsung extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProgramPageController());
+    controller.gettotalberlangsungg();
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
@@ -28,7 +31,7 @@ class ProgramBerlangsung extends StatelessWidget {
         children: [
           Obx(
             () => Text(
-              'Daftar Program (${controller.program!.length})',
+              'Daftar Program (${controller.totalBerlangsung.value!.total})',
               style: listItemTitleBold.copyWith(color: neutral100),
             ),
           ),

@@ -339,7 +339,7 @@ class DetailCard extends StatelessWidget {
         child: Container(
           width: double.infinity,
           height: 74,
-          margin: const EdgeInsets.only(top: 16),
+          margin: const EdgeInsets.only(bottom: 16),
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
@@ -348,63 +348,87 @@ class DetailCard extends StatelessWidget {
               color: neutral30,
             ),
           ),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
+          child: Expanded(
+            child: Column(
+              children: [
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CircleAvatar(
-                          backgroundColor: primarySurface,
-                          child: Text(
-                            icon![0].trimRight().toUpperCase() +
-                                icon![2].trimRight().toUpperCase(),
-                            style: textSBold.copyWith(color: primaryMain),
-                          )),
-                      const SizedBox(
-                        width: 8,
+                      Expanded(
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                                backgroundColor: primarySurface,
+                                child: icon!.contains(" ")
+                                    ? Text(
+                                        icon![0].toUpperCase() +
+                                            icon!
+                                                .split(" ")
+                                                .last[0]
+                                                .toUpperCase(),
+                                        style: textSBold.copyWith(
+                                            color: primaryMain),
+                                      )
+                                    : Text(
+                                        icon![0].toUpperCase(),
+                                        style: textSBold.copyWith(
+                                            color: primaryMain),
+                                      )),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    nama,
+                                    style: captionTextBold.copyWith(
+                                        color: neutral100),
+                                  ),
+                                  const SizedBox(height: 6),
+                                  Flexible(
+                                    child: Text(
+                                      bank,
+                                      overflow: TextOverflow.visible,
+                                      style: overlineSemiBold.copyWith(
+                                          color: neutral70),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            nama,
-                            style: captionTextBold.copyWith(color: neutral100),
+                            NumberFormat.currency(
+                              locale: 'id',
+                              name: 'Rp',
+                              decimalDigits: 0,
+                            ).format(nominal),
+                            style:
+                                captionTextBold.copyWith(color: secondaryMain),
                           ),
-                          const SizedBox(height: 6),
+                          const SizedBox(
+                            height: 6,
+                          ),
                           Text(
-                            bank,
-                            style: overlineSemiBold.copyWith(color: neutral70),
+                            Jiffy(waktu).fromNow(),
+                            style: overlineSemiBold.copyWith(color: neutral60),
                           ),
                         ],
-                      )
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        NumberFormat.currency(
-                          locale: 'id',
-                          name: 'Rp',
-                          decimalDigits: 0,
-                        ).format(nominal),
-                        style: captionTextBold.copyWith(color: secondaryMain),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      Text(
-                        Jiffy(waktu).fromNow(),
-                        style: overlineSemiBold.copyWith(color: neutral60),
                       ),
                     ],
                   ),
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

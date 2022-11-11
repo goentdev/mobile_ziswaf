@@ -52,6 +52,8 @@ class DetailProgram extends StatelessWidget {
               leading: IconButton(
                 onPressed: () {
                   Get.offNamed(Routes.MAINPAGE);
+                  controller.gettotalberlangsungg();
+                  controller.gettotalselesai();
                 },
                 icon: Icon(
                   Icons.arrow_back_ios,

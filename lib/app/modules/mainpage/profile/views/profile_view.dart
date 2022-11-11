@@ -42,15 +42,22 @@ class ProfileView extends GetView<ProfileController> {
                         height: 50,
                         child: CircleAvatar(
                           backgroundColor: primarySurface,
-                          child: Text(
-                            controller.user.value!.nama![0]
-                                    .trimRight()
-                                    .toUpperCase() +
-                                controller.user.value!.nama![2]
-                                    .trimRight()
-                                    .toUpperCase(),
-                            style: titleExtraBold.copyWith(color: primaryMain),
-                          ),
+                          child: controller.user.value!.nama![0].contains(" ")
+                              ? Text(
+                                  controller.user.value!.nama![0][0]
+                                          .toUpperCase() +
+                                      controller.user.value!.nama![0]
+                                          .split(" ")
+                                          .last[0]
+                                          .toUpperCase(),
+                                  style: textSBold.copyWith(color: primaryMain),
+                                )
+                              : Text(
+                                  controller.user.value!.nama![0][0]
+                                      .toUpperCase(),
+                                  style: titleextraBold2.copyWith(
+                                      color: primaryMain),
+                                ),
                         ),
                       ),
                       const SizedBox(width: 16),
