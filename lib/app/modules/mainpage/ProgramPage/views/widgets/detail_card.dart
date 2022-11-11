@@ -355,45 +355,52 @@ class DetailCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        CircleAvatar(
-                            backgroundColor: primarySurface,
-                            child: icon!.contains(" ")
-                                ? Text(
-                                    icon![0].toUpperCase() +
-                                        icon!.split(" ").last[0].toUpperCase(),
-                                    style:
-                                        textSBold.copyWith(color: primaryMain),
-                                  )
-                                : Text(
-                                    icon![0].toUpperCase(),
-                                    style:
-                                        textSBold.copyWith(color: primaryMain),
-                                  )),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              nama,
-                              style:
-                                  captionTextBold.copyWith(color: neutral100),
+                    Expanded(
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                              backgroundColor: primarySurface,
+                              child: icon!.contains(" ")
+                                  ? Text(
+                                      icon![0].toUpperCase() +
+                                          icon!
+                                              .split(" ")
+                                              .last[0]
+                                              .toUpperCase(),
+                                      style: textSBold.copyWith(
+                                          color: primaryMain),
+                                    )
+                                  : Text(
+                                      icon![0].toUpperCase(),
+                                      style: textSBold.copyWith(
+                                          color: primaryMain),
+                                    )),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  nama,
+                                  style: captionTextBold.copyWith(
+                                      color: neutral100),
+                                ),
+                                const SizedBox(height: 6),
+                                Flexible(
+                                  child: Text(
+                                    bank,
+                                    overflow: TextOverflow.visible,
+                                    style: overlineSemiBold.copyWith(
+                                        color: neutral70),
+                                  ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(height: 6),
-                            Flexible(
-                              child: Text(
-                                bank,
-                                overflow: TextOverflow.visible,
-                                style:
-                                    overlineSemiBold.copyWith(color: neutral70),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
