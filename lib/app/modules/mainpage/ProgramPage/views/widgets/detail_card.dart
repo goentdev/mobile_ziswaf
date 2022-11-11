@@ -49,7 +49,7 @@ class DetailCard extends StatelessWidget {
     final controller = Get.put(ProgramPageController());
     return InkWell(
       onTap: () async {
-        Get.to(DetailTransaksi(
+        Get.to(() => DetailTransaksi(
             buktifotoTransaksi: buktifotoTransaksi,
             totalNominalTransaksi: nominal,
             tanggaltransfer: waktu,
@@ -140,8 +140,11 @@ class DetailCard extends StatelessWidget {
                                 Flexible(
                                   flex: 1,
                                   child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.pop(context);
+                                    onTap: () async {
+                                      await controller.deleteTransaksi(id);
+                                      Get.back();
+                                      await controller.getTransaksis(
+                                          id: programId);
                                     },
                                     child: Container(
                                       margin: const EdgeInsets.only(right: 24),
@@ -182,17 +185,17 @@ class DetailCard extends StatelessWidget {
           SlidableAction(
             label: 'Edit',
             onPressed: (context) {
-              Get.to(EditTransaksiPage(
-                whatsapp: nomor!,
-                judul: judul,
-                nama: nama,
-                nomor: nomor,
-                transaksiId: id!,
-                programId: programId!,
-                email: email!,
-                kategori: kategori!,
-                muzakiId: muzakiId!,
-              ));
+              Get.to(() => EditTransaksiPage(
+                    whatsapp: nomor!,
+                    judul: judul,
+                    nama: nama,
+                    nomor: nomor,
+                    transaksiId: id!,
+                    programId: programId!,
+                    email: email!,
+                    kategori: kategori!,
+                    muzakiId: muzakiId!,
+                  ));
             },
             icon: Icons.edit_note_rounded,
             flex: 5,
@@ -204,20 +207,17 @@ class DetailCard extends StatelessWidget {
           SlidableAction(
             label: 'Edit',
             onPressed: (context) {
-              Get.to(DetailTransaksi(
-                tanggaltransfer: waktu,
-                totalNominalTransaksi: nominal,
-                judul: judul,
-                nama: nama,
-                nomor: nomor,
-                email: email,
-                kategori: kategori,
-                bank: bank,
-                nomorRekening: nomorRekening,
-                namaRekening: namaRekening,
-                nomorResi: nomorResi,
-                buktifotoTransaksi: buktifotoTransaksi,
-              ));
+              Get.to(() => EditTransaksiPage(
+                    whatsapp: nomor!,
+                    judul: judul,
+                    nama: nama,
+                    nomor: nomor,
+                    transaksiId: id!,
+                    programId: programId!,
+                    email: email!,
+                    kategori: kategori!,
+                    muzakiId: muzakiId!,
+                  ));
             },
             icon: Icons.edit_note_rounded,
             flex: 5,
