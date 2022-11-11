@@ -187,10 +187,11 @@ class DetailCard extends StatelessWidget {
                 judul: judul,
                 nama: nama,
                 nomor: nomor,
-                id: muzakiId!,
+                transaksiId: id!,
                 programId: programId!,
                 email: email!,
                 kategori: kategori!,
+                muzakiId: muzakiId!,
               ));
             },
             icon: Icons.edit_note_rounded,

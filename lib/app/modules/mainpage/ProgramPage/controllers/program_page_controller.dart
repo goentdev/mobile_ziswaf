@@ -30,7 +30,10 @@ class ProgramPageController extends GetxController
   TotaltransaksiProvider totaltransaksiProviderr = TotaltransaksiProvider();
 
   RxList<Transaksi>? transaksi = <Transaksi>[].obs;
+
+  Rx<Transaksi> transaksis = Transaksi().obs;
   RxList<Alokasidana>? alokasi = <Alokasidana>[].obs;
+  Rx<Alokasidana> alokasidana = Alokasidana().obs;
   RxList<Muzaki>? muzaki = <Muzaki>[].obs;
   Rx<Muzaki> muzakis = Muzaki().obs;
   Rx<Meta?> totalBerlangsung = Meta().obs;
@@ -129,6 +132,44 @@ class ProgramPageController extends GetxController
     muzaki!.assignAll(await muzakiProvider.getMuzakisall(id));
     update();
     isLoading.value = false;
+  }
+
+  Future<bool> changeTransaksi({
+    required id,
+    required programId,
+    required muzakiId,
+    required jenisDonasi,
+    required nominal,
+    required nomorRekening,
+    required namaRekening,
+    required nomorResi,
+    required buktiTransaksi,
+    required bankId,
+  }) async {
+    bool sukses = await transaksiProvider.changeTransaksi(id, {
+      "program_id": programId,
+      "muzaki_id": muzakiId,
+      "jenis_donasi": jenisDonasi,
+      "nominal": nominal,
+      "nomor_rekening": nomorRekening,
+      "nama_rekening": namaRekening,
+      "nomor_resi": nomorResi,
+      "bukti_transaksi": buktiTransaksi,
+      "bank_id": bankId
+    });
+    if (sukses) {
+      transaksis.update((val) {
+        val!.bankid = bankId;
+        val.nomorRekening = nomorRekening;
+        val.nomorResi = nomorResi;
+        val.namaRekening = namaRekening;
+        val.buktiTransaksi = buktiTransaksi;
+      });
+
+      return true;
+    } else {
+      return false;
+    }
   }
 
   // refreshTransaksi() async {

@@ -16,7 +16,7 @@ class MuzakkiPageController extends GetxController
   MuzakiProvider muzakiProvider = MuzakiProvider();
 
   Rx<User?> user = User().obs;
-
+  RxBool isSelected = false.obs;
   UserProvider userProvider = UserProvider();
 
   RxList<Muzaki>? muzaki = <Muzaki>[].obs;

@@ -36,6 +36,17 @@ class TransaksiProvider extends GetConnect {
     }
   }
 
+  Future<bool> changeTransaksi(int id, Map body) async {
+    final response = await put('$url/transaksi/$id', body,
+        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
+    if (response.status.isOk) {
+      return true;
+    } else {
+      EasyLoading.showError('Gagal update muzaki');
+      return false;
+    }
+  }
+
   Future<Response<Transaksi>> postTransaksi(Transaksi transaksi) async =>
       await post('transaksi', transaksi);
   Future<Response> deleteTransaksi(int? id) async =>
