@@ -88,6 +88,6 @@ class MuzakiProvider extends GetConnect {
     }
   }
 
-  Future<Response> deleteMuzaki(int id) async =>
-      await delete('$url/muzaki/$id');
+  Future<Response> deleteMuzaki(int id) async => await delete('$url/muzaki/$id',
+      headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
 }
