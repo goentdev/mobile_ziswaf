@@ -11,7 +11,7 @@ class TransaksiProvider extends GetConnect {
   Future<List<Transaksi>> getTransaksi(int? id) async {
     final response = await get('$url/relawan-program/$id',
         headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
-    print(response.body);
+
     if (response.statusCode == 200) {
       var data = response.body['transaksi']['data'];
       List<Transaksi> transaksi = [];
@@ -25,7 +25,7 @@ class TransaksiProvider extends GetConnect {
   Future<List<Alokasidana>> getAlokasiDana(int? id) async {
     final response = await get('$url/transaksi/$id',
         headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
-    print(response.body);
+
     if (response.statusCode == 200) {
       var data = response.body['alokasiDana'];
       List<Alokasidana> alokasi = [];
