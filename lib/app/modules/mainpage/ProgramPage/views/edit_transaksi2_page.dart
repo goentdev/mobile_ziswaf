@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/number_symbols_data.dart';
-
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/bukti_transaksi_page(edit).dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/bukti_transaksi_page.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_Muzakki.dart';
@@ -18,14 +16,15 @@ import 'package:mobile_ziswaf/app/modules/mainpage/views/mainpage_view.dart';
 import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
 import '../../../auth/controllers/choose_bank_controller.dart';
+import '../../../auth/controllers/choose_bank_controller2.dart';
 import '../controllers/program_page_controller.dart';
 
-class EditTransaksiPage extends StatelessWidget {
+class EditTransaksi2 extends StatelessWidget {
   final String judul, nama, whatsapp, email, kategori;
   final String? nomor;
 
   final int muzakiId, programId, transaksiId;
-  const EditTransaksiPage({
+  const EditTransaksi2({
     super.key,
     required this.judul,
     required this.nama,
@@ -40,11 +39,11 @@ class EditTransaksiPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ChooseBankController());
+    final controller = Get.put(ChooseBankController2());
     final controller2 = Get.put(ProgramPageController());
     bool alokasi2 = false;
-    return GetBuilder<ChooseBankController>(
-        init: ChooseBankController(),
+    return GetBuilder<ChooseBankController2>(
+        init: ChooseBankController2(),
         initState: (_) {},
         builder: (_) {
           return Scaffold(
@@ -84,7 +83,7 @@ class EditTransaksiPage extends StatelessWidget {
                         style: listItemTitleBold.copyWith(color: neutral100),
                       ),
                     ),
-                    CardMuzakkiEdit(
+                    CardMuzakkiEdit2(
                         transaksiId: transaksiId,
                         nama: nama,
                         nomor: nomor,
@@ -151,8 +150,8 @@ class EditTransaksiPage extends StatelessWidget {
                           onTap: () {
                             controller.clearText();
                           },
-                          child: GetBuilder<ChooseBankController>(
-                              init: ChooseBankController(),
+                          child: GetBuilder<ChooseBankController2>(
+                              init: ChooseBankController2(),
                               initState: (_) {},
                               builder: (_) {
                                 return Align(
@@ -440,9 +439,7 @@ class EditTransaksiPage extends StatelessWidget {
                               onChanged: (value) {
                                 controller.clearText();
                               },
-                              keyboardType:
-                                  const TextInputType.numberWithOptions(
-                                      decimal: true),
+                              keyboardType: TextInputType.number,
                               inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.digitsOnly,
                               ],

@@ -298,7 +298,7 @@ class KonfirmasiPage extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              nominal[index],
+                              'Rp ${nominal[index]}',
                               style: percentTittle.copyWith(
                                 color: neutral100,
                               ),

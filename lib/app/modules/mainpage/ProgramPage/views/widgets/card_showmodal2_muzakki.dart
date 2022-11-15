@@ -6,14 +6,14 @@ import '../../../../../theme/colors.dart';
 import '../../../../../theme/fonts.dart';
 import '../edit_transaksi_page.dart';
 
-class CardShowModalMuzakki extends StatelessWidget {
+class CardShowModalMuzakki2 extends StatelessWidget {
   final String nama;
   final String? nomor;
   final String judul, email, kategori, whatsapp;
   final String? gambar;
   final int muzakiId, programId, transaksiId;
 
-  const CardShowModalMuzakki({
+  const CardShowModalMuzakki2({
     super.key,
     required this.nama,
     required this.nomor,
@@ -31,7 +31,7 @@ class CardShowModalMuzakki extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.offAll(() => EditTransaksi2(
+        Get.offAll(() => EditTransaksiPage(
               email: email,
               kategori: kategori,
               whatsapp: whatsapp,

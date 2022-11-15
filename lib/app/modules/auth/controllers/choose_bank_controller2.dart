@@ -5,7 +5,7 @@ import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/zakat_model.dart'
 import 'package:mobile_ziswaf/app/data/models/bank_model.dart';
 import 'package:mobile_ziswaf/app/data/providers/bank_provider.dart';
 
-class ChooseBankController extends GetxController {
+class ChooseBankController2 extends GetxController {
   late TextEditingController bankAccountController;
   late TextEditingController nomorResiController;
   late TextEditingController accountNameController;
@@ -51,7 +51,6 @@ class ChooseBankController extends GetxController {
   RxString selectedDonasi4 = ''.obs;
   RxBool isSelected4 = false.obs;
   RxBool isLoading = false.obs;
-  RxBool isSelectedBank = false.obs;
 
   @override
   void onInit() {

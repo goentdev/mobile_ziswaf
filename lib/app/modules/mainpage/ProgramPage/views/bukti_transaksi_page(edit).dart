@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller.dart';
+import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller2.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/konfirmasi_page(edit).dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/konfirmasi_page..dart';
 import '../../../../theme/colors.dart';
@@ -31,6 +33,7 @@ class BuktiTransaksiEdit extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(ChooseBankController());
     final controller2 = Get.put(IdentityController());
+    final controller3 = Get.put(ChooseBankController2());
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -77,7 +80,16 @@ class BuktiTransaksiEdit extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Rp250.000',
+                    NumberFormat.currency(
+                            locale: 'id', name: 'Rp', decimalDigits: 0)
+                        .format(int.parse(controller.nominalController.text) +
+                            int.parse(controller.nominal2Controller.text) +
+                            int.parse(controller.nominal3Controller.text) +
+                            int.parse(controller.nominal4Controller.text) +
+                            int.parse(controller3.nominalController.text) +
+                            int.parse(controller3.nominal2Controller.text) +
+                            int.parse(controller3.nominal3Controller.text) +
+                            int.parse(controller3.nominal4Controller.text)),
                     style: listItemTitleBlack.copyWith(color: primaryMain),
                   ),
                 ],
@@ -114,12 +126,13 @@ class BuktiTransaksiEdit extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(4),
                     ),
-                    hintText: controller.isSelected.value
+                    hintText: controller.isSelectedBank.value
                         ? controller.selectedBank.value
                         : 'Pilih Bank',
                     hintStyle: textMBold.copyWith(
-                      color:
-                          controller.isSelected.value ? neutral100 : neutral60,
+                      color: controller.isSelectedBank.value
+                          ? neutral100
+                          : neutral60,
                     ),
                     isDense: true,
                   ),
@@ -216,8 +229,8 @@ class BuktiTransaksiEdit extends StatelessWidget {
                                                       controller
                                                           .banksOnSearch[index]
                                                           .id!;
-                                                  controller.isSelected.value =
-                                                      true;
+                                                  controller.isSelectedBank
+                                                      .value = true;
                                                   Get.back();
                                                 },
                                                 id: controller
@@ -238,8 +251,8 @@ class BuktiTransaksiEdit extends StatelessWidget {
                                                           .value =
                                                       controller
                                                           .banks[index].id!;
-                                                  controller.isSelected.value =
-                                                      true;
+                                                  controller.isSelectedBank
+                                                      .value = true;
                                                   Get.back();
                                                 },
                                                 id: controller.banks[index].id!,

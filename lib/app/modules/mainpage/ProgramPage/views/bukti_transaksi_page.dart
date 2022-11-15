@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller.dart';
+import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller2.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/konfirmasi_page..dart';
 import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
@@ -29,6 +31,7 @@ class BuktiTransaksi extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(ChooseBankController());
     final controller2 = Get.put(IdentityController());
+    final controller3 = Get.put(ChooseBankController2());
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -75,7 +78,16 @@ class BuktiTransaksi extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Rp250.000',
+                    NumberFormat.currency(
+                            locale: 'id', name: 'Rp', decimalDigits: 0)
+                        .format(int.parse(controller.nominalController.text) +
+                            int.parse(controller.nominal2Controller.text) +
+                            int.parse(controller.nominal3Controller.text) +
+                            int.parse(controller.nominal4Controller.text) +
+                            int.parse(controller3.nominalController.text) +
+                            int.parse(controller3.nominal2Controller.text) +
+                            int.parse(controller3.nominal3Controller.text) +
+                            int.parse(controller3.nominal4Controller.text)),
                     style: listItemTitleBlack.copyWith(color: primaryMain),
                   ),
                 ],
