@@ -315,7 +315,7 @@ class ChooseBankView extends GetView<ChooseBankController> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Obx(
-            () => chooseC.isLoading.value
+            () => chooseC.isLoading2.value
                 ? const LoadingButton()
                 : SizedBox(
                     height: 41,

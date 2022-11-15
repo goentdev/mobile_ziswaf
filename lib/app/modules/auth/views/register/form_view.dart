@@ -176,11 +176,11 @@ class FormView extends GetView<FormController> {
                               email: controller.emailController.text);
                           await formC.changeKategori(
                               kategori: controller.selectedType.value);
-                          formC.getProfile();
+                          formC.getProfile3();
                           if (sukses) {
                             controller.isLoading.value = false;
                             formC.update();
-                            Get.to(() => IdentityView());
+                            Get.to(() => const IdentityView());
                           } else if (controller.selectedType.value != '') {
                             // ignore: use_build_context_synchronously
                             Get.snackbar('ERROR', 'Harap Lengkapi Form Diatas',

@@ -14,7 +14,7 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     final controller = Get.put(ProfileController());
     final user = controller.user.value;
-    controller.getProfile();
+    controller.getProfile2();
 
     return Obx(
       () => Scaffold(
