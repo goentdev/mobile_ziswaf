@@ -21,6 +21,7 @@ class FormView extends GetView<FormController> {
   @override
   Widget build(BuildContext context) {
     final formC = Get.put(ProfileController());
+    formC.getProfile();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

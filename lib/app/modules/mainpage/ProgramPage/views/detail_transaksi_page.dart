@@ -318,7 +318,7 @@ class DetailTransaksi extends StatelessWidget {
               ),
             ),
             Container(
-              height: 546,
+              height: 557,
               margin: const EdgeInsets.all(16),
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(

@@ -45,6 +45,7 @@ class RegisterController extends GetxController {
     required String email,
     // required String otp,
     required String whatsapp,
+    required int status,
     required String role,
     required String kategori,
     required String jenisKartuIdentitas,
@@ -79,7 +80,8 @@ class RegisterController extends GetxController {
         nama: nama,
         namaRekening: namaRekening,
         nomorKartuIdentitas: nomorKartuIdentitas,
-        nomorRekening: nomorRekening);
+        nomorRekening: nomorRekening,
+        status: status);
   }
 
   Future<bool> registupdate({

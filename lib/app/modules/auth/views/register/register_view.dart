@@ -47,6 +47,7 @@ class RegisterPage extends GetView<RegisterController> {
                             .validate()) {
                           bool sukses = await registC.register(
                               whatsapp: controller.whatsappC.text,
+                              status: 1,
                               role: 'relawan',
                               bankId: 151,
                               password: controller.whatsappC.text,

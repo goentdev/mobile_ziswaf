@@ -489,6 +489,10 @@ class TambahTransaksi extends StatelessWidget {
                                               : GestureDetector(
                                                   onTap: () {
                                                     controller.addAlokasi2();
+                                                    controller
+                                                            .nominal2Controller =
+                                                        TextEditingController(
+                                                            text: '0');
                                                   },
                                                   child: Text(
                                                     "Hapus",
@@ -810,6 +814,11 @@ class TambahTransaksi extends StatelessWidget {
                                                             onTap: () {
                                                               controller
                                                                   .addAlokasi3();
+                                                              controller
+                                                                      .nominal3Controller =
+                                                                  TextEditingController(
+                                                                      text:
+                                                                          '0');
                                                             },
                                                             child: Text(
                                                               "Hapus",
@@ -1131,6 +1140,11 @@ class TambahTransaksi extends StatelessWidget {
                                                                 onTap: () {
                                                                   controller
                                                                       .addAlokasi4();
+                                                                  controller
+                                                                          .nominal4Controller =
+                                                                      TextEditingController(
+                                                                          text:
+                                                                              '0');
                                                                 },
                                                                 child: Text(
                                                                   "Hapus",
