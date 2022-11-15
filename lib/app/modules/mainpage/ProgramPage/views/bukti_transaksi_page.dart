@@ -124,12 +124,13 @@ class BuktiTransaksi extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(4),
                     ),
-                    hintText: controller.isSelected.value
+                    hintText: controller.isSelectedBank.value
                         ? controller.selectedBank.value
                         : 'Pilih Bank',
                     hintStyle: textMBold.copyWith(
-                      color:
-                          controller.isSelected.value ? neutral100 : neutral60,
+                      color: controller.isSelectedBank.value
+                          ? neutral100
+                          : neutral60,
                     ),
                     isDense: true,
                   ),
@@ -226,8 +227,8 @@ class BuktiTransaksi extends StatelessWidget {
                                                       controller
                                                           .banksOnSearch[index]
                                                           .id!;
-                                                  controller.isSelected.value =
-                                                      true;
+                                                  controller.isSelectedBank
+                                                      .value = true;
                                                   Get.back();
                                                 },
                                                 id: controller
@@ -248,8 +249,8 @@ class BuktiTransaksi extends StatelessWidget {
                                                           .value =
                                                       controller
                                                           .banks[index].id!;
-                                                  controller.isSelected.value =
-                                                      true;
+                                                  controller.isSelectedBank
+                                                      .value = true;
                                                   Get.back();
                                                 },
                                                 id: controller.banks[index].id!,
