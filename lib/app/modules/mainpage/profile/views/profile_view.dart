@@ -410,8 +410,39 @@ class ProfileView extends GetView<ProfileController> {
                   },
                 ),
               )
-            : Center(
-                child: Text('Akun Anda di nonaktifkan'),
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 91,
+                  ),
+                  Center(
+                    child: Image.asset(
+                      'assets/images/nonaktif.png',
+                      width: 288,
+                      height: 288,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Text(
+                      'Akun Anda\nDinonaktifkan',
+                      style: h2ExtraBold.copyWith(color: neutral100),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Text(
+                      'Silahkan hubungi admin untuk mengaktifkan\nakun Anda kembali',
+                      style: textLSemibold.copyWith(color: neutral80),
+                    ),
+                  ),
+                ],
               ),
       ),
     );
