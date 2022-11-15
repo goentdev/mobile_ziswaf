@@ -319,7 +319,7 @@ class ChangeBankPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Obx(
-            () => profileC.isLoading.value
+            () => profileC.isLoading2.value
                 ? const LoadingButton()
                 : SizedBox(
                     height: 41,
@@ -335,6 +335,7 @@ class ChangeBankPage extends StatelessWidget {
                         // ignore: unnecessary_null_comparison
                         if (controller.selectedBankId.value !=
                             profileC.user.value!.bank!.id!) {
+                          profileC.isLoading2.value == true;
                           bool success = await profileC.changeBank(
                               bankId: controller.selectedBankId.value,
                               nomorRekening:
@@ -343,12 +344,12 @@ class ChangeBankPage extends StatelessWidget {
                                   controller.accountNameController.text);
                           profileC.getProfile();
                           if (success) {
-                            profileC.isLoading.value = false;
+                            profileC.isLoading2.value = false;
                             profileC.update();
                             Get.back();
                             EasyLoading.showSuccess('Data Berhasil Diubah');
                           } else {
-                            profileC.isLoading.value = false;
+                            profileC.isLoading2.value = false;
                           }
                         } else {
                           bool success = await profileC.changeBank(
@@ -359,12 +360,12 @@ class ChangeBankPage extends StatelessWidget {
                                   controller.accountNameController.text);
                           profileC.getProfile();
                           if (success) {
-                            profileC.isLoading.value = false;
+                            profileC.isLoading2.value = false;
                             profileC.update();
                             Get.back();
                             EasyLoading.showSuccess('Data Berhasil Diubah');
                           } else {
-                            profileC.isLoading.value = false;
+                            profileC.isLoading2.value = false;
                           }
                         }
                       },

@@ -587,12 +587,13 @@ class ChangeIdentityPage extends StatelessWidget {
               height: 16,
             ),
             Obx(
-              () => profileC.isLoading.value
+              () => profileC.isLoading2.value
                   ? const LoadingButton()
                   : Button(
                       textbutton: 'Simpan',
                       onTap: () async {
                         if (controller.identityImage == null) {
+                          profileC.isLoading2.value == true;
                           bool success = await profileC.changeIdentity(
                               jenisKartuIdentitas:
                                   controller.selectedType.toLowerCase(),
@@ -602,12 +603,12 @@ class ChangeIdentityPage extends StatelessWidget {
                               foto: null);
 
                           if (success) {
-                            profileC.isLoading.value = false;
+                            profileC.isLoading2.value = false;
                             profileC.update();
                             Get.back();
                             EasyLoading.showSuccess('Data Berhasil Diubah');
                           } else {
-                            profileC.isLoading.value = false;
+                            profileC.isLoading2.value = false;
                           }
                         } else {
                           bool success = await profileC.changeIdentity(
@@ -618,12 +619,12 @@ class ChangeIdentityPage extends StatelessWidget {
                               foto: controller.identityImage!.path);
 
                           if (success) {
-                            profileC.isLoading.value = false;
+                            profileC.isLoading2.value = false;
                             profileC.update();
                             Get.back();
                             EasyLoading.showSuccess('Data Berhasil Diubah');
                           } else {
-                            profileC.isLoading.value = false;
+                            profileC.isLoading2.value = false;
                           }
                         }
                       },

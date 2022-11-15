@@ -22,6 +22,7 @@ class ProfileController extends GetxController {
 
   Rx<User?> user = User().obs;
   RxBool isLoading = false.obs;
+  RxBool isLoading2 = false.obs;
 
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
 
@@ -37,11 +38,6 @@ class ProfileController extends GetxController {
 
   @override
   void onClose() {
-    nameController.dispose();
-
-    numberController.dispose();
-    emailController.dispose();
-
     super.onClose();
   }
 
@@ -55,6 +51,18 @@ class ProfileController extends GetxController {
     user.value = await userProvider.profile();
     update();
     isLoading.value = false;
+  }
+
+  void getProfile2() async {
+    user.value = await userProvider.profile();
+    update();
+  }
+
+  void getProfile3() async {
+    isLoading2.value = true;
+    user.value = await userProvider.profile();
+    update();
+    isLoading2.value = false;
   }
 
   Future<bool> changeName({required String nama}) async {
