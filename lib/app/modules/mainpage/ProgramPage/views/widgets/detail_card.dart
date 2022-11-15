@@ -186,6 +186,11 @@ class DetailCard extends StatelessWidget {
             label: 'Edit',
             onPressed: (context) {
               Get.to(() => EditTransaksiPage(
+                    fotobuktiTransaksi: buktifotoTransaksi,
+                    bankNama: bank,
+                    namaRekening: namaRekening,
+                    nomoResi: nomorResi,
+                    nomorRekening: nomorRekening,
                     whatsapp: nomor!,
                     judul: judul,
                     nama: nama,
@@ -208,6 +213,11 @@ class DetailCard extends StatelessWidget {
             label: 'Edit',
             onPressed: (context) {
               Get.to(() => EditTransaksiPage(
+                    fotobuktiTransaksi: buktifotoTransaksi,
+                    bankNama: bank,
+                    namaRekening: namaRekening,
+                    nomoResi: nomorResi,
+                    nomorRekening: nomorRekening,
                     whatsapp: nomor!,
                     judul: judul,
                     nama: nama,

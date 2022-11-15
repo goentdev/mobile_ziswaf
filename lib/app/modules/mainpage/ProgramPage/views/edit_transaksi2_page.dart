@@ -21,7 +21,12 @@ import '../controllers/program_page_controller.dart';
 
 class EditTransaksi2 extends StatelessWidget {
   final String judul, nama, whatsapp, email, kategori;
-  final String? nomor;
+  final String? nomor,
+      nomorRekening,
+      namaRekening,
+      nomoResi,
+      bankNama,
+      buktifotoTransaksi;
 
   final int muzakiId, programId, transaksiId;
   const EditTransaksi2({
@@ -35,6 +40,11 @@ class EditTransaksi2 extends StatelessWidget {
     required this.email,
     required this.kategori,
     required this.transaksiId,
+    required this.nomorRekening,
+    required this.namaRekening,
+    required this.nomoResi,
+    required this.bankNama,
+    required this.buktifotoTransaksi,
   });
 
   @override
@@ -84,6 +94,11 @@ class EditTransaksi2 extends StatelessWidget {
                       ),
                     ),
                     CardMuzakkiEdit2(
+                        bank: bankNama,
+                        buktifototransfer: buktifotoTransaksi,
+                        namaRekening: namaRekening,
+                        nomorRekening: nomorRekening,
+                        nomorResi: nomoResi,
                         transaksiId: transaksiId,
                         nama: nama,
                         nomor: nomor,
@@ -1444,6 +1459,11 @@ class EditTransaksi2 extends StatelessWidget {
                       controller.alokasi3 == false &&
                       controller.alokasi4 == false) {
                     Get.to(() => BuktiTransaksiEdit(
+                        buktifotoTransaksi: buktifotoTransaksi,
+                        bankNama: bankNama,
+                        namRekening: namaRekening,
+                        nomorRekening: nomorRekening,
+                        nomorResi: nomoResi,
                         id: muzakiId,
                         transaksiId: transaksiId,
                         programId: programId,
@@ -1458,6 +1478,11 @@ class EditTransaksi2 extends StatelessWidget {
                       controller.alokasi3 == false &&
                       controller.alokasi4 == false) {
                     Get.to(() => BuktiTransaksiEdit(
+                        buktifotoTransaksi: buktifotoTransaksi,
+                        bankNama: bankNama,
+                        namRekening: namaRekening,
+                        nomorRekening: nomorRekening,
+                        nomorResi: nomoResi,
                         id: muzakiId,
                         transaksiId: transaksiId,
                         programId: programId,
@@ -1478,6 +1503,11 @@ class EditTransaksi2 extends StatelessWidget {
                       controller.alokasi3 == true &&
                       controller.alokasi4 == false) {
                     Get.to(() => BuktiTransaksiEdit(
+                            buktifotoTransaksi: buktifotoTransaksi,
+                            bankNama: bankNama,
+                            namRekening: namaRekening,
+                            nomorRekening: nomorRekening,
+                            nomorResi: nomoResi,
                             transaksiId: transaksiId,
                             email: email,
                             kategori: kategori,
@@ -1500,6 +1530,11 @@ class EditTransaksi2 extends StatelessWidget {
                       controller.alokasi3 == true &&
                       controller.alokasi4 == true) {
                     Get.to(() => BuktiTransaksiEdit(
+                            buktifotoTransaksi: buktifotoTransaksi,
+                            bankNama: bankNama,
+                            namRekening: namaRekening,
+                            nomorRekening: nomorRekening,
+                            nomorResi: nomoResi,
                             email: email,
                             kategori: kategori,
                             judul: judul,

@@ -8,7 +8,12 @@ import '../edit_transaksi_page.dart';
 
 class CardShowModalMuzakki extends StatelessWidget {
   final String nama;
-  final String? nomor;
+  final String? nomor,
+      nomorRekening,
+      namaRekening,
+      nomoResi,
+      bankNama,
+      buktifotoTransaksi;
   final String judul, email, kategori, whatsapp;
   final String? gambar;
   final int muzakiId, programId, transaksiId;
@@ -25,6 +30,11 @@ class CardShowModalMuzakki extends StatelessWidget {
     required this.kategori,
     required this.whatsapp,
     required this.transaksiId,
+    required this.nomorRekening,
+    required this.namaRekening,
+    required this.nomoResi,
+    required this.bankNama,
+    required this.buktifotoTransaksi,
   });
 
   @override
@@ -32,6 +42,11 @@ class CardShowModalMuzakki extends StatelessWidget {
     return InkWell(
       onTap: () {
         Get.offAll(() => EditTransaksi2(
+              buktifotoTransaksi: buktifotoTransaksi,
+              bankNama: bankNama,
+              namaRekening: namaRekening,
+              nomoResi: nomoResi,
+              nomorRekening: nomorRekening,
               email: email,
               kategori: kategori,
               whatsapp: whatsapp,

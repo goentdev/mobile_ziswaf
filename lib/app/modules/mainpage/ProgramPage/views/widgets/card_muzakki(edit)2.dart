@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/utils.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/controllers/muzakki_page_controller.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/controllers/program_page_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/tambah_transaksi_page.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_showmdal_muzakki.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_showmodal2_muzakki.dart';
@@ -15,9 +16,13 @@ class CardMuzakkiEdit2 extends StatelessWidget {
   final String nama;
   final String? nomor;
   final String judul;
-  final String? gambar;
+  final String? gambar,
+      bank,
+      nomorRekening,
+      namaRekening,
+      nomorResi,
+      buktifototransfer;
   final int id, programId, transaksiId;
-
   const CardMuzakkiEdit2({
     super.key,
     required this.nama,
@@ -27,11 +32,17 @@ class CardMuzakkiEdit2 extends StatelessWidget {
     required this.id,
     required this.programId,
     required this.transaksiId,
+    required this.bank,
+    required this.nomorRekening,
+    required this.namaRekening,
+    required this.nomorResi,
+    required this.buktifototransfer,
   });
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(MuzakkiPageController());
+    final controller2 = Get.put(ProgramPageController());
 
     return GestureDetector(
       onTap: () {
@@ -114,6 +125,11 @@ class CardMuzakkiEdit2 extends StatelessWidget {
                                     if (controller.searchMuzakkiController.text
                                         .isNotEmpty) {
                                       return CardShowModalMuzakki2(
+                                        buktifotoTransaksi: buktifototransfer,
+                                        bankNama: bank,
+                                        namRekening: namaRekening,
+                                        nomorResi: nomorResi,
+                                        nomorRekening: nomorRekening,
                                         transaksiId: transaksiId,
                                         email: controller
                                             .muzakkisOnSearch![index]
@@ -139,6 +155,11 @@ class CardMuzakkiEdit2 extends StatelessWidget {
                                       );
                                     } else {
                                       return CardShowModalMuzakki2(
+                                        buktifotoTransaksi: buktifototransfer,
+                                        bankNama: bank,
+                                        namRekening: namaRekening,
+                                        nomorResi: nomorResi,
+                                        nomorRekening: nomorRekening,
                                         transaksiId: transaksiId,
                                         email: controller
                                             .muzaki![index].muzaki!.email!,

@@ -15,17 +15,19 @@ class BuktiTransaksi extends StatelessWidget {
   final int id, programId;
   final List<String> nominal, jenisDonasi;
   final String judul, nama, nomor, email, kategori;
-  const BuktiTransaksi(
-      {super.key,
-      required this.id,
-      required this.programId,
-      required this.nominal,
-      required this.jenisDonasi,
-      required this.judul,
-      required this.nama,
-      required this.nomor,
-      required this.email,
-      required this.kategori});
+
+  const BuktiTransaksi({
+    super.key,
+    required this.id,
+    required this.programId,
+    required this.nominal,
+    required this.jenisDonasi,
+    required this.judul,
+    required this.nama,
+    required this.nomor,
+    required this.email,
+    required this.kategori,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +68,7 @@ class BuktiTransaksi extends StatelessWidget {
                 border: Border.all(color: primaryBorder, width: 1),
                 image: const DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage('assets/images/detail_transaksi.png'),
+                  image: AssetImage('assets/images/nominal_background.png'),
                 ),
               ),
               child: Column(

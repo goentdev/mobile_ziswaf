@@ -10,28 +10,42 @@ class CardShowModalMuzakki2 extends StatelessWidget {
   final String nama;
   final String? nomor;
   final String judul, email, kategori, whatsapp;
-  final String? gambar;
+  final String? gambar,
+      bankNama,
+      namRekening,
+      nomorResi,
+      nomorRekening,
+      buktifotoTransaksi;
   final int muzakiId, programId, transaksiId;
 
-  const CardShowModalMuzakki2({
-    super.key,
-    required this.nama,
-    required this.nomor,
-    required this.judul,
-    required this.gambar,
-    required this.muzakiId,
-    required this.programId,
-    required this.email,
-    required this.kategori,
-    required this.whatsapp,
-    required this.transaksiId,
-  });
+  const CardShowModalMuzakki2(
+      {super.key,
+      required this.nama,
+      required this.nomor,
+      required this.judul,
+      required this.gambar,
+      required this.muzakiId,
+      required this.programId,
+      required this.email,
+      required this.kategori,
+      required this.whatsapp,
+      required this.transaksiId,
+      required this.bankNama,
+      required this.namRekening,
+      required this.nomorResi,
+      required this.nomorRekening,
+      required this.buktifotoTransaksi});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Get.offAll(() => EditTransaksiPage(
+              fotobuktiTransaksi: buktifotoTransaksi,
+              bankNama: bankNama,
+              namaRekening: namRekening,
+              nomoResi: nomorResi,
+              nomorRekening: nomorRekening,
               email: email,
               kategori: kategori,
               whatsapp: whatsapp,
