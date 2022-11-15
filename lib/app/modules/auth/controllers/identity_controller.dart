@@ -25,7 +25,6 @@ class IdentityController extends GetxController {
 
   @override
   void onClose() {
-    identityNumberController.dispose();
     super.onClose();
   }
 

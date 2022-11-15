@@ -70,21 +70,22 @@ class ChangeNumberPage extends GetView<UserController> {
             ),
             const SizedBox(height: 24),
             Obx(
-              () => profileC.isLoading.value
+              () => profileC.isLoading2.value
                   ? const LoadingButton()
                   : Button(
                       textbutton: 'Simpan',
                       onTap: () async {
+                        profileC.isLoading2.value == true;
                         bool success = await profileC.changeNumber(
                             whatsapp: profileC.numberController.text);
                         profileC.getProfile();
                         if (success) {
-                          profileC.isLoading.value = false;
+                          profileC.isLoading2.value = false;
                           profileC.update();
                           Get.back();
                           EasyLoading.showSuccess('Data Berhasil Diubah');
                         } else {
-                          profileC.isLoading.value = false;
+                          profileC.isLoading2.value = false;
                         }
                       },
                     ),
