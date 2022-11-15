@@ -318,7 +318,7 @@ class DetailTransaksi extends StatelessWidget {
               ),
             ),
             Container(
-              height: 535,
+              height: 546,
               margin: const EdgeInsets.all(16),
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -529,47 +529,49 @@ class DetailTransaksi extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 6),
-                  ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: controller2.alokasi!.length,
-                    itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          Image.asset(
-                            'assets/icons/radio.png',
-                            width: 12,
-                            height: 12,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            controller2.alokasi![index].jenisDonasi!,
-                            style: captionTextRegular,
-                          ),
-                          Text(
-                            ' - ',
-                            style: percentTittle.copyWith(
-                              color: neutral100,
+                  Obx(
+                    () => ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: controller2.alokasi!.length,
+                      itemBuilder: (context, index) {
+                        return Row(
+                          children: [
+                            Image.asset(
+                              'assets/icons/radio.png',
+                              width: 12,
+                              height: 12,
                             ),
-                          ),
-                          Text(
-                            NumberFormat.currency(
-                                    locale: 'id',
-                                    decimalDigits: 0,
-                                    symbol: 'Rp')
-                                .format(
-                              controller2.alokasi![index].nominal!,
+                            const SizedBox(width: 8),
+                            Text(
+                              controller2.alokasi![index].jenisDonasi!,
+                              style: captionTextRegular,
                             ),
-                            style: percentTittle.copyWith(
-                              color: neutral100,
+                            Text(
+                              ' - ',
+                              style: percentTittle.copyWith(
+                                color: neutral100,
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          )
-                        ],
-                      );
-                    },
+                            Text(
+                              NumberFormat.currency(
+                                      locale: 'id',
+                                      decimalDigits: 0,
+                                      symbol: 'Rp')
+                                  .format(
+                                controller2.alokasi![index].nominal!,
+                              ),
+                              style: percentTittle.copyWith(
+                                color: neutral100,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            )
+                          ],
+                        );
+                      },
+                    ),
                   )
                 ],
               ),
