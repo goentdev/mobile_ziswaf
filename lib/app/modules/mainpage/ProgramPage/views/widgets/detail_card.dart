@@ -186,7 +186,8 @@ class DetailCard extends StatelessWidget {
           ),
           SlidableAction(
             label: 'Edit',
-            onPressed: (context) {
+            onPressed: (context) async {
+              await controller.getAlokasiDana(id: id);
               Get.to(() => EditTransaksiPage(
                     fotobuktiTransaksi: buktifotoTransaksi,
                     bankNama: bank,
@@ -214,7 +215,8 @@ class DetailCard extends StatelessWidget {
         endActionPane: ActionPane(motion: const DrawerMotion(), children: [
           SlidableAction(
             label: 'Edit',
-            onPressed: (context) {
+            onPressed: (context) async {
+              await controller.getAlokasiDana(id: id);
               Get.to(() => EditTransaksiPage(
                     fotobuktiTransaksi: buktifotoTransaksi,
                     bankNama: bank,
