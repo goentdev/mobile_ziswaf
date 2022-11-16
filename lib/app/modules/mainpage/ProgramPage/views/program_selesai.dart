@@ -15,6 +15,8 @@ class ProgramSudahSelesai extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(ProgramPageController());
     controller.gettotalselesai();
+    final now = DateTime.now();
+    final tanggaltutup = DateTime(now.year, now.month, now.day);
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
@@ -47,22 +49,24 @@ class ProgramSudahSelesai extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: controller.program!.length,
                       itemBuilder: (context, index) {
-                        return controller.program![index].persen! != "100"
-                            ? const SizedBox()
-                            : CardDana(
-                                totalTransaksi: controller
-                                    .totaltransaksiiD.value!.totalTransaksi,
-                                judul: controller.program![index].nama!,
-                                terkumpul:
-                                    controller.program?[index].totalDana ?? 0,
-                                target: controller.program![index].targetDana!,
-                                tanggalakhir:
-                                    controller.program![index].tanggal!,
-                                muzakki:
-                                    controller.program![index].totalMuzaki!,
-                                id: controller.program![index].id,
-                                persenn: controller.program![index].persen!,
-                              );
+                        if (DateTime.parse(controller.program![index].tanggal!)
+                                .compareTo(tanggaltutup) >=
+                            0) {
+                          return const SizedBox();
+                        } else {
+                          return CardDana(
+                            totalTransaksi: controller
+                                .totaltransaksiiD.value!.totalTransaksi,
+                            judul: controller.program![index].nama!,
+                            terkumpul:
+                                controller.program?[index].totalDana ?? 0,
+                            target: controller.program![index].targetDana!,
+                            tanggalakhir: controller.program![index].tanggal!,
+                            muzakki: controller.program![index].totalMuzaki!,
+                            id: controller.program![index].id,
+                            persenn: controller.program![index].persen!,
+                          );
+                        }
                       },
                     ));
               },

@@ -500,7 +500,7 @@ class DetailTransaksi extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    initialValue: nomorResi,
+                    initialValue: nomorResi ?? '-',
                     style: captionTextSemiBold.copyWith(
                       color: neutral100,
                     ),
