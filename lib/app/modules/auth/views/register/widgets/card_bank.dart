@@ -24,15 +24,14 @@ class CardBank extends StatelessWidget {
         child: Row(
           children: [
             Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16.0),
-                  color: neutral30,
-                ),
-                child: Image.asset(
-                  'assets/icons/target.png',
-                  height: 30,
-                  width: 30,
-                )),
+              height: 40,
+              width: 55,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  image: DecorationImage(
+                    image: NetworkImage(gambar),
+                  )),
+            ),
             const SizedBox(
               width: 16,
             ),
