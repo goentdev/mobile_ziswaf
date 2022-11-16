@@ -92,6 +92,7 @@ class ChangePasswordPage extends GetView<UserController> {
                 ),
                 const SizedBox(height: 8),
                 TextFormField(
+                  controller: profileC.newPasswordController,
                   keyboardType: TextInputType.text,
                   validator: (v) {
                     if (v?.isEmpty ?? true) return 'Password wajib diisi';
@@ -137,12 +138,12 @@ class ChangePasswordPage extends GetView<UserController> {
                 ),
                 const SizedBox(height: 8),
                 TextFormField(
-                  controller: profileC.newPasswordController,
+                  controller: profileC.confirmPasswordController,
                   keyboardType: TextInputType.text,
                   validator: (v) {
                     if (v?.isEmpty ?? true) return 'Password wajib diisi';
                     if (v!.length < 8) return 'Minimum 8 Karakter';
-                    if (v != profileC.confirmPasswordController.text) {
+                    if (v != profileC.newPasswordController.text) {
                       return 'Kata sandi harus sama dengan yang diatas';
                     }
                     return null;
@@ -192,7 +193,8 @@ class ChangePasswordPage extends GetView<UserController> {
                     if (profileC.registerFormKey.currentState!.validate()) {
                       bool sukses = await UserProvider().changepassword(
                           passwordlama: profileC.oldPasswordController.text,
-                          passwordbaru: profileC.newPasswordController.text);
+                          passwordbaru:
+                              profileC.confirmPasswordController.text);
                       if (sukses) {
                         profileC.isLoading.value = false;
                         Get.offNamed(Routes.MAINPAGE);

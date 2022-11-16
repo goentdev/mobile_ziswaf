@@ -16,7 +16,7 @@ class CardShowModalMuzakki extends StatelessWidget {
       buktifotoTransaksi;
   final String judul, email, kategori, whatsapp;
   final String? gambar;
-  final int muzakiId, programId, transaksiId;
+  final int muzakiId, programId, transaksiId, bankId;
 
   const CardShowModalMuzakki({
     super.key,
@@ -35,6 +35,7 @@ class CardShowModalMuzakki extends StatelessWidget {
     required this.nomoResi,
     required this.bankNama,
     required this.buktifotoTransaksi,
+    required this.bankId,
   });
 
   @override
@@ -56,6 +57,7 @@ class CardShowModalMuzakki extends StatelessWidget {
               muzakiId: muzakiId,
               transaksiId: transaksiId,
               programId: programId,
+              bankId: bankId,
             ));
       },
       child: Container(

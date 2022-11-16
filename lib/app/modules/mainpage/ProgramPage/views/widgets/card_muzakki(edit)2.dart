@@ -22,7 +22,7 @@ class CardMuzakkiEdit2 extends StatelessWidget {
       namaRekening,
       nomorResi,
       buktifototransfer;
-  final int id, programId, transaksiId;
+  final int id, programId, transaksiId, bankId;
   const CardMuzakkiEdit2({
     super.key,
     required this.nama,
@@ -37,6 +37,7 @@ class CardMuzakkiEdit2 extends StatelessWidget {
     required this.namaRekening,
     required this.nomorResi,
     required this.buktifototransfer,
+    required this.bankId,
   });
 
   @override
@@ -152,6 +153,7 @@ class CardMuzakkiEdit2 extends StatelessWidget {
                                             .whatsapp!,
                                         judul: judul,
                                         gambar: controller.muzaki![index].nama!,
+                                        bankId: bankId,
                                       );
                                     } else {
                                       return CardShowModalMuzakki2(
@@ -175,6 +177,7 @@ class CardMuzakkiEdit2 extends StatelessWidget {
                                         nomor: controller
                                             .muzaki![index].muzaki!.whatsapp!,
                                         judul: judul,
+                                        bankId: bankId,
                                       );
                                     }
                                   },

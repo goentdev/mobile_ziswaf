@@ -7,7 +7,7 @@ import 'package:jiffy/jiffy.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/identity_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/controllers/program_page_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/bukti_transaksi_page.dart';
-
+import 'package:photo_view/photo_view.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
@@ -913,17 +913,24 @@ class DetailTransaksi extends StatelessWidget {
                                     const SizedBox(
                                       height: 12,
                                     ),
-                                    Container(
-                                      height: 245,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                          border: Border.all(
-                                              width: 1, color: neutral50),
-                                          image: DecorationImage(
-                                              image: NetworkImage(
-                                                  buktifotoTransaksi!),
-                                              fit: BoxFit.contain)),
+                                    InkWell(
+                                      onTap: () {
+                                        Get.to(PhotoView(
+                                            imageProvider: NetworkImage(
+                                                buktifotoTransaksi!)));
+                                      },
+                                      child: Container(
+                                        height: 245,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            border: Border.all(
+                                                width: 1, color: neutral50),
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                    buktifotoTransaksi!),
+                                                fit: BoxFit.contain)),
+                                      ),
                                     ),
                                     const SizedBox(
                                       height: 16,

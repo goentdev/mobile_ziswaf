@@ -27,10 +27,9 @@ class CardBank extends StatelessWidget {
               height: 40,
               width: 55,
               decoration: BoxDecoration(
-                  color: Colors.white,
                   image: DecorationImage(
-                    image: NetworkImage(gambar),
-                  )),
+                image: NetworkImage(gambar),
+              )),
             ),
             const SizedBox(
               width: 16,

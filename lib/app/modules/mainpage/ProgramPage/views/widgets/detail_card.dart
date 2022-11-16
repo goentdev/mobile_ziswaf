@@ -14,6 +14,7 @@ class DetailCard extends StatelessWidget {
   final String? icon;
   final String nama;
   final String bank;
+  final int bankId;
   final int? nominal, id, programId, muzakiId;
   final String? waktu;
   final String judul;
@@ -43,6 +44,7 @@ class DetailCard extends StatelessWidget {
     this.programId,
     this.nominaldonasi,
     this.muzakiId,
+    required this.bankId,
   });
   @override
   Widget build(BuildContext context) {
@@ -200,6 +202,7 @@ class DetailCard extends StatelessWidget {
                     email: email!,
                     kategori: kategori!,
                     muzakiId: muzakiId!,
+                    bankId: bankId,
                   ));
             },
             icon: Icons.edit_note_rounded,
@@ -227,6 +230,7 @@ class DetailCard extends StatelessWidget {
                     email: email!,
                     kategori: kategori!,
                     muzakiId: muzakiId!,
+                    bankId: bankId,
                   ));
             },
             icon: Icons.edit_note_rounded,

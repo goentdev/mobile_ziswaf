@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:mobile_ziswaf/app/data/providers/transaksi_provider.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/identity_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/providers/transaksi_provider.dart';
+import 'package:photo_view/photo_view.dart';
 
 import '../../../../routes/app_pages.dart';
 import '../../../../theme/colors.dart';
@@ -652,17 +653,24 @@ class KonfirmasiPageEdit extends StatelessWidget {
                                     const SizedBox(
                                       height: 12,
                                     ),
-                                    Container(
-                                      height: 245,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                          border: Border.all(
-                                              width: 1, color: neutral50),
-                                          image: DecorationImage(
-                                              image: FileImage(
-                                                  File(buktiTransaksi)),
-                                              fit: BoxFit.contain)),
+                                    InkWell(
+                                      onTap: () {
+                                        Get.to(PhotoView(
+                                            imageProvider: FileImage(
+                                                File(buktiTransaksi))));
+                                      },
+                                      child: Container(
+                                        height: 245,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            border: Border.all(
+                                                width: 1, color: neutral50),
+                                            image: DecorationImage(
+                                                image: FileImage(
+                                                    File(buktiTransaksi)),
+                                                fit: BoxFit.contain)),
+                                      ),
                                     ),
                                     const SizedBox(
                                       height: 16,

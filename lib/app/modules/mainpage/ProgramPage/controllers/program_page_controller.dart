@@ -1,3 +1,7 @@
+import 'dart:io';
+import 'dart:math';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/data/models/alokasidana_model.dart';
@@ -11,6 +15,7 @@ import 'package:mobile_ziswaf/app/data/providers/program_provider.dart';
 import 'package:mobile_ziswaf/app/data/providers/totaldanaprogram_provider.dart';
 import 'package:mobile_ziswaf/app/data/providers/totaltransaksi_provider.dart';
 import 'package:mobile_ziswaf/app/data/providers/transaksi_provider.dart';
+import 'package:path/path.dart';
 
 import '../../../../data/models/user_model.dart';
 import '../../../../data/providers/muzaki_provider.dart';
@@ -29,6 +34,7 @@ class ProgramPageController extends GetxController
       TotaldanaprogramProvider();
   TotaltransaksiProvider totaltransaksiProviderr = TotaltransaksiProvider();
 
+  final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
   RxList<Transaksi>? transaksi = <Transaksi>[].obs;
 
   Rx<Transaksi> transaksis = Transaksi().obs;
@@ -144,8 +150,19 @@ class ProgramPageController extends GetxController
     required namaRekening,
     required nomorResi,
     required buktiTransaksi,
+    linkfoto,
     required bankId,
   }) async {
+    if (buktiTransaksi != null) {
+      final fotoRef = firebaseStorage.ref('bukti-transaksi');
+      final convertedFoto = File(buktiTransaksi);
+      final fotoExt = extension(convertedFoto.path);
+      final fireFoto = fotoRef.child('${_getRandomFileName()}.$fotoExt');
+      await fireFoto.putFile(File(buktiTransaksi));
+      linkfoto = await fireFoto.getDownloadURL();
+    } else {
+      linkfoto;
+    }
     bool sukses = await transaksiProvider.changeTransaksi(id, {
       "program_id": programId,
       "muzaki_id": muzakiId,
@@ -154,7 +171,7 @@ class ProgramPageController extends GetxController
       "nomor_rekening": nomorRekening,
       "nama_rekening": namaRekening,
       "nomor_resi": nomorResi,
-      "bukti_transaksi": buktiTransaksi,
+      "bukti_transaksi": linkfoto,
       "bank_id": bankId
     });
     if (sukses) {
@@ -163,7 +180,7 @@ class ProgramPageController extends GetxController
         val.nomorRekening = nomorRekening;
         val.nomorResi = nomorResi;
         val.namaRekening = namaRekening;
-        val.buktiTransaksi = buktiTransaksi;
+        val.buktiTransaksi = linkfoto;
       });
 
       return true;
@@ -179,4 +196,7 @@ class ProgramPageController extends GetxController
 
   //   isLoading.value = false;
   // }
+
+  String _getRandomFileName() =>
+      '${DateTime.now().toUtc().toString()}-${Random().nextInt(8999) + 1000}';
 }

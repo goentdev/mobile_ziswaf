@@ -171,46 +171,111 @@ class DetailProgram extends StatelessWidget {
                                         itemCount: controller.transaksi!.length,
                                         itemBuilder: (context, index) {
                                           return DetailCard(
-                                              muzakiId: controller
-                                                      .transaksi![controller
-                                                              .transaksi!.length -
-                                                          1 -
-                                                          index]
-                                                      .muzaki
-                                                      ?.id ??
-                                                  0,
-                                              buktifotoTransaksi: controller
-                                                  .transaksi![controller
-                                                          .transaksi!.length -
-                                                      1 -
-                                                      index]
-                                                  .buktiTransaksi,
-                                              nomorResi: controller
-                                                  .transaksi![controller.transaksi!
-                                                          .length -
-                                                      1 -
-                                                      index]
-                                                  .nomorResi,
-                                              nomorRekening: controller
-                                                  .transaksi![controller
-                                                          .transaksi!.length -
-                                                      1 -
-                                                      index]
-                                                  .nomorRekening,
-                                              namaRekening: controller
-                                                  .transaksi![controller.transaksi!.length - 1 - index]
-                                                  .namaRekening,
-                                              kategori: controller.transaksi![controller.transaksi!.length - 1 - index].kategori,
-                                              email: controller.transaksi![controller.transaksi!.length - 1 - index].muzaki!.email,
-                                              nomor: controller.transaksi![controller.transaksi!.length - 1 - index].muzaki!.whatsapp,
-                                              judul: judul,
-                                              programId: id,
-                                              id: controller.transaksi![controller.transaksi!.length - 1 - index].id,
-                                              icon: controller.transaksi![controller.transaksi!.length - 1 - index].muzaki?.nama,
-                                              nama: controller.transaksi![controller.transaksi!.length - 1 - index].muzaki?.nama ?? '-',
-                                              bank: controller.transaksi![controller.transaksi!.length - 1 - index].bank?.nama ?? '-',
-                                              nominal: controller.transaksi?[controller.transaksi!.length - 1 - index].totalTransaksi ?? 0,
-                                              waktu: controller.transaksi![controller.transaksi!.length - 1 - index].createdAt);
+                                            muzakiId: controller
+                                                    .transaksi![controller
+                                                            .transaksi!.length -
+                                                        1 -
+                                                        index]
+                                                    .muzaki
+                                                    ?.id ??
+                                                0,
+                                            buktifotoTransaksi: controller
+                                                .transaksi![controller
+                                                        .transaksi!.length -
+                                                    1 -
+                                                    index]
+                                                .buktiTransaksi,
+                                            nomorResi: controller
+                                                .transaksi![controller
+                                                        .transaksi!.length -
+                                                    1 -
+                                                    index]
+                                                .nomorResi,
+                                            nomorRekening: controller
+                                                .transaksi![controller
+                                                        .transaksi!.length -
+                                                    1 -
+                                                    index]
+                                                .nomorRekening,
+                                            namaRekening: controller
+                                                .transaksi![controller
+                                                        .transaksi!.length -
+                                                    1 -
+                                                    index]
+                                                .namaRekening,
+                                            kategori: controller
+                                                .transaksi![controller
+                                                        .transaksi!.length -
+                                                    1 -
+                                                    index]
+                                                .kategori,
+                                            email: controller
+                                                .transaksi![controller
+                                                        .transaksi!.length -
+                                                    1 -
+                                                    index]
+                                                .muzaki!
+                                                .email,
+                                            nomor: controller
+                                                .transaksi![controller
+                                                        .transaksi!.length -
+                                                    1 -
+                                                    index]
+                                                .muzaki!
+                                                .whatsapp,
+                                            judul: judul,
+                                            programId: id,
+                                            id: controller
+                                                .transaksi![controller
+                                                        .transaksi!.length -
+                                                    1 -
+                                                    index]
+                                                .id,
+                                            icon: controller
+                                                .transaksi![controller
+                                                        .transaksi!.length -
+                                                    1 -
+                                                    index]
+                                                .muzaki
+                                                ?.nama,
+                                            nama: controller
+                                                    .transaksi![controller
+                                                            .transaksi!.length -
+                                                        1 -
+                                                        index]
+                                                    .muzaki
+                                                    ?.nama ??
+                                                '-',
+                                            bank: controller
+                                                    .transaksi![controller
+                                                            .transaksi!.length -
+                                                        1 -
+                                                        index]
+                                                    .bank
+                                                    ?.nama ??
+                                                '-',
+                                            nominal: controller
+                                                    .transaksi?[controller
+                                                            .transaksi!.length -
+                                                        1 -
+                                                        index]
+                                                    .totalTransaksi ??
+                                                0,
+                                            waktu: controller
+                                                .transaksi![controller
+                                                        .transaksi!.length -
+                                                    1 -
+                                                    index]
+                                                .createdAt,
+                                            bankId: controller
+                                                    .transaksi![controller
+                                                            .transaksi!.length -
+                                                        1 -
+                                                        index]
+                                                    .bank
+                                                    ?.id ??
+                                                1,
+                                          );
                                         },
                                       ),
                                     ),

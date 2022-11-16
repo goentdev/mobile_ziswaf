@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
+import 'package:photo_view/photo_view.dart';
 
 class IdentityController extends GetxController {
   final ImagePicker picker = ImagePicker();
@@ -64,14 +65,20 @@ class IdentityController extends GetxController {
                 const SizedBox(
                   height: 12,
                 ),
-                Container(
-                  height: 245,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(width: 1, color: neutral50),
-                      image: DecorationImage(
-                          image: FileImage(File(identityImage!.path)),
-                          fit: BoxFit.contain)),
+                InkWell(
+                  onTap: () {
+                    Get.to(PhotoView(
+                        imageProvider: FileImage(File(identityImage!.path))));
+                  },
+                  child: Container(
+                    height: 245,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(width: 1, color: neutral50),
+                        image: DecorationImage(
+                            image: FileImage(File(identityImage!.path)),
+                            fit: BoxFit.contain)),
+                  ),
                 ),
                 const SizedBox(
                   height: 16,
@@ -284,14 +291,20 @@ class IdentityController extends GetxController {
                 const SizedBox(
                   height: 12,
                 ),
-                Container(
-                  height: 245,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(width: 1, color: neutral50),
-                      image: DecorationImage(
-                          image: FileImage(File(identityImage!.path)),
-                          fit: BoxFit.contain)),
+                InkWell(
+                  onTap: () {
+                    Get.to(PhotoView(
+                        imageProvider: FileImage(File(identityImage!.path))));
+                  },
+                  child: Container(
+                    height: 245,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(width: 1, color: neutral50),
+                        image: DecorationImage(
+                            image: FileImage(File(identityImage!.path)),
+                            fit: BoxFit.contain)),
+                  ),
                 ),
                 const SizedBox(
                   height: 16,

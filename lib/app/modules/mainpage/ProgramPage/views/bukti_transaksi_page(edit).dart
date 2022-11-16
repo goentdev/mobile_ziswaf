@@ -6,6 +6,7 @@ import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controlle
 import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller2.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/konfirmasi_page(edit).dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/konfirmasi_page..dart';
+import 'package:photo_view/photo_view.dart';
 import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
 import '../../../auth/controllers/identity_controller.dart';
@@ -15,6 +16,7 @@ import 'package:path/path.dart';
 class BuktiTransaksiEdit extends StatelessWidget {
   final int id, programId, transaksiId;
   final List<String> nominal, jenisDonasi;
+  final int bankId;
   final String judul, nama, nomor, email, kategori;
   final String? bankNama,
       namRekening,
@@ -37,7 +39,8 @@ class BuktiTransaksiEdit extends StatelessWidget {
       required this.namRekening,
       required this.nomorResi,
       required this.nomorRekening,
-      required this.buktifotoTransaksi});
+      required this.buktifotoTransaksi,
+      required this.bankId});
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +51,7 @@ class BuktiTransaksiEdit extends StatelessWidget {
     controller.bankAccountController.text = nomorRekening!;
     controller.accountNameController.text = namRekening!;
     controller.nomorResiController.text = nomorResi!;
+    controller.selectedBankId.value = bankId;
 
     return Scaffold(
       appBar: AppBar(
@@ -563,18 +567,26 @@ class BuktiTransaksiEdit extends StatelessWidget {
                                             const SizedBox(
                                               height: 12,
                                             ),
-                                            Container(
-                                              height: 245,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(8),
-                                                  border: Border.all(
-                                                      width: 1,
-                                                      color: neutral50),
-                                                  image: DecorationImage(
-                                                      image: NetworkImage(
-                                                          buktifotoTransaksi!),
-                                                      fit: BoxFit.contain)),
+                                            InkWell(
+                                              onTap: () {
+                                                Get.to(PhotoView(
+                                                    imageProvider: NetworkImage(
+                                                        buktifotoTransaksi!)));
+                                              },
+                                              child: Container(
+                                                height: 245,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                    border: Border.all(
+                                                        width: 1,
+                                                        color: neutral50),
+                                                    image: DecorationImage(
+                                                        image: NetworkImage(
+                                                            buktifotoTransaksi!),
+                                                        fit: BoxFit.contain)),
+                                              ),
                                             ),
                                             const SizedBox(
                                               height: 16,

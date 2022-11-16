@@ -16,7 +16,7 @@ class CardShowModalMuzakki2 extends StatelessWidget {
       nomorResi,
       nomorRekening,
       buktifotoTransaksi;
-  final int muzakiId, programId, transaksiId;
+  final int muzakiId, programId, transaksiId, bankId;
 
   const CardShowModalMuzakki2(
       {super.key,
@@ -34,7 +34,8 @@ class CardShowModalMuzakki2 extends StatelessWidget {
       required this.namRekening,
       required this.nomorResi,
       required this.nomorRekening,
-      required this.buktifotoTransaksi});
+      required this.buktifotoTransaksi,
+      required this.bankId});
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +56,7 @@ class CardShowModalMuzakki2 extends StatelessWidget {
               muzakiId: muzakiId,
               transaksiId: transaksiId,
               programId: programId,
+              bankId: bankId,
             ));
       },
       child: Container(
