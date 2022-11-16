@@ -7,6 +7,7 @@ import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/car
 
 import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
+import '../../MuzakkiPage/views/tambah_muzakki.dart';
 
 class UbahTransaksiPage extends StatelessWidget {
   final String judul;
@@ -121,39 +122,41 @@ class UbahTransaksiPage extends StatelessWidget {
           ),
         ),
       ),
-      // bottomNavigationBar: Container(
-      //   width: double.infinity,
-      //   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      //   decoration: BoxDecoration(
-      //     color: Colors.white,
-      //     border: Border(
-      //       top: BorderSide(color: neutral30, width: 1),
-      //     ),
-      //   ),
-      //   child: TextButton(
-      //     style: TextButton.styleFrom(
-      //       backgroundColor: primaryMain,
-      //     ),
-      //     onPressed: () async {},
-      //     child: Row(
-      //       mainAxisAlignment: MainAxisAlignment.center,
-      //       children: [
-      //         Image.asset(
-      //           'assets/icons/addu.png',
-      //           width: 16,
-      //           height: 13.6,
-      //         ),
-      //         const SizedBox(
-      //           width: 4,
-      //         ),
-      //         Text(
-      //           'Tambah Muzakki Baru',
-      //           style: textMBold.copyWith(color: Colors.white),
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // ),
+      bottomNavigationBar: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border(
+            top: BorderSide(color: neutral30, width: 1),
+          ),
+        ),
+        child: TextButton(
+          style: TextButton.styleFrom(
+            backgroundColor: primaryMain,
+          ),
+          onPressed: () async {
+            Get.to(() => const TambahMuzakki());
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/icons/addu.png',
+                width: 16,
+                height: 13.6,
+              ),
+              const SizedBox(
+                width: 4,
+              ),
+              Text(
+                'Tambah Muzakki Baru',
+                style: textMBold.copyWith(color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
