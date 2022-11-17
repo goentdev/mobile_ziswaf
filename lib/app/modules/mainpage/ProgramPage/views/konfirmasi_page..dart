@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:mobile_ziswaf/app/data/providers/transaksi_provider.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/identity_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/providers/transaksi_provider.dart';
@@ -299,7 +300,11 @@ class KonfirmasiPage extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Rp ${nominal[index]}',
+                              NumberFormat.currency(
+                                      locale: 'id',
+                                      name: 'Rp',
+                                      decimalDigits: 0)
+                                  .format(int.parse(nominal[index])),
                               style: percentTittle.copyWith(
                                 color: neutral100,
                               ),

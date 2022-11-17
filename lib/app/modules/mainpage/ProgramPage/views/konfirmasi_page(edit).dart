@@ -758,8 +758,8 @@ class KonfirmasiPageEdit extends StatelessWidget {
                                           InkWell(
                                             onTap: () {
                                               Get.to(PhotoView(
-                                                  imageProvider: FileImage(
-                                                      File(buktiTransaksi))));
+                                                  imageProvider: NetworkImage(
+                                                      buktiTransaksi)));
                                             },
                                             child: Container(
                                               height: 245,
@@ -879,24 +879,45 @@ class KonfirmasiPageEdit extends StatelessWidget {
             backgroundColor: primaryMain,
           ),
           onPressed: () async {
-            bool success = await controller2.changeTransaksi(
-                id: transaksiId,
-                programId: programId,
-                muzakiId: id,
-                jenisDonasi: jenisDonasi,
-                nominal: nominal,
-                nomorRekening: nomorRekening,
-                namaRekening: namaRekening,
-                nomorResi: nomorResi,
-                buktiTransaksi: buktiTransaksi,
-                bankId: bankId);
-            await controller2.getPrograms();
-            await controller2.gettotalberlangsungg();
-            await controller2.gettotalselesai();
-            if (success) {
-              Get.offAllNamed(Routes.MAINPAGE);
+            if (buktiTransaksi == controller.identityImage?.path) {
+              bool success = await controller2.changeTransaksi(
+                  id: transaksiId,
+                  programId: programId,
+                  muzakiId: id,
+                  jenisDonasi: jenisDonasi,
+                  nominal: nominal,
+                  nomorRekening: nomorRekening,
+                  namaRekening: namaRekening,
+                  nomorResi: nomorResi,
+                  buktiTransaksi: buktiTransaksi,
+                  bankId: bankId);
+              await controller2.getPrograms();
+              await controller2.gettotalberlangsungg();
+              await controller2.gettotalselesai();
+              if (success) {
+                Get.offAllNamed(Routes.MAINPAGE);
+              } else {
+                controller2.isLoading.value = false;
+              }
             } else {
-              controller2.isLoading.value = false;
+              bool success = await controller2.changeTransaksi(
+                  id: transaksiId,
+                  programId: programId,
+                  muzakiId: id,
+                  jenisDonasi: jenisDonasi,
+                  nominal: nominal,
+                  nomorRekening: nomorRekening,
+                  namaRekening: namaRekening,
+                  nomorResi: nomorResi,
+                  bankId: bankId);
+              await controller2.getPrograms();
+              await controller2.gettotalberlangsungg();
+              await controller2.gettotalselesai();
+              if (success) {
+                Get.offAllNamed(Routes.MAINPAGE);
+              } else {
+                controller2.isLoading.value = false;
+              }
             }
           },
           child: Text(

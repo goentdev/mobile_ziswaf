@@ -52,6 +52,15 @@ class DetailCard extends StatelessWidget {
     return InkWell(
       onTap: () async {
         Get.to(() => DetailTransaksi(
+            bankId: bankId,
+            muzakiId: muzakiId!,
+            transaksiId: id!,
+            whatsapp: nomor!,
+            bankNama: bank,
+            fotobuktiTransaksi: buktifotoTransaksi,
+            nomoResi: nomorResi,
+            programId: programId,
+            id: id,
             buktifotoTransaksi: buktifotoTransaksi,
             totalNominalTransaksi: nominal,
             tanggaltransfer: waktu,

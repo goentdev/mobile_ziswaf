@@ -149,8 +149,7 @@ class ProgramPageController extends GetxController
     required nomorRekening,
     required namaRekening,
     required nomorResi,
-    required buktiTransaksi,
-    linkfoto,
+    buktiTransaksi,
     required bankId,
   }) async {
     if (buktiTransaksi != null) {
@@ -159,33 +158,54 @@ class ProgramPageController extends GetxController
       final fotoExt = extension(convertedFoto.path);
       final fireFoto = fotoRef.child('${_getRandomFileName()}.$fotoExt');
       await fireFoto.putFile(File(buktiTransaksi));
-      linkfoto = await fireFoto.getDownloadURL();
-    } else {
-      linkfoto;
-    }
-    bool sukses = await transaksiProvider.changeTransaksi(id, {
-      "program_id": programId,
-      "muzaki_id": muzakiId,
-      "jenis_donasi": jenisDonasi,
-      "nominal": nominal,
-      "nomor_rekening": nomorRekening,
-      "nama_rekening": namaRekening,
-      "nomor_resi": nomorResi,
-      "bukti_transaksi": linkfoto,
-      "bank_id": bankId
-    });
-    if (sukses) {
-      transaksis.update((val) {
-        val!.bankid = bankId;
-        val.nomorRekening = nomorRekening;
-        val.nomorResi = nomorResi;
-        val.namaRekening = namaRekening;
-        val.buktiTransaksi = linkfoto;
+      buktiTransaksi = await fireFoto.getDownloadURL();
+      bool sukses = await transaksiProvider.changeTransaksi(id, {
+        "program_id": programId,
+        "muzaki_id": muzakiId,
+        "jenis_donasi": jenisDonasi,
+        "nominal": nominal,
+        "nomor_rekening": nomorRekening,
+        "nama_rekening": namaRekening,
+        "nomor_resi": nomorResi,
+        "bukti_transaksi": buktiTransaksi,
+        "bank_id": bankId
       });
+      if (sukses) {
+        transaksis.update((val) {
+          val!.bankid = bankId;
+          val.nomorRekening = nomorRekening;
+          val.nomorResi = nomorResi;
+          val.namaRekening = namaRekening;
+          val.buktiTransaksi = buktiTransaksi;
+        });
 
-      return true;
+        return true;
+      } else {
+        return false;
+      }
     } else {
-      return false;
+      bool sukses1 = await transaksiProvider.changeTransaksi(id, {
+        "program_id": programId,
+        "muzaki_id": muzakiId,
+        "jenis_donasi": jenisDonasi,
+        "nominal": nominal,
+        "nomor_rekening": nomorRekening,
+        "nama_rekening": namaRekening,
+        "nomor_resi": nomorResi,
+        "bank_id": bankId
+      });
+      if (sukses1) {
+        transaksis.update((val) {
+          val!.bankid = bankId;
+          val.nomorRekening = nomorRekening;
+          val.nomorResi = nomorResi;
+          val.namaRekening = namaRekening;
+        });
+
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 

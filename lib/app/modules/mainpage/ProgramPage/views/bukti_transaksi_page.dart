@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -5,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller2.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/konfirmasi_page..dart';
+import 'package:photo_view/photo_view.dart';
 import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
 import '../../../auth/controllers/identity_controller.dart';
@@ -503,122 +506,126 @@ class BuktiTransaksi extends StatelessWidget {
                         ),
                       ),
                     )
-                  : InkWell(
-                      onTap: () {
-                        showModalBottomSheet(
-                          constraints: const BoxConstraints(maxHeight: 170),
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(8),
-                              topRight: Radius.circular(8),
-                            ),
-                          ),
-                          context: context,
-                          builder: (context) {
-                            return Padding(
-                              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const SizedBox(height: 10),
-                                  Container(
-                                    height: 5,
-                                    width: 50,
-                                    decoration: BoxDecoration(
-                                      color: neutral30,
-                                      borderRadius: BorderRadius.circular(100),
+                  : Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(width: 1, color: neutral30)),
+                      padding: const EdgeInsets.all(16),
+                      width: double.infinity,
+                      height: 62,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    constraints:
+                                        const BoxConstraints(maxHeight: 1000),
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(8),
+                                        topRight: Radius.circular(8),
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 18),
-                                  Text(
-                                    'Unggah Bukti Transfer',
-                                    style: titleTextBold.copyWith(
-                                        color: neutral100),
-                                  ),
-                                  const SizedBox(height: 16),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          controller.pickFromCamera(context);
-                                        },
-                                        child: SizedBox(
-                                          height: 86,
-                                          width: 163,
+                                    context: context,
+                                    builder: (context) {
+                                      return FractionallySizedBox(
+                                        heightFactor: 0.5,
+                                        child: Container(
+                                          width: double.infinity,
+                                          padding: const EdgeInsets.fromLTRB(
+                                              16, 16, 16, 0),
                                           child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
                                             children: [
-                                              Image.asset(
-                                                'assets/icons/camera.png',
-                                                height: 30,
-                                                width: 30,
-                                              ),
-                                              const SizedBox(height: 8),
-                                              Text(
-                                                'Foto dari kamera',
-                                                style: captionTextSemiBold
-                                                    .copyWith(
-                                                  color: neutral80,
+                                              Container(
+                                                height: 5,
+                                                width: 50,
+                                                decoration: BoxDecoration(
+                                                  color: neutral30,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          100),
                                                 ),
-                                              )
+                                              ),
+                                              const SizedBox(
+                                                height: 12,
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                                  Get.to(PhotoView(
+                                                      imageProvider: FileImage(
+                                                          File(controller
+                                                              .identityImage!
+                                                              .path))));
+                                                },
+                                                child: Container(
+                                                  height: 245,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                      border: Border.all(
+                                                          width: 1,
+                                                          color: neutral50),
+                                                      image: DecorationImage(
+                                                          image: FileImage(File(
+                                                              controller
+                                                                  .identityImage!
+                                                                  .path)),
+                                                          fit: BoxFit.contain)),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 16,
+                                              ),
+                                              Text(
+                                                'Bukti Transfer Harus Sesuai Dengan Nominal yang tertera',
+                                                style: titleTextBold.copyWith(
+                                                    color: neutral80),
+                                              ),
+                                              const SizedBox(
+                                                height: 16,
+                                              ),
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      Get.back();
+                                                    },
+                                                    child: Container(
+                                                      margin: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 80),
+                                                      height: 41,
+                                                      width: double.infinity,
+                                                      decoration: BoxDecoration(
+                                                        color: primaryMain,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8),
+                                                      ),
+                                                      child: Center(
+                                                          child: Text(
+                                                        'Kembali',
+                                                        style:
+                                                            textMBold.copyWith(
+                                                                color: Colors
+                                                                    .white),
+                                                      )),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ],
                                           ),
                                         ),
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          controller.pickFromGallery(context);
-                                        },
-                                        child: SizedBox(
-                                          height: 86,
-                                          width: 163,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Image.asset(
-                                                'assets/icons/gallery.png',
-                                                height: 30,
-                                                width: 30,
-                                              ),
-                                              const SizedBox(height: 8),
-                                              Text(
-                                                'Pilih dari galeri',
-                                                style: captionTextSemiBold
-                                                    .copyWith(
-                                                  color: neutral80,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(width: 1, color: neutral30)),
-                        padding: const EdgeInsets.all(16),
-                        width: double.infinity,
-                        height: 62,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
+                                      );
+                                    });
+                              },
                               child: Row(
                                 children: [
                                   CircleAvatar(
@@ -645,13 +652,125 @@ class BuktiTransaksi extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Image.asset(
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              showModalBottomSheet(
+                                constraints:
+                                    const BoxConstraints(maxHeight: 170),
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(8),
+                                    topRight: Radius.circular(8),
+                                  ),
+                                ),
+                                context: context,
+                                builder: (context) {
+                                  return Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        16, 0, 16, 16),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        const SizedBox(height: 10),
+                                        Container(
+                                          height: 5,
+                                          width: 50,
+                                          decoration: BoxDecoration(
+                                            color: neutral30,
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 18),
+                                        Text(
+                                          'Unggah Bukti Transfer',
+                                          style: titleTextBold.copyWith(
+                                              color: neutral100),
+                                        ),
+                                        const SizedBox(height: 16),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            InkWell(
+                                              onTap: () {
+                                                controller
+                                                    .pickFromCamera(context);
+                                              },
+                                              child: SizedBox(
+                                                height: 86,
+                                                width: 163,
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Image.asset(
+                                                      'assets/icons/camera.png',
+                                                      height: 30,
+                                                      width: 30,
+                                                    ),
+                                                    const SizedBox(height: 8),
+                                                    Text(
+                                                      'Foto dari kamera',
+                                                      style: captionTextSemiBold
+                                                          .copyWith(
+                                                        color: neutral80,
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            InkWell(
+                                              onTap: () {
+                                                controller
+                                                    .pickFromGallery(context);
+                                              },
+                                              child: SizedBox(
+                                                height: 86,
+                                                width: 163,
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Image.asset(
+                                                      'assets/icons/gallery.png',
+                                                      height: 30,
+                                                      width: 30,
+                                                    ),
+                                                    const SizedBox(height: 8),
+                                                    Text(
+                                                      'Pilih dari galeri',
+                                                      style: captionTextSemiBold
+                                                          .copyWith(
+                                                        color: neutral80,
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Image.asset(
                               'assets/icons/change.png',
                               width: 43,
                               height: 24,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
             ),

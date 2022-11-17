@@ -7,6 +7,7 @@ import 'package:jiffy/jiffy.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/identity_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/controllers/program_page_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/bukti_transaksi_page.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/edit_transaksi_page.dart';
 import 'package:photo_view/photo_view.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../../theme/colors.dart';
@@ -23,8 +24,13 @@ class DetailTransaksi extends StatelessWidget {
       nomorResi,
       jenisDonasi,
       tanggaltransfer,
+      nomoResi,
+      bankNama,
+      fotobuktiTransaksi,
       buktifotoTransaksi;
-  final String judul;
+  final String judul, whatsapp;
+  final int muzakiId, transaksiId, bankId;
+  final int? id, programId;
   final int? nominalDonasi, totalNominalTransaksi;
 
   const DetailTransaksi({
@@ -43,6 +49,15 @@ class DetailTransaksi extends StatelessWidget {
     this.kategori,
     this.jenisDonasi,
     this.nominalDonasi,
+    required this.id,
+    required this.programId,
+    this.nomoResi,
+    this.bankNama,
+    this.fotobuktiTransaksi,
+    required this.whatsapp,
+    required this.muzakiId,
+    required this.transaksiId,
+    required this.bankId,
   });
 
   @override
@@ -98,8 +113,24 @@ class DetailTransaksi extends StatelessWidget {
                         ),
                         const SizedBox(height: 14),
                         GestureDetector(
-                          onTap: () {
-                            // Get.to(() => const BuktiTransaksi());
+                          onTap: () async {
+                            await controller2.getAlokasiDana(id: id);
+                            Get.to(() => EditTransaksiPage(
+                                judul: judul,
+                                nama: nama!,
+                                nomor: nomor,
+                                muzakiId: muzakiId,
+                                programId: programId!,
+                                whatsapp: whatsapp,
+                                email: email!,
+                                kategori: kategori!,
+                                transaksiId: transaksiId,
+                                nomorRekening: nomorRekening,
+                                namaRekening: namaRekening,
+                                nomoResi: nomoResi,
+                                bankNama: bankNama,
+                                fotobuktiTransaksi: fotobuktiTransaksi,
+                                bankId: bankId));
                           },
                           child: Row(
                             children: [
@@ -192,8 +223,20 @@ class DetailTransaksi extends StatelessWidget {
                                             Flexible(
                                               flex: 1,
                                               child: GestureDetector(
-                                                onTap: () {
-                                                  Navigator.pop(context);
+                                                onTap: () async {
+                                                  await controller2
+                                                      .deleteTransaksi(id);
+                                                  await controller2
+                                                      .getPrograms();
+                                                  await controller2
+                                                      .gettotalberlangsungg();
+                                                  await controller2
+                                                      .gettotalselesai();
+                                                  await controller2
+                                                      .getTransaksis(
+                                                          id: programId);
+                                                  Get.offAllNamed(
+                                                      Routes.MAINPAGE);
                                                 },
                                                 child: Container(
                                                   margin: const EdgeInsets.only(
