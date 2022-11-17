@@ -86,7 +86,7 @@ class EditTransaksiPage extends StatelessWidget {
           controller2.alokasi!.elementAt(2).nominal!.toString();
       controller.alokasi2.value = true;
       controller.alokasi3.value = true;
-    } else if (controller2.alokasi!.length == 3) {
+    } else if (controller2.alokasi!.length == 4) {
       controller.selectedDonasi.value =
           controller2.alokasi!.elementAt(0).jenisDonasi!;
       controller.nominalController.text =
