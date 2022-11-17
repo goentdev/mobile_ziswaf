@@ -4,6 +4,7 @@ import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/edit_transa
 
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/fonts.dart';
+import '../../controllers/program_page_controller.dart';
 import '../edit_transaksi_page.dart';
 
 class CardShowModalMuzakki extends StatelessWidget {
@@ -40,8 +41,10 @@ class CardShowModalMuzakki extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProgramPageController());
     return InkWell(
-      onTap: () {
+      onTap: () async {
+        await controller.getAlokasiDana(id: transaksiId);
         Get.offAll(() => EditTransaksi2(
               buktifotoTransaksi: buktifotoTransaksi,
               bankNama: bankNama,

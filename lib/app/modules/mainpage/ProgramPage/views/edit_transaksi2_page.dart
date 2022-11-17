@@ -52,7 +52,70 @@ class EditTransaksi2 extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(ChooseBankController2());
     final controller2 = Get.put(ProgramPageController());
-    bool alokasi2 = false;
+    if (controller2.alokasi!.length == 1) {
+      controller.selectedDonasi.value =
+          controller2.alokasi!.elementAt(0).jenisDonasi!;
+      controller.nominalController.text =
+          controller2.alokasi!.elementAt(0).nominal!.toString();
+      controller.nominal2Controller.text = '';
+      controller.selectedDonasi2.value = 'Pilih Jenis Donasi';
+      controller.nominal3Controller.text = '';
+      controller.selectedDonasi3.value = 'Pilih Jenis Donasi';
+      controller.nominal4Controller.text = '';
+      controller.selectedDonasi4.value = 'Pilih Jenis Donasi';
+    } else if (controller2.alokasi!.length == 2) {
+      controller.selectedDonasi.value =
+          controller2.alokasi!.elementAt(0).jenisDonasi!;
+      controller.nominalController.text =
+          controller2.alokasi!.elementAt(0).nominal!.toString();
+      controller.nominal2Controller.text =
+          controller2.alokasi!.elementAt(1).nominal!.toString();
+      controller.selectedDonasi2.value =
+          controller2.alokasi?.elementAt(1).jenisDonasi ?? '';
+      controller.nominal3Controller.text = '';
+      controller.selectedDonasi3.value = 'Pilih Jenis Donasi';
+      controller.nominal4Controller.text = '';
+      controller.selectedDonasi4.value = 'Pilih Jenis Donasi';
+      controller.alokasi2.value = true;
+    } else if (controller2.alokasi!.length == 3) {
+      controller.selectedDonasi.value =
+          controller2.alokasi!.elementAt(0).jenisDonasi!;
+      controller.nominalController.text =
+          controller2.alokasi!.elementAt(0).nominal!.toString();
+      controller.nominal2Controller.text =
+          controller2.alokasi!.elementAt(1).nominal!.toString();
+      controller.selectedDonasi2.value =
+          controller2.alokasi?.elementAt(1).jenisDonasi ?? '';
+      controller.selectedDonasi3.value =
+          controller2.alokasi?.elementAt(2).jenisDonasi ?? '';
+      controller.nominal3Controller.text =
+          controller2.alokasi!.elementAt(2).nominal!.toString();
+      controller.nominal4Controller.text = '';
+      controller.selectedDonasi4.value = 'Pilih Jenis Donasi';
+      controller.alokasi2.value = true;
+      controller.alokasi3.value = true;
+    } else if (controller2.alokasi!.length == 4) {
+      controller.selectedDonasi.value =
+          controller2.alokasi!.elementAt(0).jenisDonasi!;
+      controller.nominalController.text =
+          controller2.alokasi!.elementAt(0).nominal!.toString();
+      controller.nominal2Controller.text =
+          controller2.alokasi!.elementAt(1).nominal!.toString();
+      controller.selectedDonasi2.value =
+          controller2.alokasi?.elementAt(1).jenisDonasi ?? '';
+      controller.selectedDonasi3.value =
+          controller2.alokasi?.elementAt(2).jenisDonasi ?? '';
+      controller.nominal3Controller.text =
+          controller2.alokasi!.elementAt(2).nominal!.toString();
+      controller.selectedDonasi4.value =
+          controller2.alokasi?.elementAt(3).jenisDonasi ?? '';
+      controller.nominal4Controller.text =
+          controller2.alokasi!.elementAt(3).nominal!.toString();
+      controller.alokasi2.value = true;
+      controller.alokasi3.value = true;
+      controller.alokasi4.value = true;
+    }
+
     return GetBuilder<ChooseBankController2>(
         init: ChooseBankController2(),
         initState: (_) {},
@@ -278,9 +341,7 @@ class EditTransaksi2 extends StatelessWidget {
                                       ),
                                       borderRadius: BorderRadius.circular(4),
                                     ),
-                                    hintText: controller.isSelected.value
-                                        ? controller.selectedDonasi.value
-                                        : 'Pilih Jenis Donasi',
+                                    hintText: controller.selectedDonasi.value,
                                     hintStyle: textMBold.copyWith(
                                       color: controller.isSelected.value
                                           ? neutral90
@@ -569,11 +630,8 @@ class EditTransaksi2 extends StatelessWidget {
                                                 borderRadius:
                                                     BorderRadius.circular(4),
                                               ),
-                                              hintText:
-                                                  controller.isSelected2.value
-                                                      ? controller
-                                                          .selectedDonasi2.value
-                                                      : 'Pilih Jenis Donasi',
+                                              hintText: controller
+                                                  .selectedDonasi2.value,
                                               hintStyle: textMBold.copyWith(
                                                 color:
                                                     controller.isSelected2.value
@@ -901,12 +959,8 @@ class EditTransaksi2 extends StatelessWidget {
                                                                   .circular(4),
                                                         ),
                                                         hintText: controller
-                                                                .isSelected3
-                                                                .value
-                                                            ? controller
-                                                                .selectedDonasi3
-                                                                .value
-                                                            : 'Pilih Jenis Donasi',
+                                                            .selectedDonasi3
+                                                            .value,
                                                         hintStyle:
                                                             textMBold.copyWith(
                                                           color: controller
@@ -1228,13 +1282,10 @@ class EditTransaksi2 extends StatelessWidget {
                                                                         BorderRadius
                                                                             .circular(4),
                                                                   ),
-                                                                  hintText: controller
-                                                                          .isSelected4
-                                                                          .value
-                                                                      ? controller
+                                                                  hintText:
+                                                                      controller
                                                                           .selectedDonasi4
-                                                                          .value
-                                                                      : 'Pilih Jenis Donasi',
+                                                                          .value,
                                                                   hintStyle:
                                                                       textMBold
                                                                           .copyWith(

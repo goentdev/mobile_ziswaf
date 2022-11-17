@@ -61,6 +61,12 @@ class EditTransaksiPage extends StatelessWidget {
           controller2.alokasi!.elementAt(0).jenisDonasi!;
       controller.nominalController.text =
           controller2.alokasi!.elementAt(0).nominal!.toString();
+      controller.nominal2Controller.text = '';
+      controller.selectedDonasi2.value = 'Pilih Jenis Donasi';
+      controller.nominal3Controller.text = '';
+      controller.selectedDonasi3.value = 'Pilih Jenis Donasi';
+      controller.nominal4Controller.text = '';
+      controller.selectedDonasi4.value = 'Pilih Jenis Donasi';
     } else if (controller2.alokasi!.length == 2) {
       controller.selectedDonasi.value =
           controller2.alokasi!.elementAt(0).jenisDonasi!;
@@ -70,6 +76,10 @@ class EditTransaksiPage extends StatelessWidget {
           controller2.alokasi!.elementAt(1).nominal!.toString();
       controller.selectedDonasi2.value =
           controller2.alokasi?.elementAt(1).jenisDonasi ?? '';
+      controller.nominal3Controller.text = '';
+      controller.selectedDonasi3.value = 'Pilih Jenis Donasi';
+      controller.nominal4Controller.text = '';
+      controller.selectedDonasi4.value = 'Pilih Jenis Donasi';
       controller.alokasi2.value = true;
     } else if (controller2.alokasi!.length == 3) {
       controller.selectedDonasi.value =
@@ -84,6 +94,8 @@ class EditTransaksiPage extends StatelessWidget {
           controller2.alokasi?.elementAt(2).jenisDonasi ?? '';
       controller.nominal3Controller.text =
           controller2.alokasi!.elementAt(2).nominal!.toString();
+      controller.nominal4Controller.text = '';
+      controller.selectedDonasi4.value = 'Pilih Jenis Donasi';
       controller.alokasi2.value = true;
       controller.alokasi3.value = true;
     } else if (controller2.alokasi!.length == 4) {
@@ -101,7 +113,8 @@ class EditTransaksiPage extends StatelessWidget {
           controller2.alokasi!.elementAt(2).nominal!.toString();
       controller.selectedDonasi4.value =
           controller2.alokasi?.elementAt(3).jenisDonasi ?? '';
-      controller2.alokasi!.elementAt(3).nominal!.toString();
+      controller.nominal4Controller.text =
+          controller2.alokasi!.elementAt(3).nominal!.toString();
       controller.alokasi2.value = true;
       controller.alokasi3.value = true;
       controller.alokasi4.value = true;
