@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -535,106 +537,236 @@ class BuktiTransaksiEdit extends StatelessWidget {
                           Expanded(
                             child: InkWell(
                               onTap: () {
-                                showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  constraints:
-                                      const BoxConstraints(maxHeight: 1000),
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(8),
-                                      topRight: Radius.circular(8),
-                                    ),
-                                  ),
-                                  context: context,
-                                  builder: (context) {
-                                    return FractionallySizedBox(
-                                      heightFactor: 0.5,
-                                      child: Container(
-                                        width: double.infinity,
-                                        padding: const EdgeInsets.fromLTRB(
-                                            16, 16, 16, 0),
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              height: 5,
-                                              width: 50,
-                                              decoration: BoxDecoration(
-                                                color: neutral30,
-                                                borderRadius:
-                                                    BorderRadius.circular(100),
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              height: 12,
-                                            ),
-                                            InkWell(
-                                              onTap: () {
-                                                Get.to(PhotoView(
-                                                    imageProvider: NetworkImage(
-                                                        buktifotoTransaksi!)));
-                                              },
-                                              child: Container(
-                                                height: 245,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                    border: Border.all(
-                                                        width: 1,
-                                                        color: neutral50),
-                                                    image: DecorationImage(
-                                                        image: NetworkImage(
-                                                            buktifotoTransaksi!),
-                                                        fit: BoxFit.contain)),
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              height: 16,
-                                            ),
-                                            Text(
-                                              'Bukti Transfer Harus Sesuai Dengan Nominal yang tertera',
-                                              style: titleTextBold.copyWith(
-                                                  color: neutral80),
-                                            ),
-                                            const SizedBox(
-                                              height: 16,
-                                            ),
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    Get.back();
-                                                  },
-                                                  child: Container(
-                                                    margin: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 80),
-                                                    height: 41,
-                                                    width: double.infinity,
+                                controller.identityImage?.path != null
+                                    ? showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        constraints: const BoxConstraints(
+                                            maxHeight: 1000),
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(8),
+                                            topRight: Radius.circular(8),
+                                          ),
+                                        ),
+                                        context: context,
+                                        builder: (context) {
+                                          return FractionallySizedBox(
+                                            heightFactor: 0.5,
+                                            child: Container(
+                                              width: double.infinity,
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      16, 16, 16, 0),
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    height: 5,
+                                                    width: 50,
                                                     decoration: BoxDecoration(
-                                                      color: primaryMain,
+                                                      color: neutral30,
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              8),
+                                                              100),
                                                     ),
-                                                    child: Center(
-                                                        child: Text(
-                                                      'Kembali',
-                                                      style: textMBold.copyWith(
-                                                          color: Colors.white),
-                                                    )),
                                                   ),
-                                                ),
-                                              ],
+                                                  const SizedBox(
+                                                    height: 12,
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      Get.to(PhotoView(
+                                                          imageProvider: FileImage(
+                                                              File(controller
+                                                                  .identityImage!
+                                                                  .path))));
+                                                    },
+                                                    child: Container(
+                                                      height: 245,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                          border: Border.all(
+                                                              width: 1,
+                                                              color: neutral50),
+                                                          image: DecorationImage(
+                                                              image: FileImage(
+                                                                  File(controller
+                                                                      .identityImage!
+                                                                      .path)),
+                                                              fit: BoxFit
+                                                                  .contain)),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 16,
+                                                  ),
+                                                  Text(
+                                                    'Bukti Transfer Harus Sesuai Dengan Nominal yang tertera',
+                                                    style:
+                                                        titleTextBold.copyWith(
+                                                            color: neutral80),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 16,
+                                                  ),
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          Get.back();
+                                                        },
+                                                        child: Container(
+                                                          margin:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      80),
+                                                          height: 41,
+                                                          width:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: primaryMain,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8),
+                                                          ),
+                                                          child: Center(
+                                                              child: Text(
+                                                            'Kembali',
+                                                            style: textMBold
+                                                                .copyWith(
+                                                                    color: Colors
+                                                                        .white),
+                                                          )),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ],
+                                          );
+                                        },
+                                      )
+                                    : showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        constraints: const BoxConstraints(
+                                            maxHeight: 1000),
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(8),
+                                            topRight: Radius.circular(8),
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                );
+                                        context: context,
+                                        builder: (context) {
+                                          return FractionallySizedBox(
+                                            heightFactor: 0.5,
+                                            child: Container(
+                                              width: double.infinity,
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      16, 16, 16, 0),
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    height: 5,
+                                                    width: 50,
+                                                    decoration: BoxDecoration(
+                                                      color: neutral30,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              100),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 12,
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      Get.to(PhotoView(
+                                                          imageProvider:
+                                                              NetworkImage(
+                                                                  buktifotoTransaksi!)));
+                                                    },
+                                                    child: Container(
+                                                      height: 245,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                          border: Border.all(
+                                                              width: 1,
+                                                              color: neutral50),
+                                                          image: DecorationImage(
+                                                              image: NetworkImage(
+                                                                  buktifotoTransaksi!),
+                                                              fit: BoxFit
+                                                                  .contain)),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 16,
+                                                  ),
+                                                  Text(
+                                                    'Bukti Transfer Harus Sesuai Dengan Nominal yang tertera',
+                                                    style:
+                                                        titleTextBold.copyWith(
+                                                            color: neutral80),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 16,
+                                                  ),
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          Get.back();
+                                                        },
+                                                        child: Container(
+                                                          margin:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      80),
+                                                          height: 41,
+                                                          width:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: primaryMain,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8),
+                                                          ),
+                                                          child: Center(
+                                                              child: Text(
+                                                            'Kembali',
+                                                            style: textMBold
+                                                                .copyWith(
+                                                                    color: Colors
+                                                                        .white),
+                                                          )),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
                               },
                               child: Row(
                                 children: [
@@ -651,13 +783,22 @@ class BuktiTransaksiEdit extends StatelessWidget {
                                     width: 8,
                                   ),
                                   Flexible(
-                                    child: Text(
-                                      buktifotoTransaksi!,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: captionTextBold.copyWith(
-                                          color: neutral100),
-                                    ),
+                                    child:
+                                        controller.identityImage?.path == null
+                                            ? Text(
+                                                buktifotoTransaksi!,
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: captionTextBold.copyWith(
+                                                    color: neutral100),
+                                              )
+                                            : Text(
+                                                controller.identityImage!.name,
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: captionTextBold.copyWith(
+                                                    color: neutral100),
+                                              ),
                                   ),
                                 ],
                               ),
@@ -802,23 +943,43 @@ class BuktiTransaksiEdit extends StatelessWidget {
             backgroundColor: primaryMain,
           ),
           onPressed: () async {
-            Get.to(KonfirmasiPageEdit(
-              transaksiId: transaksiId,
-              id: id,
-              programId: programId,
-              nominal: nominal,
-              jenisDonasi: jenisDonasi,
-              nomorRekening: controller.bankAccountController.text,
-              namaRekening: controller.accountNameController.text,
-              nomorResi: controller.nomorResiController.text,
-              buktiTransaksi: controller2.identityImage!.path,
-              bankId: controller.selectedBankId.value,
-              judul: judul,
-              nama: nama,
-              nomor: nomor,
-              email: email,
-              kategori: kategori,
-            ));
+            if (controller2.identityImage == null) {
+              Get.to(KonfirmasiPageEdit(
+                transaksiId: transaksiId,
+                id: id,
+                programId: programId,
+                nominal: nominal,
+                jenisDonasi: jenisDonasi,
+                nomorRekening: controller.bankAccountController.text,
+                namaRekening: controller.accountNameController.text,
+                nomorResi: controller.nomorResiController.text,
+                buktiTransaksi: buktifotoTransaksi!,
+                bankId: controller.selectedBankId.value,
+                judul: judul,
+                nama: nama,
+                nomor: nomor,
+                email: email,
+                kategori: kategori,
+              ));
+            } else {
+              Get.to(KonfirmasiPageEdit(
+                transaksiId: transaksiId,
+                id: id,
+                programId: programId,
+                nominal: nominal,
+                jenisDonasi: jenisDonasi,
+                nomorRekening: controller.bankAccountController.text,
+                namaRekening: controller.accountNameController.text,
+                nomorResi: controller.nomorResiController.text,
+                buktiTransaksi: controller2.identityImage!.path,
+                bankId: controller.selectedBankId.value,
+                judul: judul,
+                nama: nama,
+                nomor: nomor,
+                email: email,
+                kategori: kategori,
+              ));
+            }
           },
           child: Text(
             'Selanjutnya',
