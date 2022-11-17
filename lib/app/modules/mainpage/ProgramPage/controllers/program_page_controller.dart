@@ -153,7 +153,7 @@ class ProgramPageController extends GetxController
     required bankId,
   }) async {
     if (buktiTransaksi != null) {
-      final fotoRef = firebaseStorage.ref('bukti-transaksi');
+      final fotoRef = firebaseStorage.ref('bukti-transfer');
       final convertedFoto = File(buktiTransaksi);
       final fotoExt = extension(convertedFoto.path);
       final fireFoto = fotoRef.child('${_getRandomFileName()}.$fotoExt');

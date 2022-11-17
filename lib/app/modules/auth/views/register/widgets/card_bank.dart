@@ -28,7 +28,7 @@ class CardBank extends StatelessWidget {
               width: 55,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                image: NetworkImage(gambar),
+                image: AssetImage('assets$gambar'),
               )),
             ),
             const SizedBox(

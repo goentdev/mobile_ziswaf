@@ -41,4 +41,5 @@ flutter:
     - assets/images/
     - assets/logos/
     - assets/icons/
+    - assets/img/bank/
   uses-material-design: true
