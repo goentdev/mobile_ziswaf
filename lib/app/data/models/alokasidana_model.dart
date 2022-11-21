@@ -24,7 +24,7 @@ class Alokasidana {
     final data = <String, dynamic>{};
     data['id'] = id;
     data['transaksi_id'] = transaksiId;
-    data['jenis_donasi'] = jenisDonasi;
+    data['jenisDonasis'] = jenisDonasi;
     data['nominal'] = nominal;
     data['dihapus'] = dihapus;
     return data;
