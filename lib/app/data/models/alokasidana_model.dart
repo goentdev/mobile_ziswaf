@@ -1,7 +1,9 @@
+import 'package:mobile_ziswaf/app/data/models/jenisdonasis_model.dart';
+
 class Alokasidana {
   int? id;
   int? transaksiId;
-  String? jenisDonasi;
+  Jenisdonasis? jenisDonasi;
   int? nominal;
   int? dihapus;
 
@@ -15,7 +17,7 @@ class Alokasidana {
   Alokasidana.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     transaksiId = json['transaksi_id'];
-    jenisDonasi = json['jenisDonasis'];
+    jenisDonasi = Jenisdonasis.fromJson(json['jenisDonasis']);
     nominal = json['nominal'];
     dihapus = json['dihapus'];
   }

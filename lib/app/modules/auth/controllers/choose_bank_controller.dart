@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/zakat_model.dart';
 import 'package:mobile_ziswaf/app/data/models/bank_model.dart';
 import 'package:mobile_ziswaf/app/data/providers/bank_provider.dart';
@@ -52,6 +53,11 @@ class ChooseBankController extends GetxController {
   RxBool isSelected4 = false.obs;
   RxBool isLoading = false.obs;
   RxBool isSelectedBank = false.obs;
+
+  final maskFormatter = MaskTextInputFormatter(
+    mask: '###.###.###',
+    filter: {"#": RegExp(r'[0123456789]')},
+  );
 
   @override
   void onInit() {

@@ -790,6 +790,7 @@ class KonfirmasiPage extends StatelessWidget {
               Get.offAllNamed(Routes.MAINPAGE);
             } else {
               controller2.isLoading.value = false;
+              EasyLoading.showError('Gagal Tambah Transaksi');
             }
           },
           child: Text(

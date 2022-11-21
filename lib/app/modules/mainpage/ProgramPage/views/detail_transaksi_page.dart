@@ -115,6 +115,7 @@ class DetailTransaksi extends StatelessWidget {
                         GestureDetector(
                           onTap: () async {
                             await controller2.getAlokasiDana(id: id);
+                            Get.back();
                             Get.to(() => EditTransaksiPage(
                                 judul: judul,
                                 nama: nama!,
@@ -587,7 +588,7 @@ class DetailTransaksi extends StatelessWidget {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              controller2.alokasi![index].jenisDonasi!,
+                              controller2.alokasi![index].jenisDonasi!.nama!,
                               style: captionTextRegular,
                             ),
                             Text(

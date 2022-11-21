@@ -58,7 +58,7 @@ class EditTransaksiPage extends StatelessWidget {
     final controller2 = Get.put(ProgramPageController());
     if (controller2.alokasi!.length == 1) {
       controller.selectedDonasi.value =
-          controller2.alokasi!.elementAt(0).jenisDonasi!;
+          controller2.alokasi!.elementAt(0).jenisDonasi!.nama!;
       controller.nominalController.text =
           controller2.alokasi!.elementAt(0).nominal!.toString();
       controller.nominal2Controller.text = '';
@@ -69,13 +69,13 @@ class EditTransaksiPage extends StatelessWidget {
       controller.selectedDonasi4.value = 'Pilih Jenis Donasi';
     } else if (controller2.alokasi!.length == 2) {
       controller.selectedDonasi.value =
-          controller2.alokasi!.elementAt(0).jenisDonasi!;
+          controller2.alokasi!.elementAt(0).jenisDonasi!.nama!;
       controller.nominalController.text =
           controller2.alokasi!.elementAt(0).nominal!.toString();
       controller.nominal2Controller.text =
           controller2.alokasi!.elementAt(1).nominal!.toString();
       controller.selectedDonasi2.value =
-          controller2.alokasi?.elementAt(1).jenisDonasi ?? '';
+          controller2.alokasi?.elementAt(1).jenisDonasi!.nama! ?? '';
       controller.nominal3Controller.text = '';
       controller.selectedDonasi3.value = 'Pilih Jenis Donasi';
       controller.nominal4Controller.text = '';
@@ -83,15 +83,15 @@ class EditTransaksiPage extends StatelessWidget {
       controller.alokasi2.value = true;
     } else if (controller2.alokasi!.length == 3) {
       controller.selectedDonasi.value =
-          controller2.alokasi!.elementAt(0).jenisDonasi!;
+          controller2.alokasi!.elementAt(0).jenisDonasi!.nama!;
       controller.nominalController.text =
           controller2.alokasi!.elementAt(0).nominal!.toString();
       controller.nominal2Controller.text =
           controller2.alokasi!.elementAt(1).nominal!.toString();
       controller.selectedDonasi2.value =
-          controller2.alokasi?.elementAt(1).jenisDonasi ?? '';
+          controller2.alokasi?.elementAt(1).jenisDonasi!.nama ?? '';
       controller.selectedDonasi3.value =
-          controller2.alokasi?.elementAt(2).jenisDonasi ?? '';
+          controller2.alokasi?.elementAt(2).jenisDonasi!.nama ?? '';
       controller.nominal3Controller.text =
           controller2.alokasi!.elementAt(2).nominal!.toString();
       controller.nominal4Controller.text = '';
@@ -100,19 +100,19 @@ class EditTransaksiPage extends StatelessWidget {
       controller.alokasi3.value = true;
     } else if (controller2.alokasi!.length == 4) {
       controller.selectedDonasi.value =
-          controller2.alokasi!.elementAt(0).jenisDonasi!;
+          controller2.alokasi!.elementAt(0).jenisDonasi!.nama!;
       controller.nominalController.text =
           controller2.alokasi!.elementAt(0).nominal!.toString();
       controller.nominal2Controller.text =
           controller2.alokasi!.elementAt(1).nominal!.toString();
       controller.selectedDonasi2.value =
-          controller2.alokasi?.elementAt(1).jenisDonasi ?? '';
+          controller2.alokasi?.elementAt(1).jenisDonasi!.nama ?? '';
       controller.selectedDonasi3.value =
-          controller2.alokasi?.elementAt(2).jenisDonasi ?? '';
+          controller2.alokasi?.elementAt(2).jenisDonasi!.nama ?? '';
       controller.nominal3Controller.text =
           controller2.alokasi!.elementAt(2).nominal!.toString();
       controller.selectedDonasi4.value =
-          controller2.alokasi?.elementAt(3).jenisDonasi ?? '';
+          controller2.alokasi?.elementAt(3).jenisDonasi!.nama ?? '';
       controller.nominal4Controller.text =
           controller2.alokasi!.elementAt(3).nominal!.toString();
       controller.alokasi2.value = true;
