@@ -15,7 +15,7 @@ class Alokasidana {
   Alokasidana.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     transaksiId = json['transaksi_id'];
-    jenisDonasi = json['jenisdonasis'];
+    jenisDonasi = json['jenisDonasis'];
     nominal = json['nominal'];
     dihapus = json['dihapus'];
   }
