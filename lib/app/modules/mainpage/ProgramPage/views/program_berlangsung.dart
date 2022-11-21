@@ -68,6 +68,10 @@ class ProgramBerlangsung extends StatelessWidget {
                             muzakki: controller.program![index].totalMuzaki!,
                             id: controller.program![index].id,
                             persenn: controller.program![index].persen!,
+                            deskripsi: controller.program![index].deskripsi!,
+                            file: controller.program![index].file!,
+                            gambar: controller.program![index].gambar!,
+                            banner: controller.program![index].banner!,
                           );
                         }
                       },

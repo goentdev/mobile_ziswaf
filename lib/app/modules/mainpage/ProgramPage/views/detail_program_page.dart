@@ -12,7 +12,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:appbar_animated/appbar_animated.dart';
 
 class DetailProgram extends StatelessWidget {
-  final String judul, tanggalakhir, persenn;
+  final String judul, tanggalakhir, persenn, deskripsi, file, gambar, banner;
   final int terkumpul, target, target1, target100;
   final int? id, totalTransaksi;
 
@@ -26,14 +26,22 @@ class DetailProgram extends StatelessWidget {
       required this.target100,
       required this.totalTransaksi,
       required this.id,
-      required this.persenn});
+      required this.persenn,
+      required this.deskripsi,
+      required this.file,
+      required this.gambar,
+      required this.banner});
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProgramPageController());
+    String filename = file;
+
+    filename = filename.split("/")[7];
+    filename = filename.substring(0, filename.indexOf('?'));
     return Scaffold(
       extendBody: true,
-      backgroundColor: Colors.white,
+      backgroundColor: neutral20,
       extendBodyBehindAppBar: true,
       body: ScaffoldLayoutBuilder(
         duration: const Duration(milliseconds: 350),
@@ -78,9 +86,8 @@ class DetailProgram extends StatelessWidget {
                       height: 219,
                       decoration: BoxDecoration(
                         color: successurface,
-                        image: const DecorationImage(
-                            image: AssetImage(
-                                'assets/images/detail_background.png'),
+                        image: DecorationImage(
+                            image: NetworkImage(banner),
                             opacity: 0.1,
                             fit: BoxFit.cover),
                       ),
@@ -122,12 +129,177 @@ class DetailProgram extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 60,
+                    Container(
+                      color: Colors.white,
+                      margin: const EdgeInsets.only(bottom: 16),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 16),
+                      child: Obx(() => Visibility(
+                            visible: controller.isLoading.isFalse,
+                            replacement: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const [
+                                SizedBox(
+                                  height: 100,
+                                ),
+                                Center(child: CircularProgressIndicator()),
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(
+                                  height: 43,
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'Deskripsi',
+                                    style: listItemTitleBold.copyWith(
+                                        fontWeight: extraBold,
+                                        color: neutral100),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    deskripsi,
+                                    textAlign: TextAlign.start,
+                                    style: textSSemibold.copyWith(
+                                        color: neutral90),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )),
                     ),
                     Container(
                       color: Colors.white,
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      margin: const EdgeInsets.symmetric(vertical: 16),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 16),
+                      child: Obx(() => Visibility(
+                            visible: controller.isLoading.isFalse,
+                            replacement: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const [
+                                SizedBox(
+                                  height: 50,
+                                ),
+                                Center(child: CircularProgressIndicator()),
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'Berkas',
+                                    style: listItemTitleBold.copyWith(
+                                        fontWeight: extraBold,
+                                        color: neutral100),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'Proposal Program',
+                                    textAlign: TextAlign.start,
+                                    style: textSSemibold.copyWith(
+                                        color: neutral90),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(
+                                          width: 1, color: neutral30)),
+                                  padding: const EdgeInsets.all(16),
+                                  height: 62,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Flexible(
+                                        child: Row(
+                                          children: [
+                                            CircleAvatar(
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              radius: 15,
+                                              child: Image.asset(
+                                                'assets/icons/file.png',
+                                                width: 30,
+                                                height: 30,
+                                              ),
+                                            ),
+                                            const SizedBox(width: 8),
+                                            Flexible(
+                                              child: Text(
+                                                filename,
+                                                overflow: TextOverflow.visible,
+                                                style: captionTextBold.copyWith(
+                                                    color: neutral100),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: 12,
+                                        color: neutral70,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'Gambar',
+                                    textAlign: TextAlign.start,
+                                    style: textSSemibold.copyWith(
+                                        color: neutral90),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                Container(
+                                  height: 100,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                    image: DecorationImage(
+                                      image: NetworkImage(gambar),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )),
+                    ),
+                    Container(
+                      color: Colors.white,
+                      margin: const EdgeInsets.only(top: 16),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 16),
                       child: Obx(
                         () => Visibility(
                           visible: controller.isLoading.isFalse,
@@ -136,7 +308,7 @@ class DetailProgram extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: const [
                               SizedBox(
-                                height: 100,
+                                height: 50,
                               ),
                               Center(child: CircularProgressIndicator()),
                             ],

@@ -11,7 +11,7 @@ import '../../../../../theme/colors.dart';
 import '../../controllers/program_page_controller.dart';
 
 class CardDana extends StatelessWidget {
-  final String judul, tanggalakhir, persenn;
+  final String judul, tanggalakhir, persenn, deskripsi, file, gambar, banner;
   final int terkumpul, target, muzakki;
   final int? id, totalTransaksi;
 
@@ -24,7 +24,11 @@ class CardDana extends StatelessWidget {
       required this.tanggalakhir,
       required this.muzakki,
       this.totalTransaksi,
-      required this.persenn});
+      required this.persenn,
+      required this.deskripsi,
+      required this.file,
+      required this.gambar,
+      required this.banner});
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +43,19 @@ class CardDana extends StatelessWidget {
         controller.getTransaksis(id: id);
         controller.totaltransaksi(id: id);
         Get.to(() => DetailProgram(
-              judul: judul,
-              tanggalakhir: tanggalakhir,
-              terkumpul: terkumpul,
-              target: target,
-              target1: target1,
-              target100: target100,
-              id: id,
-              totalTransaksi: totalTransaksi,
-              persenn: persenn,
-            ));
+            judul: judul,
+            tanggalakhir: tanggalakhir,
+            terkumpul: terkumpul,
+            target: target,
+            target1: target1,
+            target100: target100,
+            totalTransaksi: totalTransaksi,
+            id: id,
+            persenn: persenn,
+            deskripsi: deskripsi,
+            file: file,
+            gambar: gambar,
+            banner: banner));
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
