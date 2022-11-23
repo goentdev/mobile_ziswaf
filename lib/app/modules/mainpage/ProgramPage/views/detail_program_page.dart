@@ -2,14 +2,20 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/views/widget/tab_bar.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/controllers/program_page_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/ubah_transaksi_page.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/berkas.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/deskripsi.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/detail_card.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/transaksi.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:appbar_animated/appbar_animated.dart';
+
+import '../../../../data/models/transaksi_model.dart';
 
 class DetailProgram extends StatelessWidget {
   final String judul, tanggalakhir, persenn, deskripsi, file, gambar, banner;
@@ -130,334 +136,63 @@ class DetailProgram extends StatelessWidget {
                       ),
                     ),
                     Container(
+                      margin: const EdgeInsets.only(top: 40),
                       color: Colors.white,
-                      margin: const EdgeInsets.only(bottom: 16),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 16),
-                      child: Obx(() => Visibility(
-                            visible: controller.isLoading.isFalse,
-                            replacement: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: const [
-                                SizedBox(
-                                  height: 100,
-                                ),
-                                Center(child: CircularProgressIndicator()),
-                              ],
+                      child: MyTabBar(
+                          controller: controller.tab2Controller,
+                          tabs: const [
+                            Tab(
+                              text: 'Deskripsi',
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const SizedBox(
-                                  height: 43,
-                                ),
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    'Deskripsi',
-                                    style: listItemTitleBold.copyWith(
-                                        fontWeight: extraBold,
-                                        color: neutral100),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    deskripsi,
-                                    textAlign: TextAlign.start,
-                                    style: textSSemibold.copyWith(
-                                        color: neutral90),
-                                  ),
-                                ),
-                              ],
+                            Tab(
+                              text: 'Berkas',
                             ),
-                          )),
+                            Tab(text: 'Transaksi'),
+                          ]),
                     ),
-                    Container(
-                      color: Colors.white,
-                      margin: const EdgeInsets.symmetric(vertical: 16),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 16),
-                      child: Obx(() => Visibility(
-                            visible: controller.isLoading.isFalse,
-                            replacement: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: const [
-                                SizedBox(
-                                  height: 50,
-                                ),
-                                Center(child: CircularProgressIndicator()),
-                              ],
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    'Berkas',
-                                    style: listItemTitleBold.copyWith(
-                                        fontWeight: extraBold,
-                                        color: neutral100),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    'Proposal Program',
-                                    textAlign: TextAlign.start,
-                                    style: textSSemibold.copyWith(
-                                        color: neutral90),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(
-                                          width: 1, color: neutral30)),
-                                  padding: const EdgeInsets.all(16),
-                                  height: 62,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Flexible(
-                                        child: Row(
-                                          children: [
-                                            CircleAvatar(
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              radius: 15,
-                                              child: Image.asset(
-                                                'assets/icons/file.png',
-                                                width: 30,
-                                                height: 30,
-                                              ),
-                                            ),
-                                            const SizedBox(width: 8),
-                                            Flexible(
-                                              child: Text(
-                                                filename,
-                                                overflow: TextOverflow.visible,
-                                                style: captionTextBold.copyWith(
-                                                    color: neutral100),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Icon(
-                                        Icons.arrow_forward_ios,
-                                        size: 12,
-                                        color: neutral70,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    'Gambar',
-                                    textAlign: TextAlign.start,
-                                    style: textSSemibold.copyWith(
-                                        color: neutral90),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                Container(
-                                  height: 100,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(4),
-                                    image: DecorationImage(
-                                      image: NetworkImage(gambar),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )),
-                    ),
-                    Container(
-                      color: Colors.white,
-                      margin: const EdgeInsets.only(top: 16),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 16),
-                      child: Obx(
-                        () => Visibility(
-                          visible: controller.isLoading.isFalse,
-                          replacement: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
-                              SizedBox(
-                                height: 50,
-                              ),
-                              Center(child: CircularProgressIndicator()),
-                            ],
-                          ),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'Daftar Transaksi (${controller.totaltransaksiiD.value!.totalTransaksi})',
-                                  style: listItemTitleBold.copyWith(
-                                      color: neutral100),
-                                ),
-                              ),
-                              GetBuilder<ProgramPageController>(
-                                init: ProgramPageController(),
-                                initState: (_) {},
-                                builder: (_) {
-                                  return Scrollbar(
-                                    thumbVisibility: false,
-                                    controller: controller.scrollController2,
-                                    child: RefreshIndicator(
-                                      onRefresh: () async {
-                                        controller.getTransaksis(id: id);
-                                      },
-                                      child: ListView.builder(
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        controller:
-                                            controller.scrollController2,
-                                        shrinkWrap: true,
-                                        itemCount: controller.transaksi!.length,
-                                        itemBuilder: (context, index) {
-                                          return DetailCard(
-                                            muzakiId: controller
-                                                    .transaksi![controller
-                                                            .transaksi!.length -
-                                                        1 -
-                                                        index]
-                                                    .muzaki
-                                                    ?.id ??
-                                                0,
-                                            buktifotoTransaksi: controller
-                                                .transaksi![controller
-                                                        .transaksi!.length -
-                                                    1 -
-                                                    index]
-                                                .buktiTransaksi,
-                                            nomorResi: controller
-                                                .transaksi![controller
-                                                        .transaksi!.length -
-                                                    1 -
-                                                    index]
-                                                .nomorResi,
-                                            nomorRekening: controller
-                                                .transaksi![controller
-                                                        .transaksi!.length -
-                                                    1 -
-                                                    index]
-                                                .nomorRekening,
-                                            namaRekening: controller
-                                                .transaksi![controller
-                                                        .transaksi!.length -
-                                                    1 -
-                                                    index]
-                                                .namaRekening,
-                                            kategori: controller
-                                                .transaksi![controller
-                                                        .transaksi!.length -
-                                                    1 -
-                                                    index]
-                                                .kategori,
-                                            email: controller
-                                                .transaksi![controller
-                                                        .transaksi!.length -
-                                                    1 -
-                                                    index]
-                                                .muzaki!
-                                                .email,
-                                            nomor: controller
-                                                .transaksi![controller
-                                                        .transaksi!.length -
-                                                    1 -
-                                                    index]
-                                                .muzaki!
-                                                .whatsapp,
-                                            judul: judul,
-                                            programId: id,
-                                            id: controller
-                                                .transaksi![controller
-                                                        .transaksi!.length -
-                                                    1 -
-                                                    index]
-                                                .id,
-                                            icon: controller
-                                                .transaksi![controller
-                                                        .transaksi!.length -
-                                                    1 -
-                                                    index]
-                                                .muzaki
-                                                ?.nama,
-                                            nama: controller
-                                                    .transaksi![controller
-                                                            .transaksi!.length -
-                                                        1 -
-                                                        index]
-                                                    .muzaki
-                                                    ?.nama ??
-                                                '-',
-                                            bank: controller
-                                                    .transaksi![controller
-                                                            .transaksi!.length -
-                                                        1 -
-                                                        index]
-                                                    .bank
-                                                    ?.nama ??
-                                                '-',
-                                            nominal: controller
-                                                    .transaksi?[controller
-                                                            .transaksi!.length -
-                                                        1 -
-                                                        index]
-                                                    .totalTransaksi ??
-                                                0,
-                                            waktu: controller
-                                                .transaksi![controller
-                                                        .transaksi!.length -
-                                                    1 -
-                                                    index]
-                                                .createdAt,
-                                            bankId: controller
-                                                    .transaksi![controller
-                                                            .transaksi!.length -
-                                                        1 -
-                                                        index]
-                                                    .bank
-                                                    ?.id ??
-                                                1,
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                    SizedBox(
+                      width: double.maxFinite,
+                      height: 600,
+                      child: TabBarView(
+                          controller: controller.tab2Controller,
+                          children: [
+                            Deskripsi(
+                                judul: judul,
+                                tanggalakhir: tanggalakhir,
+                                persenn: persenn,
+                                deskripsi: deskripsi,
+                                file: file,
+                                gambar: gambar,
+                                banner: banner,
+                                terkumpul: terkumpul,
+                                target: target,
+                                target1: target1,
+                                target100: target100),
+                            Berkas(
+                                judul: judul,
+                                tanggalakhir: tanggalakhir,
+                                persenn: persenn,
+                                deskripsi: deskripsi,
+                                file: file,
+                                gambar: gambar,
+                                banner: banner,
+                                terkumpul: terkumpul,
+                                target: target,
+                                target1: target1,
+                                target100: target100),
+                            TransaksiDetail(
+                                judul: judul,
+                                tanggalakhir: tanggalakhir,
+                                persenn: persenn,
+                                deskripsi: deskripsi,
+                                file: file,
+                                gambar: gambar,
+                                banner: banner,
+                                terkumpul: terkumpul,
+                                target: target,
+                                target1: target1,
+                                target100: target100)
+                          ]),
                     ),
                   ],
                 ),

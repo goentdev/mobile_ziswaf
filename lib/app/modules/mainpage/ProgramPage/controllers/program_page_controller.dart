@@ -23,6 +23,7 @@ import '../../../../data/providers/muzaki_provider.dart';
 class ProgramPageController extends GetxController
     with GetTickerProviderStateMixin {
   late TabController tabController;
+  late TabController tab2Controller;
 
   late ScrollController scrollController;
   late ScrollController scrollController2;
@@ -56,6 +57,10 @@ class ProgramPageController extends GetxController
   void onInit() {
     tabController = TabController(
       length: 2,
+      vsync: this,
+    );
+    tab2Controller = TabController(
+      length: 3,
       vsync: this,
     );
     // refreshTransaksi();
