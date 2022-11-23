@@ -17,6 +17,7 @@ import '../controllers/program_page_controller.dart';
 class KonfirmasiPage extends StatelessWidget {
   final int id, programId;
   final String judul, nama, nomor, email, kategori;
+  final List<int> jenisdonasiId;
   final List<String> nominal, jenisDonasi;
   final String nomorRekening, namaRekening, nomorResi, buktiTransaksi;
   final int bankId;
@@ -35,7 +36,8 @@ class KonfirmasiPage extends StatelessWidget {
       required this.nama,
       required this.nomor,
       required this.email,
-      required this.kategori});
+      required this.kategori,
+      required this.jenisdonasiId});
 
   @override
   Widget build(BuildContext context) {
@@ -776,7 +778,7 @@ class KonfirmasiPage extends StatelessWidget {
             bool success = await TransaksiProvider2().tambahTransaksi(
                 programId: programId,
                 muzakiId: id,
-                jenisDonasi: jenisDonasi,
+                jenisDonasi: jenisdonasiId,
                 nominal: nominal,
                 nomorRekening: nomorRekening,
                 namaRekening: namaRekening,

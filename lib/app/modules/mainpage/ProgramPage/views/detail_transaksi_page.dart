@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/identity_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/controllers/program_page_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/bukti_transaksi_page.dart';
@@ -115,6 +116,7 @@ class DetailTransaksi extends StatelessWidget {
                         GestureDetector(
                           onTap: () async {
                             await controller2.getAlokasiDana(id: id);
+                            await controller2.getJenisdonasi(id: programId!);
                             Get.back();
                             Get.to(() => EditTransaksiPage(
                                 judul: judul,

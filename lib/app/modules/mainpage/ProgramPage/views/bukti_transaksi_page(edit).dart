@@ -19,6 +19,7 @@ class BuktiTransaksiEdit extends StatelessWidget {
   final int id, programId, transaksiId;
   final List<String> nominal, jenisDonasi;
   final int bankId;
+  final List<int> jenisdonasiId;
   final String judul, nama, nomor, email, kategori;
   final String? bankNama,
       namRekening,
@@ -42,7 +43,8 @@ class BuktiTransaksiEdit extends StatelessWidget {
       required this.nomorResi,
       required this.nomorRekening,
       required this.buktifotoTransaksi,
-      required this.bankId});
+      required this.bankId,
+      required this.jenisdonasiId});
 
   @override
   Widget build(BuildContext context) {
@@ -960,9 +962,11 @@ class BuktiTransaksiEdit extends StatelessWidget {
                 nomor: nomor,
                 email: email,
                 kategori: kategori,
+                jenisdonasiId: jenisdonasiId,
               ));
             } else {
               Get.to(KonfirmasiPageEdit(
+                jenisdonasiId: jenisdonasiId,
                 transaksiId: transaksiId,
                 id: id,
                 programId: programId,

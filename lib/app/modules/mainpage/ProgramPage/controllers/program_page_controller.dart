@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/data/models/alokasidana_model.dart';
+import 'package:mobile_ziswaf/app/data/models/jenisdonasis_model.dart';
 import 'package:mobile_ziswaf/app/data/models/muzaki_model.dart';
 import 'package:mobile_ziswaf/app/data/models/program_model.dart';
 import 'package:mobile_ziswaf/app/data/models/total_selesai_berlangsung_model.dart';
@@ -44,6 +45,7 @@ class ProgramPageController extends GetxController
   RxList<Muzaki>? muzaki = <Muzaki>[].obs;
   Rx<Muzaki> muzakis = Muzaki().obs;
   Rx<Meta?> totalBerlangsung = Meta().obs;
+  RxList<Jenisdonasis> jenisdonasi = <Jenisdonasis>[].obs;
   Rx<Meta?> selesai = Meta().obs;
   Rx<Totaldanaprogram?> totalDana = Totaldanaprogram().obs;
   Rx<Totaltransaksi?> totaltransaksiiD = Totaltransaksi().obs;
@@ -141,6 +143,13 @@ class ProgramPageController extends GetxController
   getMuzakisall({required int? id}) async {
     isLoading.value = true;
     muzaki!.assignAll(await muzakiProvider.getMuzakisall(id));
+    update();
+    isLoading.value = false;
+  }
+
+  getJenisdonasi({required int id}) async {
+    isLoading.value = true;
+    jenisdonasi.assignAll(await transaksiProvider.getJenisDonasi(id));
     update();
     isLoading.value = false;
   }

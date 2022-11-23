@@ -36,7 +36,7 @@ class Berkas extends StatelessWidget {
 
     return Container(
       color: Colors.white,
-      margin: const EdgeInsets.symmetric(vertical: 16),
+      margin: const EdgeInsets.symmetric(vertical: 0),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: Obx(() => Visibility(
             visible: controller.isLoading.isFalse,

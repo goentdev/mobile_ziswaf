@@ -1,6 +1,7 @@
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/data/models/alokasidana_model.dart';
+import 'package:mobile_ziswaf/app/data/models/jenisdonasis_model.dart';
 
 import '../../utils/shared_preferences.dart';
 import '../models/transaksi_model.dart';
@@ -31,6 +32,16 @@ class TransaksiProvider extends GetConnect {
       List<Alokasidana> alokasi = [];
       data.forEach((e) => {alokasi.add(Alokasidana.fromJson(e))});
       return alokasi;
+    } else {
+      throw EasyLoading.showError('Server Error! Coba lagi nanti');
+    }
+  }
+
+  Future<List<Jenisdonasis>> getJenisDonasi(int? id) async {
+    final response = await get('$url/alokasi?program_id=$id');
+    if (response.status.isOk) {
+      List<dynamic> donasi = response.body;
+      return donasi.map((e) => Jenisdonasis.fromJson(e)).toList();
     } else {
       throw EasyLoading.showError('Server Error! Coba lagi nanti');
     }

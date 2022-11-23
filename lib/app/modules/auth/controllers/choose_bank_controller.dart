@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:mobile_ziswaf/app/data/models/jenisdonasis_model.dart';
+import 'package:mobile_ziswaf/app/data/providers/transaksi_provider.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/zakat_model.dart';
 import 'package:mobile_ziswaf/app/data/models/bank_model.dart';
 import 'package:mobile_ziswaf/app/data/providers/bank_provider.dart';
@@ -32,17 +34,24 @@ class ChooseBankController extends GetxController {
   ].obs;
 
   BankProvider bankProvider = BankProvider();
+  TransaksiProvider donasiprovider = TransaksiProvider();
 
   RxList<Bank> banks = <Bank>[].obs;
+  RxList<Jenisdonasis> jenisdonasi = <Jenisdonasis>[].obs;
   RxBool alokasi2 = false.obs;
   RxBool alokasi3 = false.obs;
   RxBool alokasi4 = false.obs;
 
+  RxList<Jenisdonasis> jenisdonasionsearch = <Jenisdonasis>[].obs;
   RxList<Bank> banksOnSearch = <Bank>[].obs;
   RxList<Zakat> donasisOnSearch = <Zakat>[].obs;
 
   RxString selectedBank = ''.obs;
   RxInt selectedBankId = 0.obs;
+  RxInt selectedJenisDonasiId = 0.obs;
+  RxInt selectedJenisDonasiId2 = 0.obs;
+  RxInt selectedJenisDonasiId3 = 0.obs;
+  RxInt selectedJenisDonasiId4 = 0.obs;
   RxString selectedDonasi = ''.obs;
   RxBool isSelected = false.obs;
   RxString selectedDonasi2 = ''.obs;
@@ -110,10 +119,17 @@ class ChooseBankController extends GetxController {
   }
 
   void searchDonasi(String value) {
-    donasisOnSearch.value = donasis.where((element) {
-      final loweredDonasi = element.jenisDonasi!.toLowerCase();
+    jenisdonasionsearch.value = jenisdonasi.where((element) {
+      final loweredDonasi = element.nama!.toLowerCase();
       return loweredDonasi.contains(value.toLowerCase());
     }).toList();
+  }
+
+  getJenisdonasi({required int id}) async {
+    isLoading.value = true;
+    jenisdonasi.assignAll(await donasiprovider.getJenisDonasi(id));
+    update();
+    isLoading.value = false;
   }
 
   getBanks() async {

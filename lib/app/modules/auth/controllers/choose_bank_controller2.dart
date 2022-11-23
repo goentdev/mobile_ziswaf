@@ -5,6 +5,9 @@ import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/zakat_model.dart'
 import 'package:mobile_ziswaf/app/data/models/bank_model.dart';
 import 'package:mobile_ziswaf/app/data/providers/bank_provider.dart';
 
+import '../../../data/models/jenisdonasis_model.dart';
+import '../../../data/providers/transaksi_provider.dart';
+
 class ChooseBankController2 extends GetxController {
   late TextEditingController bankAccountController;
   late TextEditingController nomorResiController;
@@ -14,6 +17,7 @@ class ChooseBankController2 extends GetxController {
   late TextEditingController searchDonasi2Controller;
   late TextEditingController searchDonasi3Controller;
   late TextEditingController searchDonasi4Controller;
+
   late TextEditingController nominalController;
   late GlobalKey<FormState> loginFormKey;
   late ScrollController firstController;
@@ -31,17 +35,24 @@ class ChooseBankController2 extends GetxController {
   ].obs;
 
   BankProvider bankProvider = BankProvider();
+  TransaksiProvider donasiprovider = TransaksiProvider();
 
   RxList<Bank> banks = <Bank>[].obs;
   RxBool alokasi2 = false.obs;
   RxBool alokasi3 = false.obs;
   RxBool alokasi4 = false.obs;
 
+  RxList<Jenisdonasis> jenisdonasi = <Jenisdonasis>[].obs;
+  RxList<Jenisdonasis> jenisdonasionsearch = <Jenisdonasis>[].obs;
   RxList<Bank> banksOnSearch = <Bank>[].obs;
   RxList<Zakat> donasisOnSearch = <Zakat>[].obs;
 
   RxString selectedBank = ''.obs;
   RxInt selectedBankId = 0.obs;
+  RxInt selectedJenisDonasiId = 0.obs;
+  RxInt selectedJenisDonasiId2 = 0.obs;
+  RxInt selectedJenisDonasiId3 = 0.obs;
+  RxInt selectedJenisDonasiId4 = 0.obs;
   RxString selectedDonasi = ''.obs;
   RxBool isSelected = false.obs;
   RxString selectedDonasi2 = ''.obs;
@@ -114,6 +125,13 @@ class ChooseBankController2 extends GetxController {
 
     banks.assignAll(await bankProvider.getBanks());
 
+    isLoading.value = false;
+  }
+
+  getJenisdonasi({required int id}) async {
+    isLoading.value = true;
+    jenisdonasi.assignAll(await donasiprovider.getJenisDonasi(id));
+    update();
     isLoading.value = false;
   }
 

@@ -417,10 +417,10 @@ class EditTransaksi2 extends StatelessWidget {
                                                           .text
                                                           .isNotEmpty
                                                       ? controller
-                                                          .donasisOnSearch
+                                                          .jenisdonasionsearch
                                                           .length
                                                       : controller
-                                                          .donasis.length,
+                                                          .jenisdonasi.length,
                                                   itemBuilder:
                                                       (context, index) {
                                                     if (controller
@@ -438,9 +438,9 @@ class EditTransaksi2 extends StatelessWidget {
                                                                     .selectedDonasi
                                                                     .value =
                                                                 controller
-                                                                    .donasisOnSearch[
+                                                                    .jenisdonasionsearch[
                                                                         index]
-                                                                    .jenisDonasi!;
+                                                                    .nama!;
                                                             controller
                                                                 .isSelected
                                                                 .value = true;
@@ -448,9 +448,9 @@ class EditTransaksi2 extends StatelessWidget {
                                                           },
                                                           child: Text(
                                                             controller
-                                                                .donasisOnSearch[
+                                                                .jenisdonasionsearch[
                                                                     index]
-                                                                .jenisDonasi!,
+                                                                .nama!,
                                                             style: textMBold
                                                                 .copyWith(
                                                                     color:
@@ -470,9 +470,9 @@ class EditTransaksi2 extends StatelessWidget {
                                                                     .selectedDonasi
                                                                     .value =
                                                                 controller
-                                                                    .donasis[
+                                                                    .jenisdonasi[
                                                                         index]
-                                                                    .jenisDonasi!;
+                                                                    .nama!;
                                                             controller
                                                                 .isSelected
                                                                 .value = true;
@@ -480,8 +480,9 @@ class EditTransaksi2 extends StatelessWidget {
                                                           },
                                                           child: Text(
                                                             controller
-                                                                .donasis[index]
-                                                                .jenisDonasi!,
+                                                                .jenisdonasi[
+                                                                    index]
+                                                                .nama!,
                                                             style: textMBold
                                                                 .copyWith(
                                                                     color:
@@ -725,10 +726,10 @@ class EditTransaksi2 extends StatelessWidget {
                                                                     .text
                                                                     .isNotEmpty
                                                                 ? controller
-                                                                    .donasisOnSearch
+                                                                    .jenisdonasionsearch
                                                                     .length
                                                                 : controller
-                                                                    .donasis
+                                                                    .jenisdonasi
                                                                     .length,
                                                             itemBuilder:
                                                                 (context,
@@ -749,8 +750,8 @@ class EditTransaksi2 extends StatelessWidget {
                                                                               .selectedDonasi2
                                                                               .value =
                                                                           controller
-                                                                              .donasisOnSearch[index]
-                                                                              .jenisDonasi!;
+                                                                              .jenisdonasionsearch[index]
+                                                                              .nama!;
                                                                       controller
                                                                           .isSelected2
                                                                           .value = true;
@@ -758,9 +759,9 @@ class EditTransaksi2 extends StatelessWidget {
                                                                     },
                                                                     child: Text(
                                                                       controller
-                                                                          .donasisOnSearch[
+                                                                          .jenisdonasionsearch[
                                                                               index]
-                                                                          .jenisDonasi!,
+                                                                          .nama!,
                                                                       style: textMBold.copyWith(
                                                                           color:
                                                                               neutral100),
@@ -780,8 +781,8 @@ class EditTransaksi2 extends StatelessWidget {
                                                                               .selectedDonasi2
                                                                               .value =
                                                                           controller
-                                                                              .donasis[index]
-                                                                              .jenisDonasi!;
+                                                                              .jenisdonasi[index]
+                                                                              .nama!;
                                                                       controller
                                                                           .isSelected2
                                                                           .value = true;
@@ -789,9 +790,9 @@ class EditTransaksi2 extends StatelessWidget {
                                                                     },
                                                                     child: Text(
                                                                       controller
-                                                                          .donasis[
+                                                                          .jenisdonasi[
                                                                               index]
-                                                                          .jenisDonasi!,
+                                                                          .nama!,
                                                                       style: textMBold.copyWith(
                                                                           color:
                                                                               neutral100),
@@ -1060,10 +1061,10 @@ class EditTransaksi2 extends StatelessWidget {
                                                                               .text
                                                                               .isNotEmpty
                                                                           ? controller
-                                                                              .donasisOnSearch
+                                                                              .jenisdonasionsearch
                                                                               .length
                                                                           : controller
-                                                                              .donasis
+                                                                              .jenisdonasi
                                                                               .length,
                                                                       itemBuilder:
                                                                           (context,
@@ -1078,12 +1079,12 @@ class EditTransaksi2 extends StatelessWidget {
                                                                             child:
                                                                                 InkWell(
                                                                               onTap: () {
-                                                                                controller.selectedDonasi3.value = controller.donasisOnSearch[index].jenisDonasi!;
+                                                                                controller.selectedDonasi3.value = controller.jenisdonasionsearch[index].nama!;
                                                                                 controller.isSelected3.value = true;
                                                                                 Get.back();
                                                                               },
                                                                               child: Text(
-                                                                                controller.donasisOnSearch[index].jenisDonasi!,
+                                                                                controller.jenisdonasionsearch[index].nama!,
                                                                                 style: textMBold.copyWith(color: neutral100),
                                                                               ),
                                                                             ),
@@ -1095,12 +1096,12 @@ class EditTransaksi2 extends StatelessWidget {
                                                                             child:
                                                                                 InkWell(
                                                                               onTap: () {
-                                                                                controller.selectedDonasi3.value = controller.donasis[index].jenisDonasi!;
+                                                                                controller.selectedDonasi3.value = controller.jenisdonasi[index].nama!;
                                                                                 controller.isSelected3.value = true;
                                                                                 Get.back();
                                                                               },
                                                                               child: Text(
-                                                                                controller.donasis[index].jenisDonasi!,
+                                                                                controller.jenisdonasi[index].nama!,
                                                                                 style: textMBold.copyWith(color: neutral100),
                                                                               ),
                                                                             ),
@@ -1371,19 +1372,19 @@ class EditTransaksi2 extends StatelessWidget {
                                                                               const SizedBox(height: 8),
                                                                               ListView.builder(
                                                                                 shrinkWrap: true,
-                                                                                itemCount: controller.searchDonasi4Controller.text.isNotEmpty ? controller.donasisOnSearch.length : controller.donasis.length,
+                                                                                itemCount: controller.searchDonasi4Controller.text.isNotEmpty ? controller.jenisdonasionsearch.length : controller.jenisdonasi.length,
                                                                                 itemBuilder: (context, index) {
                                                                                   if (controller.searchDonasi4Controller.text.isNotEmpty) {
                                                                                     return Padding(
                                                                                       padding: const EdgeInsets.symmetric(vertical: 16),
                                                                                       child: InkWell(
                                                                                         onTap: () {
-                                                                                          controller.selectedDonasi4.value = controller.donasisOnSearch[index].jenisDonasi!;
+                                                                                          controller.selectedDonasi4.value = controller.jenisdonasionsearch[index].nama!;
                                                                                           controller.isSelected4.value = true;
                                                                                           Get.back();
                                                                                         },
                                                                                         child: Text(
-                                                                                          controller.donasisOnSearch[index].jenisDonasi!,
+                                                                                          controller.jenisdonasionsearch[index].nama!,
                                                                                           style: textMBold.copyWith(color: neutral100),
                                                                                         ),
                                                                                       ),
@@ -1393,12 +1394,12 @@ class EditTransaksi2 extends StatelessWidget {
                                                                                       padding: const EdgeInsets.symmetric(vertical: 16),
                                                                                       child: InkWell(
                                                                                         onTap: () {
-                                                                                          controller.selectedDonasi4.value = controller.donasis[index].jenisDonasi!;
+                                                                                          controller.selectedDonasi4.value = controller.jenisdonasi[index].nama!;
                                                                                           controller.isSelected4.value = true;
                                                                                           Get.back();
                                                                                         },
                                                                                         child: Text(
-                                                                                          controller.donasis[index].jenisDonasi!,
+                                                                                          controller.jenisdonasi[index].nama!,
                                                                                           style: textMBold.copyWith(color: neutral100),
                                                                                         ),
                                                                                       ),
@@ -1513,6 +1514,7 @@ class EditTransaksi2 extends StatelessWidget {
                       controller.alokasi3 == false &&
                       controller.alokasi4 == false) {
                     Get.to(() => BuktiTransaksiEdit(
+                        jenisdonasiId: [controller.selectedJenisDonasiId.value],
                         bankId: bankId,
                         buktifotoTransaksi: buktifotoTransaksi,
                         bankNama: bankNama,
@@ -1533,6 +1535,10 @@ class EditTransaksi2 extends StatelessWidget {
                       controller.alokasi3 == false &&
                       controller.alokasi4 == false) {
                     Get.to(() => BuktiTransaksiEdit(
+                        jenisdonasiId: [
+                          controller.selectedJenisDonasiId.value,
+                          controller.selectedJenisDonasiId2.value,
+                        ],
                         bankId: bankId,
                         buktifotoTransaksi: buktifotoTransaksi,
                         bankNama: bankNama,
@@ -1559,60 +1565,71 @@ class EditTransaksi2 extends StatelessWidget {
                       controller.alokasi3 == true &&
                       controller.alokasi4 == false) {
                     Get.to(() => BuktiTransaksiEdit(
-                            bankId: bankId,
-                            buktifotoTransaksi: buktifotoTransaksi,
-                            bankNama: bankNama,
-                            namRekening: namaRekening,
-                            nomorRekening: nomorRekening,
-                            nomorResi: nomoResi,
-                            transaksiId: transaksiId,
-                            email: email,
-                            kategori: kategori,
-                            judul: judul,
-                            nama: nama,
-                            nomor: nomor!,
-                            id: muzakiId,
-                            programId: programId,
-                            nominal: [
-                              controller.nominalController.text,
-                              controller.nominal2Controller.text,
-                              controller.nominal3Controller.text
-                            ],
-                            jenisDonasi: [
-                              controller.selectedDonasi.value,
-                              controller.selectedDonasi2.value,
-                              controller.selectedDonasi3.value
-                            ]));
+                        jenisdonasiId: [
+                          controller.selectedJenisDonasiId.value,
+                          controller.selectedJenisDonasiId2.value,
+                          controller.selectedJenisDonasiId3.value
+                        ],
+                        bankId: bankId,
+                        buktifotoTransaksi: buktifotoTransaksi,
+                        bankNama: bankNama,
+                        namRekening: namaRekening,
+                        nomorRekening: nomorRekening,
+                        nomorResi: nomoResi,
+                        transaksiId: transaksiId,
+                        email: email,
+                        kategori: kategori,
+                        judul: judul,
+                        nama: nama,
+                        nomor: nomor!,
+                        id: muzakiId,
+                        programId: programId,
+                        nominal: [
+                          controller.nominalController.text,
+                          controller.nominal2Controller.text,
+                          controller.nominal3Controller.text
+                        ],
+                        jenisDonasi: [
+                          controller.selectedDonasi.value,
+                          controller.selectedDonasi2.value,
+                          controller.selectedDonasi3.value
+                        ]));
                   } else if (controller.alokasi2 == true &&
                       controller.alokasi3 == true &&
                       controller.alokasi4 == true) {
                     Get.to(() => BuktiTransaksiEdit(
-                            bankId: bankId,
-                            buktifotoTransaksi: buktifotoTransaksi,
-                            bankNama: bankNama,
-                            namRekening: namaRekening,
-                            nomorRekening: nomorRekening,
-                            nomorResi: nomoResi,
-                            email: email,
-                            kategori: kategori,
-                            judul: judul,
-                            nama: nama,
-                            transaksiId: transaksiId,
-                            nomor: nomor!,
-                            id: muzakiId,
-                            programId: programId,
-                            nominal: [
-                              controller.nominalController.text,
-                              controller.nominal2Controller.text,
-                              controller.nominal3Controller.text,
-                              controller.nominal4Controller.text
-                            ],
-                            jenisDonasi: [
-                              controller.selectedDonasi.value,
-                              controller.selectedDonasi2.value,
-                              controller.selectedDonasi3.value,
-                              controller.selectedDonasi4.value
-                            ]));
+                        jenisdonasiId: [
+                          controller.selectedJenisDonasiId.value,
+                          controller.selectedJenisDonasiId2.value,
+                          controller.selectedJenisDonasiId3.value,
+                          controller.selectedJenisDonasiId4.value
+                        ],
+                        bankId: bankId,
+                        buktifotoTransaksi: buktifotoTransaksi,
+                        bankNama: bankNama,
+                        namRekening: namaRekening,
+                        nomorRekening: nomorRekening,
+                        nomorResi: nomoResi,
+                        email: email,
+                        kategori: kategori,
+                        judul: judul,
+                        nama: nama,
+                        transaksiId: transaksiId,
+                        nomor: nomor!,
+                        id: muzakiId,
+                        programId: programId,
+                        nominal: [
+                          controller.nominalController.text,
+                          controller.nominal2Controller.text,
+                          controller.nominal3Controller.text,
+                          controller.nominal4Controller.text
+                        ],
+                        jenisDonasi: [
+                          controller.selectedDonasi.value,
+                          controller.selectedDonasi2.value,
+                          controller.selectedDonasi3.value,
+                          controller.selectedDonasi4.value
+                        ]));
                   }
                 },
                 child: Row(

@@ -31,7 +31,6 @@ class TransaksiDetail extends StatelessWidget {
     final controller = Get.put(ProgramPageController());
     return Container(
       color: Colors.white,
-      margin: const EdgeInsets.only(top: 16),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: Obx(
         () => Visibility(
@@ -48,6 +47,7 @@ class TransaksiDetail extends StatelessWidget {
           ),
           child: Column(
             children: [
+              SizedBox(height: 20),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(

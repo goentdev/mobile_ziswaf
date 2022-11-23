@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/utils.dart';
+import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/tambah_transaksi_page.dart';
 
 import '../../../../../theme/colors.dart';
@@ -27,8 +28,10 @@ class CardMuzakki extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ChooseBankController());
     return GestureDetector(
       onTap: () {
+        controller.getJenisdonasi(id: programId);
         Get.to(() => TambahTransaksi(
               judul: judul,
               nama: nama,

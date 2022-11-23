@@ -41,6 +41,7 @@ class CardDana extends StatelessWidget {
     return InkWell(
       onTap: () {
         controller.getTransaksis(id: id);
+
         controller.totaltransaksi(id: id);
         Get.to(() => DetailProgram(
             judul: judul,

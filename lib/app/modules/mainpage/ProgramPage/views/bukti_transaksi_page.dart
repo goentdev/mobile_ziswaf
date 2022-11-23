@@ -17,6 +17,7 @@ import 'package:path/path.dart';
 class BuktiTransaksi extends StatelessWidget {
   final int id, programId;
   final List<String> nominal, jenisDonasi;
+  final List<int> jenisdonasiId;
   final String judul, nama, nomor, email, kategori;
 
   const BuktiTransaksi({
@@ -30,6 +31,7 @@ class BuktiTransaksi extends StatelessWidget {
     required this.nomor,
     required this.email,
     required this.kategori,
+    required this.jenisdonasiId,
   });
 
   @override
@@ -793,6 +795,7 @@ class BuktiTransaksi extends StatelessWidget {
           ),
           onPressed: () async {
             Get.to(KonfirmasiPage(
+              jenisdonasiId: jenisdonasiId,
               id: id,
               programId: programId,
               nominal: nominal,

@@ -18,6 +18,7 @@ class KonfirmasiPageEdit extends StatelessWidget {
   final int id, programId, transaksiId;
   final String judul, nama, nomor, email, kategori;
 
+  final List<int> jenisdonasiId;
   final List<String> nominal, jenisDonasi;
   final String nomorRekening, namaRekening, nomorResi, buktiTransaksi;
   final int bankId;
@@ -37,7 +38,8 @@ class KonfirmasiPageEdit extends StatelessWidget {
       required this.nomor,
       required this.email,
       required this.kategori,
-      required this.transaksiId});
+      required this.transaksiId,
+      required this.jenisdonasiId});
 
   @override
   Widget build(BuildContext context) {
@@ -904,7 +906,7 @@ class KonfirmasiPageEdit extends StatelessWidget {
                   id: transaksiId,
                   programId: programId,
                   muzakiId: id,
-                  jenisDonasi: jenisDonasi,
+                  jenisDonasi: jenisdonasiId,
                   nominal: nominal,
                   nomorRekening: nomorRekening,
                   namaRekening: namaRekening,
