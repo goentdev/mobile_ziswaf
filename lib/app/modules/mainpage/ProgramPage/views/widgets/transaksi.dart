@@ -61,11 +61,12 @@ class TransaksiDetail extends StatelessWidget {
                   initState: (_) {},
                   builder: (_) {
                     return ListView.builder(
-                      // physics: const AlwaysScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: controller.transaksi!.length,
                       itemBuilder: (context, index) {
                         return DetailCard(
+                          status: 'assets/images/berhasil.png',
                           muzakiId: controller
                                   .transaksi![
                                       controller.transaksi!.length - 1 - index]

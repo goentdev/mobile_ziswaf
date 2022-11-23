@@ -18,6 +18,7 @@ class DetailCard extends StatelessWidget {
   final int? nominal, id, programId, muzakiId;
   final String? waktu;
   final String judul;
+  final String? status;
   final String? nomor;
   final String? email, kategori, nomorRekening, namaRekening, nomorResi;
   final String? jenisDonasi;
@@ -38,6 +39,7 @@ class DetailCard extends StatelessWidget {
     required this.namaRekening,
     required this.nomorResi,
     required this.buktifotoTransaksi,
+    this.status,
     this.kategori,
     this.jenisDonasi,
     this.id,
@@ -366,7 +368,7 @@ class DetailCard extends StatelessWidget {
           width: double.infinity,
           height: 74,
           margin: const EdgeInsets.only(bottom: 16),
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.fromLTRB(16, 19, 16, 16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
@@ -413,13 +415,26 @@ class DetailCard extends StatelessWidget {
                                       color: neutral100),
                                 ),
                                 const SizedBox(height: 6),
-                                Flexible(
-                                  child: Text(
-                                    bank,
-                                    overflow: TextOverflow.visible,
-                                    style: overlineSemiBold.copyWith(
-                                        color: neutral70),
-                                  ),
+                                Row(
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        NumberFormat.currency(
+                                          locale: 'id',
+                                          name: 'Rp',
+                                          decimalDigits: 0,
+                                        ).format(nominal),
+                                        overflow: TextOverflow.visible,
+                                        style: overlineSemiBold.copyWith(
+                                            color: primaryMain),
+                                      ),
+                                    ),
+                                    Text(
+                                      '  •  ${Jiffy(waktu).fromNow()}',
+                                      style: overlineSemiBold.copyWith(
+                                          color: neutral60),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -431,20 +446,17 @@ class DetailCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(
-                          NumberFormat.currency(
-                            locale: 'id',
-                            name: 'Rp',
-                            decimalDigits: 0,
-                          ).format(nominal),
-                          style: captionTextBold.copyWith(color: secondaryMain),
+                        Container(
+                          width: 90,
+                          height: 20,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      status ?? 'assets/images/berhasil.png'))),
                         ),
                         const SizedBox(
                           height: 6,
-                        ),
-                        Text(
-                          Jiffy(waktu).fromNow(),
-                          style: overlineSemiBold.copyWith(color: neutral60),
                         ),
                       ],
                     ),
