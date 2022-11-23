@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/viewer.dart';
+import 'package:photo_view/photo_view.dart';
 
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/fonts.dart';
@@ -84,6 +85,7 @@ class Berkas extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
+                        color: primarySurface,
                         border: Border.all(width: 1, color: neutral30)),
                     padding: const EdgeInsets.all(16),
                     height: 62,
@@ -117,7 +119,7 @@ class Berkas extends StatelessWidget {
                         Icon(
                           Icons.arrow_forward_ios,
                           size: 12,
-                          color: neutral70,
+                          color: primaryMain,
                         )
                       ],
                     ),
@@ -129,7 +131,7 @@ class Berkas extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Gambar',
+                    'Gambar Poster',
                     textAlign: TextAlign.start,
                     style: textSSemibold.copyWith(color: neutral90),
                   ),
@@ -137,14 +139,21 @@ class Berkas extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    image: DecorationImage(
-                      image: NetworkImage(gambar),
-                      fit: BoxFit.cover,
+                InkWell(
+                  onTap: () {
+                    Get.to(PhotoView(
+                      imageProvider: NetworkImage(gambar),
+                    ));
+                  },
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      image: DecorationImage(
+                        image: NetworkImage(gambar),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),

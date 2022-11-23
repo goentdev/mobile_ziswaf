@@ -142,12 +142,12 @@ class DetailProgram extends StatelessWidget {
                           controller: controller.tab2Controller,
                           tabs: const [
                             Tab(
-                              text: 'Deskripsi',
+                              text: 'Transaksi',
                             ),
                             Tab(
                               text: 'Berkas',
                             ),
-                            Tab(text: 'Transaksi'),
+                            Tab(text: 'Deskripsi'),
                           ]),
                     ),
                     SizedBox(
@@ -156,7 +156,7 @@ class DetailProgram extends StatelessWidget {
                       child: TabBarView(
                           controller: controller.tab2Controller,
                           children: [
-                            Deskripsi(
+                            TransaksiDetail(
                                 id: id,
                                 judul: judul,
                                 tanggalakhir: tanggalakhir,
@@ -182,7 +182,7 @@ class DetailProgram extends StatelessWidget {
                                 target: target,
                                 target1: target1,
                                 target100: target100),
-                            TransaksiDetail(
+                            Deskripsi(
                                 id: id,
                                 judul: judul,
                                 tanggalakhir: tanggalakhir,
@@ -194,7 +194,7 @@ class DetailProgram extends StatelessWidget {
                                 terkumpul: terkumpul,
                                 target: target,
                                 target1: target1,
-                                target100: target100)
+                                target100: target100),
                           ]),
                     ),
                   ],
