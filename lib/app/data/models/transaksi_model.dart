@@ -13,6 +13,7 @@ class Transaksi {
   String? nomorResi;
   String? buktiTransaksi;
   int? bankid;
+  int? konfirmasi;
   String? createdAt;
   MuzakiUserModel? muzaki;
   Bank? bank;
@@ -31,7 +32,9 @@ class Transaksi {
       this.bankid,
       this.createdAt,
       this.muzaki,
-      this.bank});
+      this.bank,
+      this.konfirmasi,
+      this.kategori});
 
   Transaksi.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -44,6 +47,7 @@ class Transaksi {
     nomorResi = json['nomor_resi'] ?? 'Data belum di isi';
     buktiTransaksi = json['bukti_transaksi'] ?? 'Data belum di isi';
     bankid = json['bank_id'] ?? 0;
+    konfirmasi = json['konfirmasi'] ?? 0;
     createdAt = json['created_at'];
     muzaki = json['muzaki'] != null
         ? MuzakiUserModel?.fromJson(json['muzaki'])
@@ -64,6 +68,7 @@ class Transaksi {
     data['nomor_resi'] = nomorResi;
     data['bukti_transaksi'] = buktiTransaksi;
     data['bank_id'] = bankid;
+    data['konfirmasi'] = konfirmasi;
     data['created_at'] = createdAt;
     if (muzaki != null) {
       data['muzaki'] = muzaki?.toJson();

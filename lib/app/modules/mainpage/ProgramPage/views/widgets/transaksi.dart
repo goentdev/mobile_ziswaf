@@ -66,7 +66,10 @@ class TransaksiDetail extends StatelessWidget {
                       itemCount: controller.transaksi!.length,
                       itemBuilder: (context, index) {
                         return DetailCard(
-                          status: 'assets/images/berhasil.png',
+                          status: controller
+                              .transaksi![
+                                  controller.transaksi!.length - 1 - index]
+                              .konfirmasi,
                           muzakiId: controller
                                   .transaksi![
                                       controller.transaksi!.length - 1 - index]

@@ -18,7 +18,7 @@ class DetailCard extends StatelessWidget {
   final int? nominal, id, programId, muzakiId;
   final String? waktu;
   final String judul;
-  final String? status;
+  final int? status;
   final String? nomor;
   final String? email, kategori, nomorRekening, namaRekening, nomorResi;
   final String? jenisDonasi;
@@ -452,8 +452,11 @@ class DetailCard extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               image: DecorationImage(
-                                  image: AssetImage(
-                                      status ?? 'assets/images/berhasil.png'))),
+                                  image: AssetImage(status == 0
+                                      ? 'assets/images/proses.png'
+                                      : status == 1
+                                          ? 'assets/images/berhasil.png'
+                                          : 'assets/images/tolak.png'))),
                         ),
                         const SizedBox(
                           height: 6,
