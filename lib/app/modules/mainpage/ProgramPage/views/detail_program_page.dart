@@ -157,6 +157,7 @@ class DetailProgram extends StatelessWidget {
                           controller: controller.tab2Controller,
                           children: [
                             Deskripsi(
+                                id: id,
                                 judul: judul,
                                 tanggalakhir: tanggalakhir,
                                 persenn: persenn,
@@ -169,6 +170,7 @@ class DetailProgram extends StatelessWidget {
                                 target1: target1,
                                 target100: target100),
                             Berkas(
+                                id: id,
                                 judul: judul,
                                 tanggalakhir: tanggalakhir,
                                 persenn: persenn,
@@ -181,6 +183,7 @@ class DetailProgram extends StatelessWidget {
                                 target1: target1,
                                 target100: target100),
                             TransaksiDetail(
+                                id: id,
                                 judul: judul,
                                 tanggalakhir: tanggalakhir,
                                 persenn: persenn,
