@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/controllers/tambah_ubah_muzakki_controller.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/controllers/program_page_controller.dart';
 import 'package:mobile_ziswaf/app/widgets/button.dart';
 
 import '../../../../routes/app_pages.dart';
@@ -29,6 +30,7 @@ class UbahMuzakki extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controllerC = Get.put(TambahUbahMuzakkiController());
+    final controller2 = Get.put(ProgramPageController());
     controllerC.namemuzakkiController.text = nama;
     controllerC.whatsappmuzakkiController.text = nomor;
     controllerC.emailmuzakkiController.text = email;
@@ -249,6 +251,9 @@ class UbahMuzakki extends StatelessWidget {
                 kategori: controllerC.selected.value,
                 tipe: controllerC.selectedType.value);
             muzaki.refreshMuzaki();
+            await controller2.getPrograms();
+            await controller2.gettotalberlangsungg();
+            await controller2.gettotalselesai();
             if (success) {
               Get.offAllNamed(Routes.MAINPAGE);
               // ignore: use_build_context_synchronously

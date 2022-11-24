@@ -102,6 +102,11 @@ class ProgramPageController extends GetxController
     isLoading.value = false;
   }
 
+  getPrograms2() async {
+    program!.assignAll(await programProvider.getProgram());
+    update();
+  }
+
   gettotalberlangsungg() async {
     totalBerlangsung.value =
         await programProvider.getTotalBerlangsung('berlangsung');

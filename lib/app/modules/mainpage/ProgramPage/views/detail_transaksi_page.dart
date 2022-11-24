@@ -319,7 +319,13 @@ class DetailTransaksi extends StatelessWidget {
               height: 111,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: primaryBorder, width: 1),
+                border: Border.all(
+                    color: status == 0
+                        ? const Color(0xffFDE6BE)
+                        : status == 1
+                            ? primaryBorder
+                            : const Color(0xffFEDAD8),
+                    width: 1),
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(status == 0

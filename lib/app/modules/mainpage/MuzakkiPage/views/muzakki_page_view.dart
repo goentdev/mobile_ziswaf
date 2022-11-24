@@ -17,6 +17,7 @@ class MuzakkiPageView extends GetView<MuzakkiPageController> {
   Widget build(BuildContext context) {
     final controller = Get.put(MuzakkiPageController());
     final controller2 = Get.put(ProfileController());
+    controller.refreshMuzaki();
 
     return Obx(
       () => Scaffold(

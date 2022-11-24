@@ -18,6 +18,8 @@ class ProgramPageView extends GetView<ProgramPageController> {
   Widget build(BuildContext context) {
     final ProgC = Get.put(ProgramPageController());
     final controller2 = Get.put(ProfileController());
+    controller.getPrograms2();
+    controller.gettotaldana();
 
     return Obx(
       () => Scaffold(

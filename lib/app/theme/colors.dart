@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 Color primaryMain = const Color(0xff01AC67);
-Color primarySurface = const Color(0xffEBF3FF);
+Color primarySurface = const Color(0xffE6F5F0);
 Color primaryBorder = const Color(0xffC3E5D8);
 Color primaryHover = const Color(0xff008751);
 Color primaryPressed = const Color(0xff0A4182);

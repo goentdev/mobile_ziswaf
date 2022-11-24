@@ -115,6 +115,7 @@ class EditTransaksi2 extends StatelessWidget {
       controller.alokasi3.value = true;
       controller.alokasi4.value = true;
     }
+    controller.getJenisdonasi(id: programId);
 
     return GetBuilder<ChooseBankController2>(
         init: ChooseBankController2(),
@@ -435,6 +436,13 @@ class EditTransaksi2 extends StatelessWidget {
                                                         child: InkWell(
                                                           onTap: () {
                                                             controller
+                                                                    .selectedJenisDonasiId
+                                                                    .value =
+                                                                controller
+                                                                    .jenisdonasionsearch[
+                                                                        index]
+                                                                    .id!;
+                                                            controller
                                                                     .selectedDonasi
                                                                     .value =
                                                                 controller
@@ -466,6 +474,13 @@ class EditTransaksi2 extends StatelessWidget {
                                                                 vertical: 16),
                                                         child: InkWell(
                                                           onTap: () {
+                                                            controller
+                                                                    .selectedJenisDonasiId
+                                                                    .value =
+                                                                controller
+                                                                    .jenisdonasi[
+                                                                        index]
+                                                                    .id!;
                                                             controller
                                                                     .selectedDonasi
                                                                     .value =
@@ -747,6 +762,12 @@ class EditTransaksi2 extends StatelessWidget {
                                                                       InkWell(
                                                                     onTap: () {
                                                                       controller
+                                                                              .selectedJenisDonasiId2
+                                                                              .value =
+                                                                          controller
+                                                                              .jenisdonasionsearch[index]
+                                                                              .id!;
+                                                                      controller
                                                                               .selectedDonasi2
                                                                               .value =
                                                                           controller
@@ -777,6 +798,12 @@ class EditTransaksi2 extends StatelessWidget {
                                                                   child:
                                                                       InkWell(
                                                                     onTap: () {
+                                                                      controller
+                                                                              .selectedJenisDonasiId2
+                                                                              .value =
+                                                                          controller
+                                                                              .jenisdonasi[index]
+                                                                              .id!;
                                                                       controller
                                                                               .selectedDonasi2
                                                                               .value =
@@ -1079,6 +1106,7 @@ class EditTransaksi2 extends StatelessWidget {
                                                                             child:
                                                                                 InkWell(
                                                                               onTap: () {
+                                                                                controller.selectedJenisDonasiId3.value = controller.jenisdonasionsearch[index].id!;
                                                                                 controller.selectedDonasi3.value = controller.jenisdonasionsearch[index].nama!;
                                                                                 controller.isSelected3.value = true;
                                                                                 Get.back();
@@ -1096,6 +1124,7 @@ class EditTransaksi2 extends StatelessWidget {
                                                                             child:
                                                                                 InkWell(
                                                                               onTap: () {
+                                                                                controller.selectedJenisDonasiId3.value = controller.jenisdonasi[index].id!;
                                                                                 controller.selectedDonasi3.value = controller.jenisdonasi[index].nama!;
                                                                                 controller.isSelected3.value = true;
                                                                                 Get.back();
@@ -1379,6 +1408,7 @@ class EditTransaksi2 extends StatelessWidget {
                                                                                       padding: const EdgeInsets.symmetric(vertical: 16),
                                                                                       child: InkWell(
                                                                                         onTap: () {
+                                                                                          controller.selectedJenisDonasiId4.value = controller.jenisdonasionsearch[index].id!;
                                                                                           controller.selectedDonasi4.value = controller.jenisdonasionsearch[index].nama!;
                                                                                           controller.isSelected4.value = true;
                                                                                           Get.back();
@@ -1394,6 +1424,7 @@ class EditTransaksi2 extends StatelessWidget {
                                                                                       padding: const EdgeInsets.symmetric(vertical: 16),
                                                                                       child: InkWell(
                                                                                         onTap: () {
+                                                                                          controller.selectedJenisDonasiId4.value = controller.jenisdonasi[index].id!;
                                                                                           controller.selectedDonasi4.value = controller.jenisdonasi[index].nama!;
                                                                                           controller.isSelected4.value = true;
                                                                                           Get.back();
