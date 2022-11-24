@@ -886,7 +886,7 @@ class KonfirmasiPageEdit extends StatelessWidget {
                   id: transaksiId,
                   programId: programId,
                   muzakiId: id,
-                  jenisDonasi: jenisDonasi,
+                  jenisDonasi: jenisdonasiId,
                   nominal: nominal,
                   nomorRekening: nomorRekening,
                   namaRekening: namaRekening,
@@ -897,6 +897,7 @@ class KonfirmasiPageEdit extends StatelessWidget {
               await controller2.gettotalberlangsungg();
               await controller2.gettotalselesai();
               if (success) {
+                EasyLoading.showSuccess('Berhasil Ubah Transaksi');
                 Get.offAllNamed(Routes.MAINPAGE);
               } else {
                 controller2.isLoading.value = false;
@@ -916,6 +917,7 @@ class KonfirmasiPageEdit extends StatelessWidget {
               await controller2.gettotalberlangsungg();
               await controller2.gettotalselesai();
               if (success) {
+                EasyLoading.showSuccess('Berhasil Ubah Transaksi');
                 Get.offAllNamed(Routes.MAINPAGE);
               } else {
                 controller2.isLoading.value = false;

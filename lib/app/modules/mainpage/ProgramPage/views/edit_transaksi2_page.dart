@@ -53,60 +53,80 @@ class EditTransaksi2 extends StatelessWidget {
     final controller = Get.put(ChooseBankController2());
     final controller2 = Get.put(ProgramPageController());
     if (controller2.alokasi!.length == 1) {
+      controller.selectedJenisDonasiId.value =
+          controller2.alokasi!.elementAt(0).jenisDonasi!.id!;
       controller.selectedDonasi.value =
           controller2.alokasi!.elementAt(0).jenisDonasi!.nama!;
       controller.nominalController.text =
           controller2.alokasi!.elementAt(0).nominal!.toString();
-      controller.nominal2Controller.text = '';
+      controller.nominal2Controller.text = '0';
       controller.selectedDonasi2.value = 'Pilih Jenis Donasi';
-      controller.nominal3Controller.text = '';
+      controller.nominal3Controller.text = '0';
       controller.selectedDonasi3.value = 'Pilih Jenis Donasi';
-      controller.nominal4Controller.text = '';
+      controller.nominal4Controller.text = '0';
       controller.selectedDonasi4.value = 'Pilih Jenis Donasi';
     } else if (controller2.alokasi!.length == 2) {
+      controller.selectedJenisDonasiId.value =
+          controller2.alokasi!.elementAt(0).jenisDonasi!.id!;
       controller.selectedDonasi.value =
           controller2.alokasi!.elementAt(0).jenisDonasi!.nama!;
       controller.nominalController.text =
           controller2.alokasi!.elementAt(0).nominal!.toString();
+      controller.selectedJenisDonasiId2.value =
+          controller2.alokasi!.elementAt(1).jenisDonasi!.id!;
       controller.nominal2Controller.text =
           controller2.alokasi!.elementAt(1).nominal!.toString();
       controller.selectedDonasi2.value =
-          controller2.alokasi?.elementAt(1).jenisDonasi!.nama ?? '';
-      controller.nominal3Controller.text = '';
+          controller2.alokasi?.elementAt(1).jenisDonasi!.nama! ?? '';
+      controller.nominal3Controller.text = '0';
       controller.selectedDonasi3.value = 'Pilih Jenis Donasi';
-      controller.nominal4Controller.text = '';
+      controller.nominal4Controller.text = '0';
       controller.selectedDonasi4.value = 'Pilih Jenis Donasi';
       controller.alokasi2.value = true;
     } else if (controller2.alokasi!.length == 3) {
+      controller.selectedJenisDonasiId.value =
+          controller2.alokasi!.elementAt(0).jenisDonasi!.id!;
       controller.selectedDonasi.value =
           controller2.alokasi!.elementAt(0).jenisDonasi!.nama!;
       controller.nominalController.text =
           controller2.alokasi!.elementAt(0).nominal!.toString();
+      controller.selectedJenisDonasiId2.value =
+          controller2.alokasi!.elementAt(1).jenisDonasi!.id!;
       controller.nominal2Controller.text =
           controller2.alokasi!.elementAt(1).nominal!.toString();
       controller.selectedDonasi2.value =
-          controller2.alokasi?.elementAt(1).jenisDonasi!.nama ?? '';
+          controller2.alokasi?.elementAt(1).jenisDonasi!.nama! ?? '';
+      controller.selectedJenisDonasiId3.value =
+          controller2.alokasi!.elementAt(2).jenisDonasi!.id!;
       controller.selectedDonasi3.value =
           controller2.alokasi?.elementAt(2).jenisDonasi!.nama ?? '';
       controller.nominal3Controller.text =
           controller2.alokasi!.elementAt(2).nominal!.toString();
-      controller.nominal4Controller.text = '';
+      controller.nominal4Controller.text = '0';
       controller.selectedDonasi4.value = 'Pilih Jenis Donasi';
       controller.alokasi2.value = true;
       controller.alokasi3.value = true;
     } else if (controller2.alokasi!.length == 4) {
+      controller.selectedJenisDonasiId.value =
+          controller2.alokasi!.elementAt(0).jenisDonasi!.id!;
       controller.selectedDonasi.value =
           controller2.alokasi!.elementAt(0).jenisDonasi!.nama!;
       controller.nominalController.text =
           controller2.alokasi!.elementAt(0).nominal!.toString();
+      controller.selectedJenisDonasiId2.value =
+          controller2.alokasi!.elementAt(1).jenisDonasi!.id!;
       controller.nominal2Controller.text =
           controller2.alokasi!.elementAt(1).nominal!.toString();
       controller.selectedDonasi2.value =
-          controller2.alokasi?.elementAt(1).jenisDonasi!.nama ?? '';
+          controller2.alokasi?.elementAt(1).jenisDonasi!.nama! ?? '';
+      controller.selectedJenisDonasiId3.value =
+          controller2.alokasi!.elementAt(2).jenisDonasi!.id!;
       controller.selectedDonasi3.value =
           controller2.alokasi?.elementAt(2).jenisDonasi!.nama ?? '';
       controller.nominal3Controller.text =
           controller2.alokasi!.elementAt(2).nominal!.toString();
+      controller.selectedJenisDonasiId4.value =
+          controller2.alokasi!.elementAt(3).jenisDonasi!.id!;
       controller.selectedDonasi4.value =
           controller2.alokasi?.elementAt(3).jenisDonasi!.nama ?? '';
       controller.nominal4Controller.text =
