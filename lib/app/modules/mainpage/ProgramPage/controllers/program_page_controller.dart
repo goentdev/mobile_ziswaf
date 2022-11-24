@@ -54,6 +54,8 @@ class ProgramPageController extends GetxController
   Rx<Program?> program2 = Program().obs;
   RxBool isLoading = false.obs;
   RxBool isLoading2 = false.obs;
+  RxBool isLoading3 = false.obs;
+  RxBool height = true.obs;
 
   @override
   void onInit() {
@@ -87,8 +89,10 @@ class ProgramPageController extends GetxController
   }
 
   totaltransaksi({required int? id}) async {
+    isLoading3.value = true;
     totaltransaksiiD.value = await totaltransaksiProviderr.totaltransaksiId(id);
     update();
+    isLoading3.value = false;
   }
 
   getPrograms() async {

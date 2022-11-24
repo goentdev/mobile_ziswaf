@@ -41,6 +41,7 @@ class DetailProgram extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProgramPageController());
+    controller.totaltransaksi(id: id);
     String filename = file;
 
     filename = filename.split("/")[7];
@@ -139,6 +140,15 @@ class DetailProgram extends StatelessWidget {
                       margin: const EdgeInsets.only(top: 40),
                       color: Colors.white,
                       child: MyTabBar(
+                          onTap: (index) {
+                            if (index == 0) {
+                              controller.totaltransaksi(id: id);
+                              controller.height.value = true;
+                            } else {
+                              controller.totaltransaksi(id: id);
+                              controller.height.value = false;
+                            }
+                          },
                           controller: controller.tab2Controller,
                           tabs: const [
                             Tab(
@@ -150,52 +160,67 @@ class DetailProgram extends StatelessWidget {
                             Tab(text: 'Deskripsi'),
                           ]),
                     ),
-                    SizedBox(
-                      width: double.maxFinite,
-                      height: 600,
-                      child: TabBarView(
-                          controller: controller.tab2Controller,
-                          children: [
-                            TransaksiDetail(
-                                id: id,
-                                judul: judul,
-                                tanggalakhir: tanggalakhir,
-                                persenn: persenn,
-                                deskripsi: deskripsi,
-                                file: file,
-                                gambar: gambar,
-                                banner: banner,
-                                terkumpul: terkumpul,
-                                target: target,
-                                target1: target1,
-                                target100: target100),
-                            Berkas(
-                                id: id,
-                                judul: judul,
-                                tanggalakhir: tanggalakhir,
-                                persenn: persenn,
-                                deskripsi: deskripsi,
-                                file: file,
-                                gambar: gambar,
-                                banner: banner,
-                                terkumpul: terkumpul,
-                                target: target,
-                                target1: target1,
-                                target100: target100),
-                            Deskripsi(
-                                id: id,
-                                judul: judul,
-                                tanggalakhir: tanggalakhir,
-                                persenn: persenn,
-                                deskripsi: deskripsi,
-                                file: file,
-                                gambar: gambar,
-                                banner: banner,
-                                terkumpul: terkumpul,
-                                target: target,
-                                target1: target1,
-                                target100: target100),
-                          ]),
+                    Obx(
+                      () => SizedBox(
+                        width: double.maxFinite,
+                        height: controller.isLoading3.value == false
+                            ? controller.height.value == true
+                                ? controller.totaltransaksiiD.value!
+                                            .totalTransaksi! >
+                                        5
+                                    ? controller.totaltransaksiiD.value!
+                                            .totalTransaksi! *
+                                        105
+                                    : 600
+                                : 600
+                            : 600,
+                        child: TabBarView(
+                            controller: controller.tab2Controller,
+                            children: [
+                              TransaksiDetail(
+                                  totalTransaksi: totalTransaksi,
+                                  id: id,
+                                  judul: judul,
+                                  tanggalakhir: tanggalakhir,
+                                  persenn: persenn,
+                                  deskripsi: deskripsi,
+                                  file: file,
+                                  gambar: gambar,
+                                  banner: banner,
+                                  terkumpul: terkumpul,
+                                  target: target,
+                                  target1: target1,
+                                  target100: target100),
+                              Berkas(
+                                  totalTransaksi: totalTransaksi,
+                                  id: id,
+                                  judul: judul,
+                                  tanggalakhir: tanggalakhir,
+                                  persenn: persenn,
+                                  deskripsi: deskripsi,
+                                  file: file,
+                                  gambar: gambar,
+                                  banner: banner,
+                                  terkumpul: terkumpul,
+                                  target: target,
+                                  target1: target1,
+                                  target100: target100),
+                              Deskripsi(
+                                  totalTransaksi: totalTransaksi,
+                                  id: id,
+                                  judul: judul,
+                                  tanggalakhir: tanggalakhir,
+                                  persenn: persenn,
+                                  deskripsi: deskripsi,
+                                  file: file,
+                                  gambar: gambar,
+                                  banner: banner,
+                                  terkumpul: terkumpul,
+                                  target: target,
+                                  target1: target1,
+                                  target100: target100),
+                            ]),
+                      ),
                     ),
                   ],
                 ),

@@ -32,6 +32,7 @@ class DetailTransaksi extends StatelessWidget {
   final String judul, whatsapp;
   final int muzakiId, transaksiId, bankId;
   final int? id, programId;
+  final int? status;
   final int? nominalDonasi, totalNominalTransaksi;
 
   const DetailTransaksi({
@@ -59,6 +60,7 @@ class DetailTransaksi extends StatelessWidget {
     required this.muzakiId,
     required this.transaksiId,
     required this.bankId,
+    this.status,
   });
 
   @override
@@ -318,9 +320,13 @@ class DetailTransaksi extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(color: primaryBorder, width: 1),
-                image: const DecorationImage(
+                image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage('assets/images/detail_transaksi22.png'),
+                  image: AssetImage(status == 0
+                      ? 'assets/images/diprosess.png'
+                      : status == 1
+                          ? 'assets/images/detail_transaksi22.png'
+                          : 'assets/images/ditolakk.png'),
                 ),
               ),
               child: Column(
@@ -333,7 +339,11 @@ class DetailTransaksi extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Transaksi Berhasil Diproses',
+                          status == 0
+                              ? 'Transaksi Menunggu Konfirmasi'
+                              : status == 1
+                                  ? 'Transaksi Berhasil Diproses'
+                                  : 'Transaksi Ditolak',
                           style: listTitleSemiBold.copyWith(
                             color: neutral100,
                           ),
@@ -354,7 +364,11 @@ class DetailTransaksi extends StatelessWidget {
                             decimalDigits: 0,
                           ).format(totalNominalTransaksi),
                           style: listItemTitleBlack.copyWith(
-                            color: primaryMain,
+                            color: status == 0
+                                ? secondaryMain
+                                : status == 1
+                                    ? primaryMain
+                                    : dangerMain,
                           ),
                         ),
                       ],

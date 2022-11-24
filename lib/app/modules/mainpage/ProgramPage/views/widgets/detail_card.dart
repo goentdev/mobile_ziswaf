@@ -54,6 +54,7 @@ class DetailCard extends StatelessWidget {
     return InkWell(
       onTap: () async {
         Get.to(() => DetailTransaksi(
+            status: status,
             bankId: bankId,
             muzakiId: muzakiId!,
             transaksiId: id!,
@@ -450,13 +451,15 @@ class DetailCard extends StatelessWidget {
                           width: 90,
                           height: 20,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              image: DecorationImage(
-                                  image: AssetImage(status == 0
-                                      ? 'assets/images/proses.png'
-                                      : status == 1
-                                          ? 'assets/images/berhasil.png'
-                                          : 'assets/images/tolak.png'))),
+                            borderRadius: BorderRadius.circular(6),
+                            image: DecorationImage(
+                              image: AssetImage(status == 0
+                                  ? 'assets/images/proses.png'
+                                  : status == 1
+                                      ? 'assets/images/berhasil.png'
+                                      : 'assets/images/tolak.png'),
+                            ),
+                          ),
                         ),
                         const SizedBox(
                           height: 6,

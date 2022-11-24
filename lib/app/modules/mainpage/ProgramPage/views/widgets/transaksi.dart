@@ -47,7 +47,6 @@ class TransaksiDetail extends StatelessWidget {
           ),
           child: Column(
             children: [
-              SizedBox(height: 20),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
