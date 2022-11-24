@@ -49,7 +49,7 @@ class RegisterPage extends GetView<RegisterController> {
                               whatsapp: controller.whatsappC.text,
                               status: 1,
                               role: 'relawan',
-                              bankId: 151,
+                              bankId: 1,
                               password: controller.whatsappC.text,
                               email: 'Belum Mengisi Data',
                               fotoKartuIdentitas:
