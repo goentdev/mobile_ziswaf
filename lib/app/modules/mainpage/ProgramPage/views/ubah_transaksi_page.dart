@@ -67,7 +67,7 @@ class UbahTransaksiPage extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Daftar Transaksi (${controller.totalmuzaki.value!.totalMuzaki})',
+                  'Daftar Muzaki (${controller.totalmuzaki.value!.totalMuzaki})',
                   style: listItemTitleBold.copyWith(color: neutral100),
                 ),
               ),
@@ -97,8 +97,7 @@ class UbahTransaksiPage extends StatelessWidget {
                             id: controller.muzaki![index].muzaki!.id!,
                             programId: programId,
                             email: controller.muzaki![index].muzaki!.email!,
-                            kategori:
-                                controller.muzaki![index].muzaki!.whatsapp!,
+                            kategori: controller.muzaki![index].kategori!,
                           );
                         } else {
                           return CardMuzakki(
@@ -109,8 +108,7 @@ class UbahTransaksiPage extends StatelessWidget {
                             id: controller.muzaki![index].muzaki!.id!,
                             programId: programId,
                             email: controller.muzaki![index].muzaki!.email!,
-                            kategori:
-                                controller.muzaki![index].muzaki!.whatsapp!,
+                            kategori: controller.muzaki![index].kategori!,
                           );
                         }
                       },

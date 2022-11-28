@@ -40,6 +40,8 @@ class DetailProgram extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final now = DateTime.now();
+    final tanggaltutup = DateTime(now.year, now.month, now.day);
     final controller = Get.put(ProgramPageController());
     controller.totaltransaksi(id: id);
     String filename = file;
@@ -73,7 +75,7 @@ class DetailProgram extends StatelessWidget {
                 icon: Icon(
                   Icons.arrow_back_ios,
                   color: neutral90,
-                  size: 10,
+                  size: 16,
                 ),
               ));
         },
@@ -290,31 +292,35 @@ class DetailProgram extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(
-            top: BorderSide(color: neutral30, width: 1),
-          ),
-        ),
-        child: TextButton(
-          style: TextButton.styleFrom(
-            backgroundColor: primaryMain,
-          ),
-          onPressed: () {
-            Get.to(() => UbahTransaksiPage(
-                  judul: judul,
-                  programId: id!,
-                ));
-          },
-          child: Text(
-            'Tambah Transaksi',
-            style: textMBold.copyWith(color: Colors.white),
-          ),
-        ),
-      ),
+      bottomNavigationBar:
+          DateTime.parse(tanggalakhir).compareTo(tanggaltutup) >= 0
+              ? Container(
+                  width: double.infinity,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border(
+                      top: BorderSide(color: neutral30, width: 1),
+                    ),
+                  ),
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: primaryMain,
+                    ),
+                    onPressed: () {
+                      Get.to(() => UbahTransaksiPage(
+                            judul: judul,
+                            programId: id!,
+                          ));
+                    },
+                    child: Text(
+                      'Tambah Transaksi',
+                      style: textMBold.copyWith(color: Colors.white),
+                    ),
+                  ),
+                )
+              : const SizedBox(),
     );
   }
 }

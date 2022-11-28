@@ -126,6 +126,14 @@ class MuzakkiPageController extends GetxController
     isLoading.value = false;
   }
 
+  refreshMuzaki2() async {
+    muzakipersonal!.assignAll(await muzakiProvider.getMuzakis('personal'));
+    muzakipemerintah!.assignAll(await muzakiProvider.getMuzakis('pemerintah'));
+    muzakibadanusaha!.assignAll(await muzakiProvider.getMuzakis('badan usaha'));
+    totalmuzaki.value = await muzakiProvider.getTotalMuzakis(1);
+    muzaki!.assignAll(await muzakiProvider.getMuzakisall(1));
+  }
+
   void searchMuzakki(String value) {
     muzakkisOnSearchPemerintah!.value = muzakipemerintah!.where((element) {
       final loweredNama = element.nama!.toLowerCase();

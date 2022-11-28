@@ -192,7 +192,7 @@ class KonfirmasiPage extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    initialValue: 'Personal',
+                    initialValue: kategori,
                     style: captionTextSemiBold.copyWith(
                       color: neutral100,
                     ),

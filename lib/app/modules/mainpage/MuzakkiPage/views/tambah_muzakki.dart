@@ -251,6 +251,11 @@ class TambahMuzakki extends StatelessWidget {
                 if (success == 'Berhasil') {
                   // ignore: use_build_context_synchronously
                   Get.back();
+                  controllerC.namemuzakkiController.text = '';
+                  controllerC.whatsappmuzakkiController.text = '';
+                  controllerC.emailmuzakkiController.text = '';
+                  controllerC.selected.value = '';
+                  controllerC.selectedType.value = '';
                   controllerC.update();
                   // ignore: use_build_context_synchronously
                   ScaffoldMessenger.of(context).showSnackBar(
