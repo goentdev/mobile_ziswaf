@@ -71,7 +71,11 @@ class MuzakiProvider extends GetConnect {
 
     if (response.statusCode == 200) {
       return 'Berhasil';
+    } else if (response.statusCode == 400) {
+      EasyLoading.showError('Nomor whatsapp sudah terdaftar');
+      return 'Gagal';
     } else {
+      EasyLoading.showError('Gagal update muzaki');
       return 'Gagal';
     }
   }
@@ -82,6 +86,9 @@ class MuzakiProvider extends GetConnect {
 
     if (response.status.isOk) {
       return true;
+    } else if (response.statusCode == 400) {
+      EasyLoading.showError('Nomor whatsapp sudah terdaftar');
+      return false;
     } else {
       EasyLoading.showError('Gagal update muzaki');
       return false;
