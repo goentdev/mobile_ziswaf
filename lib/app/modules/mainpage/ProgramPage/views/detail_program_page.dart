@@ -124,11 +124,19 @@ class DetailProgram extends StatelessWidget {
                                   style: listItemTitleBold.copyWith(
                                       color: neutral100),
                                 ),
-                                Text(
-                                  Jiffy(tanggalakhir).fromNow(),
-                                  style: captionTextBold.copyWith(
-                                      color: primaryMain),
-                                )
+                                DateTime.parse(tanggalakhir)
+                                            .compareTo(tanggaltutup) >=
+                                        0
+                                    ? Text(
+                                        Jiffy(tanggalakhir).fromNow(),
+                                        style: captionTextBold.copyWith(
+                                            color: primaryMain),
+                                      )
+                                    : Text(
+                                        'Selesai',
+                                        style: captionTextBold.copyWith(
+                                            color: primaryMain),
+                                      ),
                               ],
                             )
                           ],
