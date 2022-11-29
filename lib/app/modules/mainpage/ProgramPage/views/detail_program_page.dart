@@ -170,9 +170,9 @@ class DetailProgram extends StatelessWidget {
                                     ? controller.totaltransaksiiD.value!
                                             .totalTransaksi! *
                                         105
-                                    : 1000
-                                : 1000
-                            : 1000,
+                                    : 600
+                                : 600
+                            : 600,
                         child: TabBarView(
                             controller: controller.tab2Controller,
                             children: [

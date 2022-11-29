@@ -57,6 +57,7 @@ class ProgramPageController extends GetxController
   RxBool isLoading2 = false.obs;
   RxBool isLoading3 = false.obs;
   RxBool isLoading4 = false.obs;
+  RxBool isloading5 = false.obs;
   RxBool height = true.obs;
 
   @override
@@ -109,6 +110,13 @@ class ProgramPageController extends GetxController
     update();
   }
 
+  getPrograms3() async {
+    isloading5.value = true;
+    program!.assignAll(await programProvider.getProgram());
+    update();
+    isloading5.value = false;
+  }
+
   gettotalberlangsungg() async {
     isLoading4.value = true;
     totalBerlangsung.value =
@@ -118,9 +126,11 @@ class ProgramPageController extends GetxController
   }
 
   gettotalberlangsungg2() async {
+    isloading5.value = true;
     totalBerlangsung.value =
         await programProvider.getTotalBerlangsung('berlangsung');
     update();
+    isloading5.value = false;
   }
 
   gettotalselesai() async {
@@ -133,6 +143,13 @@ class ProgramPageController extends GetxController
   gettotalselesai2() async {
     selesai.value = await programProvider.getTotalBerlangsung('selesai');
     update();
+  }
+
+  gettotalselesai3() async {
+    isloading5.value = true;
+    selesai.value = await programProvider.getTotalBerlangsung('selesai');
+    update();
+    isloading5.value = false;
   }
 
   deleteTransaksi(int? id) async {

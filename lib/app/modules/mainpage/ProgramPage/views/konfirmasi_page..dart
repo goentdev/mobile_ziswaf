@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:mobile_ziswaf/app/data/providers/transaksi_provider.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/identity_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/providers/transaksi_provider.dart';
+import 'package:mobile_ziswaf/app/widgets/button.dart';
 import 'package:photo_view/photo_view.dart';
 
 import '../../../../routes/app_pages.dart';
@@ -761,43 +762,70 @@ class KonfirmasiPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(
-            top: BorderSide(color: neutral30, width: 1),
+      bottomNavigationBar: Obx(
+        () => Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(
+              top: BorderSide(color: neutral30, width: 1),
+            ),
           ),
-        ),
-        child: TextButton(
-          style: TextButton.styleFrom(
-            backgroundColor: primaryMain,
-          ),
-          onPressed: () async {
-            bool success = await TransaksiProvider2().tambahTransaksi(
-                programId: programId,
-                muzakiId: id,
-                jenisDonasi: jenisdonasiId,
-                nominal: nominal,
-                nomorRekening: nomorRekening,
-                namaRekening: namaRekening,
-                nomorResi: nomorResi,
-                buktiTransaksi: buktiTransaksi,
-                bankId: bankId);
-            await controller2.getPrograms();
-            await controller2.gettotalberlangsungg2();
-            await controller2.gettotalselesai();
-            if (success) {
-              Get.offAllNamed(Routes.MAINPAGE);
-            } else {
-              controller2.isLoading.value = false;
-              EasyLoading.showError('Gagal Tambah Transaksi');
-            }
-          },
-          child: Text(
-            'Simpan',
-            style: textMBold.copyWith(color: Colors.white),
+          child: TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: primaryMain,
+            ),
+            onPressed: () async {
+              controller2.isloading5.value = true;
+              bool success = await TransaksiProvider2().tambahTransaksi(
+                  programId: programId,
+                  muzakiId: id,
+                  jenisDonasi: jenisdonasiId,
+                  nominal: nominal,
+                  nomorRekening: nomorRekening,
+                  namaRekening: namaRekening,
+                  nomorResi: nomorResi,
+                  buktiTransaksi: buktiTransaksi,
+                  bankId: bankId);
+              await controller2.getPrograms3();
+              await controller2.gettotalberlangsungg2();
+              await controller2.gettotalselesai3();
+              if (success) {
+                controller2.isloading5.value = false;
+                Get.offAllNamed(Routes.MAINPAGE);
+              } else {
+                controller2.isloading5.value = false;
+                EasyLoading.showError('Gagal Tambah Transaksi');
+              }
+            },
+            child: controller2.isloading5.value
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 16,
+                        height: 16,
+                        margin: const EdgeInsets.only(right: 8),
+                        child: const CircularProgressIndicator(
+                          strokeWidth: 2,
+                          valueColor: AlwaysStoppedAnimation(
+                            Colors.white,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Loading',
+                        style: paragraphTextBold.copyWith(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  )
+                : Text(
+                    'Simpan',
+                    style: textMBold.copyWith(color: Colors.white),
+                  ),
           ),
         ),
       ),

@@ -19,6 +19,8 @@ class ChooseBankController extends GetxController {
   late TextEditingController searchDonasi4Controller;
   late TextEditingController nominalController;
   late GlobalKey<FormState> loginFormKey;
+  late GlobalKey<FormState> tambahtransaksiKey;
+  late GlobalKey<FormState> buktitransaksiKey;
   late ScrollController firstController;
   late ScrollController firstController2;
   late ScrollController firstController3;
@@ -61,6 +63,7 @@ class ChooseBankController extends GetxController {
   RxString selectedDonasi4 = ''.obs;
   RxBool isSelected4 = false.obs;
   RxBool isLoading = false.obs;
+
   RxBool isSelectedBank = false.obs;
 
   final maskFormatter = MaskTextInputFormatter(
@@ -86,6 +89,8 @@ class ChooseBankController extends GetxController {
     firstController2 = ScrollController();
     firstController3 = ScrollController();
     loginFormKey = GlobalKey<FormState>();
+    tambahtransaksiKey = GlobalKey<FormState>();
+    buktitransaksiKey = GlobalKey<FormState>();
     getBanks();
 
     nominalController = TextEditingController(text: '0');
