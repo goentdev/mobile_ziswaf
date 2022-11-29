@@ -186,6 +186,7 @@ class Berkas extends StatelessWidget {
                           alignment: Alignment.centerLeft,
                           child: Center(
                             child: Container(
+                              margin: const EdgeInsets.only(right: 15),
                               height: 100,
                               width: 100,
                               decoration: BoxDecoration(
