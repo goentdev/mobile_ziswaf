@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/viewer.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
 
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/fonts.dart';
@@ -167,8 +168,18 @@ class Berkas extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                          Get.to(PhotoView(
-                            imageProvider: NetworkImage(clist2[index]),
+                          Get.to(PhotoViewGallery.builder(
+                            itemCount: clist2.length,
+                            builder: (context, index) {
+                              String galleryname = clist2[index];
+                              galleryname = galleryname.split("/")[7];
+                              galleryname = galleryname.substring(
+                                  0, galleryname.indexOf('?'));
+                              return PhotoViewGalleryPageOptions(
+                                  heroAttributes:
+                                      PhotoViewHeroAttributes(tag: galleryname),
+                                  imageProvider: NetworkImage(clist2[index]));
+                            },
                           ));
                         },
                         child: Align(
