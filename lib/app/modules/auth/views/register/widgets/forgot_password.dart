@@ -24,7 +24,7 @@ class ForgotPassword extends StatelessWidget {
           icon: Icon(
             Icons.arrow_back_ios,
             color: neutral90,
-            size: 10,
+            size: 16,
           ),
         ),
         centerTitle: true,

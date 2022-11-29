@@ -51,7 +51,7 @@ class TambahTransaksi extends StatelessWidget {
                   icon: Icon(
                     Icons.arrow_back_ios,
                     color: neutral90,
-                    size: 10,
+                    size: 16,
                   ),
                 )),
             body: Container(
@@ -668,79 +668,67 @@ class TambahTransaksi extends StatelessWidget {
                                                                   .searchDonasi2Controller
                                                                   .text
                                                                   .isNotEmpty) {
-                                                                return Padding(
-                                                                  padding: const EdgeInsets
-                                                                          .symmetric(
-                                                                      vertical:
-                                                                          16),
-                                                                  child:
-                                                                      InkWell(
-                                                                    onTap: () {
-                                                                      controller
-                                                                              .selectedJenisDonasiId2
-                                                                              .value =
-                                                                          controller
-                                                                              .jenisdonasionsearch[index]
-                                                                              .id!;
-                                                                      controller
-                                                                              .selectedDonasi2
-                                                                              .value =
-                                                                          controller
-                                                                              .jenisdonasionsearch[index]
-                                                                              .nama!;
-                                                                      controller
-                                                                          .isSelected2
-                                                                          .value = true;
-                                                                      Get.back();
-                                                                    },
-                                                                    child: Text(
-                                                                      controller
-                                                                          .jenisdonasionsearch[
-                                                                              index]
-                                                                          .nama!,
-                                                                      style: textMBold.copyWith(
-                                                                          color:
-                                                                              neutral100),
-                                                                    ),
-                                                                  ),
-                                                                );
+                                                                return controller
+                                                                            .selectedDonasi
+                                                                            .value !=
+                                                                        controller
+                                                                            .jenisdonasionsearch[index]
+                                                                            .nama!
+                                                                    ? Padding(
+                                                                        padding:
+                                                                            const EdgeInsets.symmetric(vertical: 16),
+                                                                        child:
+                                                                            InkWell(
+                                                                          onTap:
+                                                                              () {
+                                                                            controller.selectedJenisDonasiId2.value =
+                                                                                controller.jenisdonasionsearch[index].id!;
+                                                                            controller.selectedDonasi2.value =
+                                                                                controller.jenisdonasionsearch[index].nama!;
+                                                                            controller.isSelected2.value =
+                                                                                true;
+                                                                            Get.back();
+                                                                          },
+                                                                          child:
+                                                                              Text(
+                                                                            controller.jenisdonasionsearch[index].nama!,
+                                                                            style:
+                                                                                textMBold.copyWith(color: neutral100),
+                                                                          ),
+                                                                        ),
+                                                                      )
+                                                                    : const SizedBox();
                                                               } else {
-                                                                return Padding(
-                                                                  padding: const EdgeInsets
-                                                                          .symmetric(
-                                                                      vertical:
-                                                                          16),
-                                                                  child:
-                                                                      InkWell(
-                                                                    onTap: () {
-                                                                      controller
-                                                                              .selectedJenisDonasiId2
-                                                                              .value =
-                                                                          controller
-                                                                              .jenisdonasi[index]
-                                                                              .id!;
-                                                                      controller
-                                                                              .selectedDonasi2
-                                                                              .value =
-                                                                          controller
-                                                                              .jenisdonasi[index]
-                                                                              .nama!;
-                                                                      controller
-                                                                          .isSelected2
-                                                                          .value = true;
-                                                                      Get.back();
-                                                                    },
-                                                                    child: Text(
-                                                                      controller
-                                                                          .jenisdonasi[
-                                                                              index]
-                                                                          .nama!,
-                                                                      style: textMBold.copyWith(
-                                                                          color:
-                                                                              neutral100),
-                                                                    ),
-                                                                  ),
-                                                                );
+                                                                return controller
+                                                                            .selectedDonasi
+                                                                            .value !=
+                                                                        controller
+                                                                            .jenisdonasi[index]
+                                                                            .nama!
+                                                                    ? Padding(
+                                                                        padding:
+                                                                            const EdgeInsets.symmetric(vertical: 16),
+                                                                        child:
+                                                                            InkWell(
+                                                                          onTap:
+                                                                              () {
+                                                                            controller.selectedJenisDonasiId2.value =
+                                                                                controller.jenisdonasi[index].id!;
+                                                                            controller.selectedDonasi2.value =
+                                                                                controller.jenisdonasi[index].nama!;
+                                                                            controller.isSelected2.value =
+                                                                                true;
+                                                                            Get.back();
+                                                                          },
+                                                                          child:
+                                                                              Text(
+                                                                            controller.jenisdonasi[index].nama!,
+                                                                            style:
+                                                                                textMBold.copyWith(color: neutral100),
+                                                                          ),
+                                                                        ),
+                                                                      )
+                                                                    : const SizedBox();
                                                               }
                                                             },
                                                           ),
@@ -1024,41 +1012,41 @@ class TambahTransaksi extends StatelessWidget {
                                                                             .searchDonasi3Controller
                                                                             .text
                                                                             .isNotEmpty) {
-                                                                          return Padding(
-                                                                            padding:
-                                                                                const EdgeInsets.symmetric(vertical: 16),
-                                                                            child:
-                                                                                InkWell(
-                                                                              onTap: () {
-                                                                                controller.selectedJenisDonasiId3.value = controller.jenisdonasionsearch[index].id!;
-                                                                                controller.selectedDonasi3.value = controller.jenisdonasi[index].nama!;
-                                                                                controller.isSelected3.value = true;
-                                                                                Get.back();
-                                                                              },
-                                                                              child: Text(
-                                                                                controller.jenisdonasionsearch[index].nama!,
-                                                                                style: textMBold.copyWith(color: neutral100),
-                                                                              ),
-                                                                            ),
-                                                                          );
+                                                                          return controller.selectedDonasi.value != controller.jenisdonasionsearch[index].nama! && controller.selectedDonasi2.value != controller.jenisdonasionsearch[index].nama!
+                                                                              ? Padding(
+                                                                                  padding: const EdgeInsets.symmetric(vertical: 16),
+                                                                                  child: InkWell(
+                                                                                    onTap: () {
+                                                                                      controller.selectedJenisDonasiId3.value = controller.jenisdonasionsearch[index].id!;
+                                                                                      controller.selectedDonasi3.value = controller.jenisdonasi[index].nama!;
+                                                                                      controller.isSelected3.value = true;
+                                                                                      Get.back();
+                                                                                    },
+                                                                                    child: Text(
+                                                                                      controller.jenisdonasionsearch[index].nama!,
+                                                                                      style: textMBold.copyWith(color: neutral100),
+                                                                                    ),
+                                                                                  ),
+                                                                                )
+                                                                              : const SizedBox();
                                                                         } else {
-                                                                          return Padding(
-                                                                            padding:
-                                                                                const EdgeInsets.symmetric(vertical: 16),
-                                                                            child:
-                                                                                InkWell(
-                                                                              onTap: () {
-                                                                                controller.selectedJenisDonasiId3.value = controller.jenisdonasi[index].id!;
-                                                                                controller.selectedDonasi3.value = controller.jenisdonasi[index].nama!;
-                                                                                controller.isSelected3.value = true;
-                                                                                Get.back();
-                                                                              },
-                                                                              child: Text(
-                                                                                controller.jenisdonasi[index].nama!,
-                                                                                style: textMBold.copyWith(color: neutral100),
-                                                                              ),
-                                                                            ),
-                                                                          );
+                                                                          return controller.selectedDonasi.value != controller.jenisdonasi[index].nama! && controller.selectedDonasi2.value != controller.jenisdonasi[index].nama!
+                                                                              ? Padding(
+                                                                                  padding: const EdgeInsets.symmetric(vertical: 16),
+                                                                                  child: InkWell(
+                                                                                    onTap: () {
+                                                                                      controller.selectedJenisDonasiId3.value = controller.jenisdonasi[index].id!;
+                                                                                      controller.selectedDonasi3.value = controller.jenisdonasi[index].nama!;
+                                                                                      controller.isSelected3.value = true;
+                                                                                      Get.back();
+                                                                                    },
+                                                                                    child: Text(
+                                                                                      controller.jenisdonasi[index].nama!,
+                                                                                      style: textMBold.copyWith(color: neutral100),
+                                                                                    ),
+                                                                                  ),
+                                                                                )
+                                                                              : const SizedBox();
                                                                         }
                                                                       },
                                                                     ),
@@ -1336,37 +1324,41 @@ class TambahTransaksi extends StatelessWidget {
                                                                                 itemCount: controller.searchDonasi4Controller.text.isNotEmpty ? controller.jenisdonasionsearch.length : controller.jenisdonasi.length,
                                                                                 itemBuilder: (context, index) {
                                                                                   if (controller.searchDonasi4Controller.text.isNotEmpty) {
-                                                                                    return Padding(
-                                                                                      padding: const EdgeInsets.symmetric(vertical: 16),
-                                                                                      child: InkWell(
-                                                                                        onTap: () {
-                                                                                          controller.selectedJenisDonasiId4.value = controller.jenisdonasionsearch[index].id!;
-                                                                                          controller.selectedDonasi4.value = controller.jenisdonasionsearch[index].nama!;
-                                                                                          controller.isSelected4.value = true;
-                                                                                          Get.back();
-                                                                                        },
-                                                                                        child: Text(
-                                                                                          controller.jenisdonasionsearch[index].nama!,
-                                                                                          style: textMBold.copyWith(color: neutral100),
-                                                                                        ),
-                                                                                      ),
-                                                                                    );
+                                                                                    return controller.selectedDonasi.value != controller.jenisdonasionsearch[index].nama! && controller.selectedDonasi2.value != controller.jenisdonasionsearch[index].nama! && controller.selectedDonasi3.value != controller.jenisdonasionsearch[index].nama!
+                                                                                        ? Padding(
+                                                                                            padding: const EdgeInsets.symmetric(vertical: 16),
+                                                                                            child: InkWell(
+                                                                                              onTap: () {
+                                                                                                controller.selectedJenisDonasiId4.value = controller.jenisdonasionsearch[index].id!;
+                                                                                                controller.selectedDonasi4.value = controller.jenisdonasionsearch[index].nama!;
+                                                                                                controller.isSelected4.value = true;
+                                                                                                Get.back();
+                                                                                              },
+                                                                                              child: Text(
+                                                                                                controller.jenisdonasionsearch[index].nama!,
+                                                                                                style: textMBold.copyWith(color: neutral100),
+                                                                                              ),
+                                                                                            ),
+                                                                                          )
+                                                                                        : const SizedBox();
                                                                                   } else {
-                                                                                    return Padding(
-                                                                                      padding: const EdgeInsets.symmetric(vertical: 16),
-                                                                                      child: InkWell(
-                                                                                        onTap: () {
-                                                                                          controller.selectedJenisDonasiId4.value = controller.jenisdonasi[index].id!;
-                                                                                          controller.selectedDonasi4.value = controller.jenisdonasi[index].nama!;
-                                                                                          controller.isSelected4.value = true;
-                                                                                          Get.back();
-                                                                                        },
-                                                                                        child: Text(
-                                                                                          controller.jenisdonasi[index].nama!,
-                                                                                          style: textMBold.copyWith(color: neutral100),
-                                                                                        ),
-                                                                                      ),
-                                                                                    );
+                                                                                    return controller.selectedDonasi.value != controller.jenisdonasi[index].nama! && controller.selectedDonasi2.value != controller.jenisdonasi[index].nama! && controller.selectedDonasi3.value != controller.jenisdonasi[index].nama!
+                                                                                        ? Padding(
+                                                                                            padding: const EdgeInsets.symmetric(vertical: 16),
+                                                                                            child: InkWell(
+                                                                                              onTap: () {
+                                                                                                controller.selectedJenisDonasiId4.value = controller.jenisdonasi[index].id!;
+                                                                                                controller.selectedDonasi4.value = controller.jenisdonasi[index].nama!;
+                                                                                                controller.isSelected4.value = true;
+                                                                                                Get.back();
+                                                                                              },
+                                                                                              child: Text(
+                                                                                                controller.jenisdonasi[index].nama!,
+                                                                                                style: textMBold.copyWith(color: neutral100),
+                                                                                              ),
+                                                                                            ),
+                                                                                          )
+                                                                                        : const SizedBox();
                                                                                   }
                                                                                 },
                                                                               ),

@@ -79,7 +79,7 @@ class DetailCard extends StatelessWidget {
         await controller.getAlokasiDana(id: id);
         await controller.totaltransaksi(id: programId);
       },
-      child: status == 1
+      child: status == 1 || status == 2
           ? Container(
               width: double.infinity,
               height: 74,

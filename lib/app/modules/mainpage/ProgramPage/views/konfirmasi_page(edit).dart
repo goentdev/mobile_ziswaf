@@ -52,7 +52,7 @@ class KonfirmasiPageEdit extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          'Konfirmasi Page',
+          'Konfirmasi Transaksi',
           style: listTitleBold.copyWith(color: neutral90),
         ),
         leading: IconButton(
@@ -62,7 +62,7 @@ class KonfirmasiPageEdit extends StatelessWidget {
           icon: Icon(
             Icons.arrow_back_ios,
             color: neutral90,
-            size: 10,
+            size: 16,
           ),
         ),
       ),
