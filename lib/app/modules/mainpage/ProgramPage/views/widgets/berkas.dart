@@ -31,10 +31,10 @@ class Berkas extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(ProgramPageController());
 
-    String link2 = file.replaceAll("[", "]");
+    String link2 = file.replaceAll("[", "");
     List<String> clist = link2.split(",");
 
-    String linkgambar = gambar.replaceAll("[", "]");
+    String linkgambar = gambar.replaceAll("[", "");
     List<String> clist2 = linkgambar.split(",");
 
     return Container(
