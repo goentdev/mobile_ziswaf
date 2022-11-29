@@ -894,7 +894,7 @@ class KonfirmasiPageEdit extends StatelessWidget {
                   buktiTransaksi: buktiTransaksi,
                   bankId: bankId);
               await controller2.getPrograms();
-              await controller2.gettotalberlangsungg();
+              await controller2.gettotalberlangsungg2();
               await controller2.gettotalselesai();
               if (success) {
                 EasyLoading.showSuccess('Berhasil Ubah Transaksi');
@@ -914,7 +914,7 @@ class KonfirmasiPageEdit extends StatelessWidget {
                   nomorResi: nomorResi,
                   bankId: bankId);
               await controller2.getPrograms();
-              await controller2.gettotalberlangsungg();
+              await controller2.gettotalberlangsungg2();
               await controller2.gettotalselesai();
               if (success) {
                 EasyLoading.showSuccess('Berhasil Ubah Transaksi');

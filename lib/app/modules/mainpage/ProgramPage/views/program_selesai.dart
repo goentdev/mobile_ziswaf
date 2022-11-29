@@ -14,7 +14,7 @@ class ProgramSudahSelesai extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProgramPageController());
-    controller.gettotalselesai();
+    controller.gettotalselesai2();
     final now = DateTime.now();
     final tanggaltutup = DateTime(now.year, now.month, now.day);
     return Container(

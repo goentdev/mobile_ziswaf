@@ -252,7 +252,7 @@ class UbahMuzakki extends StatelessWidget {
                 tipe: controllerC.selectedType.value);
             muzaki.refreshMuzaki();
             await controller2.getPrograms();
-            await controller2.gettotalberlangsungg();
+            await controller2.gettotalberlangsungg2();
             await controller2.gettotalselesai();
             if (success) {
               Get.offAllNamed(Routes.MAINPAGE);

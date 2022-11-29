@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:mobile_ziswaf/app/data/models/alokasidana_model.dart';
 import 'package:mobile_ziswaf/app/data/models/jenisdonasis_model.dart';
 import 'package:mobile_ziswaf/app/data/models/muzaki_model.dart';
@@ -55,6 +56,7 @@ class ProgramPageController extends GetxController
   RxBool isLoading = false.obs;
   RxBool isLoading2 = false.obs;
   RxBool isLoading3 = false.obs;
+  RxBool isLoading4 = false.obs;
   RxBool height = true.obs;
 
   @override
@@ -108,12 +110,27 @@ class ProgramPageController extends GetxController
   }
 
   gettotalberlangsungg() async {
+    isLoading4.value = true;
+    totalBerlangsung.value =
+        await programProvider.getTotalBerlangsung('berlangsung');
+    update();
+    isLoading4.value = false;
+  }
+
+  gettotalberlangsungg2() async {
     totalBerlangsung.value =
         await programProvider.getTotalBerlangsung('berlangsung');
     update();
   }
 
   gettotalselesai() async {
+    isLoading4.value = true;
+    selesai.value = await programProvider.getTotalBerlangsung('selesai');
+    update();
+    isLoading4.value = false;
+  }
+
+  gettotalselesai2() async {
     selesai.value = await programProvider.getTotalBerlangsung('selesai');
     update();
   }

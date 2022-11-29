@@ -30,10 +30,12 @@ class Berkas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProgramPageController());
-    String filename = file;
 
-    filename = filename.split("/")[7];
-    filename = filename.substring(0, filename.indexOf('?'));
+    String link2 = file.replaceAll("[", "]");
+    List<String> clist = link2.split(",");
+
+    String linkgambar = gambar.replaceAll("[", "]");
+    List<String> clist2 = linkgambar.split(",");
 
     return Container(
       color: Colors.white,
@@ -76,54 +78,67 @@ class Berkas extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Get.to(Viewer(
-                      link: file,
-                    ));
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: primarySurface,
-                        border: Border.all(width: 1, color: neutral30)),
-                    padding: const EdgeInsets.all(16),
-                    height: 62,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: Colors.transparent,
-                                radius: 15,
-                                child: Image.asset(
-                                  'assets/icons/file.png',
-                                  width: 30,
-                                  height: 30,
-                                ),
+                ListView.builder(
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: clist.length,
+                  itemBuilder: (context, index) {
+                    String filename = clist[index];
+
+                    filename = filename.split("/")[7];
+                    filename = filename.substring(0, filename.indexOf('?'));
+                    return GestureDetector(
+                      onTap: () {
+                        Get.to(Viewer(
+                          link: clist[index],
+                        ));
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 16),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: primarySurface,
+                            border: Border.all(width: 1, color: neutral30)),
+                        padding: const EdgeInsets.all(16),
+                        height: 62,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(
+                              child: Row(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: Colors.transparent,
+                                    radius: 15,
+                                    child: Image.asset(
+                                      'assets/icons/file.png',
+                                      width: 30,
+                                      height: 30,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Flexible(
+                                    child: Text(
+                                      filename,
+                                      overflow: TextOverflow.visible,
+                                      style: captionTextBold.copyWith(
+                                          color: neutral100),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              const SizedBox(width: 8),
-                              Flexible(
-                                child: Text(
-                                  filename,
-                                  overflow: TextOverflow.visible,
-                                  style: captionTextBold.copyWith(
-                                      color: neutral100),
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              size: 12,
+                              color: primaryMain,
+                            )
+                          ],
                         ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 12,
-                          color: primaryMain,
-                        )
-                      ],
-                    ),
-                  ),
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(
                   height: 16,
@@ -139,22 +154,42 @@ class Berkas extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                InkWell(
-                  onTap: () {
-                    Get.to(PhotoView(
-                      imageProvider: NetworkImage(gambar),
-                    ));
-                  },
-                  child: Container(
-                    height: 100,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      image: DecorationImage(
-                        image: NetworkImage(gambar),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                Container(
+                  padding: EdgeInsets.zero,
+                  height: 120,
+                  width: double.infinity,
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    itemCount: clist2.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          Get.to(PhotoView(
+                            imageProvider: NetworkImage(clist2[index]),
+                          ));
+                        },
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Center(
+                            child: Container(
+                              height: 100,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                image: DecorationImage(
+                                  scale: 2,
+                                  image: NetworkImage(clist2[index]),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],

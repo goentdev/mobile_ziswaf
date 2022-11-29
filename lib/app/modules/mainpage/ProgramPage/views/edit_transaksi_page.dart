@@ -158,7 +158,7 @@ class EditTransaksiPage extends StatelessWidget {
                 leading: IconButton(
                   onPressed: () async {
                     Get.offAll(() => const MainpageView());
-                    await controller2.gettotalberlangsungg();
+                    await controller2.gettotalberlangsungg2();
                     await controller2.gettotalselesai();
                   },
                   icon: Icon(

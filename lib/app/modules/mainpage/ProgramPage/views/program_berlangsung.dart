@@ -17,7 +17,7 @@ class ProgramBerlangsung extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProgramPageController());
-    controller.gettotalberlangsungg();
+
     final now = DateTime.now();
     final tanggaltutup = DateTime(now.year, now.month, now.day);
     return Container(
@@ -69,9 +69,9 @@ class ProgramBerlangsung extends StatelessWidget {
                             id: controller.program![index].id,
                             persenn: controller.program![index].persen!,
                             deskripsi: controller.program![index].deskripsi!,
-                            file: controller.program![index].file!,
-                            gambar: controller.program![index].gambar!,
-                            banner: controller.program![index].banner!,
+                            file: controller.program?[index].file ?? '-',
+                            gambar: controller.program?[index].gambar ?? '-',
+                            banner: controller.program?[index].banner ?? '-',
                           );
                         }
                       },

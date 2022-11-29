@@ -44,10 +44,7 @@ class DetailProgram extends StatelessWidget {
     final tanggaltutup = DateTime(now.year, now.month, now.day);
     final controller = Get.put(ProgramPageController());
     controller.totaltransaksi(id: id);
-    String filename = file;
 
-    filename = filename.split("/")[7];
-    filename = filename.substring(0, filename.indexOf('?'));
     return Scaffold(
       extendBody: true,
       backgroundColor: neutral20,
@@ -173,9 +170,9 @@ class DetailProgram extends StatelessWidget {
                                     ? controller.totaltransaksiiD.value!
                                             .totalTransaksi! *
                                         105
-                                    : 600
-                                : 600
-                            : 600,
+                                    : 1000
+                                : 1000
+                            : 1000,
                         child: TabBarView(
                             controller: controller.tab2Controller,
                             children: [

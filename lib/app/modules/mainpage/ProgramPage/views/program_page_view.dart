@@ -23,17 +23,41 @@ class ProgramPageView extends GetView<ProgramPageController> {
 
     return Obx(() => controller2.user.value!.status != 1
         ? Scaffold(
+            backgroundColor: const Color(0xffECF7F4),
             body: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
-                SizedBox(
-                  height: 100,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 91,
                 ),
-                Center(child: CircularProgressIndicator()),
+                Center(
+                  child: Image.asset(
+                    'assets/images/nonaktif.png',
+                    width: 288,
+                    height: 288,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: Text(
+                    'Akun Anda\nDinonaktifkan',
+                    style: h2ExtraBold.copyWith(color: neutral100),
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: Text(
+                    'Silahkan hubungi admin untuk mengaktifkan\nakun Anda kembali',
+                    style: textLSemibold.copyWith(color: neutral80),
+                  ),
+                ),
               ],
-            ),
-          )
+            ))
         : Scaffold(
             backgroundColor: const Color(0xffECF7F4),
             body: RefreshIndicator(
@@ -117,7 +141,13 @@ class ProgramPageView extends GetView<ProgramPageController> {
                                 },
                                 child: SizedBox(
                                   width: double.maxFinite,
-                                  height: 720,
+                                  height: ProgC.isLoading4.value == false
+                                      ? ProgC.totalBerlangsung.value!.total! > 4
+                                          ? ProgC.totalBerlangsung.value!
+                                                  .total! *
+                                              170
+                                          : 720
+                                      : 720,
                                   child: TabBarView(
                                       controller: ProgC.tabController,
                                       children: const [

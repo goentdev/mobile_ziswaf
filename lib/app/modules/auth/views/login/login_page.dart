@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/login_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/forgot_password.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/controllers/program_page_controller.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
@@ -13,6 +14,7 @@ class LoginPage extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(LoginController());
+    final controller2 = Get.put(ProgramPageController());
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -52,6 +54,9 @@ class LoginPage extends GetView<LoginController> {
                             password: controller.passwordC.text,
                           );
                           if (success) {
+                            controller2.gettotalberlangsungg2();
+                            controller2.gettotalselesai2();
+                            controller2.getPrograms2();
                             Get.offAllNamed(Routes.MAINPAGE);
                             controller.isLoading.value = false;
                           } else {
