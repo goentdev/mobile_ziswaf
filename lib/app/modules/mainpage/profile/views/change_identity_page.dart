@@ -9,6 +9,7 @@ import 'package:mobile_ziswaf/app/modules/mainpage/profile/controllers/profile_c
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 import 'package:mobile_ziswaf/app/widgets/button.dart';
+import 'package:photo_view/photo_view.dart';
 
 import '../../../auth/views/register/widgets/change_foto_widget.dart';
 
@@ -250,16 +251,25 @@ class ChangeIdentityPage extends StatelessWidget {
                                     children: [
                                       Stack(
                                         children: [
-                                          Container(
-                                            height: 100,
-                                            width: 100,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                              image: DecorationImage(
-                                                image: FileImage(File(controller
-                                                    .identityImage!.path)),
-                                                fit: BoxFit.cover,
+                                          InkWell(
+                                            onTap: () {
+                                              Get.to(PhotoView(
+                                                  imageProvider: FileImage(File(
+                                                      controller.identityImage!
+                                                          .path))));
+                                            },
+                                            child: Container(
+                                              height: 100,
+                                              width: 100,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(4),
+                                                image: DecorationImage(
+                                                  image: FileImage(File(
+                                                      controller.identityImage!
+                                                          .path)),
+                                                  fit: BoxFit.cover,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -419,18 +429,26 @@ class ChangeIdentityPage extends StatelessWidget {
                                     children: [
                                       Stack(
                                         children: [
-                                          Container(
-                                            height: 100,
-                                            width: 100,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                              image: DecorationImage(
-                                                image: NetworkImage(profileC
-                                                    .user
-                                                    .value!
-                                                    .fotoKartuIdentitas!),
-                                                fit: BoxFit.cover,
+                                          InkWell(
+                                            onTap: () {
+                                              Get.to(PhotoView(
+                                                  imageProvider: NetworkImage(
+                                                      profileC.user.value!
+                                                          .fotoKartuIdentitas!)));
+                                            },
+                                            child: Container(
+                                              height: 100,
+                                              width: 100,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(4),
+                                                image: DecorationImage(
+                                                  image: NetworkImage(profileC
+                                                      .user
+                                                      .value!
+                                                      .fotoKartuIdentitas!),
+                                                  fit: BoxFit.cover,
+                                                ),
                                               ),
                                             ),
                                           ),
