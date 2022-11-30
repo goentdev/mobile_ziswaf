@@ -16,7 +16,7 @@ class ProgramPageView extends GetView<ProgramPageController> {
   const ProgramPageView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final ProgC = Get.put(ProgramPageController());
+    final progC = Get.put(ProgramPageController());
     final controller2 = Get.put(ProfileController());
     controller.getPrograms2();
     controller.gettotaldana();
@@ -101,7 +101,7 @@ class ProgramPageView extends GetView<ProgramPageController> {
                                       locale: 'id',
                                       name: 'Rp',
                                       decimalDigits: 0,
-                                    ).format(ProgC.totalDana.value!
+                                    ).format(progC.totalDana.value!
                                             .totalDanaProgram ??
                                         0),
                                     style: pageTitleBold.copyWith(
@@ -127,7 +127,7 @@ class ProgramPageView extends GetView<ProgramPageController> {
                               Container(
                                 color: Colors.transparent,
                                 child: MyTabBar(
-                                  controller: ProgC.tabController,
+                                  controller: progC.tabController,
                                   tabs: const [
                                     Tab(text: 'Berlangsung'),
                                     Tab(text: 'Selesai'),
@@ -141,15 +141,15 @@ class ProgramPageView extends GetView<ProgramPageController> {
                                 },
                                 child: SizedBox(
                                   width: double.maxFinite,
-                                  height: ProgC.isLoading4.value == false
-                                      ? ProgC.totalBerlangsung.value!.total! > 4
-                                          ? ProgC.totalBerlangsung.value!
+                                  height: progC.isLoading4.value == false
+                                      ? progC.totalBerlangsung.value!.total! > 4
+                                          ? progC.totalBerlangsung.value!
                                                   .total! *
                                               170
                                           : 720
                                       : 720,
                                   child: TabBarView(
-                                      controller: ProgC.tabController,
+                                      controller: progC.tabController,
                                       children: const [
                                         ProgramBerlangsung(),
                                         ProgramSudahSelesai(),

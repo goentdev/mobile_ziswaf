@@ -54,9 +54,9 @@ class LoginPage extends GetView<LoginController> {
                             password: controller.passwordC.text,
                           );
                           if (success) {
-                            controller2.gettotalberlangsungg2();
-                            controller2.gettotalselesai2();
-                            controller2.getPrograms2();
+                            await controller2.gettotalberlangsungg2();
+                            await controller2.gettotalselesai2();
+                            await controller2.getPrograms2();
                             Get.offAllNamed(Routes.MAINPAGE);
                             controller.isLoading.value = false;
                           } else {
