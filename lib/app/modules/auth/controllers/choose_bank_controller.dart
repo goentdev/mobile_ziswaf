@@ -27,6 +27,10 @@ class ChooseBankController extends GetxController {
   late TextEditingController nominal2Controller;
   late TextEditingController nominal3Controller;
   late TextEditingController nominal4Controller;
+  late TextEditingController nameController;
+  late TextEditingController nameController2;
+  late TextEditingController nameController3;
+  late TextEditingController nameController4;
 
   RxList<Zakat> donasis = [
     Zakat(jenisDonasi: 'Zakat Maal'),
@@ -89,6 +93,10 @@ class ChooseBankController extends GetxController {
     firstController2 = ScrollController();
     firstController3 = ScrollController();
     loginFormKey = GlobalKey<FormState>();
+    nameController = TextEditingController();
+    nameController2 = TextEditingController();
+    nameController3 = TextEditingController();
+    nameController4 = TextEditingController();
     tambahtransaksiKey = GlobalKey<FormState>();
     buktitransaksiKey = GlobalKey<FormState>();
     getBanks();

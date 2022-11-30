@@ -16,7 +16,7 @@ import 'package:path/path.dart';
 
 class BuktiTransaksi extends StatelessWidget {
   final int id, programId;
-  final List<String> nominal, jenisDonasi;
+  final List<String> nominal, jenisDonasi, atasNama;
   final List<int> jenisdonasiId;
   final String judul, nama, nomor, email, kategori;
 
@@ -32,6 +32,7 @@ class BuktiTransaksi extends StatelessWidget {
     required this.email,
     required this.kategori,
     required this.jenisdonasiId,
+    required this.atasNama,
   });
 
   @override
@@ -848,6 +849,7 @@ class BuktiTransaksi extends StatelessWidget {
                   nomor: nomor,
                   email: email,
                   kategori: kategori,
+                  atasNama: atasNama,
                 ));
               } else {
                 Get.to(KonfirmasiPage(
@@ -866,6 +868,7 @@ class BuktiTransaksi extends StatelessWidget {
                   nomor: nomor,
                   email: email,
                   kategori: kategori,
+                  atasNama: atasNama,
                 ));
               }
             } else {

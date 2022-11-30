@@ -443,7 +443,7 @@ class TambahTransaksi extends StatelessWidget {
                               ),
                               TextFormField(
                                 validator: (v) {
-                                  if (v == '0') {
+                                  if (v == '0' || v == '') {
                                     return 'Nominal Harus di Isi';
                                   }
                                   return null;
@@ -469,6 +469,48 @@ class TambahTransaksi extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(4),
                                   ),
                                   hintText: 'Tuliskan Nominal',
+                                  hintStyle:
+                                      listTitleBold.copyWith(color: neutral60),
+                                  isDense: true,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'Atas Nama',
+                                  style: captionTextSemiBold.copyWith(
+                                    color: neutral90,
+                                  ),
+                                ),
+                              ),
+                              TextFormField(
+                                validator: (v) {
+                                  if (v!.isEmpty) {
+                                    return 'Nama Harus di Isi';
+                                  }
+                                  return null;
+                                },
+                                onChanged: (value) {
+                                  controller.clearText();
+                                },
+                                keyboardType: TextInputType.name,
+                                controller: controller.nameController,
+                                style: captionTextSemiBold.copyWith(
+                                  color: neutral100,
+                                ),
+                                enabled: true,
+                                decoration: InputDecoration(
+                                  disabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: neutral40,
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  hintText: 'Masukan Nama',
                                   hintStyle:
                                       listTitleBold.copyWith(color: neutral60),
                                   isDense: true,
@@ -762,6 +804,15 @@ class TambahTransaksi extends StatelessWidget {
                                           ),
                                         ),
                                         TextFormField(
+                                          validator: (v) {
+                                            if (controller.alokasi2.value ==
+                                                true) {
+                                              if (v == '0' || v == '') {
+                                                return 'Nominal Harus di Isi';
+                                              }
+                                            }
+                                            return null;
+                                          },
                                           onChanged: (value) {
                                             controller.clearText();
                                           },
@@ -787,6 +838,57 @@ class TambahTransaksi extends StatelessWidget {
                                                   BorderRadius.circular(4),
                                             ),
                                             hintText: 'Tuliskan Nominal',
+                                            hintStyle: listTitleBold.copyWith(
+                                                color: neutral60),
+                                            isDense: true,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 8,
+                                        ),
+                                        Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            'Atas Nama',
+                                            style: captionTextSemiBold.copyWith(
+                                              color: neutral90,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 8,
+                                        ),
+                                        TextFormField(
+                                          validator: (v) {
+                                            if (controller.alokasi2.value ==
+                                                true) {
+                                              if (v!.isEmpty) {
+                                                return 'Nama Harus di Isi';
+                                              }
+                                            }
+                                            return null;
+                                          },
+                                          onChanged: (value) {
+                                            controller.clearText();
+                                          },
+                                          keyboardType: TextInputType.name,
+                                          controller:
+                                              controller.nameController2,
+                                          style: captionTextSemiBold.copyWith(
+                                            color: neutral100,
+                                          ),
+                                          enabled: true,
+                                          decoration: InputDecoration(
+                                            disabledBorder:
+                                                UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: neutral40,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                            ),
+                                            hintText: 'Masukan Nama',
                                             hintStyle: listTitleBold.copyWith(
                                                 color: neutral60),
                                             isDense: true,
@@ -1081,6 +1183,17 @@ class TambahTransaksi extends StatelessWidget {
                                                     ),
                                                   ),
                                                   TextFormField(
+                                                    validator: (v) {
+                                                      if (controller
+                                                              .alokasi3.value ==
+                                                          true) {
+                                                        if (v == '0' ||
+                                                            v == '') {
+                                                          return 'Nominal Harus di Isi';
+                                                        }
+                                                      }
+                                                      return null;
+                                                    },
                                                     onChanged: (value) {
                                                       controller.clearText();
                                                     },
@@ -1111,6 +1224,50 @@ class TambahTransaksi extends StatelessWidget {
                                                       ),
                                                       hintText:
                                                           'Tuliskan Nominal',
+                                                      hintStyle: listTitleBold
+                                                          .copyWith(
+                                                              color: neutral60),
+                                                      isDense: true,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  TextFormField(
+                                                    validator: (v) {
+                                                      if (controller
+                                                              .alokasi3.value ==
+                                                          true) {
+                                                        if (v!.isEmpty) {
+                                                          return 'Nama Harus di Isi';
+                                                        }
+                                                      }
+                                                      return null;
+                                                    },
+                                                    onChanged: (value) {
+                                                      controller.clearText();
+                                                    },
+                                                    keyboardType:
+                                                        TextInputType.name,
+                                                    controller: controller
+                                                        .nameController3,
+                                                    style: captionTextSemiBold
+                                                        .copyWith(
+                                                      color: neutral100,
+                                                    ),
+                                                    enabled: true,
+                                                    decoration: InputDecoration(
+                                                      disabledBorder:
+                                                          UnderlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          color: neutral40,
+                                                          width: 1,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(4),
+                                                      ),
+                                                      hintText: 'Masukan Nama',
                                                       hintStyle: listTitleBold
                                                           .copyWith(
                                                               color: neutral60),
@@ -1393,6 +1550,19 @@ class TambahTransaksi extends StatelessWidget {
                                                               ),
                                                             ),
                                                             TextFormField(
+                                                              validator: (v) {
+                                                                if (controller
+                                                                        .alokasi4
+                                                                        .value ==
+                                                                    true) {
+                                                                  if (v ==
+                                                                          '0' ||
+                                                                      v == '') {
+                                                                    return 'Nominal Harus di Isi';
+                                                                  }
+                                                                }
+                                                                return null;
+                                                              },
                                                               onChanged:
                                                                   (value) {
                                                                 controller
@@ -1432,6 +1602,63 @@ class TambahTransaksi extends StatelessWidget {
                                                                 ),
                                                                 hintText:
                                                                     'Tuliskan Nominal',
+                                                                hintStyle: listTitleBold
+                                                                    .copyWith(
+                                                                        color:
+                                                                            neutral60),
+                                                                isDense: true,
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                              height: 8,
+                                                            ),
+                                                            TextFormField(
+                                                              validator: (v) {
+                                                                if (controller
+                                                                        .alokasi4
+                                                                        .value ==
+                                                                    true) {
+                                                                  if (v!
+                                                                      .isEmpty) {
+                                                                    return 'Nama Harus di Isi';
+                                                                  }
+                                                                }
+                                                                return null;
+                                                              },
+                                                              onChanged:
+                                                                  (value) {
+                                                                controller
+                                                                    .clearText();
+                                                              },
+                                                              keyboardType:
+                                                                  TextInputType
+                                                                      .name,
+                                                              controller: controller
+                                                                  .nameController4,
+                                                              style:
+                                                                  captionTextSemiBold
+                                                                      .copyWith(
+                                                                color:
+                                                                    neutral100,
+                                                              ),
+                                                              enabled: true,
+                                                              decoration:
+                                                                  InputDecoration(
+                                                                disabledBorder:
+                                                                    UnderlineInputBorder(
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color:
+                                                                        neutral40,
+                                                                    width: 1,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              4),
+                                                                ),
+                                                                hintText:
+                                                                    'Masukan Nama',
                                                                 hintStyle: listTitleBold
                                                                     .copyWith(
                                                                         color:
@@ -1489,85 +1716,113 @@ class TambahTransaksi extends StatelessWidget {
                           nomor: nomor!,
                           email: email,
                           kategori: kategori,
+                          atasNama: [controller.nameController.text],
                         ));
-                  } else if (controller.alokasi2 == true &&
+                  } else if (controller.tambahtransaksiKey.currentState!
+                          .validate() &&
+                      controller.selectedJenisDonasiId2.value != 0 &&
+                      controller.alokasi2 == true &&
                       controller.alokasi3 == false &&
                       controller.alokasi4 == false) {
                     Get.to(() => BuktiTransaksi(
-                        jenisdonasiId: [
-                          controller.selectedJenisDonasiId.value,
-                          controller.selectedJenisDonasiId2.value
-                        ],
-                        email: email,
-                        kategori: kategori,
-                        judul: judul,
-                        nama: nama,
-                        nomor: nomor!,
-                        id: id,
-                        programId: programId,
-                        nominal: [
-                          controller.nominalController.text,
-                          controller.nominal2Controller.text
-                        ],
-                        jenisDonasi: [
-                          controller.selectedDonasi.value,
-                          controller.selectedDonasi2.value
-                        ]));
-                  } else if (controller.alokasi2 == true &&
+                          jenisdonasiId: [
+                            controller.selectedJenisDonasiId.value,
+                            controller.selectedJenisDonasiId2.value
+                          ],
+                          email: email,
+                          kategori: kategori,
+                          judul: judul,
+                          nama: nama,
+                          nomor: nomor!,
+                          id: id,
+                          programId: programId,
+                          nominal: [
+                            controller.nominalController.text,
+                            controller.nominal2Controller.text
+                          ],
+                          jenisDonasi: [
+                            controller.selectedDonasi.value,
+                            controller.selectedDonasi2.value
+                          ],
+                          atasNama: [
+                            controller.nameController.text,
+                            controller.nameController2.text
+                          ],
+                        ));
+                  } else if (controller.tambahtransaksiKey.currentState!
+                          .validate() &&
+                      controller.selectedJenisDonasiId3.value != 0 &&
+                      controller.alokasi2 == true &&
                       controller.alokasi3 == true &&
                       controller.alokasi4 == false) {
                     Get.to(() => BuktiTransaksi(
-                        jenisdonasiId: [
-                          controller.selectedJenisDonasiId.value,
-                          controller.selectedJenisDonasiId2.value,
-                          controller.selectedJenisDonasiId3.value
-                        ],
-                        email: email,
-                        kategori: kategori,
-                        judul: judul,
-                        nama: nama,
-                        nomor: nomor!,
-                        id: id,
-                        programId: programId,
-                        nominal: [
-                          controller.nominalController.text,
-                          controller.nominal2Controller.text,
-                          controller.nominal3Controller.text
-                        ],
-                        jenisDonasi: [
-                          controller.selectedDonasi.value,
-                          controller.selectedDonasi2.value,
-                          controller.selectedDonasi3.value
-                        ]));
-                  } else if (controller.alokasi2 == true &&
+                          jenisdonasiId: [
+                            controller.selectedJenisDonasiId.value,
+                            controller.selectedJenisDonasiId2.value,
+                            controller.selectedJenisDonasiId3.value
+                          ],
+                          email: email,
+                          kategori: kategori,
+                          judul: judul,
+                          nama: nama,
+                          nomor: nomor!,
+                          id: id,
+                          programId: programId,
+                          nominal: [
+                            controller.nominalController.text,
+                            controller.nominal2Controller.text,
+                            controller.nominal3Controller.text
+                          ],
+                          jenisDonasi: [
+                            controller.selectedDonasi.value,
+                            controller.selectedDonasi2.value,
+                            controller.selectedDonasi3.value
+                          ],
+                          atasNama: [
+                            controller.nameController.text,
+                            controller.nameController2.text,
+                            controller.nameController3.text
+                          ],
+                        ));
+                  } else if (controller.tambahtransaksiKey.currentState!
+                          .validate() &&
+                      controller.selectedJenisDonasiId4.value != 0 &&
+                      controller.alokasi2 == true &&
                       controller.alokasi3 == true &&
                       controller.alokasi4 == true) {
                     Get.to(() => BuktiTransaksi(
-                        jenisdonasiId: [
-                          controller.selectedJenisDonasiId.value,
-                          controller.selectedJenisDonasiId2.value,
-                          controller.selectedJenisDonasiId3.value,
-                          controller.selectedJenisDonasiId4.value
-                        ],
-                        email: email,
-                        kategori: kategori,
-                        judul: judul,
-                        nama: nama,
-                        nomor: nomor!,
-                        id: id,
-                        programId: programId,
-                        nominal: [
-                          controller.nominalController.text,
-                          controller.nominal2Controller.text,
-                          controller.nominal3Controller.text,
-                          controller.nominal4Controller.text
-                        ],
-                        jenisDonasi: [
-                          controller.selectedDonasi.value,
-                          controller.selectedDonasi2.value,
-                          controller.selectedDonasi3.value,
-                          controller.selectedDonasi4.value
-                        ]));
+                          jenisdonasiId: [
+                            controller.selectedJenisDonasiId.value,
+                            controller.selectedJenisDonasiId2.value,
+                            controller.selectedJenisDonasiId3.value,
+                            controller.selectedJenisDonasiId4.value
+                          ],
+                          email: email,
+                          kategori: kategori,
+                          judul: judul,
+                          nama: nama,
+                          nomor: nomor!,
+                          id: id,
+                          programId: programId,
+                          nominal: [
+                            controller.nominalController.text,
+                            controller.nominal2Controller.text,
+                            controller.nominal3Controller.text,
+                            controller.nominal4Controller.text
+                          ],
+                          jenisDonasi: [
+                            controller.selectedDonasi.value,
+                            controller.selectedDonasi2.value,
+                            controller.selectedDonasi3.value,
+                            controller.selectedDonasi4.value
+                          ],
+                          atasNama: [
+                            controller.nameController.text,
+                            controller.nameController2.text,
+                            controller.nameController3.text,
+                            controller.nameController4.text
+                          ],
+                        ));
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(

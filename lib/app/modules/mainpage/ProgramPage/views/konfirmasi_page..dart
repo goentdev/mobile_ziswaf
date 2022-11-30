@@ -19,7 +19,7 @@ class KonfirmasiPage extends StatelessWidget {
   final int id, programId;
   final String judul, nama, nomor, email, kategori;
   final List<int> jenisdonasiId;
-  final List<String> nominal, jenisDonasi;
+  final List<String> nominal, jenisDonasi, atasNama;
   final String nomorRekening, namaRekening, nomorResi, buktiTransaksi;
   final int bankId;
   const KonfirmasiPage(
@@ -38,7 +38,8 @@ class KonfirmasiPage extends StatelessWidget {
       required this.nomor,
       required this.email,
       required this.kategori,
-      required this.jenisdonasiId});
+      required this.jenisdonasiId,
+      required this.atasNama});
 
   @override
   Widget build(BuildContext context) {
@@ -308,6 +309,18 @@ class KonfirmasiPage extends StatelessWidget {
                                       name: 'Rp',
                                       decimalDigits: 0)
                                   .format(int.parse(nominal[index])),
+                              style: percentTittle.copyWith(
+                                color: neutral100,
+                              ),
+                            ),
+                            Text(
+                              ' a/n ',
+                              style: percentTittle.copyWith(
+                                color: neutral100,
+                              ),
+                            ),
+                            Text(
+                              atasNama[index],
                               style: percentTittle.copyWith(
                                 color: neutral100,
                               ),
