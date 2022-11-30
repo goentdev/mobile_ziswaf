@@ -297,72 +297,6 @@ class BuktiTransaksi extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Nomor Rekening',
-                  style: captionTextSemiBold.copyWith(color: neutral90),
-                ),
-              ),
-              const SizedBox(
-                height: 4,
-              ),
-              TextFormField(
-                validator: (v) {
-                  if (v?.isEmpty ?? true) {
-                    return 'Nomor Rekening Tidak boleh Kosong';
-                  }
-                  return null;
-                },
-                controller: controller.bankAccountController,
-                decoration: InputDecoration(
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: neutral30,
-                      width: 4,
-                    ),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  hintText: 'Masukkan Nomor Rekening',
-                  hintStyle: textMBold.copyWith(color: neutral60),
-                  isDense: true,
-                ),
-              ),
-              const SizedBox(height: 16),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Rekening Atas Nama',
-                  style: captionTextSemiBold.copyWith(color: neutral90),
-                ),
-              ),
-              const SizedBox(
-                height: 4,
-              ),
-              TextFormField(
-                validator: (v) {
-                  if (v?.isEmpty ?? true) {
-                    return 'Nama Rekening Tidak boleh Kosong';
-                  }
-                  return null;
-                },
-                controller: controller.accountNameController,
-                decoration: InputDecoration(
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: neutral30,
-                      width: 4,
-                    ),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  hintText: 'Masukkan Nama Rekening',
-                  hintStyle: textMBold.copyWith(color: neutral60),
-                  isDense: true,
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
                   'Nomor Resi  (Optional)',
                   style: captionTextSemiBold.copyWith(color: neutral90),
                 ),
@@ -834,6 +768,7 @@ class BuktiTransaksi extends StatelessWidget {
                 controller2.identityImage != null) {
               if (controller.nomorResiController.text != '') {
                 Get.to(KonfirmasiPage(
+                  namaBank: controller.selectedBank.value,
                   jenisdonasiId: jenisdonasiId,
                   id: id,
                   programId: programId,
@@ -853,6 +788,7 @@ class BuktiTransaksi extends StatelessWidget {
                 ));
               } else {
                 Get.to(KonfirmasiPage(
+                  namaBank: controller.selectedBank.value,
                   jenisdonasiId: jenisdonasiId,
                   id: id,
                   programId: programId,
@@ -860,7 +796,7 @@ class BuktiTransaksi extends StatelessWidget {
                   jenisDonasi: jenisDonasi,
                   nomorRekening: controller.bankAccountController.text,
                   namaRekening: controller.accountNameController.text,
-                  nomorResi: '-',
+                  nomorResi: controller.randomNumber().toString(),
                   buktiTransaksi: controller2.identityImage!.path,
                   bankId: controller.selectedBankId.value,
                   judul: judul,

@@ -531,31 +531,32 @@ class DetailTransaksi extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Nomor Rekening',
+                      'Nama Bank',
                       style: captionTextSemiBold.copyWith(
                         color: neutral70,
                       ),
                     ),
                   ),
                   TextFormField(
-                    initialValue: '$bank - $nomorRekening\na/n $namaRekening',
+                    initialValue: bank,
                     style: captionTextSemiBold.copyWith(
                       color: neutral100,
                     ),
                     enabled: false,
                     decoration: InputDecoration(
                       disabledBorder: UnderlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.white,
+                        borderSide: BorderSide(
+                          color: neutral40,
+                          width: 1,
                         ),
                         borderRadius: BorderRadius.circular(4),
                       ),
-                      hintText: 'Tuliskan..',
+                      hintText: '',
                       hintStyle: listTitleBold.copyWith(color: neutral60),
                       isDense: true,
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 16),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(

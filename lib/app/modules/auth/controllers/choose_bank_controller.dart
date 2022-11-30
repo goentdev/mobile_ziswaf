@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -136,6 +138,11 @@ class ChooseBankController extends GetxController {
       final loweredDonasi = element.nama!.toLowerCase();
       return loweredDonasi.contains(value.toLowerCase());
     }).toList();
+  }
+
+  int randomNumber() {
+    int random = Random().nextInt(10000000);
+    return random;
   }
 
   getJenisdonasi({required int id}) async {

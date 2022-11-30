@@ -20,7 +20,7 @@ class KonfirmasiPage extends StatelessWidget {
   final String judul, nama, nomor, email, kategori;
   final List<int> jenisdonasiId;
   final List<String> nominal, jenisDonasi, atasNama;
-  final String nomorRekening, namaRekening, nomorResi, buktiTransaksi;
+  final String nomorRekening, namaRekening, nomorResi, buktiTransaksi, namaBank;
   final int bankId;
   const KonfirmasiPage(
       {super.key,
@@ -39,7 +39,8 @@ class KonfirmasiPage extends StatelessWidget {
       required this.email,
       required this.kategori,
       required this.jenisdonasiId,
-      required this.atasNama});
+      required this.atasNama,
+      required this.namaBank});
 
   @override
   Widget build(BuildContext context) {
@@ -216,31 +217,32 @@ class KonfirmasiPage extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Nomor Rekening',
+                      'Nama Bank',
                       style: captionTextSemiBold.copyWith(
                         color: neutral70,
                       ),
                     ),
                   ),
                   TextFormField(
-                    initialValue: '$nomorRekening\na/n $namaRekening',
+                    initialValue: namaBank,
                     style: captionTextSemiBold.copyWith(
                       color: neutral100,
                     ),
                     enabled: false,
                     decoration: InputDecoration(
                       disabledBorder: UnderlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.white,
+                        borderSide: BorderSide(
+                          color: neutral40,
+                          width: 1,
                         ),
                         borderRadius: BorderRadius.circular(4),
                       ),
-                      hintText: 'Tuliskan..',
+                      hintText: '',
                       hintStyle: listTitleBold.copyWith(color: neutral60),
                       isDense: true,
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 16),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
