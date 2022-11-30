@@ -20,7 +20,7 @@ class KonfirmasiPageEdit extends StatelessWidget {
 
   final List<int> jenisdonasiId;
   final List<String> nominal, jenisDonasi;
-  final String nomorRekening, namaRekening, nomorResi, buktiTransaksi;
+  final String nomorRekening, namaRekening, nomorResi, buktiTransaksi, namaBank;
   final int bankId;
   const KonfirmasiPageEdit(
       {super.key,
@@ -39,7 +39,8 @@ class KonfirmasiPageEdit extends StatelessWidget {
       required this.email,
       required this.kategori,
       required this.transaksiId,
-      required this.jenisdonasiId});
+      required this.jenisdonasiId,
+      required this.namaBank});
 
   @override
   Widget build(BuildContext context) {
@@ -216,31 +217,32 @@ class KonfirmasiPageEdit extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Nomor Rekening',
+                      'Nama Bank',
                       style: captionTextSemiBold.copyWith(
                         color: neutral70,
                       ),
                     ),
                   ),
                   TextFormField(
-                    initialValue: '$nomorRekening\na/n $namaRekening',
+                    initialValue: namaBank,
                     style: captionTextSemiBold.copyWith(
                       color: neutral100,
                     ),
                     enabled: false,
                     decoration: InputDecoration(
                       disabledBorder: UnderlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.white,
+                        borderSide: BorderSide(
+                          color: neutral40,
+                          width: 1,
                         ),
                         borderRadius: BorderRadius.circular(4),
                       ),
-                      hintText: 'Tuliskan..',
+                      hintText: '',
                       hintStyle: listTitleBold.copyWith(color: neutral60),
                       isDense: true,
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 16),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -660,9 +662,30 @@ class KonfirmasiPageEdit extends StatelessWidget {
                                           ),
                                           InkWell(
                                             onTap: () {
-                                              Get.to(PhotoView(
-                                                  imageProvider: FileImage(
-                                                      File(buktiTransaksi))));
+                                              Get.to(Stack(
+                                                children: [
+                                                  PhotoView(
+                                                    imageProvider: FileImage(
+                                                      File(buktiTransaksi),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 16, top: 40),
+                                                    child: IconButton(
+                                                      onPressed: () {
+                                                        Get.back();
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.arrow_back_ios,
+                                                        color: primaryMain,
+                                                        size: 24,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ));
                                             },
                                             child: Container(
                                               height: 245,
@@ -759,9 +782,29 @@ class KonfirmasiPageEdit extends StatelessWidget {
                                           ),
                                           InkWell(
                                             onTap: () {
-                                              Get.to(PhotoView(
-                                                  imageProvider: NetworkImage(
-                                                      buktiTransaksi)));
+                                              Get.to(Stack(
+                                                children: [
+                                                  PhotoView(
+                                                    imageProvider: NetworkImage(
+                                                        buktiTransaksi),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 16, top: 40),
+                                                    child: IconButton(
+                                                      onPressed: () {
+                                                        Get.back();
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.arrow_back_ios,
+                                                        color: primaryMain,
+                                                        size: 24,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ));
                                             },
                                             child: Container(
                                               height: 245,

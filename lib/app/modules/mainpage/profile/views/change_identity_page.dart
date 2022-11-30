@@ -253,10 +253,31 @@ class ChangeIdentityPage extends StatelessWidget {
                                         children: [
                                           InkWell(
                                             onTap: () {
-                                              Get.to(PhotoView(
-                                                  imageProvider: FileImage(File(
-                                                      controller.identityImage!
-                                                          .path))));
+                                              Get.to(Stack(
+                                                children: [
+                                                  PhotoView(
+                                                    imageProvider: FileImage(
+                                                      File(controller
+                                                          .identityImage!.path),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 16, top: 40),
+                                                    child: IconButton(
+                                                      onPressed: () {
+                                                        Get.back();
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.arrow_back_ios,
+                                                        color: primaryMain,
+                                                        size: 24,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ));
                                             },
                                             child: Container(
                                               height: 100,
@@ -431,10 +452,34 @@ class ChangeIdentityPage extends StatelessWidget {
                                         children: [
                                           InkWell(
                                             onTap: () {
-                                              Get.to(PhotoView(
-                                                  imageProvider: NetworkImage(
-                                                      profileC.user.value!
-                                                          .fotoKartuIdentitas!)));
+                                              Get.to(
+                                                Stack(
+                                                  children: [
+                                                    PhotoView(
+                                                        imageProvider:
+                                                            NetworkImage(profileC
+                                                                .user
+                                                                .value!
+                                                                .fotoKartuIdentitas!)),
+                                                    Container(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 16,
+                                                              top: 40),
+                                                      child: IconButton(
+                                                        onPressed: () {
+                                                          Get.back();
+                                                        },
+                                                        icon: Icon(
+                                                          Icons.arrow_back_ios,
+                                                          color: primaryMain,
+                                                          size: 24,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
                                             },
                                             child: Container(
                                               height: 100,

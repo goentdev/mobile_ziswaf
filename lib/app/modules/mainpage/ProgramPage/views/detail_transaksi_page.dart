@@ -88,226 +88,238 @@ class DetailTransaksi extends StatelessWidget {
           ),
         ),
         actions: [
-          GestureDetector(
-            onTap: () {
-              showModalBottomSheet(
-                constraints: const BoxConstraints(maxHeight: 126),
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8),
-                    topRight: Radius.circular(8),
-                  ),
-                ),
-                context: context,
-                builder: (context) {
-                  return Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 16),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 5,
-                          width: 50,
-                          decoration: BoxDecoration(
-                            color: neutral30,
-                            borderRadius: BorderRadius.circular(100),
-                          ),
+          status == 0
+              ? GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      constraints: const BoxConstraints(maxHeight: 126),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(8),
+                          topRight: Radius.circular(8),
                         ),
-                        const SizedBox(height: 14),
-                        GestureDetector(
-                          onTap: () async {
-                            await controller2.getAlokasiDana(id: id);
-                            await controller2.getJenisdonasi(id: programId!);
-                            Get.back();
-                            Get.to(() => EditTransaksiPage(
-                                judul: judul,
-                                nama: nama!,
-                                nomor: nomor,
-                                muzakiId: muzakiId,
-                                programId: programId!,
-                                whatsapp: whatsapp,
-                                email: email!,
-                                kategori: kategori!,
-                                transaksiId: transaksiId,
-                                nomorRekening: nomorRekening,
-                                namaRekening: namaRekening,
-                                nomoResi: nomoResi,
-                                bankNama: bankNama,
-                                fotobuktiTransaksi: fotobuktiTransaksi,
-                                bankId: bankId));
-                          },
-                          child: Row(
+                      ),
+                      context: context,
+                      builder: (context) {
+                        return Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 16),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.asset(
-                                'assets/icons/pensil.png',
-                                width: 16,
-                                height: 16,
+                              Container(
+                                height: 5,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  color: neutral30,
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
                               ),
-                              const SizedBox(width: 8),
-                              Text(
-                                'Ubah',
-                                style: buttonTabsTextBold.copyWith(
-                                    color: neutral70),
-                              )
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 24),
-                        GestureDetector(
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return Dialog(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  insetPadding: const EdgeInsets.all(10),
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: 308,
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 24, vertical: 48),
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 75,
-                                          width: 75,
-                                          child: CircleAvatar(
-                                            backgroundColor:
-                                                const Color(0XffFEF7EC),
-                                            child: Image.asset(
-                                              'assets/icons/iconseru.png',
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(height: 24),
-                                        Text(
-                                          'Yakin Ingin Menghapus Data?',
-                                          style: listItemTitleBlack.copyWith(
-                                            color: neutral100,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 48),
-                                        Row(
-                                          children: [
-                                            const SizedBox(
-                                              width: 24,
-                                            ),
-                                            Flexible(
-                                              flex: 1,
-                                              child: GestureDetector(
-                                                onTap: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      right: 24),
-                                                  height: 41,
-                                                  width: double.infinity,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.red,
-                                                    border: Border.all(
-                                                      width: 1,
-                                                      color: neutral40,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                  ),
-                                                  child: Center(
-                                                      child: Text(
-                                                    'Batal',
-                                                    style: textMBold.copyWith(
-                                                        color: Colors.white),
-                                                  )),
-                                                ),
-                                              ),
-                                            ),
-                                            Flexible(
-                                              flex: 1,
-                                              child: GestureDetector(
-                                                onTap: () async {
-                                                  await controller2
-                                                      .deleteTransaksi(id);
-                                                  await controller2
-                                                      .getPrograms();
-                                                  await controller2
-                                                      .gettotalberlangsungg();
-                                                  await controller2
-                                                      .gettotalselesai();
-                                                  await controller2
-                                                      .getTransaksis(
-                                                          id: programId);
-                                                  Get.offAllNamed(
-                                                      Routes.MAINPAGE);
-                                                },
-                                                child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      right: 24),
-                                                  height: 41,
-                                                  width: double.infinity,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    border: Border.all(
-                                                      width: 1,
-                                                      color: dangerMain,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                  ),
-                                                  child: Center(
-                                                      child: Text(
-                                                    'Hapus',
-                                                    style: textMBold.copyWith(
-                                                        color: dangerMain),
-                                                  )),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                              const SizedBox(height: 14),
+                              GestureDetector(
+                                onTap: () async {
+                                  await controller2.getAlokasiDana(id: id);
+                                  await controller2.getJenisdonasi(
+                                      id: programId!);
+                                  Get.back();
+                                  Get.to(() => EditTransaksiPage(
+                                      judul: judul,
+                                      nama: nama!,
+                                      nomor: nomor,
+                                      muzakiId: muzakiId,
+                                      programId: programId!,
+                                      whatsapp: whatsapp,
+                                      email: email!,
+                                      kategori: kategori!,
+                                      transaksiId: transaksiId,
+                                      nomorRekening: nomorRekening,
+                                      namaRekening: namaRekening,
+                                      nomoResi: nomoResi,
+                                      bankNama: bankNama,
+                                      fotobuktiTransaksi: fotobuktiTransaksi,
+                                      bankId: bankId));
+                                },
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      'assets/icons/pensil.png',
+                                      width: 16,
+                                      height: 16,
                                     ),
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                'assets/icons/trash.png',
-                                width: 16,
-                                height: 16,
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      'Ubah',
+                                      style: buttonTabsTextBold.copyWith(
+                                          color: neutral70),
+                                    )
+                                  ],
+                                ),
                               ),
-                              const SizedBox(width: 8),
-                              Text(
-                                'Hapus',
-                                style: buttonTabsTextBold.copyWith(
-                                    color: dangerMain),
+                              const SizedBox(height: 24),
+                              GestureDetector(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return Dialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        insetPadding: const EdgeInsets.all(10),
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 308,
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 24, vertical: 48),
+                                          child: Column(
+                                            children: [
+                                              SizedBox(
+                                                height: 75,
+                                                width: 75,
+                                                child: CircleAvatar(
+                                                  backgroundColor:
+                                                      const Color(0XffFEF7EC),
+                                                  child: Image.asset(
+                                                    'assets/icons/iconseru.png',
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(height: 24),
+                                              Text(
+                                                'Yakin Ingin Menghapus Data?',
+                                                style:
+                                                    listItemTitleBlack.copyWith(
+                                                  color: neutral100,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 48),
+                                              Row(
+                                                children: [
+                                                  const SizedBox(
+                                                    width: 24,
+                                                  ),
+                                                  Flexible(
+                                                    flex: 1,
+                                                    child: GestureDetector(
+                                                      onTap: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                      child: Container(
+                                                        margin: const EdgeInsets
+                                                            .only(right: 24),
+                                                        height: 41,
+                                                        width: double.infinity,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.red,
+                                                          border: Border.all(
+                                                            width: 1,
+                                                            color: neutral40,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                        ),
+                                                        child: Center(
+                                                            child: Text(
+                                                          'Batal',
+                                                          style: textMBold
+                                                              .copyWith(
+                                                                  color: Colors
+                                                                      .white),
+                                                        )),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Flexible(
+                                                    flex: 1,
+                                                    child: GestureDetector(
+                                                      onTap: () async {
+                                                        await controller2
+                                                            .deleteTransaksi(
+                                                                id);
+                                                        await controller2
+                                                            .getPrograms();
+                                                        await controller2
+                                                            .gettotalberlangsungg();
+                                                        await controller2
+                                                            .gettotalselesai();
+                                                        await controller2
+                                                            .getTransaksis(
+                                                                id: programId);
+                                                        Get.offAllNamed(
+                                                            Routes.MAINPAGE);
+                                                      },
+                                                      child: Container(
+                                                        margin: const EdgeInsets
+                                                            .only(right: 24),
+                                                        height: 41,
+                                                        width: double.infinity,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.white,
+                                                          border: Border.all(
+                                                            width: 1,
+                                                            color: dangerMain,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                        ),
+                                                        child: Center(
+                                                            child: Text(
+                                                          'Hapus',
+                                                          style: textMBold
+                                                              .copyWith(
+                                                                  color:
+                                                                      dangerMain),
+                                                        )),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      'assets/icons/trash.png',
+                                      width: 16,
+                                      height: 16,
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      'Hapus',
+                                      style: buttonTabsTextBold.copyWith(
+                                          color: dangerMain),
+                                    ),
+                                  ],
+                                ),
                               ),
+                              const SizedBox(height: 16),
                             ],
                           ),
-                        ),
-                        const SizedBox(height: 16),
-                      ],
+                        );
+                      },
+                    );
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.all(16),
+                    child: Image.asset(
+                      'assets/icons/detail_icon.png',
+                      width: 20,
+                      height: 20,
                     ),
-                  );
-                },
-              );
-            },
-            child: Container(
-              margin: const EdgeInsets.all(16),
-              child: Image.asset(
-                'assets/icons/detail_icon.png',
-                width: 20,
-                height: 20,
-              ),
-            ),
-          ),
+                  ),
+                )
+              : SizedBox()
         ],
       ),
       body: SingleChildScrollView(
@@ -982,9 +994,28 @@ class DetailTransaksi extends StatelessWidget {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        Get.to(PhotoView(
-                                            imageProvider: NetworkImage(
-                                                buktifotoTransaksi!)));
+                                        Get.to(Stack(
+                                          children: [
+                                            PhotoView(
+                                              imageProvider: NetworkImage(
+                                                  buktifotoTransaksi!),
+                                            ),
+                                            Container(
+                                              padding: const EdgeInsets.only(
+                                                  left: 16, top: 40),
+                                              child: IconButton(
+                                                onPressed: () {
+                                                  Get.back();
+                                                },
+                                                icon: Icon(
+                                                  Icons.arrow_back_ios,
+                                                  color: primaryMain,
+                                                  size: 24,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ));
                                       },
                                       child: Container(
                                         height: 245,

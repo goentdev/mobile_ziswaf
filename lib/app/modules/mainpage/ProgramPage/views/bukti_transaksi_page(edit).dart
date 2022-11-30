@@ -52,8 +52,6 @@ class BuktiTransaksiEdit extends StatelessWidget {
     final controller2 = Get.put(IdentityController());
     final controller3 = Get.put(ChooseBankController2());
 
-    controller.bankAccountController.text = nomorRekening!;
-    controller.accountNameController.text = namRekening!;
     controller.nomorResiController.text = nomorResi!;
     controller.selectedBankId.value = bankId;
 
@@ -303,61 +301,7 @@ class BuktiTransaksiEdit extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Nomor Rekening',
-                style: captionTextSemiBold.copyWith(color: neutral90),
-              ),
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            TextFormField(
-              controller: controller.bankAccountController,
-              decoration: InputDecoration(
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: neutral30,
-                    width: 4,
-                  ),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                hintText: 'Masukkan Nomor Rekening',
-                hintStyle: textMBold.copyWith(color: neutral60),
-                isDense: true,
-              ),
-            ),
-            const SizedBox(height: 16),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Rekening Atas Nama',
-                style: captionTextSemiBold.copyWith(color: neutral90),
-              ),
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            TextFormField(
-              controller: controller.accountNameController,
-              decoration: InputDecoration(
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: neutral30,
-                    width: 4,
-                  ),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                hintText: 'Masukkan Nama Rekening',
-                hintStyle: textMBold.copyWith(color: neutral60),
-                isDense: true,
-              ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Nomor Resi',
+                'Nomor Resi (Optional)',
                 style: captionTextSemiBold.copyWith(color: neutral90),
               ),
             ),
@@ -576,11 +520,37 @@ class BuktiTransaksiEdit extends StatelessWidget {
                                                   ),
                                                   InkWell(
                                                     onTap: () {
-                                                      Get.to(PhotoView(
-                                                          imageProvider: FileImage(
+                                                      Get.to(Stack(
+                                                        children: [
+                                                          PhotoView(
+                                                            imageProvider:
+                                                                FileImage(
                                                               File(controller
                                                                   .identityImage!
-                                                                  .path))));
+                                                                  .path),
+                                                            ),
+                                                          ),
+                                                          Container(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 16,
+                                                                    top: 40),
+                                                            child: IconButton(
+                                                              onPressed: () {
+                                                                Get.back();
+                                                              },
+                                                              icon: Icon(
+                                                                Icons
+                                                                    .arrow_back_ios,
+                                                                color:
+                                                                    primaryMain,
+                                                                size: 24,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ));
                                                     },
                                                     child: Container(
                                                       height: 245,
@@ -692,10 +662,35 @@ class BuktiTransaksiEdit extends StatelessWidget {
                                                   ),
                                                   InkWell(
                                                     onTap: () {
-                                                      Get.to(PhotoView(
-                                                          imageProvider:
-                                                              NetworkImage(
-                                                                  buktifotoTransaksi!)));
+                                                      Get.to(
+                                                        Stack(
+                                                          children: [
+                                                            PhotoView(
+                                                                imageProvider:
+                                                                    NetworkImage(
+                                                                        buktifotoTransaksi!)),
+                                                            Container(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left: 16,
+                                                                      top: 40),
+                                                              child: IconButton(
+                                                                onPressed: () {
+                                                                  Get.back();
+                                                                },
+                                                                icon: Icon(
+                                                                  Icons
+                                                                      .arrow_back_ios,
+                                                                  color:
+                                                                      primaryMain,
+                                                                  size: 24,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      );
                                                     },
                                                     child: Container(
                                                       height: 245,
@@ -947,6 +942,7 @@ class BuktiTransaksiEdit extends StatelessWidget {
           onPressed: () async {
             if (controller2.identityImage == null) {
               Get.to(KonfirmasiPageEdit(
+                namaBank: bankNama!,
                 transaksiId: transaksiId,
                 id: id,
                 programId: programId,
@@ -966,6 +962,7 @@ class BuktiTransaksiEdit extends StatelessWidget {
               ));
             } else {
               Get.to(KonfirmasiPageEdit(
+                namaBank: bankNama!,
                 jenisdonasiId: jenisdonasiId,
                 transaksiId: transaksiId,
                 id: id,

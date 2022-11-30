@@ -168,19 +168,46 @@ class Berkas extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                          Get.to(PhotoViewGallery.builder(
-                            itemCount: clist2.length,
-                            builder: (context, index) {
-                              String galleryname = clist2[index];
-                              galleryname = galleryname.split("/")[7];
-                              galleryname = galleryname.substring(
-                                  0, galleryname.indexOf('?'));
-                              return PhotoViewGalleryPageOptions(
-                                  heroAttributes:
-                                      PhotoViewHeroAttributes(tag: galleryname),
-                                  imageProvider: NetworkImage(clist2[index]));
-                            },
-                          ));
+                          var pagecontrollerr =
+                              PageController(initialPage: index);
+                          Get.to(
+                            Stack(
+                              alignment: Alignment.topLeft,
+                              children: [
+                                PhotoViewGallery.builder(
+                                  pageController: pagecontrollerr,
+                                  onPageChanged: (index) => index,
+                                  itemCount: clist2.length,
+                                  scrollPhysics: const BouncingScrollPhysics(),
+                                  builder: (context, index) {
+                                    String galleryname = clist2[index];
+                                    galleryname = galleryname.split("/")[7];
+                                    galleryname = galleryname.substring(
+                                        0, galleryname.indexOf('?'));
+                                    return PhotoViewGalleryPageOptions(
+                                        heroAttributes: PhotoViewHeroAttributes(
+                                            tag: galleryname),
+                                        imageProvider:
+                                            NetworkImage(clist2[index]));
+                                  },
+                                ),
+                                Container(
+                                  padding:
+                                      const EdgeInsets.only(left: 16, top: 40),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    icon: Icon(
+                                      Icons.arrow_back_ios,
+                                      color: primaryMain,
+                                      size: 24,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
                         },
                         child: Align(
                           alignment: Alignment.centerLeft,

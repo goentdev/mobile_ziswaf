@@ -163,6 +163,7 @@ class DetailCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Container(
+                              margin: const EdgeInsets.only(top: 7),
                               width: 90,
                               height: 20,
                               decoration: BoxDecoration(
@@ -568,6 +569,7 @@ class DetailCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Container(
+                                margin: const EdgeInsets.only(top: 7),
                                 width: 90,
                                 height: 20,
                                 decoration: BoxDecoration(

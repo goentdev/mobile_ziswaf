@@ -516,11 +516,37 @@ class BuktiTransaksi extends StatelessWidget {
                                                 ),
                                                 InkWell(
                                                   onTap: () {
-                                                    Get.to(PhotoView(
-                                                        imageProvider: FileImage(
+                                                    Get.to(Stack(
+                                                      children: [
+                                                        PhotoView(
+                                                          imageProvider:
+                                                              FileImage(
                                                             File(controller
                                                                 .identityImage!
-                                                                .path))));
+                                                                .path),
+                                                          ),
+                                                        ),
+                                                        Container(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 16,
+                                                                  top: 40),
+                                                          child: IconButton(
+                                                            onPressed: () {
+                                                              Get.back();
+                                                            },
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .arrow_back_ios,
+                                                              color:
+                                                                  primaryMain,
+                                                              size: 24,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ));
                                                   },
                                                   child: Container(
                                                     height: 245,

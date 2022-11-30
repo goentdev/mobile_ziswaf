@@ -35,6 +35,8 @@ class CardDana extends StatelessWidget {
     final controller = Get.put(ProgramPageController());
     double persen = target / 100;
     double target100v = target / persen;
+    final now = DateTime.now();
+    final tanggaltutup = DateTime(now.year, now.month, now.day);
     int target100 = target100v.toInt();
     double target1v = terkumpul / persen;
     int target1 = target1v.toInt();
@@ -137,10 +139,17 @@ class CardDana extends StatelessWidget {
                         ).format(terkumpul),
                         style: captionTextSemiBold.copyWith(color: neutral100),
                       ),
-                      Text(
-                        Jiffy(tanggalakhir).fromNow(),
-                        style: captionTextBold.copyWith(color: secondaryMain),
-                      )
+                      DateTime.parse(tanggalakhir).compareTo(tanggaltutup) >= 0
+                          ? Text(
+                              Jiffy(tanggalakhir).fromNow(),
+                              style: captionTextBold.copyWith(
+                                  color: secondaryMain),
+                            )
+                          : Text(
+                              'Selesai',
+                              style:
+                                  captionTextBold.copyWith(color: primaryMain),
+                            ),
                     ],
                   ),
                 ),

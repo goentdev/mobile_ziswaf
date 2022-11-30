@@ -67,8 +67,28 @@ class IdentityController extends GetxController {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(PhotoView(
-                        imageProvider: FileImage(File(identityImage!.path))));
+                    Get.to(
+                      Stack(
+                        children: [
+                          PhotoView(
+                            imageProvider: FileImage(File(identityImage!.path)),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(left: 16, top: 40),
+                            child: IconButton(
+                              onPressed: () {
+                                Get.back();
+                              },
+                              icon: Icon(
+                                Icons.arrow_back_ios,
+                                color: primaryMain,
+                                size: 24,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    );
                   },
                   child: Container(
                     height: 245,
@@ -293,8 +313,28 @@ class IdentityController extends GetxController {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(PhotoView(
-                        imageProvider: FileImage(File(identityImage!.path))));
+                    Get.to(Stack(
+                      children: [
+                        PhotoView(
+                          imageProvider: FileImage(
+                            File(identityImage!.path),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(left: 16, top: 40),
+                          child: IconButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios,
+                              color: primaryMain,
+                              size: 24,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ));
                   },
                   child: Container(
                     height: 245,
@@ -457,6 +497,7 @@ class IdentityController extends GetxController {
                         onTap: () {
                           update();
                           Get.back();
+                          deletee();
                         },
                         child: Container(
                           margin: const EdgeInsets.only(right: 8),
