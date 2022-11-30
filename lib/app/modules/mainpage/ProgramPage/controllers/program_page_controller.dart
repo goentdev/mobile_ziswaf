@@ -72,9 +72,9 @@ class ProgramPageController extends GetxController
     );
     // refreshTransaksi();
     // getTransaksis(id: 39);
-    // gettotalberlangsungg();
-    // gettotaldana();
-    // getPrograms();
+    gettotalberlangsungg();
+    gettotaldana();
+    getPrograms();
     scrollController = ScrollController();
     scrollController2 = ScrollController();
     super.onInit();
