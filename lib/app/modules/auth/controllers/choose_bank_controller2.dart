@@ -20,6 +20,7 @@ class ChooseBankController2 extends GetxController {
 
   late TextEditingController nominalController;
   late GlobalKey<FormState> loginFormKey;
+  late GlobalKey<FormState> editFormKey;
   late ScrollController firstController;
   late ScrollController firstController2;
   late ScrollController firstController3;
@@ -82,6 +83,7 @@ class ChooseBankController2 extends GetxController {
     firstController3 = ScrollController();
     loginFormKey = GlobalKey<FormState>();
     getBanks();
+    editFormKey = GlobalKey<FormState>();
 
     nominalController = TextEditingController(text: '0');
     nominal2Controller = TextEditingController(text: '0');
