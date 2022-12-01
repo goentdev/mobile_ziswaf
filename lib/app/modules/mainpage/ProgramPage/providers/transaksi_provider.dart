@@ -16,17 +16,17 @@ class TransaksiProvider2 extends GetConnect {
   String? linkBuktiTransaksi;
   String _getRandomFileName() =>
       '${DateTime.now().toUtc().toString()}-${Random().nextInt(8999) + 1000}';
-  Future<bool> tambahTransaksi({
-    required programId,
-    required muzakiId,
-    required jenisDonasi,
-    required nominal,
-    required nomorRekening,
-    required namaRekening,
-    required nomorResi,
-    required buktiTransaksi,
-    required bankId,
-  }) async {
+  Future<bool> tambahTransaksi(
+      {required programId,
+      required muzakiId,
+      required jenisDonasi,
+      required nominal,
+      required nomorRekening,
+      required namaRekening,
+      required nomorResi,
+      required buktiTransaksi,
+      required bankId,
+      required atasNama}) async {
     assert(bankId != null);
     final fotoRef = firebaseStorage.ref('bukti-transfer');
     final convertedFoto = File(buktiTransaksi);
@@ -45,7 +45,8 @@ class TransaksiProvider2 extends GetConnect {
       "nama_rekening": namaRekening,
       "nomor_resi": nomorResi,
       "bukti_transaksi": linkBuktiTransaksi,
-      "bank_id": bankId
+      "bank_id": bankId,
+      "atas_nama": atasNama
     });
     printError();
     if (response.status.isOk) {

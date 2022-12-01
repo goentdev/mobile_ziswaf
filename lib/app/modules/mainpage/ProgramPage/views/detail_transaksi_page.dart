@@ -74,7 +74,7 @@ class DetailTransaksi extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          'Detail Transaksi',
+          transaksiId.toString(),
           style: listTitleBold.copyWith(color: neutral90),
         ),
         leading: IconButton(
@@ -640,6 +640,18 @@ class DetailTransaksi extends StatelessWidget {
                                   .format(
                                 controller2.alokasi![index].nominal!,
                               ),
+                              style: percentTittle.copyWith(
+                                color: neutral100,
+                              ),
+                            ),
+                            Text(
+                              ' a/n ',
+                              style: percentTittle.copyWith(
+                                color: neutral100,
+                              ),
+                            ),
+                            Text(
+                              controller2.alokasi?[index].atasNama ?? '',
                               style: percentTittle.copyWith(
                                 color: neutral100,
                               ),

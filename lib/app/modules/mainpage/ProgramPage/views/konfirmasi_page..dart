@@ -822,7 +822,8 @@ class KonfirmasiPage extends StatelessWidget {
                   namaRekening: namaRekening,
                   nomorResi: nomorResi,
                   buktiTransaksi: buktiTransaksi,
-                  bankId: bankId);
+                  bankId: bankId,
+                  atasNama: atasNama);
               await controller2.getPrograms3();
               await controller2.gettotalberlangsungg2();
               await controller2.gettotalselesai3();
