@@ -17,9 +17,9 @@ import 'package:path/path.dart';
 
 class BuktiTransaksiEdit extends StatelessWidget {
   final int id, programId, transaksiId;
-  final List<String> nominal, jenisDonasi;
+  final List<String> nominal, jenisDonasi, atasNama;
   final int bankId;
-  final List<int> jenisdonasiId;
+  final List<int> jenisdonasiId, alokasiId;
   final String judul, nama, nomor, email, kategori;
   final String? bankNama,
       namRekening,
@@ -44,7 +44,9 @@ class BuktiTransaksiEdit extends StatelessWidget {
       required this.nomorRekening,
       required this.buktifotoTransaksi,
       required this.bankId,
-      required this.jenisdonasiId});
+      required this.jenisdonasiId,
+      required this.atasNama,
+      required this.alokasiId});
 
   @override
   Widget build(BuildContext context) {
@@ -943,6 +945,8 @@ class BuktiTransaksiEdit extends StatelessWidget {
             if (controller2.identityImage == null) {
               if (controller.nomorResiController.text != '') {
                 Get.to(KonfirmasiPageEdit(
+                  alokasiId: alokasiId,
+                  atasNama: atasNama,
                   namaBank: bankNama!,
                   transaksiId: transaksiId,
                   id: id,
@@ -963,6 +967,8 @@ class BuktiTransaksiEdit extends StatelessWidget {
                 ));
               } else {
                 Get.to(KonfirmasiPageEdit(
+                  alokasiId: alokasiId,
+                  atasNama: atasNama,
                   namaBank: bankNama!,
                   transaksiId: transaksiId,
                   id: id,
@@ -971,7 +977,7 @@ class BuktiTransaksiEdit extends StatelessWidget {
                   jenisDonasi: jenisDonasi,
                   nomorRekening: controller.bankAccountController.text,
                   namaRekening: controller.accountNameController.text,
-                  nomorResi: controller.randomNumber().toString(),
+                  nomorResi: '-',
                   buktiTransaksi: buktifotoTransaksi!,
                   bankId: controller.selectedBankId.value,
                   judul: judul,
@@ -985,6 +991,8 @@ class BuktiTransaksiEdit extends StatelessWidget {
             } else {
               if (controller.nomorResiController.text != '') {
                 Get.to(KonfirmasiPageEdit(
+                  alokasiId: alokasiId,
+                  atasNama: atasNama,
                   namaBank: bankNama!,
                   jenisdonasiId: jenisdonasiId,
                   transaksiId: transaksiId,
@@ -1005,6 +1013,8 @@ class BuktiTransaksiEdit extends StatelessWidget {
                 ));
               } else {
                 Get.to(KonfirmasiPageEdit(
+                  alokasiId: alokasiId,
+                  atasNama: atasNama,
                   namaBank: bankNama!,
                   jenisdonasiId: jenisdonasiId,
                   transaksiId: transaksiId,
@@ -1014,7 +1024,7 @@ class BuktiTransaksiEdit extends StatelessWidget {
                   jenisDonasi: jenisDonasi,
                   nomorRekening: controller.bankAccountController.text,
                   namaRekening: controller.accountNameController.text,
-                  nomorResi: controller.randomNumber().toString(),
+                  nomorResi: '-',
                   buktiTransaksi: controller2.identityImage!.path,
                   bankId: controller.selectedBankId.value,
                   judul: judul,

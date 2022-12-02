@@ -198,10 +198,12 @@ class ProgramPageController extends GetxController
   }
 
   Future<bool> changeTransaksi({
+    required alokasiId,
     required id,
     required programId,
     required muzakiId,
     required jenisDonasi,
+    required atasNama,
     required nominal,
     required nomorRekening,
     required namaRekening,
@@ -225,7 +227,9 @@ class ProgramPageController extends GetxController
         "nama_rekening": namaRekening,
         "nomor_resi": nomorResi,
         "bukti_transaksi": buktiTransaksi,
-        "bank_id": bankId
+        "bank_id": bankId,
+        "alokasi_id": alokasiId,
+        "atas_nama": atasNama
       });
       if (sukses) {
         transaksis.update((val) {
@@ -249,7 +253,9 @@ class ProgramPageController extends GetxController
         "nomor_rekening": nomorRekening,
         "nama_rekening": namaRekening,
         "nomor_resi": nomorResi,
-        "bank_id": bankId
+        "bank_id": bankId,
+        "alokasi_id": alokasiId,
+        "atas_nama": atasNama
       });
       if (sukses1) {
         transaksis.update((val) {

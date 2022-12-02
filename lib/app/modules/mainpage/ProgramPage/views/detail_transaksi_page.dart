@@ -74,7 +74,7 @@ class DetailTransaksi extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          transaksiId.toString(),
+          'Detail Transaksi',
           style: listTitleBold.copyWith(color: neutral90),
         ),
         leading: IconButton(

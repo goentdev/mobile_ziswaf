@@ -18,8 +18,8 @@ class KonfirmasiPageEdit extends StatelessWidget {
   final int id, programId, transaksiId;
   final String judul, nama, nomor, email, kategori;
 
-  final List<int> jenisdonasiId;
-  final List<String> nominal, jenisDonasi;
+  final List<int> jenisdonasiId, alokasiId;
+  final List<String> nominal, jenisDonasi, atasNama;
   final String nomorRekening, namaRekening, nomorResi, buktiTransaksi, namaBank;
   final int bankId;
   const KonfirmasiPageEdit(
@@ -40,7 +40,9 @@ class KonfirmasiPageEdit extends StatelessWidget {
       required this.kategori,
       required this.transaksiId,
       required this.jenisdonasiId,
-      required this.namaBank});
+      required this.namaBank,
+      required this.atasNama,
+      required this.alokasiId});
 
   @override
   Widget build(BuildContext context) {
@@ -311,6 +313,18 @@ class KonfirmasiPageEdit extends StatelessWidget {
                                       name: 'Rp',
                                       decimalDigits: 0)
                                   .format(int.parse(nominal[index])),
+                              style: percentTittle.copyWith(
+                                color: neutral100,
+                              ),
+                            ),
+                            Text(
+                              ' a/n ',
+                              style: percentTittle.copyWith(
+                                color: neutral100,
+                              ),
+                            ),
+                            Text(
+                              atasNama[index],
                               style: percentTittle.copyWith(
                                 color: neutral100,
                               ),
@@ -926,6 +940,8 @@ class KonfirmasiPageEdit extends StatelessWidget {
           onPressed: () async {
             if (buktiTransaksi == controller.identityImage?.path) {
               bool success = await controller2.changeTransaksi(
+                  alokasiId: alokasiId,
+                  atasNama: atasNama,
                   id: transaksiId,
                   programId: programId,
                   muzakiId: id,
@@ -947,6 +963,8 @@ class KonfirmasiPageEdit extends StatelessWidget {
               }
             } else {
               bool success = await controller2.changeTransaksi(
+                  alokasiId: alokasiId,
+                  atasNama: atasNama,
                   id: transaksiId,
                   programId: programId,
                   muzakiId: id,

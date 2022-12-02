@@ -1239,6 +1239,17 @@ class TambahTransaksi extends StatelessWidget {
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
+                                                  Align(
+                                                    alignment:
+                                                        Alignment.centerLeft,
+                                                    child: Text(
+                                                      'Atas Nama',
+                                                      style: captionTextSemiBold
+                                                          .copyWith(
+                                                        color: neutral90,
+                                                      ),
+                                                    ),
+                                                  ),
                                                   TextFormField(
                                                     validator: (v) {
                                                       if (controller
@@ -1613,6 +1624,19 @@ class TambahTransaksi extends StatelessWidget {
                                                             ),
                                                             const SizedBox(
                                                               height: 8,
+                                                            ),
+                                                            Align(
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              child: Text(
+                                                                'Atas Nama',
+                                                                style:
+                                                                    captionTextSemiBold
+                                                                        .copyWith(
+                                                                  color:
+                                                                      neutral90,
+                                                                ),
+                                                              ),
                                                             ),
                                                             TextFormField(
                                                               validator: (v) {

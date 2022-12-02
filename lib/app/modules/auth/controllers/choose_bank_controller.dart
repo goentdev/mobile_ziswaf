@@ -60,6 +60,10 @@ class ChooseBankController extends GetxController {
   RxInt selectedJenisDonasiId2 = 0.obs;
   RxInt selectedJenisDonasiId3 = 0.obs;
   RxInt selectedJenisDonasiId4 = 0.obs;
+  RxInt alokasitrue = 0.obs;
+  RxInt alokasitrue2 = 0.obs;
+  RxInt alokasitrue3 = 0.obs;
+  RxInt alokasitrue4 = 0.obs;
   RxString selectedDonasi = ''.obs;
   RxBool isSelected = false.obs;
   RxString selectedDonasi2 = ''.obs;

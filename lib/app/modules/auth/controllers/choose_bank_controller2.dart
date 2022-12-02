@@ -27,6 +27,10 @@ class ChooseBankController2 extends GetxController {
   late TextEditingController nominal2Controller;
   late TextEditingController nominal3Controller;
   late TextEditingController nominal4Controller;
+  late TextEditingController nameController;
+  late TextEditingController nameController2;
+  late TextEditingController nameController3;
+  late TextEditingController nameController4;
 
   RxList<Zakat> donasis = [
     Zakat(jenisDonasi: 'Zakat Maal'),
@@ -54,6 +58,10 @@ class ChooseBankController2 extends GetxController {
   RxInt selectedJenisDonasiId2 = 0.obs;
   RxInt selectedJenisDonasiId3 = 0.obs;
   RxInt selectedJenisDonasiId4 = 0.obs;
+  RxInt alokasitrue = 0.obs;
+  RxInt alokasitrue2 = 0.obs;
+  RxInt alokasitrue3 = 0.obs;
+  RxInt alokasitrue4 = 0.obs;
   RxString selectedDonasi = ''.obs;
   RxBool isSelected = false.obs;
   RxString selectedDonasi2 = ''.obs;
@@ -78,6 +86,10 @@ class ChooseBankController2 extends GetxController {
     nominal2Controller = TextEditingController();
     nominal3Controller = TextEditingController();
     nominal4Controller = TextEditingController();
+    nameController = TextEditingController();
+    nameController2 = TextEditingController();
+    nameController3 = TextEditingController();
+    nameController4 = TextEditingController();
     firstController = ScrollController();
     firstController2 = ScrollController();
     firstController3 = ScrollController();
