@@ -12,11 +12,12 @@ class TransaksiProvider extends GetConnect {
   String url = 'https://ziswaf-server.smarteschool.net';
 
   Future<List<Transaksi>> getTransaksi(int? id) async {
-    final response = await get('$url/relawan-program/$id',
-        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
+    final response = await dio.get('$url/relawan-program/$id',
+        options:
+            Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}));
 
     if (response.statusCode == 200) {
-      var data = response.body['transaksi']['data'];
+      var data = response.data['transaksi']['data'];
       List<Transaksi> transaksi = [];
       data.forEach((e) => {transaksi.add(Transaksi.fromJson(e))});
       return transaksi;
