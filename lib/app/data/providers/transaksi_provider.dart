@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/data/models/alokasidana_model.dart';
@@ -7,6 +8,7 @@ import '../../utils/shared_preferences.dart';
 import '../models/transaksi_model.dart';
 
 class TransaksiProvider extends GetConnect {
+  Dio dio = Dio();
   String url = 'https://ziswaf-server.smarteschool.net';
 
   Future<List<Transaksi>> getTransaksi(int? id) async {
@@ -24,11 +26,12 @@ class TransaksiProvider extends GetConnect {
   }
 
   Future<List<Alokasidana>> getAlokasiDana(int? id) async {
-    final response = await get('$url/transaksi/$id',
-        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
+    final response = await dio.get('$url/transaksi/$id',
+        options:
+            Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}));
 
     if (response.statusCode == 200) {
-      var data = response.body['alokasiDana'];
+      var data = response.data['alokasiDana'];
       List<Alokasidana> alokasi = [];
       data.forEach((e) => {alokasi.add(Alokasidana.fromJson(e))});
       return alokasi;
@@ -38,9 +41,9 @@ class TransaksiProvider extends GetConnect {
   }
 
   Future<List<Jenisdonasis>> getJenisDonasi(int? id) async {
-    final response = await get('$url/alokasi?program_id=$id');
-    if (response.status.isOk) {
-      List<dynamic> donasi = response.body;
+    final response = await dio.get('$url/alokasi?program_id=$id');
+    if (response.statusCode == 200) {
+      List<dynamic> donasi = response.data;
       return donasi.map((e) => Jenisdonasis.fromJson(e)).toList();
     } else {
       throw EasyLoading.showError('Server Error! Coba lagi nanti');
@@ -48,9 +51,11 @@ class TransaksiProvider extends GetConnect {
   }
 
   Future<bool> changeTransaksi(int id, Map body) async {
-    final response = await put('$url/transaksi/$id', body,
-        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
-    if (response.status.isOk) {
+    final response = await dio.put('$url/transaksi/$id',
+        data: body,
+        options:
+            Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}));
+    if (response.statusCode == 200) {
       return true;
     } else {
       EasyLoading.showError('Gagal update muzaki');
@@ -58,9 +63,7 @@ class TransaksiProvider extends GetConnect {
     }
   }
 
-  Future<Response<Transaksi>> postTransaksi(Transaksi transaksi) async =>
-      await post('transaksi', transaksi);
-  Future<Response> deleteTransaksi(int? id) async =>
+  Future<void> deleteTransaksi(int? id) async =>
       await delete('$url/transaksi/$id',
           headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
 }

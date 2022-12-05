@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/data/models/total_selesai_berlangsung_model.dart';
 
@@ -6,12 +7,14 @@ import '../models/program_model.dart';
 
 class ProgramProvider extends GetConnect {
   String url = 'https://ziswaf-server.smarteschool.net';
+  Dio dio = Dio();
 
   Future<List<Program>> getProgram() async {
-    final response = await get('$url/relawan-program',
-        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
-    if (response.isOk) {
-      var data = response.body['programs'];
+    final response = await dio.get('$url/relawan-program',
+        options:
+            Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}));
+    if (response.statusCode == 200) {
+      var data = response.data['programs'];
       List<Program> program = [];
       data.forEach((e) => {program.add(Program.fromJson(e))});
       return program;
@@ -21,17 +24,14 @@ class ProgramProvider extends GetConnect {
   }
 
   Future<Meta> getTotalBerlangsung(String? berlangsung) async {
-    final response = await get('$url/relawan-program?nav=$berlangsung',
-        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
-    if (response.isOk) {
-      var data = response.body['meta'];
+    final response = await dio.get('$url/relawan-program?nav=$berlangsung',
+        options:
+            Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}));
+    if (response.statusCode == 200) {
+      var data = response.data['meta'];
       return Meta.fromJson(data);
     } else {
       throw 'Server Error! Coba lagi nanti';
     }
   }
-
-  Future<Response<Program>> postProgram(Program program) async =>
-      await post('program', program);
-  Future<Response> deleteProgram(int id) async => await delete('program/$id');
 }

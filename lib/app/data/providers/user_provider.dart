@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/utils/shared_preferences.dart';
@@ -6,22 +7,27 @@ import '../models/user_model.dart';
 
 class UserProvider extends GetConnect {
   final String url = 'https://ziswaf-server.smarteschool.net';
+  Dio dio = Dio();
 
   Future<User?> profile() async {
-    final response = await get(
-      '$url/profile',
-      headers: {'Authorization': 'bearer ${sharedPrefs.token}'},
+    var urlget = ('$url/profile');
+    final response = await dio.get(
+      urlget,
+      options:
+          Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}),
     );
-    return User.fromJson(response.body);
+    return User.fromJson(response.data);
   }
 
   Future<bool> changeProfile(
     int id,
     Map body,
   ) async {
-    final response = await put('$url/user/$id', body,
-        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
-    if (response.status.isOk) {
+    final response = await dio.put('$url/user/$id',
+        data: body,
+        options:
+            Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}));
+    if (response.statusCode == 200) {
       return true;
     } else {
       EasyLoading.showError('Gagal update profile');
@@ -33,13 +39,14 @@ class UserProvider extends GetConnect {
     required String passwordbaru,
     required String passwordlama,
   }) async {
-    final response = await post('$url/user/reset-password', headers: {
-      'Authorization': 'bearer ${sharedPrefs.token}'
-    }, {
-      'password_lama': passwordlama,
-      'password_baru': passwordbaru,
-    });
-    if (response.status.isOk) {
+    final response = await dio.post('$url/user/reset-password',
+        options:
+            Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}),
+        data: {
+          'password_lama': passwordlama,
+          'password_baru': passwordbaru,
+        });
+    if (response.statusCode == 200) {
       EasyLoading.showSuccess('Berhasil ubah password');
       return true;
     } else if (response.statusCode == 422) {
@@ -52,10 +59,10 @@ class UserProvider extends GetConnect {
   }
 
   Future<bool> forgotpassword({required String email}) async {
-    final response = await post('$url/user/kirim-email', {
+    final response = await dio.post('$url/user/kirim-email', data: {
       'email': email,
     });
-    if (response.status.isOk) {
+    if (response.statusCode == 200) {
       EasyLoading.showSuccess('Berhasil Mengirim Ke Email');
       return true;
     } else if (response.statusCode == 400) {

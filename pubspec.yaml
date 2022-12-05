@@ -33,6 +33,7 @@ dependencies:
   mask_text_input_formatter: ^2.4.0
   pdftron_flutter: ^1.0.0-beta.59
   permission_handler: ^8.1.1
+  dio: ^4.0.6
 
 
 dev_dependencies:

@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 // ignore: depend_on_referenced_packages
@@ -12,11 +13,14 @@ class MuzakiProvider extends GetConnect {
   String url = 'https://ziswaf-server.smarteschool.net';
   final controllerC = Get.put(TambahUbahMuzakkiController());
 
+  Dio dio = Dio();
+
   Future<List<Muzaki>> getMuzakisall(int? id) async {
-    final response = await get('$url/muzaki?user_id=$id',
-        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
+    final response = await dio.get('$url/muzaki?user_id=$id',
+        options:
+            Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}));
     if (response.statusCode == 200) {
-      var data = response.body['muzaki']['muzaki']['data'];
+      var data = response.data['muzaki']['muzaki']['data'];
       List<Muzaki> muzaki = [];
       data.forEach((e) => {muzaki.add(Muzaki.fromJson(e))});
       return muzaki;
@@ -26,10 +30,11 @@ class MuzakiProvider extends GetConnect {
   }
 
   Future<Totalmuzaki?> getTotalMuzakis(int? id) async {
-    final response = await get('$url/muzaki?user_id=$id',
-        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
+    final response = await dio.get('$url/muzaki?user_id=$id',
+        options:
+            Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}));
     if (response.statusCode == 200) {
-      var data = response.body['muzaki'];
+      var data = response.data['muzaki'];
       return Totalmuzaki.fromJson(data);
     } else {
       throw 'Server Error! Coba lagi nanti';
@@ -37,10 +42,11 @@ class MuzakiProvider extends GetConnect {
   }
 
   Future<List<Muzaki>> getMuzakis(String? kategori) async {
-    final response = await get('$url/muzaki?kategori=$kategori',
-        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
+    final response = await dio.get('$url/muzaki?kategori=$kategori',
+        options:
+            Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}));
     if (response.statusCode == 200) {
-      var data = response.body['muzaki']['muzaki'];
+      var data = response.data['muzaki']['muzaki'];
       List<Muzaki> muzaki = [];
       data.forEach((e) => {muzaki.add(Muzaki.fromJson(e))});
       return muzaki;
@@ -57,17 +63,18 @@ class MuzakiProvider extends GetConnect {
     required String tipe,
   }) async {
     controllerC.isLoading.value = true;
-    var urlpost = Uri.parse('$url/muzaki/tambah');
-    final response = await http.post(urlpost, headers: {
-      'Authorization': 'bearer ${sharedPrefs.token}'
-    }, body: {
-      "nama": nama,
-      "email": email,
-      "whatsapp": whatsapp,
-      "kategori": kategori,
-      "tipe": tipe,
-      "role": "muzaki"
-    });
+    var urlpost = ('$url/muzaki/tambah');
+    final response = await dio.post(urlpost,
+        options:
+            Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}),
+        data: {
+          "nama": nama,
+          "email": email,
+          "whatsapp": whatsapp,
+          "kategori": kategori,
+          "tipe": tipe,
+          "role": "muzaki"
+        });
 
     if (response.statusCode == 200) {
       return 'Berhasil';
@@ -81,10 +88,12 @@ class MuzakiProvider extends GetConnect {
   }
 
   Future<bool> changeMuzaki(int id, Map body) async {
-    final response = await put('$url/muzaki/$id', body,
-        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
+    final response = await dio.put('$url/muzaki/$id',
+        data: body,
+        options:
+            Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}));
 
-    if (response.status.isOk) {
+    if (response.statusCode == 200) {
       return true;
     } else if (response.statusCode == 400) {
       EasyLoading.showError('Nomor whatsapp sudah terdaftar');
@@ -95,6 +104,7 @@ class MuzakiProvider extends GetConnect {
     }
   }
 
-  Future<Response> deleteMuzaki(int id) async => await delete('$url/muzaki/$id',
-      headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
+  Future<void> deleteMuzaki(int id) async => await dio.delete('$url/muzaki/$id',
+      options:
+          Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}));
 }

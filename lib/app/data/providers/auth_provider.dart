@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/data/models/user_model.dart';
@@ -7,6 +8,8 @@ import 'package:http/http.dart' as http;
 
 class AuthProvider extends GetConnect {
   final String url = 'https://ziswaf-server.smarteschool.net';
+
+  Dio dio = Dio();
 
   Future<bool> register({
     required String nama,
@@ -24,7 +27,7 @@ class AuthProvider extends GetConnect {
     required String namaRekening,
     required String password,
   }) async {
-    final response = await post('$url/user/register', {
+    final response = await dio.post('$url/user/register', data: {
       "nama": nama,
       "email": email,
       // "otp": otp,
@@ -41,9 +44,9 @@ class AuthProvider extends GetConnect {
       "password": password,
     });
 
-    if (response.status.isOk) {
+    if (response.statusCode == 200) {
       // EasyLoading.showSuccess('Berhasil register');
-      sharedPrefs.setToken = response.body['token']['token'];
+      sharedPrefs.setToken = response.data['token']['token'];
       sharedPrefs.setSkip = true;
 
       return true;
@@ -59,9 +62,11 @@ class AuthProvider extends GetConnect {
   }
 
   Future<bool> registupdate(int id, Map body) async {
-    final response = await put('$url/user/$id', body,
-        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
-    if (response.status.isOk) {
+    final response = await dio.put('$url/user/$id',
+        data: body,
+        options:
+            Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}));
+    if (response.statusCode == 200) {
       return true;
     } else {
       return false;
@@ -69,12 +74,13 @@ class AuthProvider extends GetConnect {
   }
 
   Future<bool> konfirmasiOtp({required String otp}) async {
-    var urlpost = Uri.parse('$url/user/konfirmasi');
-    final response = await http.post(urlpost, headers: {
-      'Authorization': 'bearer ${sharedPrefs.token}'
-    }, body: {
-      'otp': otp,
-    });
+    var urlpost = ('$url/user/konfirmasi');
+    final response = await dio.post(urlpost,
+        options:
+            Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}),
+        data: {
+          'otp': otp,
+        });
 
     if (response.statusCode == 200) {
       EasyLoading.showSuccess('Otp Benar');
