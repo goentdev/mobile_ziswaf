@@ -7,6 +7,7 @@ class Alokasidana {
   int? nominal;
   int? dihapus;
   String? atasNama;
+  String? sertifikat;
 
   Alokasidana(
       {this.id,
@@ -23,6 +24,7 @@ class Alokasidana {
     nominal = json['nominal'];
     dihapus = json['dihapus'];
     atasNama = json['atas_nama'];
+    sertifikat = json['sertifikat'];
   }
 
   Map<String, dynamic> toJson() {
@@ -33,6 +35,7 @@ class Alokasidana {
     data['nominal'] = nominal;
     data['dihapus'] = dihapus;
     data['atas_nama'] = atasNama;
+    data['sertifikat'] = sertifikat;
     return data;
   }
 }
