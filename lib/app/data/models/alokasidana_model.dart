@@ -15,12 +15,15 @@ class Alokasidana {
       this.jenisDonasi,
       this.nominal,
       this.dihapus,
-      this.atasNama});
+      this.atasNama,
+      this.sertifikat});
 
   Alokasidana.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     transaksiId = json['transaksi_id'];
-    jenisDonasi = Jenisdonasis.fromJson(json['jenisDonasis']);
+    jenisDonasi = json['jenisDonasis'] != null
+        ? Jenisdonasis.fromJson(json['jenisDonasis'])
+        : null;
     nominal = json['nominal'];
     dihapus = json['dihapus'];
     atasNama = json['atas_nama'];
@@ -31,7 +34,9 @@ class Alokasidana {
     final data = <String, dynamic>{};
     data['id'] = id;
     data['transaksi_id'] = transaksiId;
-    data['jenisDonasis'] = jenisDonasi;
+    if (jenisDonasi != null) {
+      data['jenisDonasis'] = jenisDonasi?.toJson();
+    }
     data['nominal'] = nominal;
     data['dihapus'] = dihapus;
     data['atas_nama'] = atasNama;

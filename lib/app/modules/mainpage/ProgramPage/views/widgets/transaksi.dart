@@ -143,6 +143,16 @@ class TransaksiDetail extends StatelessWidget {
                                   .bank
                                   ?.id ??
                               1,
+                          kwitansi: controller
+                              .transaksi![
+                                  controller.transaksi!.length - 1 - index]
+                              .kuitansi,
+                          sertifikat: controller
+                              .transaksi![
+                                  controller.transaksi!.length - 1 - index]
+                              .sertifikat!
+                              .sertifikat
+                              .toString(),
                         );
                       },
                     );

@@ -14,6 +14,8 @@ class DetailCard extends StatelessWidget {
   final String? icon;
   final String nama;
   final String bank;
+  final String? kwitansi;
+  final String? sertifikat;
   final int bankId;
   final int? nominal, id, programId, muzakiId;
   final String? waktu;
@@ -47,6 +49,8 @@ class DetailCard extends StatelessWidget {
     this.nominaldonasi,
     this.muzakiId,
     required this.bankId,
+    required this.kwitansi,
+    this.sertifikat,
   });
   @override
   Widget build(BuildContext context) {
@@ -54,6 +58,8 @@ class DetailCard extends StatelessWidget {
     return InkWell(
       onTap: () async {
         Get.to(() => DetailTransaksi(
+            kwitansi: kwitansi,
+            sertifikat: sertifikat,
             status: status,
             bankId: bankId,
             muzakiId: muzakiId!,

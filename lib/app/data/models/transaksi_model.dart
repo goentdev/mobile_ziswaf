@@ -1,3 +1,4 @@
+import 'package:mobile_ziswaf/app/data/models/alokasidana_model.dart';
 import 'package:mobile_ziswaf/app/data/models/muzaki_model.dart';
 
 import 'bank_model.dart';
@@ -13,6 +14,7 @@ class Transaksi {
   String? nomorResi;
   String? buktiTransaksi;
   String? kuitansi;
+  Alokasidana? sertifikat;
   int? bankid;
   int? konfirmasi;
   String? createdAt;
@@ -36,6 +38,7 @@ class Transaksi {
       this.bank,
       this.konfirmasi,
       this.kuitansi,
+      this.sertifikat,
       this.kategori});
 
   Transaksi.fromJson(Map<String, dynamic> json) {
@@ -49,6 +52,9 @@ class Transaksi {
     nomorResi = json['nomor_resi'] ?? 'Data belum di isi';
     buktiTransaksi = json['bukti_transaksi'] ?? 'Data belum di isi';
     kuitansi = json['kuitansi'] ?? 'Belum Ada Data';
+    sertifikat = json['alokasiDana'] != null
+        ? Alokasidana?.fromJson(json['muzaki'])
+        : null;
     bankid = json['bank_id'] ?? 0;
     konfirmasi = json['konfirmasi'] ?? 0;
     createdAt = json['created_at'];
@@ -79,6 +85,9 @@ class Transaksi {
     }
     if (bank != null) {
       data['bank'] = bank?.toJson();
+    }
+    if (sertifikat != null) {
+      data['alokasiDana'] = sertifikat?.toJson();
     }
     data['kategori'] = kategori;
     return data;

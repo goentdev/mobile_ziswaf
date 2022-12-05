@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -13,6 +11,7 @@ import 'package:photo_view/photo_view.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
+import 'widgets/viewer.dart';
 
 class DetailTransaksi extends StatelessWidget {
   final String? nama,
@@ -28,6 +27,8 @@ class DetailTransaksi extends StatelessWidget {
       nomoResi,
       bankNama,
       fotobuktiTransaksi,
+      kwitansi,
+      sertifikat,
       buktifotoTransaksi;
   final String judul, whatsapp;
   final int muzakiId, transaksiId, bankId;
@@ -61,6 +62,8 @@ class DetailTransaksi extends StatelessWidget {
     required this.transaksiId,
     required this.bankId,
     this.status,
+    this.kwitansi,
+    this.sertifikat,
   });
 
   @override
@@ -319,7 +322,7 @@ class DetailTransaksi extends StatelessWidget {
                     ),
                   ),
                 )
-              : SizedBox()
+              : const SizedBox()
         ],
       ),
       body: SingleChildScrollView(
@@ -1127,6 +1130,133 @@ class DetailTransaksi extends StatelessWidget {
                       ),
                     ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Visibility(
+                visible: kwitansi != null,
+                replacement: const SizedBox(),
+                child: GestureDetector(
+                  onTap: () {
+                    Get.to(Viewer(
+                      link: 'https://ziswaf-server.smarteschool.net/$kwitansi',
+                    ));
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(bottom: 16),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(width: 1, color: neutral30)),
+                    padding: const EdgeInsets.all(16),
+                    height: 62,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.transparent,
+                                radius: 15,
+                                child: Image.asset(
+                                  'assets/icons/file.png',
+                                  width: 30,
+                                  height: 30,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Flexible(
+                                child: Text(
+                                  'Lihat Kuitansi',
+                                  overflow: TextOverflow.visible,
+                                  style: captionTextBold.copyWith(
+                                      color: neutral100),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 12,
+                          color: primaryMain,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Obx(
+              () => ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: controller2.alokasi!.length,
+                itemBuilder: (context, index) {
+                  return controller2.alokasi![index].jenisDonasi!.nama! ==
+                          'Zakat Fitrah'
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Visibility(
+                            visible: sertifikat != null,
+                            replacement: const SizedBox(),
+                            child: GestureDetector(
+                              onTap: () {
+                                Get.to(Viewer(
+                                  link:
+                                      'https://ziswaf-server.smarteschool.net/${controller2.alokasi?[index].sertifikat} ',
+                                ));
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(bottom: 16),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border:
+                                        Border.all(width: 1, color: neutral30)),
+                                padding: const EdgeInsets.all(16),
+                                height: 62,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Flexible(
+                                      child: Row(
+                                        children: [
+                                          CircleAvatar(
+                                            backgroundColor: Colors.transparent,
+                                            radius: 15,
+                                            child: Image.asset(
+                                              'assets/icons/file.png',
+                                              width: 30,
+                                              height: 30,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 8),
+                                          Flexible(
+                                            child: Text(
+                                              'Lihat Sertifikat Zakat Fitrah',
+                                              overflow: TextOverflow.visible,
+                                              style: captionTextBold.copyWith(
+                                                  color: neutral100),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Icon(
+                                      Icons.arrow_forward_ios,
+                                      size: 12,
+                                      color: primaryMain,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      : const SizedBox();
+                },
+              ),
+            )
           ],
         ),
       ),
