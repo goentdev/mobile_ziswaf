@@ -1130,62 +1130,65 @@ class DetailTransaksi extends StatelessWidget {
                       ),
                     ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Visibility(
-                visible: kwitansi != null,
-                replacement: const SizedBox(),
-                child: GestureDetector(
-                  onTap: () {
-                    Get.to(Viewer(
-                      link: 'https://ziswaf-server.smarteschool.net/$kwitansi',
-                    ));
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.only(bottom: 16),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(width: 1, color: neutral30)),
-                    padding: const EdgeInsets.all(16),
-                    height: 62,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
+            status == 1
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Visibility(
+                      visible: kwitansi != 'Belum Ada Data',
+                      replacement: const SizedBox(),
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.to(Viewer(
+                            link:
+                                'https://ziswaf-server.smarteschool.net/$kwitansi',
+                          ));
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: 16),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(width: 1, color: neutral30)),
+                          padding: const EdgeInsets.all(16),
+                          height: 62,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              CircleAvatar(
-                                backgroundColor: Colors.transparent,
-                                radius: 15,
-                                child: Image.asset(
-                                  'assets/icons/file.png',
-                                  width: 30,
-                                  height: 30,
-                                ),
-                              ),
-                              const SizedBox(width: 8),
                               Flexible(
-                                child: Text(
-                                  'Lihat Kuitansi',
-                                  overflow: TextOverflow.visible,
-                                  style: captionTextBold.copyWith(
-                                      color: neutral100),
+                                child: Row(
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: Colors.transparent,
+                                      radius: 15,
+                                      child: Image.asset(
+                                        'assets/icons/file.png',
+                                        width: 30,
+                                        height: 30,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Flexible(
+                                      child: Text(
+                                        'Lihat Kuitansi',
+                                        overflow: TextOverflow.visible,
+                                        style: captionTextBold.copyWith(
+                                            color: neutral100),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                size: 12,
+                                color: primaryMain,
+                              )
                             ],
                           ),
                         ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 12,
-                          color: primaryMain,
-                        )
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-              ),
-            ),
+                  )
+                : const SizedBox(),
             Obx(
               () => ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
