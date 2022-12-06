@@ -1192,67 +1192,73 @@ class DetailTransaksi extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: controller2.alokasi!.length,
                 itemBuilder: (context, index) {
-                  return controller2.alokasi![index].jenisDonasi!.nama! ==
-                          'Zakat Fitrah'
-                      ? Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Visibility(
-                            visible: sertifikat != null,
-                            replacement: const SizedBox(),
-                            child: GestureDetector(
-                              onTap: () {
-                                Get.to(Viewer(
-                                  link:
-                                      'https://ziswaf-server.smarteschool.net/${controller2.alokasi?[index].sertifikat} ',
-                                ));
-                              },
-                              child: Container(
-                                margin: const EdgeInsets.only(bottom: 16),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border:
-                                        Border.all(width: 1, color: neutral30)),
-                                padding: const EdgeInsets.all(16),
-                                height: 62,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Flexible(
-                                      child: Row(
-                                        children: [
-                                          CircleAvatar(
-                                            backgroundColor: Colors.transparent,
-                                            radius: 15,
-                                            child: Image.asset(
-                                              'assets/icons/file.png',
-                                              width: 30,
-                                              height: 30,
-                                            ),
+                  return status == 1
+                      ? controller2.alokasi![index].jenisDonasi!.nama! ==
+                              'Zakat Fitrah'
+                          ? Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: Visibility(
+                                visible: sertifikat != null,
+                                replacement: const SizedBox(),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.to(Viewer(
+                                      link:
+                                          'https://ziswaf-server.smarteschool.net/${controller2.alokasi?[index].sertifikat} ',
+                                    ));
+                                  },
+                                  child: Container(
+                                    margin: const EdgeInsets.only(bottom: 16),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        border: Border.all(
+                                            width: 1, color: neutral30)),
+                                    padding: const EdgeInsets.all(16),
+                                    height: 62,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Flexible(
+                                          child: Row(
+                                            children: [
+                                              CircleAvatar(
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                radius: 15,
+                                                child: Image.asset(
+                                                  'assets/icons/file.png',
+                                                  width: 30,
+                                                  height: 30,
+                                                ),
+                                              ),
+                                              const SizedBox(width: 8),
+                                              Flexible(
+                                                child: Text(
+                                                  'Lihat Sertifikat Zakat Fitrah',
+                                                  overflow:
+                                                      TextOverflow.visible,
+                                                  style:
+                                                      captionTextBold.copyWith(
+                                                          color: neutral100),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                          const SizedBox(width: 8),
-                                          Flexible(
-                                            child: Text(
-                                              'Lihat Sertifikat Zakat Fitrah',
-                                              overflow: TextOverflow.visible,
-                                              style: captionTextBold.copyWith(
-                                                  color: neutral100),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward_ios,
+                                          size: 12,
+                                          color: primaryMain,
+                                        )
+                                      ],
                                     ),
-                                    Icon(
-                                      Icons.arrow_forward_ios,
-                                      size: 12,
-                                      color: primaryMain,
-                                    )
-                                  ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
-                        )
+                            )
+                          : const SizedBox()
                       : const SizedBox();
                 },
               ),
