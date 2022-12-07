@@ -20,6 +20,7 @@ class ProgramPageView extends GetView<ProgramPageController> {
     final controller2 = Get.put(ProfileController());
     controller.getPrograms2();
     controller.gettotaldana();
+    controller.gettotalberlangsungg();
 
     return Obx(() => controller2.user.value!.status != 1
         ? Scaffold(
@@ -63,6 +64,7 @@ class ProgramPageView extends GetView<ProgramPageController> {
             body: RefreshIndicator(
               onRefresh: () async {
                 controller.getPrograms();
+                controller.gettotalberlangsungg();
                 controller.refreshProgram();
                 controller.gettotaldana();
               },
