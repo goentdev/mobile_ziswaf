@@ -132,9 +132,16 @@ class AuthProvider extends GetConnect {
       EasyLoading.showError('Terjadi masalah server');
 
       return false;
-    } else {
+    } else if (response.status.connectionError) {
+      EasyLoading.showError('Koneksi Anda Error Mohon Dicoba Kembali');
+
+      return false;
+    } else if (response.statusCode == 400) {
       EasyLoading.showError('Whatsapp atau password salah');
 
+      return false;
+    } else {
+      EasyLoading.showError('Server Error Mohon dicoba Kembali');
       return false;
     }
   }
