@@ -11,6 +11,7 @@ import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/car
 import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
 import '../../../auth/controllers/choose_bank_controller.dart';
+import '../../MuzakkiPage/controllers/muzakki_page_controller.dart';
 
 class TambahTransaksi extends StatelessWidget {
   final String judul, nama, email, kategori;
@@ -1724,6 +1725,7 @@ class TambahTransaksi extends StatelessWidget {
                   backgroundColor: primaryMain,
                 ),
                 onPressed: () async {
+                  Get.delete<MuzakkiPageController>();
                   if (controller.tambahtransaksiKey.currentState!.validate() &&
                       controller.selectedJenisDonasiId.value != 0 &&
                       controller.alokasi2 == false &&

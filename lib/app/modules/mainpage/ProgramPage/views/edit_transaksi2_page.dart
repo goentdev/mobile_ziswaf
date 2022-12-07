@@ -17,6 +17,7 @@ import '../../../../theme/colors.dart';
 import '../../../../theme/fonts.dart';
 import '../../../auth/controllers/choose_bank_controller.dart';
 import '../../../auth/controllers/choose_bank_controller2.dart';
+import '../../MuzakkiPage/controllers/muzakki_page_controller.dart';
 import '../controllers/program_page_controller.dart';
 
 class EditTransaksi2 extends StatelessWidget {
@@ -1817,6 +1818,7 @@ class EditTransaksi2 extends StatelessWidget {
                   backgroundColor: primaryMain,
                 ),
                 onPressed: () async {
+                  Get.delete<MuzakkiPageController>();
                   if (controller.editFormKey.currentState!.validate() &&
                       controller.selectedJenisDonasiId.value != 0 &&
                       controller.alokasi2 == false &&

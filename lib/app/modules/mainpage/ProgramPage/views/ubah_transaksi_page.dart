@@ -64,11 +64,13 @@ class UbahTransaksiPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Daftar Muzaki (${controller.totalmuzaki.value!.totalMuzaki})',
-                  style: listItemTitleBold.copyWith(color: neutral100),
+              Obx(
+                () => Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Daftar Muzaki (${controller.totalmuzaki.value!.totalMuzaki})',
+                    style: listItemTitleBold.copyWith(color: neutral100),
+                  ),
                 ),
               ),
               GetBuilder<MuzakkiPageController>(

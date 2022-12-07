@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/number_symbols_data.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/controllers/muzakki_page_controller.dart';
 
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/bukti_transaksi_page(edit).dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/bukti_transaksi_page.dart';
@@ -1838,6 +1839,7 @@ class EditTransaksiPage extends StatelessWidget {
                   backgroundColor: primaryMain,
                 ),
                 onPressed: () async {
+                  Get.delete<MuzakkiPageController>();
                   if (controller.tambahtransaksiKey.currentState!.validate() &&
                       controller.selectedJenisDonasiId.value != 0 &&
                       controller.alokasi2 == false &&

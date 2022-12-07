@@ -45,7 +45,7 @@ class CardDana extends StatelessWidget {
         controller.getTransaksis(id: id);
 
         controller.totaltransaksi(id: id);
-        Get.to(() => DetailProgram(
+        Get.offAll(() => DetailProgram(
             judul: judul,
             tanggalakhir: tanggalakhir,
             terkumpul: terkumpul,
