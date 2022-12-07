@@ -29,11 +29,11 @@ class SplashScreen extends StatelessWidget {
             ),
           ),
         ),
-        nextScreen: sharedPrefs.token == null
-            ? sharedPrefs.skipIntro == false
-                ? const OnboardingScreen()
-                : const LoginPage()
-            : const MainpageView(),
+        nextScreen: sharedPrefs.skipIntro == true
+            ? sharedPrefs.token == null
+                ? const LoginPage()
+                : const MainpageView()
+            : const OnboardingScreen(),
         splashIconSize: double.infinity,
       ),
     );
