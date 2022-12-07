@@ -177,7 +177,7 @@ class DetailProgram extends StatelessWidget {
                                         5
                                     ? controller.totaltransaksiiD.value!
                                             .totalTransaksi! *
-                                        105
+                                        110
                                     : 600
                                 : 600
                             : 600,
