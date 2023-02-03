@@ -7,6 +7,8 @@ import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 import 'package:photo_view/photo_view.dart';
 
+import '../../../utils/shared_preferences.dart';
+
 class IdentityController extends GetxController {
   final ImagePicker picker = ImagePicker();
   XFile? identityImage;
@@ -249,6 +251,7 @@ class IdentityController extends GetxController {
                       flex: 1,
                       child: GestureDetector(
                         onTap: () {
+                          sharedPrefs.setBukti = identityImage!.path;
                           update();
                           Get.back();
                           deletee();
@@ -495,6 +498,7 @@ class IdentityController extends GetxController {
                       flex: 1,
                       child: GestureDetector(
                         onTap: () {
+                          sharedPrefs.setBukti = identityImage!.path;
                           update();
                           Get.back();
                           deletee();
