@@ -442,6 +442,33 @@ class ProfileView extends GetView<ProfileController> {
                       style: textLSemibold.copyWith(color: neutral80),
                     ),
                   ),
+                  InkWell(
+                    onTap: () {
+                      controller.logout();
+                      Get.offAllNamed(Routes.LOGIN);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      width: double.infinity,
+                      height: 62,
+                      color: neutral10,
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            'assets/icons/exit.png',
+                            width: 30,
+                            height: 30,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            'Keluar',
+                            style:
+                                captionTextSemiBold.copyWith(color: dangerMain),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
       ),

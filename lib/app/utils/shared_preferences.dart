@@ -9,10 +9,16 @@ class SharedPrefs {
 
   String? get token => _sharedPrefs!.getString('token');
 
+  String? get bukti => _sharedPrefs!.getString('bukti');
+
   bool? get skipIntro => _sharedPrefs!.getBool('skip_intro');
 
   set setToken(String value) {
     _sharedPrefs!.setString('token', value);
+  }
+
+  set setBukti(String value) {
+    _sharedPrefs!.setString('bukti', value);
   }
 
   set setSkip(bool value) {
