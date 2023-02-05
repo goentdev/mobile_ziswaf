@@ -23,7 +23,7 @@ dependencies:
   firebase_core: ^2.4.0
   firebase_storage: ^11.0.3
   flutter_html: ^2.2.1
-  flutter_launcher_icons: ^0.10.0
+  flutter_launcher_icons: ^0.11.0
   flutter_easyloading: 3.0.5
   flutter:
     sdk: flutter
@@ -35,11 +35,15 @@ dependencies:
   permission_handler: ^8.1.1
   dio: ^4.0.6
 
-
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/icon-launcer-ziswaf.png"
 
 flutter:
   assets:
