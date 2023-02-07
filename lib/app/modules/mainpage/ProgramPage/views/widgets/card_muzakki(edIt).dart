@@ -90,7 +90,7 @@ class CardMuzakkiEdit extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(8),
                                 border: Border.all(color: neutral30, width: 1)),
                             child: TextField(
-                              controller: controller.searchMuzakkiController,
+                              controller: controller.searchMuzakkiController2,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   disabledBorder: InputBorder.none,
@@ -118,12 +118,12 @@ class CardMuzakkiEdit extends StatelessWidget {
                                 child: ListView.builder(
                                   controller: controller.scrollController,
                                   shrinkWrap: true,
-                                  itemCount: controller.searchMuzakkiController
+                                  itemCount: controller.searchMuzakkiController2
                                           .text.isNotEmpty
                                       ? controller.muzakkisOnSearch!.length
                                       : controller.muzaki!.length,
                                   itemBuilder: (context, index) {
-                                    if (controller.searchMuzakkiController.text
+                                    if (controller.searchMuzakkiController2.text
                                         .isNotEmpty) {
                                       return CardShowModalMuzakki(
                                         buktifotoTransaksi: buktifototransfer,

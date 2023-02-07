@@ -10,6 +10,8 @@ import '../../../../data/providers/user_provider.dart';
 class MuzakkiPageController extends GetxController
     with GetTickerProviderStateMixin {
   late TextEditingController searchMuzakkiController;
+  late TextEditingController searchMuzakkiController2;
+  late TextEditingController searchMuzakkiController3;
   late TabController tabController;
   late ScrollController scrollController;
 
@@ -36,7 +38,9 @@ class MuzakkiPageController extends GetxController
 
   @override
   void onInit() {
+    searchMuzakkiController2 = TextEditingController();
     searchMuzakkiController = TextEditingController();
+    searchMuzakkiController3 = TextEditingController();
     tabController = TabController(
       length: 3,
       vsync: this,
@@ -52,7 +56,9 @@ class MuzakkiPageController extends GetxController
 
   @override
   void onClose() {
-    searchMuzakkiController.dispose();
+    // searchMuzakkiController.dispose();
+    // searchMuzakkiController3.dispose();
+    // searchMuzakkiController2.dispose();
     tabController.dispose();
     super.onClose();
   }
