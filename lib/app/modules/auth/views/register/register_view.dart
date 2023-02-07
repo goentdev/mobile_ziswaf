@@ -46,20 +46,18 @@ class RegisterPage extends GetView<RegisterController> {
                         if (controller.registerFormKey.currentState!
                             .validate()) {
                           bool sukses = await registC.register(
-                              whatsapp: controller.whatsappC.text,
-                              status: 1,
-                              role: 'relawan',
-                              bankId: 1,
-                              password: controller.whatsappC.text,
-                              email: 'Belum Mengisi Data',
-                              fotoKartuIdentitas:
-                                  'https://firebasestorage.googleapis.com/v0/b/ziswaf-111b8.appspot.com/o/identitas-foto%2Fnot_found_image.jpg?alt=media&token=81a3bf91-0274-4099-8837-2784673c523e',
-                              jenisKartuIdentitas: 'Belum Mengisi Data',
-                              kategori: 'lembaga',
-                              nama: 'Belum Mengisi Data',
-                              namaRekening: 'Belum Mengisi Data',
-                              nomorKartuIdentitas: 'Belum Mengisi Data',
-                              nomorRekening: 'Belum Mengisi Data');
+                            whatsapp: controller.whatsappC.text,
+                            status: 1,
+                            role: 'relawan',
+                            password: controller.confirmC.text,
+                            email: 'Belum Mengisi Data',
+                            fotoKartuIdentitas:
+                                'https://firebasestorage.googleapis.com/v0/b/ziswaf-111b8.appspot.com/o/identitas-foto%2Fnot_found_image.jpg?alt=media&token=81a3bf91-0274-4099-8837-2784673c523e',
+                            jenisKartuIdentitas: 'Belum Mengisi Data',
+                            kategori: 'lembaga',
+                            nama: 'Belum Mengisi Data',
+                            nomorKartuIdentitas: 'Belum Mengisi Data',
+                          );
                           if (sukses) {
                             controller.isLoading.value = false;
                             Get.off(() => OtpSmsPage(

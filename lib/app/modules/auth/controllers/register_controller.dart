@@ -51,15 +51,12 @@ class RegisterController extends GetxController {
     required String jenisKartuIdentitas,
     required String nomorKartuIdentitas,
     required String fotoKartuIdentitas,
-    required int bankId,
-    required String nomorRekening,
-    required String namaRekening,
     required String password,
   }) async {
     isLoading.value = true;
 
     return await authProvider.register(
-        bankId: bankId,
+
         // nama: nama,
         // email: email,
         // otp: otp,
@@ -78,9 +75,7 @@ class RegisterController extends GetxController {
         jenisKartuIdentitas: jenisKartuIdentitas,
         kategori: kategori,
         nama: nama,
-        namaRekening: namaRekening,
         nomorKartuIdentitas: nomorKartuIdentitas,
-        nomorRekening: nomorRekening,
         status: status);
   }
 

@@ -21,7 +21,7 @@ class FormView extends GetView<FormController> {
   @override
   Widget build(BuildContext context) {
     final formC = Get.put(ProfileController());
-    formC.getProfile();
+    formC.getProfile4();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -146,20 +146,62 @@ class FormView extends GetView<FormController> {
                   );
                 },
               ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Tingkat Relawan',
+                  style: captionTextSemiBold.copyWith(color: neutral90),
+                ),
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: controller.tingkatRelawan.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      ListTile(
+                        contentPadding: EdgeInsets.zero,
+                        title: Obx(
+                          () => Text(
+                            controller.tingkatRelawan[index],
+                            style:
+                                captionTextSemiBold.copyWith(color: neutral80),
+                          ),
+                        ),
+                        trailing: Obx(
+                          () => Radio<String>(
+                            activeColor: primaryMain,
+                            value: controller.tingkatRelawan[index],
+                            groupValue: controller.selectedTingkat.value,
+                            onChanged: (value) {
+                              controller.selectedTingkat.value = value!;
+                            },
+                          ),
+                        ),
+                      ),
+                      Divider(
+                        color: neutral30,
+                        thickness: 1,
+                        height: 8,
+                      ),
+                    ],
+                  );
+                },
+              ),
             ],
           ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Obx(() => controller.isLoading.value
+      floatingActionButton: Obx(() => controller.isLoading2.value
           ? const LoadingButton()
           : Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                   SizedBox(
-                    height: 41,
-                    width: 343,
+                    height: 45,
+                    width: 360,
                     child: FloatingActionButton.extended(
                       backgroundColor: primaryMain,
                       shape: const RoundedRectangleBorder(
@@ -170,15 +212,18 @@ class FormView extends GetView<FormController> {
                       onPressed: () async {
                         if (controller.formglobalkey.currentState!.validate() &&
                             controller.selectedType.value != '') {
+                          controller.isLoading2.value = true;
                           bool sukses = await formC.changeName(
                               nama: controller.nameController.text);
                           await formC.changeEmail(
                               email: controller.emailController.text);
                           await formC.changeKategori(
                               kategori: controller.selectedType.value);
-                          formC.getProfile3();
+                          await formC.changeTingkat(
+                              tingkat: controller.selectedTingkat.value);
+                          formC.getProfile4();
                           if (sukses) {
-                            controller.isLoading.value = false;
+                            controller.isLoading2.value = false;
                             formC.update();
                             Get.to(() => const IdentityView());
                           } else if (controller.selectedType.value != '') {
@@ -186,9 +231,9 @@ class FormView extends GetView<FormController> {
                             Get.snackbar('ERROR', 'Harap Lengkapi Form Diatas',
                                 backgroundColor: Colors.red,
                                 snackPosition: SnackPosition.TOP);
-                            controller.isLoading.value = false;
+                            controller.isLoading2.value = false;
                           } else {
-                            controller.isLoading.value = false;
+                            controller.isLoading2.value = false;
                           }
                         }
                       },

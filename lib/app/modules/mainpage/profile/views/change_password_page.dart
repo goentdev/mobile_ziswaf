@@ -187,9 +187,22 @@ class ChangePasswordPage extends GetView<UserController> {
                   ),
                 ),
                 const SizedBox(height: 24),
-                Button(
-                  textbutton: 'Simpan',
-                  onTap: () async {
+              ],
+            ),
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Obx(
+        () => profileC.isLoading.value
+            ? const LoadingButton()
+            : SizedBox(
+                height: 41,
+                width: 355,
+                child: FloatingActionButton.extended(
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(4.0))),
+                  onPressed: () async {
                     if (profileC.registerFormKey.currentState!.validate()) {
                       bool sukses = await UserProvider().changepassword(
                           passwordlama: profileC.oldPasswordController.text,
@@ -205,11 +218,13 @@ class ChangePasswordPage extends GetView<UserController> {
                       }
                     }
                   },
-                )
-              ],
-            ),
-          ),
-        ),
+                  label: Text(
+                    'Simpan',
+                    style: textMBold.copyWith(color: Colors.white),
+                  ),
+                  backgroundColor: primaryMain,
+                ),
+              ),
       ),
     );
   }

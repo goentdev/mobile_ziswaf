@@ -28,9 +28,6 @@ class User {
     this.kategori,
     this.jenisKartuIdentitas,
     this.nomorKartuIdentitas,
-    this.bank,
-    this.nomorRekening,
-    this.namaRekening,
     this.fotoKartuIdentitas,
   });
 
@@ -45,9 +42,6 @@ class User {
     kategori = json['relawan']['kategori'];
     jenisKartuIdentitas = json['relawan']['jenis_kartu_identitas'];
     nomorKartuIdentitas = json['relawan']['nomor_kartu_identitas'];
-    bank = Bank.fromJson(json['relawan']['bank']);
-    nomorRekening = json['relawan']['nomor_rekening'];
-    namaRekening = json['relawan']['nama_rekening'];
     fotoKartuIdentitas = json['relawan']['foto_kartu_identitas'];
     tingkatRelawan = json['relawan']['tingkat'];
   }
@@ -64,9 +58,6 @@ class User {
     data['kategori'] = kategori;
     data['jenis_kartu_identitas'] = jenisKartuIdentitas;
     data['nomor_kartu_identitas'] = nomorKartuIdentitas;
-    data['bank'] = bank;
-    data['nomor_rekening'] = nomorRekening;
-    data['nama_rekening'] = namaRekening;
     data['foto_kartu_identitas'] = fotoKartuIdentitas;
     data['tingkat'] = tingkatRelawan;
     return data;

@@ -14,7 +14,11 @@ class IdentityController extends GetxController {
   late GlobalKey<FormState> identFormKey;
 
   List<String> identityType = ['KTP', 'SIM', 'PASSPORT'].obs;
+  List<String> tingkatRelawan = ['Bawah', 'Menengah', 'Atas'].obs;
+  List<String> kategoriRelawan = ['Perorangan', 'Lembaga'].obs;
   RxString selectedType = ''.obs;
+  RxString selectedTingkat = ''.obs;
+  RxString selectedKategori = ''.obs;
   RxBool delete = true.obs;
 
   @override

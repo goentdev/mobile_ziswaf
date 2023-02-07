@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/profile/widgets/card_rekening.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
@@ -13,9 +14,8 @@ class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProfileController());
-    final user = controller.user.value;
+    controller.getbankyayasan();
     controller.getProfile2();
-
     return Obx(
       () => Scaffold(
         backgroundColor: neutral20,
@@ -152,7 +152,7 @@ class ProfileView extends GetView<ProfileController> {
                                               width: 127,
                                               height: 20,
                                               decoration: BoxDecoration(
-                                                color: Color(0xffFFE6CF),
+                                                color: const Color(0xffFFE6CF),
                                                 borderRadius:
                                                     BorderRadius.circular(8),
                                               ),
@@ -172,10 +172,10 @@ class ProfileView extends GetView<ProfileController> {
                                                         size: 16,
                                                       ),
                                                       Text(
-                                                        'Relawan Tingkat ${controller.user.value!.tingkatRelawan}',
+                                                        'Relawan Tingkat ${controller.user.value?.tingkatRelawan}',
                                                         style: overlineBold
                                                             .copyWith(
-                                                                color: Color(
+                                                                color: const Color(
                                                                     0xffDF823C)),
                                                       ),
                                                     ],
@@ -191,7 +191,7 @@ class ProfileView extends GetView<ProfileController> {
                         Container(
                           padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                           margin: const EdgeInsets.only(bottom: 16.11),
-                          height: 307,
+                          height: 449,
                           width: double.infinity,
                           color: neutral10,
                           child: Column(
@@ -237,6 +237,29 @@ class ProfileView extends GetView<ProfileController> {
                                 thickness: 1,
                               ),
                               CardProfile(
+                                title: 'Kategori Relawan',
+                                subtittle: controller.user.value!.kategori!,
+                                gambar: "assets/icons/relawan.png",
+                                onTap: () =>
+                                    Get.toNamed(Routes.CHANGEKATEOGRIRELAWAN),
+                              ),
+                              Divider(
+                                color: neutral30,
+                                thickness: 1,
+                              ),
+                              CardProfile(
+                                title: 'Tingkat Relawan',
+                                subtittle:
+                                    controller.user.value!.tingkatRelawan!,
+                                gambar: "assets/icons/tingkat_relawan.png",
+                                onTap: () =>
+                                    Get.toNamed(Routes.CHANGETINGKATRELAWAN),
+                              ),
+                              Divider(
+                                color: neutral30,
+                                thickness: 1,
+                              ),
+                              CardProfile(
                                 title: 'Kartu Identitas',
                                 subtittle: controller
                                     .user.value!.jenisKartuIdentitas!
@@ -244,83 +267,47 @@ class ProfileView extends GetView<ProfileController> {
                                 gambar: "assets/icons/identity.png",
                                 onTap: () => Get.toNamed(Routes.CHANGEIDENTITY),
                               ),
+                              Divider(
+                                color: neutral30,
+                                thickness: 1,
+                              ),
                             ],
                           ),
                         ),
                         Container(
                           margin: const EdgeInsets.only(bottom: 8),
                           padding: const EdgeInsets.all(16),
-                          height: 112,
+                          height: controller.bankyayasan.length > 1
+                              ? controller.bankyayasan.length * 90
+                              : 115,
                           width: double.infinity,
                           color: neutral10,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Rekening Bank',
+                                'Rekening Yayasan',
                                 style: titleTextBold.copyWith(
                                   color: neutral100,
                                 ),
                               ),
-                              InkWell(
-                                onTap: () => Get.toNamed(Routes.CHANGEBANK),
-                                child: Container(
-                                  padding: const EdgeInsets.only(top: 16),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          CircleAvatar(
-                                            backgroundColor: Colors.transparent,
-                                            radius: 15,
-                                            child: Image.asset(
-                                              'assets/icons/credit.png',
-                                              width: 30,
-                                              height: 30,
-                                            ),
-                                          ),
-                                          const SizedBox(width: 8),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                controller
-                                                    .user.value!.bank!.nama!,
-                                                style: captionTextSemiBold
-                                                    .copyWith(
-                                                  color: neutral90,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 4),
-                                              Text(
-                                                controller
-                                                    .user.value!.nomorRekening!,
-                                                style: captionTextSemiBold
-                                                    .copyWith(color: neutral80),
-                                              ),
-                                              Text(
-                                                'a.n ${user!.namaRekening}',
-                                                style: captionTextSemiBold
-                                                    .copyWith(
-                                                  color: neutral80,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Icon(
-                                        Icons.arrow_forward_ios,
-                                        size: 12,
-                                        color: neutral70,
-                                      )
-                                    ],
-                                  ),
+                              Expanded(
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  padding: const EdgeInsets.only(top: 0),
+                                  itemCount: controller.bankyayasan.length,
+                                  itemBuilder: (context, index) {
+                                    var bank = controller.bankyayasan;
+                                    return CardRekening(
+                                        namaBank: bank[index]!.bank!.nama!,
+                                        nomorRekening:
+                                            bank[index]!.nomorRekening!,
+                                        namaRekening:
+                                            bank[index]!.namaRekening!);
+                                  },
                                 ),
-                              ),
+                              )
                             ],
                           ),
                         ),

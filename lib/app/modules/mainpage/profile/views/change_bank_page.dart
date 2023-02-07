@@ -93,7 +93,7 @@ class ChangeBankPage extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     builder: (context) {
                       return FractionallySizedBox(
-                        heightFactor: 0.8,
+                        heightFactor: 0.5,
                         child: Scaffold(
                           appBar: AppBar(
                             backgroundColor: Colors.white,

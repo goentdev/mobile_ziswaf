@@ -8,7 +8,9 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mobile_ziswaf/app/data/models/bank_yayasan_model.dart';
 import 'package:mobile_ziswaf/app/data/models/user_model.dart';
+import 'package:mobile_ziswaf/app/data/providers/bank_provider.dart';
 import 'package:mobile_ziswaf/app/data/providers/user_provider.dart';
 import 'package:mobile_ziswaf/app/utils/shared_preferences.dart';
 import 'package:path/path.dart';
@@ -18,8 +20,10 @@ class ProfileController extends GetxController {
   late TextEditingController numberController;
   late TextEditingController emailController;
 
+  BankProvider bankProvider = BankProvider();
   UserProvider userProvider = UserProvider();
 
+  RxList<BankYayasan?> bankyayasan = <BankYayasan>[].obs;
   Rx<User?> user = User().obs;
   RxBool isLoading = false.obs;
   RxBool isLoading2 = false.obs;
@@ -59,14 +63,26 @@ class ProfileController extends GetxController {
   }
 
   void getProfile3() async {
+    isLoading.value = true;
+    user.value = await userProvider.profile();
+    update();
+    isLoading.value = false;
+  }
+
+  void getProfile4() async {
     isLoading2.value = true;
     user.value = await userProvider.profile();
     update();
     isLoading2.value = false;
   }
 
+  getbankyayasan() async {
+    bankyayasan.assignAll(await bankProvider.getbankyayasan());
+    update();
+  }
+
   Future<bool> changeName({required String nama}) async {
-    isLoading.value = true;
+    isLoading2.value = true;
 
     bool success = await userProvider.changeProfile(user.value!.id!, {
       'nama': nama,
@@ -82,7 +98,7 @@ class ProfileController extends GetxController {
   }
 
   Future<bool> changeNumber({required String whatsapp}) async {
-    isLoading.value = true;
+    isLoading2.value = true;
 
     bool success = await userProvider.changeProfile(user.value!.id!, {
       'whatsapp': whatsapp,
@@ -98,7 +114,7 @@ class ProfileController extends GetxController {
   }
 
   Future<bool> changeEmail({required String email}) async {
-    isLoading.value = true;
+    isLoading2.value = true;
 
     bool success = await userProvider.changeProfile(user.value!.id!, {
       'email': email,
@@ -114,7 +130,7 @@ class ProfileController extends GetxController {
   }
 
   Future<bool> changeKategori({required String kategori}) async {
-    isLoading.value = true;
+    isLoading2.value = true;
 
     bool success = await userProvider.changeProfile(user.value!.id!, {
       'kategori': kategori,
@@ -122,6 +138,22 @@ class ProfileController extends GetxController {
     if (success) {
       user.update((val) {
         val!.kategori = kategori;
+      });
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> changeTingkat({required String tingkat}) async {
+    isLoading2.value = true;
+
+    bool success = await userProvider.changeProfile(user.value!.id!, {
+      'tingkat': tingkat,
+    });
+    if (success) {
+      user.update((val) {
+        val!.tingkatRelawan = tingkat;
       });
       return true;
     } else {

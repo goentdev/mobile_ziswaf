@@ -3,6 +3,8 @@
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/detail_program_page.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/ubah_transaksi_page.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/profile/views/change_kategori_relawan.dart';
+import 'package:mobile_ziswaf/app/modules/mainpage/profile/views/change_tingkat_relawan.dart';
 
 import '../modules/OnBoarding/views/on_boarding_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
@@ -129,6 +131,16 @@ class AppPages {
     GetPage(
       name: _Paths.CHANGEPASSWORD,
       page: () => const ChangePasswordPage(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGEKATEOGRIRELAWAN,
+      page: () => const ChangeKategoriRelawan(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGETINGKATRELAWAN,
+      page: () => const ChangeTingkatRelawan(),
       binding: ProfileBinding(),
     ),
   ];

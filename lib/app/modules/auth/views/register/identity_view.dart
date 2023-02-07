@@ -289,15 +289,15 @@ class IdentityView extends GetView<IdentityController> {
                 height: 16,
               ),
               Obx(
-                () => identC.isLoading2.value
+                () => identC.isLoading.value
                     ? const LoadingButton()
                     : Button(
-                        textbutton: 'Selanjutnya',
+                        textbutton: 'Buat Akun',
                         onTap: () async {
                           if (identCont.identFormKey.currentState!.validate() &&
                               identCont.selectedType.value != '' &&
                               identCont.identityImage != null) {
-                            identC.isLoading2.value = true;
+                            identC.isLoading.value = true;
                             bool suskes = await identC.changeIdentity(
                                 foto: identCont.identityImage!.path,
                                 jenisKartuIdentitas:
@@ -306,18 +306,18 @@ class IdentityView extends GetView<IdentityController> {
                                     identCont.identityNumberController.text);
                             identC.getProfile3();
                             if (suskes) {
-                              identC.isLoading2.value = false;
+                              identC.isLoading.value = false;
                               identC.update();
-                              Get.to(() => const ChooseBankView());
+                              Get.offAllNamed(Routes.MAINPAGE);
                             } else if (identCont.selectedType.value != '' &&
                                 identCont.identityImage != null) {
                               Get.snackbar(
                                   'ERROR', 'Harap Lengkapi Form Diatas',
                                   backgroundColor: Colors.red,
                                   snackPosition: SnackPosition.TOP);
-                              identC.isLoading2.value = false;
+                              identC.isLoading.value = false;
                             } else {
-                              identC.isLoading2.value = false;
+                              identC.isLoading.value = false;
                             }
                           }
                         },

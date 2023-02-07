@@ -30,7 +30,7 @@ class ProgramSudahSelesai extends StatelessWidget {
         children: [
           Obx(
             () => Text(
-              'Daftar Program (${controller.selesai.value!.total})',
+              'Daftar Program (${controller.selesai.value!.total ?? 0})',
               style: listItemTitleBold.copyWith(color: neutral100),
             ),
           ),

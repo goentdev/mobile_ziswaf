@@ -33,7 +33,7 @@ class ProgramBerlangsung extends StatelessWidget {
         children: [
           Obx(
             () => Text(
-              'Daftar Program (${controller.totalBerlangsung.value!.total})',
+              'Daftar Program (${controller.totalBerlangsung.value!.total ?? 0})',
               style: listItemTitleBold.copyWith(color: neutral100),
             ),
           ),

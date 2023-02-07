@@ -50,6 +50,7 @@ class TransaksiProvider2 extends GetConnect {
     });
     printError();
     if (response.status.isOk) {
+      print(response);
       EasyLoading.showSuccess('Berhasil Add Transaksi');
       return true;
     } else {

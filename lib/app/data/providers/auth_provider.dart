@@ -22,9 +22,6 @@ class AuthProvider extends GetConnect {
     required String jenisKartuIdentitas,
     required String nomorKartuIdentitas,
     required String fotoKartuIdentitas,
-    required int bankId,
-    required String nomorRekening,
-    required String namaRekening,
     required String password,
   }) async {
     final response = await dio.post('$url/user/register', data: {
@@ -33,14 +30,12 @@ class AuthProvider extends GetConnect {
       // "otp": otp,
       "whatsapp": whatsapp,
       "status": status,
+      "tingkat": 'Bawah',
       "role": role,
       "kategori": kategori,
       "jenis_kartu_identitas": jenisKartuIdentitas,
       "nomor_kartu_identitas": nomorKartuIdentitas,
       "foto_kartu_identitas": fotoKartuIdentitas,
-      "bank_id": bankId,
-      "nomor_rekening": nomorRekening,
-      "nama_rekening": namaRekening,
       "password": password,
     });
 
