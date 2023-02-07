@@ -247,6 +247,7 @@ class TambahMuzakki extends StatelessWidget {
                     email: controllerC.emailmuzakkiController.text,
                     kategori: controllerC.selected.value,
                     tipe: controllerC.selectedType.value);
+                await controller.getMuzakisall();
                 await controller.refreshMuzaki();
                 if (success == 'Berhasil') {
                   // ignore: use_build_context_synchronously
