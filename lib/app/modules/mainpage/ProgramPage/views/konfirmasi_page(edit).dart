@@ -924,70 +924,98 @@ class KonfirmasiPageEdit extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(
-            top: BorderSide(color: neutral30, width: 1),
+      bottomNavigationBar: Obx(
+        () => Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(
+              top: BorderSide(color: neutral30, width: 1),
+            ),
           ),
-        ),
-        child: TextButton(
-          style: TextButton.styleFrom(
-            backgroundColor: primaryMain,
-          ),
-          onPressed: () async {
-            if (buktiTransaksi == controller.identityImage?.path) {
-              bool success = await controller2.changeTransaksi(
-                  alokasiId: alokasiId,
-                  atasNama: atasNama,
-                  id: transaksiId,
-                  programId: programId,
-                  muzakiId: id,
-                  jenisDonasi: jenisdonasiId,
-                  nominal: nominal,
-                  nomorRekening: nomorRekening,
-                  namaRekening: namaRekening,
-                  nomorResi: nomorResi,
-                  buktiTransaksi: buktiTransaksi,
-                  bankId: bankId);
-              await controller2.getPrograms();
-              await controller2.gettotalberlangsungg2();
-              await controller2.gettotalselesai();
-              if (success) {
-                EasyLoading.showSuccess('Berhasil Ubah Transaksi');
-                Get.offAllNamed(Routes.MAINPAGE);
+          child: TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: primaryMain,
+            ),
+            onPressed: () async {
+              controller2.isLoading.value = true;
+              if (buktiTransaksi == controller.identityImage?.path) {
+                bool success = await controller2.changeTransaksi(
+                    alokasiId: alokasiId,
+                    atasNama: atasNama,
+                    id: transaksiId,
+                    programId: programId,
+                    muzakiId: id,
+                    jenisDonasi: jenisdonasiId,
+                    nominal: nominal,
+                    nomorRekening: nomorRekening,
+                    namaRekening: namaRekening,
+                    nomorResi: nomorResi,
+                    buktiTransaksi: buktiTransaksi,
+                    bankId: bankId);
+                await controller2.getPrograms();
+                await controller2.gettotalberlangsungg2();
+                await controller2.gettotalselesai();
+                if (success) {
+                  controller2.isLoading.value = false;
+                  EasyLoading.showSuccess('Berhasil Ubah Transaksi');
+                  Get.offAllNamed(Routes.MAINPAGE);
+                } else {
+                  controller2.isLoading.value = false;
+                }
               } else {
-                controller2.isLoading.value = false;
+                bool success = await controller2.changeTransaksi(
+                    alokasiId: alokasiId,
+                    atasNama: atasNama,
+                    id: transaksiId,
+                    programId: programId,
+                    muzakiId: id,
+                    jenisDonasi: jenisdonasiId,
+                    nominal: nominal,
+                    nomorRekening: nomorRekening,
+                    namaRekening: namaRekening,
+                    nomorResi: nomorResi,
+                    bankId: bankId);
+                await controller2.getPrograms();
+                await controller2.gettotalberlangsungg2();
+                await controller2.gettotalselesai();
+                if (success) {
+                  controller2.isLoading.value = false;
+                  EasyLoading.showSuccess('Berhasil Ubah Transaksi');
+                  Get.offAllNamed(Routes.MAINPAGE);
+                } else {
+                  controller2.isLoading.value = false;
+                }
               }
-            } else {
-              bool success = await controller2.changeTransaksi(
-                  alokasiId: alokasiId,
-                  atasNama: atasNama,
-                  id: transaksiId,
-                  programId: programId,
-                  muzakiId: id,
-                  jenisDonasi: jenisdonasiId,
-                  nominal: nominal,
-                  nomorRekening: nomorRekening,
-                  namaRekening: namaRekening,
-                  nomorResi: nomorResi,
-                  bankId: bankId);
-              await controller2.getPrograms();
-              await controller2.gettotalberlangsungg2();
-              await controller2.gettotalselesai();
-              if (success) {
-                EasyLoading.showSuccess('Berhasil Ubah Transaksi');
-                Get.offAllNamed(Routes.MAINPAGE);
-              } else {
-                controller2.isLoading.value = false;
-              }
-            }
-          },
-          child: Text(
-            'Simpan',
-            style: textMBold.copyWith(color: Colors.white),
+            },
+            child: controller2.isLoading.value
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 16,
+                        height: 16,
+                        margin: const EdgeInsets.only(right: 8),
+                        child: const CircularProgressIndicator(
+                          strokeWidth: 2,
+                          valueColor: AlwaysStoppedAnimation(
+                            Colors.white,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Loading',
+                        style: paragraphTextBold.copyWith(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  )
+                : Text(
+                    'Simpan',
+                    style: textMBold.copyWith(color: Colors.white),
+                  ),
           ),
         ),
       ),

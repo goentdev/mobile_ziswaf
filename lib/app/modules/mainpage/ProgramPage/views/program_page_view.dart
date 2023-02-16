@@ -22,44 +22,9 @@ class ProgramPageView extends GetView<ProgramPageController> {
     controller.gettotaldana();
     controller.gettotalberlangsungg();
 
-    return Obx(() => controller2.user.value!.status != 1
-        ? Scaffold(
-            backgroundColor: const Color(0xffECF7F4),
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 91,
-                ),
-                Center(
-                  child: Image.asset(
-                    'assets/images/nonaktif.png',
-                    width: 288,
-                    height: 288,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16),
-                  child: Text(
-                    'Akun Anda\nDinonaktifkan',
-                    style: h2ExtraBold.copyWith(color: neutral100),
-                  ),
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16),
-                  child: Text(
-                    'Silahkan hubungi admin untuk mengaktifkan\nakun Anda kembali',
-                    style: textLSemibold.copyWith(color: neutral80),
-                  ),
-                ),
-              ],
-            ))
-        : Scaffold(
+    return Obx(() => Visibility(
+          visible: controller2.user.value!.status == 0,
+          replacement: Scaffold(
             backgroundColor: const Color(0xffECF7F4),
             body: RefreshIndicator(
               onRefresh: () async {
@@ -167,7 +132,44 @@ class ProgramPageView extends GetView<ProgramPageController> {
                 ),
               ),
             ),
-          ));
+          ),
+          child: Scaffold(
+              backgroundColor: const Color(0xffECF7F4),
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 91,
+                  ),
+                  Center(
+                    child: Image.asset(
+                      'assets/images/nonaktif.png',
+                      width: 288,
+                      height: 288,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Text(
+                      'Akun Anda\nDinonaktifkan',
+                      style: h2ExtraBold.copyWith(color: neutral100),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Text(
+                      'Silahkan hubungi admin untuk mengaktifkan\nakun Anda kembali',
+                      style: textLSemibold.copyWith(color: neutral80),
+                    ),
+                  ),
+                ],
+              )),
+        ));
   }
 }
 

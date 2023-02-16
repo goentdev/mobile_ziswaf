@@ -110,7 +110,6 @@ class RegisterController extends GetxController {
         val.jenisKartuIdentitas = jenisKartuIdentitas;
         val.nomorKartuIdentitas = nomorKartuIdentitas;
         val.fotoKartuIdentitas = fotoKartuIdentitas;
-        val.bank!.id = bankId;
         val.fotoKartuIdentitas = fotoKartuIdentitas;
         val.fotoKartuIdentitas = fotoKartuIdentitas;
       });

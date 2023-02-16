@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:mobile_ziswaf/app/data/models/bank_yayasan_model.dart';
 import 'package:mobile_ziswaf/app/data/models/jenisdonasis_model.dart';
 import 'package:mobile_ziswaf/app/data/providers/transaksi_provider.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/zakat_model.dart';
@@ -44,14 +45,14 @@ class ChooseBankController extends GetxController {
   BankProvider bankProvider = BankProvider();
   TransaksiProvider donasiprovider = TransaksiProvider();
 
-  RxList<Bank> banks = <Bank>[].obs;
+  RxList<BankYayasan> banks = <BankYayasan>[].obs;
   RxList<Jenisdonasis> jenisdonasi = <Jenisdonasis>[].obs;
   RxBool alokasi2 = false.obs;
   RxBool alokasi3 = false.obs;
   RxBool alokasi4 = false.obs;
 
   RxList<Jenisdonasis> jenisdonasionsearch = <Jenisdonasis>[].obs;
-  RxList<Bank> banksOnSearch = <Bank>[].obs;
+  RxList<BankYayasan> banksOnSearch = <BankYayasan>[].obs;
   RxList<Zakat> donasisOnSearch = <Zakat>[].obs;
 
   RxString selectedBank = ''.obs;
@@ -132,7 +133,7 @@ class ChooseBankController extends GetxController {
 
   void searchBank(String value) {
     banksOnSearch.value = banks.where((element) {
-      final loweredBank = element.nama!.toLowerCase();
+      final loweredBank = element.bank!.nama!.toLowerCase();
       return loweredBank.contains(value.toLowerCase());
     }).toList();
   }
@@ -159,7 +160,7 @@ class ChooseBankController extends GetxController {
   getBanks() async {
     isLoading.value = true;
 
-    banks.assignAll(await bankProvider.getBanks());
+    banks.assignAll(await bankProvider.getbankyayasan());
 
     isLoading.value = false;
   }

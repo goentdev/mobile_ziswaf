@@ -123,11 +123,11 @@ class AppPages {
       page: () => const ChangeIdentityPage(),
       binding: ProfileBinding(),
     ),
-    GetPage(
-      name: _Paths.CHANGEBANK,
-      page: () => const ChangeBankPage(),
-      binding: ProfileBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.CHANGEBANK,
+    //   page: () => const ChangeBankPage(),
+    //   binding: ProfileBinding(),
+    // ),
     GetPage(
       name: _Paths.CHANGEPASSWORD,
       page: () => const ChangePasswordPage(),

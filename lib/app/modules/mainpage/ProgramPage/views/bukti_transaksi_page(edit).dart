@@ -236,21 +236,27 @@ class BuktiTransaksiEdit extends StatelessWidget {
                                                 .text.isNotEmpty) {
                                               return CardBank(
                                                 bank: controller
-                                                    .banksOnSearch[index].nama!,
+                                                    .banksOnSearch[index]
+                                                    .bank!
+                                                    .nama!,
                                                 gambar: controller
                                                     .banksOnSearch[index]
+                                                    .bank!
                                                     .image!,
                                                 onTap: () {
                                                   controller
                                                           .selectedBank.value =
                                                       controller
                                                           .banksOnSearch[index]
+                                                          .bank!
                                                           .nama!;
-                                                  controller.banks[index].nama!;
+                                                  controller
+                                                      .banks[index].bank!.nama!;
                                                   controller.selectedBankId
                                                           .value =
                                                       controller
                                                           .banksOnSearch[index]
+                                                          .bank!
                                                           .id!;
                                                   controller.isSelectedBank
                                                       .value = true;
@@ -262,18 +268,18 @@ class BuktiTransaksiEdit extends StatelessWidget {
                                             } else {
                                               return CardBank(
                                                 bank: controller
-                                                    .banks[index].nama!,
+                                                    .banks[index].bank!.nama!,
                                                 gambar: controller
-                                                    .banks[index].image!,
+                                                    .banks[index].bank!.image!,
                                                 onTap: () {
                                                   controller
                                                           .selectedBank.value =
-                                                      controller
-                                                          .banks[index].nama!;
+                                                      controller.banks[index]
+                                                          .bank!.nama!;
                                                   controller.selectedBankId
                                                           .value =
-                                                      controller
-                                                          .banks[index].id!;
+                                                      controller.banks[index]
+                                                          .bank!.id!;
                                                   controller.isSelectedBank
                                                       .value = true;
                                                   Get.back();

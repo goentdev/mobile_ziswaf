@@ -68,7 +68,7 @@ class UbahTransaksiPage extends StatelessWidget {
                 () => Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Daftar Muzaki (${controller.totalmuzaki.value!.totalMuzaki})',
+                    'Daftar Muzaki (${controller.totalmuzaki.value!.totalMuzaki ?? 0})',
                     style: listItemTitleBold.copyWith(color: neutral100),
                   ),
                 ),

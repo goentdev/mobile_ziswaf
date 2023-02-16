@@ -27,6 +27,7 @@ class ProfileController extends GetxController {
   Rx<User?> user = User().obs;
   RxBool isLoading = false.obs;
   RxBool isLoading2 = false.obs;
+  RxBool loadingDelay = true.obs;
 
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
 
@@ -35,7 +36,7 @@ class ProfileController extends GetxController {
     nameController = TextEditingController();
     numberController = TextEditingController();
     emailController = TextEditingController();
-
+    getbankyayasan();
     getProfile();
     super.onInit();
   }

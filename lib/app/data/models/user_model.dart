@@ -11,7 +11,7 @@ class User {
   String? kategori;
   String? jenisKartuIdentitas;
   String? nomorKartuIdentitas;
-  Bank? bank;
+  // Bank? bank;
   String? nomorRekening;
   String? namaRekening;
   String? fotoKartuIdentitas;

@@ -178,15 +178,19 @@ class ChooseBankView extends GetView<ChooseBankController> {
                                                 .text.isNotEmpty) {
                                               return CardBank(
                                                 bank: chooseCont
-                                                    .banksOnSearch[index].nama!,
+                                                    .banksOnSearch[index]
+                                                    .bank!
+                                                    .nama!,
                                                 gambar: chooseCont
                                                     .banksOnSearch[index]
+                                                    .bank!
                                                     .image!,
                                                 onTap: () {
                                                   chooseCont
                                                           .selectedBank.value =
                                                       chooseCont
                                                           .banksOnSearch[index]
+                                                          .bank!
                                                           .nama!;
                                                   chooseCont.selectedBankId
                                                           .value =
@@ -204,15 +208,15 @@ class ChooseBankView extends GetView<ChooseBankController> {
                                             } else {
                                               return CardBank(
                                                 bank: chooseCont
-                                                    .banks[index].nama!,
+                                                    .banks[index].bank!.nama!,
                                                 gambar: chooseCont
-                                                    .banks[index].image!,
+                                                    .banks[index].bank!.image!,
                                                 onTap: () {
                                                   chooseCont.update();
                                                   chooseCont
                                                           .selectedBank.value =
-                                                      chooseCont
-                                                          .banks[index].nama!;
+                                                      chooseCont.banks[index]
+                                                          .bank!.nama!;
                                                   chooseCont.selectedBankId
                                                           .value =
                                                       chooseCont

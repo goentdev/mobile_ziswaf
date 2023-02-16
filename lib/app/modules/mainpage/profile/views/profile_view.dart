@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/card_rekening_profile.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/profile/widgets/card_rekening.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
@@ -191,7 +192,7 @@ class ProfileView extends GetView<ProfileController> {
                         Container(
                           padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                           margin: const EdgeInsets.only(bottom: 16.11),
-                          height: 449,
+                          height: 460,
                           width: double.infinity,
                           color: neutral10,
                           child: Column(
@@ -275,11 +276,8 @@ class ProfileView extends GetView<ProfileController> {
                           ),
                         ),
                         Container(
-                          margin: const EdgeInsets.only(bottom: 8),
                           padding: const EdgeInsets.all(16),
-                          height: controller.bankyayasan.length > 1
-                              ? controller.bankyayasan.length * 90
-                              : 115,
+                          height: 49,
                           width: double.infinity,
                           color: neutral10,
                           child: Column(
@@ -291,25 +289,24 @@ class ProfileView extends GetView<ProfileController> {
                                   color: neutral100,
                                 ),
                               ),
-                              Expanded(
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  padding: const EdgeInsets.only(top: 0),
-                                  itemCount: controller.bankyayasan.length,
-                                  itemBuilder: (context, index) {
-                                    var bank = controller.bankyayasan;
-                                    return CardRekening(
-                                        namaBank: bank[index]!.bank!.nama!,
-                                        nomorRekening:
-                                            bank[index]!.nomorRekening!,
-                                        namaRekening:
-                                            bank[index]!.namaRekening!);
-                                  },
-                                ),
-                              )
                             ],
                           ),
+                        ),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: const EdgeInsets.only(top: 0),
+                          itemCount: controller.bankyayasan.length,
+                          itemBuilder: (context, index) {
+                            var bank = controller.bankyayasan;
+                            return CardRekeningProfile(
+                                namaBank: bank[index]!.bank!.nama!,
+                                nomorRekening: bank[index]!.nomorRekening!,
+                                namaRekening: bank[index]!.namaRekening!);
+                          },
+                        ),
+                        const SizedBox(
+                          height: 16.0,
                         ),
                         Container(
                           margin: const EdgeInsets.only(bottom: 8),
