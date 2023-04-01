@@ -20,6 +20,7 @@ void main() async {
     ),
   );
   await Firebase.initializeApp(
+    name: 'Ziswaf',
     options: DefaultFirebaseOptions.currentPlatform,
   );
   print(sharedPrefs.token);

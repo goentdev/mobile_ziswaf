@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:871110076188:android:1a336615915aaffc0afcd9",
         "android_client_info": {
-          "package_name": "com.mobile.ziswaf"
+          "package_name": "com.yayasanyamini.app"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "871110076188-4onm6stqed9sm631mccbl5jp45e44fdu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.mobile.ziswaf",
+            "package_name": "com.yayasanyamini.app",
             "certificate_hash": "57cc614d7b59a59c96600a6511d66b2e0537530f"
           }
         },
