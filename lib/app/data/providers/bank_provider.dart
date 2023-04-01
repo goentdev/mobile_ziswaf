@@ -6,7 +6,7 @@ import 'package:mobile_ziswaf/app/utils/shared_preferences.dart';
 import '../models/bank_model.dart';
 
 class BankProvider extends GetConnect {
-  String url = 'https://ziswaf-server.smarteschool.net';
+  String url = 'https://server.yayasanyamini.com';
 
   Dio dio = Dio();
 

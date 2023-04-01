@@ -1139,8 +1139,7 @@ class DetailTransaksi extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () {
                           Get.to(Viewer(
-                            link:
-                                'https://ziswaf-server.smarteschool.net/$kwitansi',
+                            link: 'https://server.yayasanyamini.com/$kwitansi',
                           ));
                         },
                         child: Container(
@@ -1208,7 +1207,7 @@ class DetailTransaksi extends StatelessWidget {
                                   onTap: () {
                                     Get.to(Viewer(
                                       link:
-                                          'https://ziswaf-server.smarteschool.net/${controller2.alokasi?[index].sertifikat} ',
+                                          'https://server.yayasanyamini.com/${controller2.alokasi?[index].sertifikat} ',
                                     ));
                                   },
                                   child: Container(

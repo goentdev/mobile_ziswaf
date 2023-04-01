@@ -9,7 +9,7 @@ import '../models/transaksi_model.dart';
 
 class TransaksiProvider extends GetConnect {
   Dio dio = Dio();
-  String url = 'https://ziswaf-server.smarteschool.net';
+  String url = 'https://server.yayasanyamini.com';
 
   Future<List<Transaksi>> getTransaksi(int? id) async {
     final response = await dio.get('$url/relawan-program/$id',

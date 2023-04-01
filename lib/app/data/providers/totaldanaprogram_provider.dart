@@ -5,7 +5,7 @@ import '../../utils/shared_preferences.dart';
 import '../models/totaldanaprogram_model.dart';
 
 class TotaldanaprogramProvider extends GetConnect {
-  final String url = 'https://ziswaf-server.smarteschool.net';
+  final String url = 'https://server.yayasanyamini.com';
 
   Dio dio = Dio();
 

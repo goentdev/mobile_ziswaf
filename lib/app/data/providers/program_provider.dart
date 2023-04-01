@@ -6,7 +6,7 @@ import '../../utils/shared_preferences.dart';
 import '../models/program_model.dart';
 
 class ProgramProvider extends GetConnect {
-  String url = 'https://ziswaf-server.smarteschool.net';
+  String url = 'https://server.yayasanyamini.com';
   Dio dio = Dio();
 
   Future<List<Program>> getProgram() async {

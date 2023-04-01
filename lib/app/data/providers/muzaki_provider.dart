@@ -10,7 +10,7 @@ import '../models/muzaki_model.dart';
 import '../models/totalmuzaki_model.dart';
 
 class MuzakiProvider extends GetConnect {
-  String url = 'https://ziswaf-server.smarteschool.net';
+  String url = 'https://server.yayasanyamini.com';
   final controllerC = Get.put(TambahUbahMuzakkiController());
 
   Dio dio = Dio();
