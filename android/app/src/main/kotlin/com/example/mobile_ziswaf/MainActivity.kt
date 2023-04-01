@@ -1,4 +1,4 @@
-package com.mobile.ziswaf
+package com.yayasanyamini.app
 
 import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterFragmentActivity
