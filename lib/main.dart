@@ -13,7 +13,7 @@ void main() async {
   await sharedPrefs.init();
   runApp(
     GetMaterialApp(
-      title: "Ziswaf",
+      title: "Yasmini",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       builder: EasyLoading.init(),
