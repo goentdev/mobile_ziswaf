@@ -79,7 +79,10 @@ class ProfileView extends GetView<ProfileController> {
                                     height: 4,
                                   ),
                                   controller.user.value!.tingkatRelawan ==
-                                          'Atas'
+                                              'Atas' ||
+                                          controller
+                                                  .user.value!.tingkatRelawan ==
+                                              'Utama'
                                       ? Container(
                                           width: 121,
                                           height: 20,
@@ -114,7 +117,10 @@ class ProfileView extends GetView<ProfileController> {
                                           ),
                                         )
                                       : controller.user.value!.tingkatRelawan ==
-                                              'Menengah'
+                                                  'Menengah' ||
+                                              controller.user.value!
+                                                      .tingkatRelawan ==
+                                                  'Dewasa'
                                           ? Container(
                                               width: 145,
                                               height: 20,
