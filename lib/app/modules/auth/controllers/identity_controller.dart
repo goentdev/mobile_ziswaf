@@ -14,7 +14,7 @@ class IdentityController extends GetxController {
   late GlobalKey<FormState> identFormKey;
 
   List<String> identityType = ['KTP', 'SIM', 'PASSPORT'].obs;
-  List<String> tingkatRelawan = ['Bawah', 'Menengah', 'Atas'].obs;
+  List<String> tingkatRelawan = ['Madya', 'Dewasa', 'Utama'].obs;
   List<String> kategoriRelawan = ['Perorangan', 'Lembaga'].obs;
   RxString selectedType = ''.obs;
   RxString selectedTingkat = ''.obs;
