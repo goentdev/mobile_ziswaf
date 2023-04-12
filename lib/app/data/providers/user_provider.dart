@@ -6,7 +6,7 @@ import 'package:mobile_ziswaf/app/utils/shared_preferences.dart';
 import '../models/user_model.dart';
 
 class UserProvider extends GetConnect {
-  final String url = 'https://ziswaf-server.smarteschool.net';
+  final String url = 'https://server.yayasanyamini.com';
   Dio dio = Dio();
 
   Future<User?> profile() async {

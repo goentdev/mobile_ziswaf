@@ -12,7 +12,7 @@ import '../zakat_model.dart';
 
 class TransaksiProvider2 extends GetConnect {
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
-  final String url = 'https://ziswaf-server.smarteschool.net';
+  final String url = 'https://server.yayasanyamini.com';
   String? linkBuktiTransaksi;
   String _getRandomFileName() =>
       '${DateTime.now().toUtc().toString()}-${Random().nextInt(8999) + 1000}';

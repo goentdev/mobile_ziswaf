@@ -5,7 +5,7 @@ import '../../utils/shared_preferences.dart';
 import '../models/totaltransaksi_model.dart';
 
 class TotaltransaksiProvider extends GetConnect {
-  final String url = 'https://ziswaf-server.smarteschool.net';
+  final String url = 'https://server.yayasanyamini.com';
   Dio dio = Dio();
 
   Future<Totaltransaksi?> totaltransaksiId(int? id) async {
