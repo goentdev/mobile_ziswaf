@@ -354,6 +354,7 @@ class CardListUser extends StatelessWidget {
                           const SizedBox(width: 10),
                           InkWell(
                             onTap: () {
+                              Get.back();
                               Get.to(() => UbahMuzakki(
                                     nama: nama,
                                     nomor: nomor,
@@ -605,6 +606,7 @@ class CardListUser extends StatelessWidget {
                           const SizedBox(width: 10),
                           InkWell(
                             onTap: () {
+                              Get.back();
                               Get.to(() => UbahMuzakki(
                                     nama: nama,
                                     nomor: nomor,

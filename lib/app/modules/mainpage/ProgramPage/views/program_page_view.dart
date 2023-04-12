@@ -22,7 +22,7 @@ class ProgramPageView extends GetView<ProgramPageController> {
     controller.gettotalberlangsungg();
 
     return Obx(() => Visibility(
-          visible: controller2.user.value!.status == 0,
+          visible: controller2.user.value?.status == 0,
           replacement: Scaffold(
             backgroundColor: const Color(0xffECF7F4),
             body: RefreshIndicator(

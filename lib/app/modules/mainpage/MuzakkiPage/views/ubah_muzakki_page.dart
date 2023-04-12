@@ -256,7 +256,13 @@ class UbahMuzakki extends StatelessWidget {
             await controller2.gettotalberlangsungg2();
             await controller2.gettotalselesai();
             if (success) {
-              Get.offAllNamed(Routes.MAINPAGE);
+              Get.back();
+              controllerC.namemuzakkiController.text = '';
+              controllerC.whatsappmuzakkiController.text = '';
+              controllerC.emailmuzakkiController.text = '';
+              controllerC.selected.value = '';
+              controllerC.selectedType.value = '';
+              controllerC.update();
               // ignore: use_build_context_synchronously
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(

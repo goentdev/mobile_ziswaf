@@ -19,7 +19,7 @@ class ProfileView extends GetView<ProfileController> {
     return Obx(
       () => Scaffold(
         backgroundColor: neutral20,
-        body: controller.user.value!.status == 1
+        body: controller.user.value?.status == 1
             ? SingleChildScrollView(
                 child: GetBuilder<ProfileController>(
                   init: ProfileController(),

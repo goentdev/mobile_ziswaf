@@ -21,10 +21,10 @@ class MuzakkiPageView extends GetView<MuzakkiPageController> {
 
     return Obx(
       () => Scaffold(
-          backgroundColor: controller2.user.value!.status == 1
+          backgroundColor: controller2.user.value?.status == 1
               ? const Color(0xffECF7F4)
               : neutral20,
-          body: controller2.user.value!.status == 1
+          body: controller2.user.value?.status == 1
               ? SingleChildScrollView(
                   physics: const NeverScrollableScrollPhysics(),
                   child: Stack(children: [
@@ -172,7 +172,7 @@ class MuzakkiPageView extends GetView<MuzakkiPageController> {
                   ],
                 ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          floatingActionButton: controller2.user.value!.status == 1
+          floatingActionButton: controller2.user.value?.status == 1
               ? FloatingActionButton(
                   backgroundColor: secondaryMain,
                   onPressed: () {
