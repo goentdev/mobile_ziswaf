@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/views/widget/tab_bar.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/program_selesai.dart';
@@ -8,7 +7,7 @@ import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/program_ber
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_dana.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
-
+import 'package:get/get.dart';
 import '../../profile/controllers/profile_controller.dart';
 import '../controllers/program_page_controller.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/edit_transaksi2_page.dart';
 
+import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/edit_transaksi2_page.dart';
+import 'package:get/get.dart';
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/fonts.dart';
 import '../../controllers/program_page_controller.dart';

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/data/providers/user_provider.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/profile/controllers/profile_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/profile/views/profile_view.dart';
 import 'package:mobile_ziswaf/app/utils/shared_preferences.dart';
-
+import 'package:get/get.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/fonts.dart';
 import '../MuzakkiPage/controllers/muzakki_page_controller.dart';

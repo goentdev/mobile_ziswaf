@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-
 import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/register_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/card_bank.dart';

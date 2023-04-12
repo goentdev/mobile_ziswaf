@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
-
 import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/views/widget/card_list_user.dart';
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/fonts.dart';
 import '../../../ProgramPage/controllers/ubah_transaksi_controller.dart';
 import '../../controllers/muzakki_page_controller.dart';
+import 'package:get/get.dart';
 
 class DaftarPemerintah extends StatelessWidget {
   const DaftarPemerintah({

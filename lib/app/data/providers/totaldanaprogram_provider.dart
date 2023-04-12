@@ -1,21 +1,14 @@
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-
 import '../../utils/shared_preferences.dart';
 import '../models/totaldanaprogram_model.dart';
 
 class TotaldanaprogramProvider extends GetConnect {
   final String url = 'https://server.yayasanyamini.com';
 
-  Dio dio = Dio();
-
   Future<Totaldanaprogram?> totaldanaprogram() async {
-    final response = await dio.get(
-      '$url/relawan-program',
-      options:
-          Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}),
-    );
-    return Totaldanaprogram.fromJson(response.data);
+    final response = await get('$url/relawan-program',
+        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
+    return Totaldanaprogram.fromJson(response.body);
   }
 
   Future<void> deleteTotaldanaprogram(int id) async =>

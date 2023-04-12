@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:pdftron_flutter/pdftron_flutter.dart';
 
+import 'package:pdftron_flutter/pdftron_flutter.dart';
+import 'package:get/get.dart';
 import 'dart:async';
 import 'dart:io' show Platform;
 import 'package:flutter/services.dart';

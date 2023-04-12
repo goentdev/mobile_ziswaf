@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/viewer.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-
+import 'package:get/get.dart';
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/fonts.dart';
 import '../../controllers/program_page_controller.dart';

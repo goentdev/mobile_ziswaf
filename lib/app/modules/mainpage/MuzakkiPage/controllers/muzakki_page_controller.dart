@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:mobile_ziswaf/app/data/models/muzaki_model.dart';
 import 'package:mobile_ziswaf/app/data/models/totalmuzaki_model.dart';
 import 'package:mobile_ziswaf/app/data/models/user_model.dart';
 import 'package:mobile_ziswaf/app/data/providers/muzaki_provider.dart';
-
+import 'package:get/get.dart';
 import '../../../../data/providers/user_provider.dart';
 
 class MuzakkiPageController extends GetxController

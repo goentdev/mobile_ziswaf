@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:get/utils.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/tambah_transaksi_page.dart';
-
+import 'package:get/get.dart';
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/fonts.dart';
 

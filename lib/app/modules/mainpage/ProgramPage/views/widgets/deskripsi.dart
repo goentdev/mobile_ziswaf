@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/fonts.dart';
 import '../../controllers/program_page_controller.dart';
+import 'package:get/get.dart';
 
 class Deskripsi extends StatelessWidget {
   final String judul, tanggalakhir, persenn, deskripsi, file, gambar, banner;

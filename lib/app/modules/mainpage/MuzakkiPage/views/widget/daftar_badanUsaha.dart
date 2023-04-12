@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/controllers/muzakki_page_controller.dart';
 
 import 'package:mobile_ziswaf/app/modules/mainpage/MuzakkiPage/views/widget/card_list_user.dart';
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/fonts.dart';
+import 'package:get/get.dart';
 
 class DaftarBadanUsaha extends StatelessWidget {
   const DaftarBadanUsaha({

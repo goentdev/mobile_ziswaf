@@ -1,10 +1,10 @@
 // ignore_for_file: iterable_contains_unrelated_type, unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:mobile_ziswaf/app/modules/mainpage/ProgramPage/views/widgets/card_dana.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
-
+import 'package:get/get.dart';
 import '../../../../theme/colors.dart';
 import '../controllers/program_page_controller.dart';
 

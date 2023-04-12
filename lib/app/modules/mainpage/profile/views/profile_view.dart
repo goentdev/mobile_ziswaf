@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/auth/views/register/widgets/card_rekening_profile.dart';
 import 'package:mobile_ziswaf/app/modules/mainpage/profile/widgets/card_rekening.dart';
 import 'package:mobile_ziswaf/app/routes/app_pages.dart';
 import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
-
+import 'package:get/get.dart';
 import '../controllers/profile_controller.dart';
 import '../widgets/card_profile.dart';
 

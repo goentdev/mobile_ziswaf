@@ -1,10 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-
 import '../zakat_model.dart';
 
 class ZakatProvider extends GetConnect {
-  Dio dio = Dio();
   @override
   void onInit() {
     httpClient.defaultDecoder = (map) {
@@ -15,8 +12,8 @@ class ZakatProvider extends GetConnect {
   }
 
   Future<Zakat?> getZakat(int id) async {
-    final response = await dio.get('zakat/$id');
-    return response.data;
+    final response = await get('zakat/$id');
+    return response.body;
   }
 
   Future<void> deleteZakat(int id) async => await delete('zakat/$id');

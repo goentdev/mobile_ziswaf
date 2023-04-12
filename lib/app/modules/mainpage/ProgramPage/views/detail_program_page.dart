@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
@@ -14,7 +13,7 @@ import 'package:mobile_ziswaf/app/theme/colors.dart';
 import 'package:mobile_ziswaf/app/theme/fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:appbar_animated/appbar_animated.dart';
-
+import 'package:get/get.dart';
 import '../../../../data/models/transaksi_model.dart';
 
 class DetailProgram extends StatelessWidget {

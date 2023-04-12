@@ -1,9 +1,8 @@
-import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/choose_bank_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/form_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/identity_controller.dart';
 import 'package:mobile_ziswaf/app/modules/auth/controllers/register_controller.dart';
-
+import 'package:get/get.dart';
 import '../controllers/login_controller.dart';
 
 class AuthBinding extends Bindings {

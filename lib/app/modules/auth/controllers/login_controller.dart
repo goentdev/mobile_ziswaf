@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
+
 import 'package:mobile_ziswaf/app/data/providers/auth_provider.dart';
+import 'package:get/get.dart';
 
 class LoginController extends GetxController {
   late TextEditingController whatsappC;

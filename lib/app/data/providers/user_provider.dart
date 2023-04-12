@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:mobile_ziswaf/app/utils/shared_preferences.dart';
@@ -7,26 +6,20 @@ import '../models/user_model.dart';
 
 class UserProvider extends GetConnect {
   final String url = 'https://server.yayasanyamini.com';
-  Dio dio = Dio();
 
   Future<User?> profile() async {
     var urlget = ('$url/profile');
-    final response = await dio.get(
-      urlget,
-      options:
-          Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}),
-    );
-    return User.fromJson(response.data);
+    final response = await get(urlget,
+        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
+    return User.fromJson(response.body);
   }
 
   Future<bool> changeProfile(
     int id,
     Map body,
   ) async {
-    final response = await dio.put('$url/user/$id',
-        data: body,
-        options:
-            Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}));
+    final response = await put('$url/user/$id', body,
+        headers: {'Authorization': 'bearer ${sharedPrefs.token}'});
     if (response.statusCode == 200) {
       return true;
     } else {
@@ -39,13 +32,12 @@ class UserProvider extends GetConnect {
     required String passwordbaru,
     required String passwordlama,
   }) async {
-    final response = await dio.post('$url/user/reset-password',
-        options:
-            Options(headers: {'Authorization': 'bearer ${sharedPrefs.token}'}),
-        data: {
-          'password_lama': passwordlama,
-          'password_baru': passwordbaru,
-        });
+    final response = await post('$url/user/reset-password', headers: {
+      'Authorization': 'bearer ${sharedPrefs.token}'
+    }, {
+      'password_lama': passwordlama,
+      'password_baru': passwordbaru,
+    });
     if (response.statusCode == 200) {
       EasyLoading.showSuccess('Berhasil ubah password');
       return true;
@@ -59,7 +51,7 @@ class UserProvider extends GetConnect {
   }
 
   Future<bool> forgotpassword({required String email}) async {
-    final response = await dio.post('$url/user/kirim-email', data: {
+    final response = await post('$url/user/kirim-email', {
       'email': email,
     });
     if (response.statusCode == 200) {
