@@ -69,7 +69,6 @@ class ForgotPassword extends StatelessWidget {
               ),
               TextFormField(
                 controller: forgotC.emailforgot,
-                keyboardType: TextInputType.number,
                 validator: (v) {
                   if (v?.isEmpty ?? true) {
                     return 'Email anda tidak boleh kosong';

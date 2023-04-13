@@ -595,7 +595,6 @@ class DetailTransaksi extends StatelessWidget {
                         ),
                         borderRadius: BorderRadius.circular(4),
                       ),
-                      hintText: 'Tuliskan Nama',
                       hintStyle: listTitleBold.copyWith(color: neutral60),
                       isDense: true,
                     ),
