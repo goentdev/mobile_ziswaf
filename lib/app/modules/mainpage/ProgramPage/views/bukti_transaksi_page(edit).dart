@@ -235,6 +235,10 @@ class BuktiTransaksiEdit extends StatelessWidget {
                                             if (controller.searchBankController
                                                 .text.isNotEmpty) {
                                               return CardBank(
+                                                namaRekening: controller
+                                                    .banks[index].namaRekening,
+                                                norekening: controller
+                                                    .banks[index].nomorRekening,
                                                 bank: controller
                                                     .banksOnSearch[index]
                                                     .bank!
@@ -267,6 +271,10 @@ class BuktiTransaksiEdit extends StatelessWidget {
                                               );
                                             } else {
                                               return CardBank(
+                                                namaRekening: controller
+                                                    .banks[index].namaRekening,
+                                                norekening: controller
+                                                    .banks[index].nomorRekening,
                                                 bank: controller
                                                     .banks[index].bank!.nama!,
                                                 gambar: controller
