@@ -27,7 +27,7 @@ class AuthProvider extends GetConnect {
       // "otp": otp,
       "whatsapp": whatsapp,
       "status": status,
-      "tingkat": 'Bawah',
+      "tingkat": 'Madya',
       "role": role,
       "kategori": kategori,
       "jenis_kartu_identitas": jenisKartuIdentitas,
@@ -44,6 +44,10 @@ class AuthProvider extends GetConnect {
       return true;
     } else if (response.statusCode == 400) {
       EasyLoading.showError('Akun sudah terdaftar');
+
+      return false;
+    } else if (response.statusCode == 500) {
+      EasyLoading.showError('Server OTP Error');
 
       return false;
     } else {

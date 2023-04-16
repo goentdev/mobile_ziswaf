@@ -54,7 +54,7 @@ class RegisterPage extends GetView<RegisterController> {
                             fotoKartuIdentitas:
                                 'https://firebasestorage.googleapis.com/v0/b/ziswaf-111b8.appspot.com/o/identitas-foto%2Fnot_found_image.jpg?alt=media&token=81a3bf91-0274-4099-8837-2784673c523e',
                             jenisKartuIdentitas: 'Belum Mengisi Data',
-                            kategori: 'lembaga',
+                            kategori: 'Perorangan',
                             nama: 'Belum Mengisi Data',
                             nomorKartuIdentitas: 'Belum Mengisi Data',
                           );

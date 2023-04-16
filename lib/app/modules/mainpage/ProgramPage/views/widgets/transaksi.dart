@@ -126,6 +126,7 @@ class TransaksiDetail extends StatelessWidget {
                                   .transaksi![
                                       controller.transaksi!.length - 1 - index]
                                   .bank
+                                  ?.bank
                                   ?.nama ??
                               '-',
                           nominal: controller

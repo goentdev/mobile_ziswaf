@@ -260,7 +260,6 @@ class BuktiTransaksiEdit extends StatelessWidget {
                                                           .value =
                                                       controller
                                                           .banksOnSearch[index]
-                                                          .bank!
                                                           .id!;
                                                   controller.isSelectedBank
                                                       .value = true;
@@ -286,8 +285,8 @@ class BuktiTransaksiEdit extends StatelessWidget {
                                                           .bank!.nama!;
                                                   controller.selectedBankId
                                                           .value =
-                                                      controller.banks[index]
-                                                          .bank!.id!;
+                                                      controller
+                                                          .banks[index].id!;
                                                   controller.isSelectedBank
                                                       .value = true;
                                                   Get.back();

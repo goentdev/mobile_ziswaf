@@ -1,7 +1,7 @@
 import 'package:mobile_ziswaf/app/data/models/alokasidana_model.dart';
 import 'package:mobile_ziswaf/app/data/models/muzaki_model.dart';
 
-import 'bank_model.dart';
+import 'bank_yayasan_model.dart';
 
 class Transaksi {
   int? id;
@@ -19,7 +19,7 @@ class Transaksi {
   int? konfirmasi;
   String? createdAt;
   MuzakiUserModel? muzaki;
-  Bank? bank;
+  BankYayasan? bank;
   String? kategori;
 
   Transaksi(
@@ -61,7 +61,7 @@ class Transaksi {
     muzaki = json['muzaki'] != null
         ? MuzakiUserModel?.fromJson(json['muzaki'])
         : null;
-    bank = json['bank'] != null ? Bank?.fromJson(json['bank']) : null;
+    bank = json['bank'] != null ? BankYayasan?.fromJson(json['bank']) : null;
     kategori = json['muzaki']['muzaki']['kategori'];
   }
 
